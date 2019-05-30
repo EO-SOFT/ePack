@@ -153,9 +153,12 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
                     + "p.pack_item AS pack_item, "
                     + "p.quantity AS qty "
                     + "FROM "
-                    + "packaging_stock_movement p ";
+                    + "packaging_stock_movement p WHERE 1=1 ";
             if (!packaging_wh_box.getSelectedItem().toString().equals("")) {
-                query_str += "WHERE warehouse IN ('" + packaging_wh_box.getSelectedItem().toString() + "') ";
+                query_str += " AND warehouse IN ('" + packaging_wh_box.getSelectedItem().toString() + "') ";
+            }
+            if (!packaging_item.getText().equals("")) {
+                query_str += " AND UPPER(pack_item) LIKE '%" + packaging_item.getText().toUpperCase() + "%' ";
             }
             query_str += ") AS Q1 ";
             query_str += "GROUP BY warehouse, pack_item ";
@@ -200,6 +203,8 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
         export_btn = new javax.swing.JButton();
         packaging_wh_box = new javax.swing.JComboBox();
         fname_lbl14 = new javax.swing.JLabel();
+        packaging_item = new javax.swing.JTextField();
+        fname_lbl15 = new javax.swing.JLabel();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -260,6 +265,15 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
         fname_lbl14.setForeground(new java.awt.Color(255, 255, 255));
         fname_lbl14.setText("Warehouse");
 
+        packaging_item.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                packaging_itemKeyPressed(evt);
+            }
+        });
+
+        fname_lbl15.setForeground(new java.awt.Color(255, 255, 255));
+        fname_lbl15.setText("Packaging Item");
+
         javax.swing.GroupLayout north_panelLayout = new javax.swing.GroupLayout(north_panel);
         north_panel.setLayout(north_panelLayout);
         north_panelLayout.setHorizontalGroup(
@@ -269,16 +283,20 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
                 .addContainerGap()
                 .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(north_panelLayout.createSequentialGroup()
-                        .addComponent(fname_lbl14)
+                        .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fname_lbl14)
+                            .addComponent(fname_lbl15))
                         .addGap(18, 18, 18)
-                        .addComponent(packaging_wh_box, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refresh_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(packaging_item)
+                            .addComponent(packaging_wh_box, 0, 203, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(export_btn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(220, 428, Short.MAX_VALUE))
+                        .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(refresh_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(export_btn))))
+                .addGap(237, 428, Short.MAX_VALUE))
         );
         north_panelLayout.setVerticalGroup(
             north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,13 +305,17 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(packaging_wh_box, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fname_lbl14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refresh_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(packaging_wh_box, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fname_lbl14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(packaging_item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fname_lbl15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refresh_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
@@ -365,14 +387,22 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
         // TODO add your handling code here:
     }//GEN-LAST:event_packaging_wh_boxActionPerformed
 
+    private void packaging_itemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_packaging_itemKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           refresh();
+        }
+    }//GEN-LAST:event_packaging_itemKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton export_btn;
     private javax.swing.JLabel fname_lbl14;
+    private javax.swing.JLabel fname_lbl15;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel north_panel;
+    private javax.swing.JTextField packaging_item;
     private javax.swing.JTable packaging_stock_table;
     private javax.swing.JComboBox packaging_wh_box;
     private javax.swing.JButton refresh_btn1;
