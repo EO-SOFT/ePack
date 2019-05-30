@@ -1,0 +1,105 @@
+mai 27, 2019 11:10:52 PM ui.UILog log
+INFOS: File 2019_05_27.log is created!
+
+mai 27, 2019 11:10:52 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_27] created !
+open_sheet sub directory [.\print\2019_05_27\open_sheet] created !
+Print sub directory [.\print\2019_05_27\closing_sheet] created !
+Print sub directory [.\print\2019_05_27\picking_label] created !
+Print sub directory [.\print\2019_05_27\dispatch_label] created !
+
+mai 27, 2019 11:10:59 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-27 23:10:59 Module : Configuration : .
+mai 27, 2019 11:11:06 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 27, 2019 11:20:09 PM ui.UILog log
+INFOS: File 2019_05_27.log already exists.
+
+mai 27, 2019 11:20:09 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_27] already exist!
+open_sheet sub directory [.\print\2019_05_27\open_sheet] already exist!
+Print sub directory [.\print\2019_05_27\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_27\picking_label] already exist!
+Print sub directory [.\print\2019_05_27\dispatch_label] already exist!
+
+mai 27, 2019 11:20:10 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-27 23:20:10 Module : Configuration : .
+mai 27, 2019 11:20:13 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 27, 2019 11:25:46 PM ui.UILog log
+INFOS: File 2019_05_27.log already exists.
+
+mai 27, 2019 11:25:46 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_27] already exist!
+open_sheet sub directory [.\print\2019_05_27\open_sheet] already exist!
+Print sub directory [.\print\2019_05_27\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_27\picking_label] already exist!
+Print sub directory [.\print\2019_05_27\dispatch_label] already exist!
+
+mai 27, 2019 11:25:54 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 1 connected to host Oussama-PC at 2019-05-27 23:25:54 Module : Configuration : .
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-27 23:48:55 Project : SMALL.
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: ^[P]{1}\d{22}
+^[P]{1}\d{10}[.]\d{2}[.]\d{4}[;]\d{2}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[;]\d{2}[.]\d{2}[.]\d{6}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[;]\d{2}[.]\d{2}[.]\d{4}[;]\d{2}[:]\d{2}[:]\d{2}
+^[P]{1}\d{10}[.]\d{2}[.]\d{6}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[P]{1}\d{10}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[C]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{14}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{13}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{16}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{18}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{12}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{15}
+^[P]{1}\d{8}[P]{1}\d{19}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{19}
+^[P]{1}\d{8}[C]{1}\d{19}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[B]{1}\d{17}
+^[P]{1}\d{8}[C]{1}\d{4}[C]{1}\d{5}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{6}[A]{1}\d{17}
+^\d{4}[C]{1}\d{3}[D]{1}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^[P]{1}\w{32}
+^[P]{1}\d{10}[C]{1}\d{5}[A]{1}\d{19}
+
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 23 formats possible du QR pour le projet SMALL ont été chargés avec succès !
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: ^[P]\w{8}
+
+mai 27, 2019 11:48:55 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 1 formats de référence possibles pour le projet SMALL ont été chargés avec succès.
+mai 27, 2019 11:48:58 PM ui.UILog log
+INFOS: Searching Harness part [22216200] in ConfigUCS: [SMALL]
+mai 27, 2019 11:48:58 PM ui.UILog log
+INFOS: APP_INFO0004 : Référence produit 22216200 trouvée pour le projet [SMALL].
+mai 27, 2019 11:48:58 PM ui.UILog log
+INFOS: APP_INFO0005 : Référence produit correcte P22216200 
+mai 27, 2019 11:49:20 PM ui.UILog log
+INFOS: Searching Harness counter [P2221620020190527223500] in BaseHarness.
+mai 27, 2019 11:49:20 PM ui.UILog log
+INFOS: FROM BaseHarness bh WHERE bh.counter = :counter
+mai 27, 2019 11:49:26 PM ui.UILog log
+INFOS: New harness to be added BaseHarness{harnessPart=null, counter=null}
+mai 27, 2019 11:50:01 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_27] already exist!
+open_sheet sub directory [.\print\2019_05_27\open_sheet] already exist!
+Print sub directory [.\print\2019_05_27\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_27\picking_label] already exist!
+Print sub directory [.\print\2019_05_27\dispatch_label] already exist!
+
+mai 27, 2019 11:50:01 PM ui.UILog log
+INFOS: Sending [.\print\2019_05_27\open_sheet\PrintOpenPallet_A5_2019_05_27_23_50_01__22216200_200095031888.pdf] to the default printer...
+mai 27, 2019 11:50:01 PM ui.UILog log
+INFOS: File [.\print\2019_05_27\open_sheet\PrintOpenPallet_A5_2019_05_27_23_50_01__22216200_200095031888.pdf] has been printed.
+mai 27, 2019 11:50:01 PM ui.UILog log
+INFOS: APP_INFO0006 : Openning new container 200095031 for the first harness part 

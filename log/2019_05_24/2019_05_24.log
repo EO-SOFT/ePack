@@ -1,0 +1,261 @@
+mai 24, 2019 12:02:25 AM ui.UILog log
+INFOS: File 2019_05_24.log is created!
+
+mai 24, 2019 12:02:25 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] created !
+open_sheet sub directory [.\print\2019_05_24\open_sheet] created !
+Print sub directory [.\print\2019_05_24\closing_sheet] created !
+Print sub directory [.\print\2019_05_24\picking_label] created !
+Print sub directory [.\print\2019_05_24\dispatch_label] created !
+
+mai 24, 2019 12:02:30 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-24 00:02:30 Module : Configuration : .
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-24 00:02:46 Project : SMALL.
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: ^[P]{1}\d{22}
+^[P]{1}\d{10}[.]\d{2}[.]\d{4}[;]\d{2}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[;]\d{2}[.]\d{2}[.]\d{6}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[;]\d{2}[.]\d{2}[.]\d{4}[;]\d{2}[:]\d{2}[:]\d{2}
+^[P]{1}\d{10}[.]\d{2}[.]\d{6}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[P]{1}\d{10}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[C]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{14}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{13}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{16}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{18}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{12}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{15}
+^[P]{1}\d{8}[P]{1}\d{19}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{19}
+^[P]{1}\d{8}[C]{1}\d{19}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[B]{1}\d{17}
+^[P]{1}\d{8}[C]{1}\d{4}[C]{1}\d{5}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{6}[A]{1}\d{17}
+^\d{4}[C]{1}\d{3}[D]{1}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^[P]{1}\w{32}
+^[P]{1}\d{10}[C]{1}\d{5}[A]{1}\d{19}
+
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: APP_CONFIG0003   : 23 formats possible du QR pour le projet SMALL ont été chargés avec succès !
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: ^[P]\w{8}
+
+mai 24, 2019 12:02:46 AM ui.UILog log
+INFOS: APP_CONFIG0004   : 1 formats de référence possibles pour le projet SMALL ont été chargés avec succès.
+mai 24, 2019 12:02:58 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:02:59 AM ui.UILog log
+INFOS: Sending [.\print\2019_05_24\closing_sheet\PrintClosingPallet_A5_22216200_2019_05_24_00_02_58_807.pdf] to the default printer...
+mai 24, 2019 12:02:59 AM ui.UILog log
+INFOS: File [%s] has been printed.
+mai 24, 2019 12:03:28 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:03:28 AM ui.UILog log
+INFOS: Sending [.\print\2019_05_24\closing_sheet\PrintClosingPallet_A5_22216200_2019_05_24_00_03_28_595.pdf] to the default printer...
+mai 24, 2019 12:03:28 AM ui.UILog log
+INFOS: File [%s] has been printed.
+mai 24, 2019 12:03:49 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:03:49 AM ui.UILog log
+INFOS: Sending [.\print\2019_05_24\closing_sheet\PrintClosingPallet_A5_22216200_2019_05_24_00_03_49786.pdf] to the default printer...
+mai 24, 2019 12:03:49 AM ui.UILog log
+INFOS: File [%s] has been printed.
+mai 24, 2019 12:04:11 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:04:11 AM ui.UILog log
+INFOS: Sending [.\print\2019_05_24\open_sheet\PrintOpenPallet_A5_2019_05_24_00_04_11__22216200_200095027264.pdf] to the default printer...
+mai 24, 2019 12:04:11 AM ui.UILog log
+INFOS: File [.\print\2019_05_24\open_sheet\PrintOpenPallet_A5_2019_05_24_00_04_11__22216200_200095027264.pdf] has been printed.
+mai 24, 2019 12:10:37 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 24, 2019 12:10:40 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 24, 2019 12:10:44 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 24, 2019 12:10:45 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 24, 2019 12:10:45 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 24, 2019 12:10:51 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 24, 2019 12:12:56 AM ui.UILog log
+INFOS: File 2019_05_24.log already exists.
+
+mai 24, 2019 12:12:56 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:18:38 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-24 00:18:38 Module : Configuration : .
+mai 24, 2019 12:21:02 AM ui.UILog log
+INFOS: File 2019_05_24.log already exists.
+
+mai 24, 2019 12:21:02 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:21:05 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-24 00:21:05 Module : Configuration : .
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-24 00:21:53 Project : SMALL.
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: ^[P]{1}\d{22}
+^[P]{1}\d{10}[.]\d{2}[.]\d{4}[;]\d{2}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[;]\d{2}[.]\d{2}[.]\d{6}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[;]\d{2}[.]\d{2}[.]\d{4}[;]\d{2}[:]\d{2}[:]\d{2}
+^[P]{1}\d{10}[.]\d{2}[.]\d{6}[:]\d{2}[:]\d{2}
+^[P]{1}\d{8}[P]{1}\d{10}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[C]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{14}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{13}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{16}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{18}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{12}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{15}
+^[P]{1}\d{8}[P]{1}\d{19}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[A]{1}\d{19}
+^[P]{1}\d{8}[C]{1}\d{19}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{5}[B]{1}\d{17}
+^[P]{1}\d{8}[C]{1}\d{4}[C]{1}\d{5}[A]{1}\d{17}
+^[P]{1}\d{8}[P]{1}\d{4}[C]{1}\d{6}[A]{1}\d{17}
+^\d{4}[C]{1}\d{3}[D]{1}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^[P]{1}\w{32}
+^[P]{1}\d{10}[C]{1}\d{5}[A]{1}\d{19}
+
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: APP_CONFIG0003   : 23 formats possible du QR pour le projet SMALL ont été chargés avec succès !
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: ^[P]\w{8}
+
+mai 24, 2019 12:21:53 AM ui.UILog log
+INFOS: APP_CONFIG0004   : 1 formats de référence possibles pour le projet SMALL ont été chargés avec succès.
+mai 24, 2019 12:22:43 AM ui.UILog log
+INFOS: Searching Harness part [22216200] in ConfigUCS: [SMALL]
+mai 24, 2019 12:22:43 AM ui.UILog log
+INFOS: APP_INFO0004 : Référence produit 22216200 trouvée pour le projet [SMALL].
+mai 24, 2019 12:22:43 AM ui.UILog log
+INFOS: APP_INFO0005 : Référence produit correcte P22216200 
+mai 24, 2019 12:22:49 AM ui.UILog log
+INFOS: Searching Harness counter [P2221620020190522223503] in BaseHarness.
+mai 24, 2019 12:22:49 AM ui.UILog log
+INFOS: FROM BaseHarness bh WHERE bh.counter = :counter
+mai 24, 2019 12:22:50 AM ui.UILog log
+INFOS: New harness to be added BaseHarness{harnessPart=null, counter=null}
+mai 24, 2019 12:23:00 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:23:00 AM ui.UILog log
+INFOS: Sending [.\print\2019_05_24\open_sheet\PrintOpenPallet_A5_2019_05_24_00_23_00__22216200_200095030394.pdf] to the default printer...
+mai 24, 2019 12:23:00 AM ui.UILog log
+INFOS: File [.\print\2019_05_24\open_sheet\PrintOpenPallet_A5_2019_05_24_00_23_00__22216200_200095030394.pdf] has been printed.
+mai 24, 2019 12:23:00 AM ui.UILog log
+INFOS: APP_INFO0006 : Openning new container 200095030 for the first harness part 
+mai 24, 2019 12:23:07 AM ui.UILog log
+INFOS: BaseContainer created BaseContainer{
+id=93886,
+ createTime=Fri May 24 00:23:07 UTC 2019,
+ fifoTime=Fri May 24 00:23:07 UTC 2019,
+ storedTime=null,
+ shippedTime=null,
+ reservedTime=null,
+ createId=100,
+ writeId=100,
+ user=9,
+ createUser=EZZIOURI Oussama,
+ startTime=Fri May 24 00:23:07 UTC 2019,
+ closedTime=null,
+ workTime=null,
+ palletNumber=200095030,
+ harnessPart=22216200,
+ harnessIndex=P02,
+ supplierPartNumber=26C06971A,
+ qtyExpected=1,
+ qtyRead=1,
+ containerState=OPEN,
+ containerStateCode=1000,
+ packType=C9,
+ harnessType=SMALL,
+ stdTime=0.221,
+ price=0.0,
+ packWorkstation=Oussama-PC,
+ order_no=300237348,
+ special_order=1,
+ labelPerPiece=false,
+ comment=,
+ segment=SMALLS_MDEP,
+ workplace=SMALL,
+ ucsLifes=-1,
+ ucsId=999,
+ dispatchLabelNo=null,
+ destination=VMI,
+ dispatchTime=null,
+ consignNo=null,
+ invoiceNo=null,
+ netWeight=0.0,
+ grossWeight=0.0,
+ volume=0.0,
+ engChange=?,
+ articleDesc=?,
+ project=VOLVO,
+ warehouse=4CV,
+ engChangeDate=2018-01-01 00:00:00.0,
+ priority=99,
+ openningSheetCopies=1,
+ closingSheetCopies=1,
+ closingSheetFormat=1} 
+mai 24, 2019 12:23:08 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_24] already exist!
+open_sheet sub directory [.\print\2019_05_24\open_sheet] already exist!
+Print sub directory [.\print\2019_05_24\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_24\picking_label] already exist!
+Print sub directory [.\print\2019_05_24\dispatch_label] already exist!
+
+mai 24, 2019 12:23:08 AM ui.UILog log
+INFOS: Sending [.\print\2019_05_24\closing_sheet\PrintClosingPallet_A5_22216200_2019_05_24_00_23_08683.pdf] to the default printer...
+mai 24, 2019 12:23:08 AM ui.UILog log
+INFOS: File [%s] has been printed.
