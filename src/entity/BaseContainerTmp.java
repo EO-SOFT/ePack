@@ -2,6 +2,7 @@ package entity;
 // Generated 6 f�vr. 2016 21:43:55 by Hibernate Tools 3.6.0
 
 import java.util.Date;
+import javax.persistence.Column;
 
 /**
  * BaseContainerTmp : Used to manage baseContainer temporary choices
@@ -47,8 +48,17 @@ public class BaseContainerTmp implements java.io.Serializable {
     private Boolean labelPerPiece;
     private Integer priority;
     private Integer openSheetCopies;
-    private Integer closeSheetCopies;    
+    private Integer closeSheetCopies;
     private Integer closingSheetFormat;
+    private Boolean print_destination;
+
+    public Boolean getPrint_destination() {
+        return print_destination;
+    }
+
+    public void setPrint_destination(Boolean print_destination) {
+        this.print_destination = print_destination;
+    }
 
     public Integer getClosingSheetFormat() {
         return closingSheetFormat;
@@ -81,8 +91,6 @@ public class BaseContainerTmp implements java.io.Serializable {
     public void setCloseSheetCopies(Integer closeSheetCopies) {
         this.closeSheetCopies = closeSheetCopies;
     }
-    
-    
 
     public BaseContainerTmp() {
     }
@@ -102,8 +110,6 @@ public class BaseContainerTmp implements java.io.Serializable {
     public void setLabelPerPiece(Boolean labelPerPiece) {
         this.labelPerPiece = labelPerPiece;
     }
-    
-    
 
     public String getPalletNumber() {
         return palletNumber;
@@ -389,8 +395,5 @@ public class BaseContainerTmp implements java.io.Serializable {
     public String toString() {
         return "BaseContainerTmp{" + "palletNumber=" + palletNumber + ", harnessPart=" + harnessPart + ", harnessIndex=" + harnessIndex + ", supplierPartNumber=" + supplierPartNumber + ", qtyExpected=" + qtyExpected + ", qtyRead=" + qtyRead + ", state=" + state + ", packType=" + packType + ", choosen_pack_type=" + choosen_pack_type + ", hernessCounter=" + hernessCounter + ", harnessType=" + harnessType + ", stdTime=" + stdTime + ", price=" + price + ", packWorkstation=" + packWorkstation + ", assyWorkstation=" + assyWorkstation + ", assyWorkstationId=" + assyWorkstationId + ", segment=" + segment + ", workplace=" + workplace + ", order_no=" + order_no + ", special_order=" + special_order + ", ucsLifes=" + ucsLifes + ", ucsId=" + ucsId + ", comment=" + comment + ", dispatchLabelNo=" + dispatchLabelNo + ", dispatchTime=" + dispatchTime + ", consignNo=" + consignNo + ", invoiceNo=" + invoiceNo + ", netWeight=" + netWeight + ", grossWeight=" + grossWeight + ", volume=" + volume + ", engChange=" + engChange + ", articleDesc=" + articleDesc + ", project=" + project + ", warehouse=" + warehouse + ", engChangeDate=" + engChangeDate + ", destination=" + destination + ", labelPerPiece=" + labelPerPiece + '}';
     }
-    
-    
 
-   
 }

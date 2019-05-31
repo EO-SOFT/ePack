@@ -137,6 +137,21 @@ public class BaseContainer extends DAO implements java.io.Serializable {
     private Integer special_order;
 
     /**
+     * True : Print the destination in closing sheet label False : Print à dash
+     * "-" unstead of destination
+     */
+    @Column(name = "print_destination", nullable = true)
+    private Boolean print_destination;
+
+    public Boolean getPrint_destination() {
+        return print_destination;
+    }
+
+    public void setPrint_destination(Boolean print_destination) {
+        this.print_destination = print_destination;
+    }
+
+    /**
      * Print an A5 label for each scanned piece. This label is different from
      * open and closing sheet labels, If set to true, it will be printed once
      * the user scan the QR code of a harness.';
@@ -239,7 +254,7 @@ public class BaseContainer extends DAO implements java.io.Serializable {
 
     @Column(name = "closing_sheet_copies")
     private int closingSheetCopies;
-    
+
     @Column(name = "closing_sheet_format")
     private int closingSheetFormat;
 
@@ -936,9 +951,6 @@ public class BaseContainer extends DAO implements java.io.Serializable {
     public String toString() {
         return "BaseContainer{" + "\nid=" + id + ",\n createTime=" + createTime + ",\n fifoTime=" + fifoTime + ",\n storedTime=" + storedTime + ",\n shippedTime=" + shippedTime + ",\n reservedTime=" + reservedTime + ",\n createId=" + createId + ",\n writeId=" + writeId + ",\n user=" + user + ",\n createUser=" + createUser + ",\n startTime=" + startTime + ",\n closedTime=" + closedTime + ",\n workTime=" + workTime + ",\n palletNumber=" + palletNumber + ",\n harnessPart=" + harnessPart + ",\n harnessIndex=" + harnessIndex + ",\n supplierPartNumber=" + supplierPartNumber + ",\n qtyExpected=" + qtyExpected + ",\n qtyRead=" + qtyRead + ",\n containerState=" + containerState + ",\n containerStateCode=" + containerStateCode + ",\n packType=" + packType + ",\n harnessType=" + harnessType + ",\n stdTime=" + stdTime + ",\n price=" + price + ",\n packWorkstation=" + packWorkstation + ",\n order_no=" + order_no + ",\n special_order=" + special_order + ",\n labelPerPiece=" + labelPerPiece + ",\n comment=" + comment + ",\n segment=" + segment + ",\n workplace=" + workplace + ",\n ucsLifes=" + ucsLifes + ",\n ucsId=" + ucsId + ",\n dispatchLabelNo=" + dispatchLabelNo + ",\n destination=" + destination + ",\n dispatchTime=" + dispatchTime + ",\n consignNo=" + consignNo + ",\n invoiceNo=" + invoiceNo + ",\n netWeight=" + netWeight + ",\n grossWeight=" + grossWeight + ",\n volume=" + volume + ",\n engChange=" + engChange + ",\n articleDesc=" + articleDesc + ",\n project=" + project + ",\n warehouse=" + warehouse + ",\n engChangeDate=" + engChangeDate + ",\n priority=" + priority + ",\n openningSheetCopies=" + openningSheetCopies + ",\n closingSheetCopies=" + closingSheetCopies + ",\n closingSheetFormat=" + closingSheetFormat + '}';
     }
-
-    
-    
 
     public BaseContainer checkContainerByState(String palletNumber, String state) {
         //Tester si contenaire exist dans la base BaseContainer        

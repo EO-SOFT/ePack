@@ -24,6 +24,15 @@ COMMENT ON COLUMN public.base_container.closing_sheet_format
     IS '1 : A simple format (user for Ducati project)
 2 : An advanced format (Used for Perkins and Volvo)';
 
+ALTER TABLE public.base_container
+    ADD COLUMN print_destination boolean NOT NULL DEFAULT False;
+
+COMMENT ON COLUMN public.base_container.print_destination
+    IS 'Boolean
+True : Print the destination in closing sheet label
+False : Print à dash "-" unstead of destination';
+
+
 -- drop_base_container
 ALTER TABLE drop_base_container
     ADD COLUMN priority integer NOT NULL DEFAULT 99,
@@ -45,6 +54,14 @@ ALTER TABLE public.drop_base_container
 COMMENT ON COLUMN public.drop_base_container.closing_sheet_format
     IS '1 : A simple format (user for Ducati project)
 2 : An advanced format (Used for Perkins and Volvo)';
+
+ALTER TABLE public.drop_base_container
+    ADD COLUMN print_destination boolean NOT NULL DEFAULT False;
+
+COMMENT ON COLUMN public.drop_base_container.print_destination
+    IS 'Boolean
+True : Print the destination in closing sheet label
+False : Print à dash "-" unstead of destination';
 
 --- Rename of config_project to config_family
 
@@ -118,6 +135,14 @@ SELECT setval('public.load_plan_destination_id_seq', 13, true);
 
 ALTER TABLE public.load_plan ALTER COLUMN delivery_time TYPE timestamp with time zone;
 -- config_ucs
+ALTER TABLE public.config_ucs
+    ADD COLUMN print_destination boolean NOT NULL DEFAULT False;
+
+COMMENT ON COLUMN public.config_ucs.print_destination
+    IS 'Boolean
+True : Print the destination in closing sheet label
+False : Print à dash "-" unstead of destination';
+
 
 ALTER TABLE config_ucs
     ADD COLUMN priority integer  NOT NULL DEFAULT 99,

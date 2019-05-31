@@ -177,6 +177,15 @@ public class ConfigUcs extends DAO implements java.io.Serializable {
     
     @Column(name = "closing_sheet_format")
     private int closingSheetFormat;
+    
+    /**
+     * True : Print the destination in closing sheet label False : Print à dash
+     * "-" unstead of destination
+     */
+    @Column(name = "print_destination", nullable = true)
+    private Boolean print_destination;
+
+    
 
     //@ManyToOne(optional = true, cascade = CascadeType.REFRESH)
     //private AssyWorkstation assyWorkstation;
@@ -524,6 +533,14 @@ public class ConfigUcs extends DAO implements java.io.Serializable {
 
     public void setClosingSheetFormat(int closingSheetFormat) {
         this.closingSheetFormat = closingSheetFormat;
+    }
+    
+    public Boolean getPrint_destination() {
+        return print_destination;
+    }
+
+    public void setPrint_destination(Boolean print_destination) {
+        this.print_destination = print_destination;
     }
     
     //######################################################################

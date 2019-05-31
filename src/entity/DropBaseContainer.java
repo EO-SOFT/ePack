@@ -158,6 +158,21 @@ public class DropBaseContainer extends DAO implements java.io.Serializable {
     
     @Column(name = "closing_sheet_format")
     private int closingSheetFormat;
+    
+    /**
+     * True : Print the destination in closing sheet label False : Print à dash
+     * "-" unstead of destination
+     */
+    @Column(name = "print_destination", nullable = true)
+    private Boolean print_destination;
+    
+    public Boolean getPrint_destination() {
+        return print_destination;
+    }
+
+    public void setPrint_destination(Boolean print_destination) {
+        this.print_destination = print_destination;
+    }
 
     public int getClosingSheetFormat() {
         return closingSheetFormat;

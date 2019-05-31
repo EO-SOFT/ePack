@@ -24,3 +24,90 @@ Print sub directory [.\print\2019_05_30\dispatch_label] already exist!
 
 mai 30, 2019 10:45:35 PM ui.UILog log
 INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-30 22:45:35 Module : Configuration : .
+mai 30, 2019 11:38:09 PM ui.UILog log
+INFOS: File 2019_05_30.log already exists.
+
+mai 30, 2019 11:38:09 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_30] already exist!
+open_sheet sub directory [.\print\2019_05_30\open_sheet] already exist!
+Print sub directory [.\print\2019_05_30\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_30\picking_label] already exist!
+Print sub directory [.\print\2019_05_30\dispatch_label] already exist!
+
+mai 30, 2019 11:38:53 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-30 23:38:53 Module : Configuration : .
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-30 23:39:12 Project : DUCATI.
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+mai 30, 2019 11:39:12 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+mai 30, 2019 11:40:42 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:41:04 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:41:06 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:41:11 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:47:04 PM ui.UILog log
+INFOS: File 2019_05_30.log already exists.
+
+mai 30, 2019 11:47:04 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_05_30] already exist!
+open_sheet sub directory [.\print\2019_05_30\open_sheet] already exist!
+Print sub directory [.\print\2019_05_30\closing_sheet] already exist!
+Print sub directory [.\print\2019_05_30\picking_label] already exist!
+Print sub directory [.\print\2019_05_30\dispatch_label] already exist!
+
+mai 30, 2019 11:49:08 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-30 23:49:08 Module : Configuration : .
+mai 30, 2019 11:51:09 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:52:28 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:52:28 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:52:36 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:52:42 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:55:01 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:55:08 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:55:48 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:56:55 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:56:58 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:57:21 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:58:08 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-30 23:58:08 Dispatch interface : .
+mai 30, 2019 11:59:47 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+mai 30, 2019 11:59:51 PM ui.UILog log
+GRAVE: APP_ERR0036 CONFIG : No Warehouse found for the selected project.
+mai 31, 2019 12:01:09 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-05-31 00:01:09 Packaging warehouse interface : .
+mai 31, 2019 12:01:57 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
