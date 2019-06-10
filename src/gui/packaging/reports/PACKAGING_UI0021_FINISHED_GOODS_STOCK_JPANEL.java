@@ -68,31 +68,12 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
     public PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL(JTabbedPane parent) {
         this.parent = parent;
         initComponents();
-        //initFamillyFilter();
-        //initSegmentFilter();
-        //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
         this.workplace_filter.setEnabled(false);
-        //initWorkplaceFilter();
         this.reset_tables_content();
-        //this.refresh();
-        //Helper.centerJDialog(this);
-//        Helper.centerJFrame(this);
     }
 
-    /*private void initProjectFilter() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            project_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                project_filter.addItem(new ComboItem(o.toString(), o.toString()));
-            }
-        }
-    }*/
+    
     private void setWorkplaceBySegment(String segment) {
         if (segment != null && !segment.isEmpty() && segment != "null") {
             System.out.println("setWorkplaceBySegment " + segment);

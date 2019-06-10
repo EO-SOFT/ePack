@@ -105,7 +105,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         }
 
     }
-
+/*
     private void initHarnessTypeByProject(String project) {
         List result = new ConfigFamily().selectHarnessTypeByProject(project);
         if (result.isEmpty()) {
@@ -115,6 +115,20 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             harnessType_filter.removeAllItems();
             for (Object o : result) {
                 harnessType_filter.addItem(new ComboItem(o.toString(), o.toString()));
+            }
+        }
+    }*/
+    private void initHarnessFamilyByProject(String project) {
+        if (!project.toUpperCase().equals("ALL")) {
+            List result = new ConfigFamily().selectHarnessTypeByProject(project);
+            if (result.isEmpty()) {
+                UILog.severeDialog(this, ErrorMsg.APP_ERR0044);
+                UILog.severe(ErrorMsg.APP_ERR0044[1]);
+            } else { //Map project data in the list
+                harnessType_filter.removeAllItems();
+                for (Object o : result) {
+                    harnessType_filter.addItem(new ComboItem(o.toString(), o.toString()));
+                }
             }
         }
     }
@@ -2284,7 +2298,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             this.setPacakgingWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
             this.setDestinationByProject(String.valueOf(project_filter.getSelectedItem()));
             if (this.setSegmentByProject(String.valueOf(project_filter.getSelectedItem()))) {
-                this.initHarnessTypeByProject(String.valueOf(project_filter.getSelectedItem()));
+//                this.initHarnessTypeByProject(String.valueOf(project_filter.getSelectedItem()));
+                this.initHarnessFamilyByProject(String.valueOf(project_filter.getSelectedItem()));
             }
         }
 

@@ -226,7 +226,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         initTimeSpinners();
 
         //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
         //initSegmentFilter();
 
         initStateFilters();
@@ -238,7 +238,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
     }
 
     /*
-    private void initProjectFilter() {
+    private void loadProjectsCombobox() {
         List result = new ConfigProject().select();
         if (result.isEmpty()) {
             UILog.severeDialog(this, ErrorMsg.APP_ERR0035);

@@ -78,16 +78,11 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
     }
 
     private void initGui() {
-        //Desable table edition
-        //disableEditingTables();
-
         //Load table header
         load_table_header();
 
         //Init projects filter
-        //initSegmentFilter();
-        //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
 
         //Focuse on text filter field
         harness_part_filter.requestFocus();
@@ -100,20 +95,6 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
             ucs_result_table_header.add(it.next());
         }
     }
-
-    /*private void initProjectFilter() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            project_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                project_filter.addItem(new ComboItem(o.toString(), o.toString()));
-            }
-        }
-    }*/
 
     private boolean setSegmentByProject(String project) {
         List result = new ConfigSegment().selectBySegment(project);

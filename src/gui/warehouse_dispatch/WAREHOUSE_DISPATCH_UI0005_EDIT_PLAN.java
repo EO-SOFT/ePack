@@ -56,7 +56,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
     }
     
     /*
-    private void initProjectFilter() {
+    private void loadProjectsCombobox() {
         List result = new ConfigProject().select();
         if (result.isEmpty()) {
             UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
@@ -81,7 +81,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
             newDeliveryDatePicker.setDate(this.lp.getDeliveryTime());
 
             //initProjectFilter();
-            GlobalMethods.initProjectFilter(this, project_filter);
+            GlobalMethods.loadProjectsCombobox(this, project_filter,false);
 
             //Set the project value
             for (int i = 0; i < project_filter.getItemCount(); i++) {

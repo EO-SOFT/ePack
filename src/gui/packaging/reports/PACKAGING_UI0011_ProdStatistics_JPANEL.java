@@ -80,7 +80,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         initComponents();
         initTimeSpinners();
         //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
         //initSegmentFilter();
         this.workplace_filter.setEnabled(false);
         radioGroup.add(radio_all_harness);
@@ -89,22 +89,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         //this.refresh();
     }
 
-    /*
-    private void initProjectFilter() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            project_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                ConfigProject cp = (ConfigProject) o;
-                project_filter.addItem(new ComboItem(cp.getProject(), cp.getProject()));
-            }
-        }
-    }
-*/
+    
     private void setWorkplaceBySegment(String segment) {
         System.out.println("setWorkplaceBySegment segment = " + segment);
         List result = new ConfigWorkplace().selectBySegment(segment);

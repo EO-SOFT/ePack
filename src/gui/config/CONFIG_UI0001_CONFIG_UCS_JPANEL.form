@@ -1474,10 +1474,8 @@
                                   <Component id="llogin_lbl_search1" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Component id="pack_type_txtbox_search" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Component id="lname_lbl_search" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                                      <Component id="clear_search_btn" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="filter_btn" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="clear_search_btn" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filter_btn" alignment="2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

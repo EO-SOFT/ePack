@@ -141,9 +141,9 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="90" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="msg_lbl" alignment="0" pref="792" max="32767" attributes="0"/>
+                      <Component id="msg_lbl" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -361,7 +361,7 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="0" green="ff" red="33" type="rgb"/>
             </Property>
           </Properties>
         </Component>
@@ -458,23 +458,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="user_table_scroll" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="fname_lbl_search" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="fname_txtbox_search" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lname_lbl_search" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lname_txtbox_search" min="-2" pref="121" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="llogin_lbl_search" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="login_txtbox_search" min="-2" pref="102" max="-2" attributes="0"/>
-                          <EmptySpace pref="116" max="32767" attributes="0"/>
-                          <Component id="refresh_btn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="clear_search_btn" min="-2" pref="116" max="-2" attributes="0"/>
+                      <Component id="user_table_scroll" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -485,22 +472,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="refresh_btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clear_search_btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="fname_txtbox_search" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fname_lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lname_lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lname_txtbox_search" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="llogin_lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="login_txtbox_search" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="user_table_scroll" pref="404" max="32767" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="user_table_scroll" pref="406" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -528,70 +502,128 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="fname_txtbox_search">
+        <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
-            <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fname_txtbox_searchKeyPressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="fname_lbl_search">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="56" green="41" red="24" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pr&#xe9;nom"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lname_lbl_search">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nom"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="lname_txtbox_search">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lname_txtbox_searchKeyPressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="llogin_lbl_search">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Login"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="login_txtbox_search">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="login_txtbox_searchKeyPressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="refresh_btn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualiser"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refresh_btnActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="clear_search_btn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="R&#xe9;initialiser"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clear_search_btnActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="fname_lbl_search" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="fname_txtbox_search" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lname_lbl_search" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lname_txtbox_search" min="-2" pref="121" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="llogin_lbl_search" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="login_txtbox_search" min="-2" pref="102" max="-2" attributes="0"/>
+                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                      <Component id="refresh_btn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="clear_search_btn" min="-2" pref="116" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fname_txtbox_search" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fname_lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Component id="lname_lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lname_txtbox_search" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="llogin_lbl_search" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="login_txtbox_search" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Component id="refresh_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="clear_search_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="fname_lbl_search">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pr&#xe9;nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="fname_txtbox_search">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fname_txtbox_searchKeyPressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lname_lbl_search">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="lname_txtbox_search">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lname_txtbox_searchKeyPressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="llogin_lbl_search">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Login"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="login_txtbox_search">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="login_txtbox_searchKeyPressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="refresh_btn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualiser"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refresh_btnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="clear_search_btn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="R&#xe9;initialiser"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clear_search_btnActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

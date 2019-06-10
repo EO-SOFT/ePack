@@ -97,8 +97,6 @@ public class MainFrame extends javax.swing.JFrame {
     public void setRootTabbedPane(JTabbedPane rootTabbedPane) {
         this.rootTabbedPane = rootTabbedPane;
     }
-    
-    
 
     /**
      *
@@ -134,7 +132,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Load packaging menus depends on user profile
         //menu_scan_mode_1.setEnabled(false);
-        
         menu_scan_mode_1.setVisible(false);
         menu_scan_mode_2.setVisible(false);
         switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
@@ -721,7 +718,7 @@ public class MainFrame extends javax.swing.JFrame {
         GlobalMethods.addNewTabToParent("Packaging", rootTabbedPane, PackagingVars.Packaging_Gui_Mode3, evt);
         PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
         PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();*/
-        System.out.println("this.OPENED_SCAN_WINDOW "+this.OPENED_SCAN_WINDOW);
+        System.out.println("this.OPENED_SCAN_WINDOW " + this.OPENED_SCAN_WINDOW);
         if (this.OPENED_SCAN_WINDOW == 0) {
             PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
             PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, this);
@@ -807,10 +804,14 @@ public class MainFrame extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE);
 
         if (confirmed == 0) {
-            if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
-                PackagingVars.Packaging_Gui_Mode2.dispose();    
-            } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
-                PackagingVars.Packaging_Gui_Mode3.dispose();
+
+            if (PackagingVars.Packaging_Gui_Mode2 != null || PackagingVars.Packaging_Gui_Mode3 != null) {
+                //Ferme l'interface contenu contenant s'elle ouverte.
+                if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
+                    PackagingVars.Packaging_Gui_Mode2.dispose();
+                } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
+                    PackagingVars.Packaging_Gui_Mode3.dispose();
+                }
             }
 
             try {

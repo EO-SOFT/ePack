@@ -6,7 +6,6 @@
 package gui.warehouse_dispatch;
 
 import __main__.GlobalMethods;
-import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestination;
@@ -46,8 +45,8 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
         Helper.centerJDialog(this);
         this.setResizable(false);
 
-//        initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+//        loadProjectsCombobox();
+        GlobalMethods.loadProjectsCombobox(this, project_filter, false);
 
         this.ok_btn.setEnabled(false);
         disableEditingTable();
@@ -336,8 +335,8 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
     }//GEN-LAST:event_project_filterItemStateChanged
 
     private void project_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_project_filterActionPerformed
-        this.setWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
-
+        //this.setWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
+        GlobalMethods.setWarehouseComboboxByProject(this, project_filter.getSelectedItem().toString(), warehouse_filter);
     }//GEN-LAST:event_project_filterActionPerformed
 
     private void destinations_tableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destinations_tableMouseEntered
@@ -370,36 +369,8 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
         }
     }
 
-    /*private void initProjectFilter() {
-        System.out.println("initProjectFilter");
-        List result = new ConfigProject().select();
-        System.out.println("Liste des éléments : "+result.size());
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            for (Object o : result) {
-                project_filter.addItem(o.toString());
-            }
-            
-        }
-    }*/
-    private void setWarehouseByProject(String project) {
-        List result = new ConfigWarehouse().selectByProjectAndType(project, "FINISH_GOODS");
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0036);
-            UILog.severe(ErrorMsg.APP_ERR0036[1]);
-        } else { //Map project data in the list
-            warehouse_filter.removeAllItems();
-            for (Object o : result) {
-                ConfigWarehouse cp = (ConfigWarehouse) o;
-                warehouse_filter.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
-            }
-
-        }
-    }
-
+   
+    
     /**
      * Charge les destinations dans le jBox
      *

@@ -5,7 +5,6 @@
  */
 package gui.config;
 
-import __main__.GlobalMethods;
 import __main__.GlobalVars;
 import entity.ConfigFamily;
 import entity.ConfigProject;
@@ -35,6 +34,7 @@ import ui.error.ErrorMsg;
  * @author Administrator
  */
 public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
+
     JTabbedPane parent;
     /**
      * Les méthodes JTable qui suivent doivent être dans une class interface
@@ -63,7 +63,7 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
         //super(parent, modal);
         initComponents();
         initGui(parent);
-        
+
     }
 
     private void initGui(JTabbedPane parent) {
@@ -76,8 +76,8 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
         load_table_header();
 
         //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
-
+        //GlobalMethods.initProjectFilter(this, project_filter);
+        project_filter = new ConfigProject().loadProjectToJBox(project_filter);
         initUserProfils();
 
         //Support double click on rows in container jtable to display history
@@ -94,28 +94,17 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
         users_table.setModel(new DefaultTableModel(users_table_data, users_table_header));
     }
 
-    /*private void initProjectFilter() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            for (Object o : result) {
-                project_filter.addItem(new ComboItem(o.toString(), o.toString()));
-            }
-        }
-    }*/
-
-    private void initHarnessTypeByProject(String project) {
-        List result = new ConfigFamily().selectHarnessTypeByProject(project);
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            harnessType_filter.removeAllItems();
-            for (Object o : result) {
-                harnessType_filter.addItem(new ComboItem(o.toString(), o.toString()));
+    private void initHarnessFamilyByProject(String project) {
+        if (!project.toUpperCase().equals("ALL")) {
+            List result = new ConfigFamily().selectHarnessTypeByProject(project);
+            if (result.isEmpty()) {
+                UILog.severeDialog(this, ErrorMsg.APP_ERR0044);
+                UILog.severe(ErrorMsg.APP_ERR0044[1]);
+            } else { //Map project data in the list
+                harnessType_filter.removeAllItems();
+                for (Object o : result) {
+                    harnessType_filter.addItem(new ComboItem(o.toString(), o.toString()));
+                }
             }
         }
     }
@@ -325,8 +314,9 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
         user_list_panel = new javax.swing.JPanel();
         user_table_scroll = new javax.swing.JScrollPane();
         users_table = new javax.swing.JTable();
-        fname_txtbox_search = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         fname_lbl_search = new javax.swing.JLabel();
+        fname_txtbox_search = new javax.swing.JTextField();
         lname_lbl_search = new javax.swing.JLabel();
         lname_txtbox_search = new javax.swing.JTextField();
         llogin_lbl_search = new javax.swing.JLabel();
@@ -411,7 +401,7 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
         });
 
         msg_lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        msg_lbl.setForeground(new java.awt.Color(255, 255, 255));
+        msg_lbl.setForeground(new java.awt.Color(51, 255, 0));
 
         fname_lbl1.setForeground(new java.awt.Color(255, 255, 255));
         fname_lbl1.setText("ID");
@@ -510,8 +500,8 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(level_combobox, 0, 146, Short.MAX_VALUE)
                                     .addComponent(active_combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 90, Short.MAX_VALUE))
-                    .addComponent(msg_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(msg_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -586,15 +576,17 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
         ));
         user_table_scroll.setViewportView(users_table);
 
+        jPanel2.setBackground(new java.awt.Color(36, 65, 86));
+
+        fname_lbl_search.setForeground(new java.awt.Color(255, 255, 255));
+        fname_lbl_search.setText("Prénom");
+
         fname_txtbox_search.setName("fname_txtbox"); // NOI18N
         fname_txtbox_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 fname_txtbox_searchKeyPressed(evt);
             }
         });
-
-        fname_lbl_search.setForeground(new java.awt.Color(255, 255, 255));
-        fname_lbl_search.setText("Prénom");
 
         lname_lbl_search.setForeground(new java.awt.Color(255, 255, 255));
         lname_lbl_search.setText("Nom");
@@ -630,6 +622,47 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(fname_lbl_search)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lname_lbl_search)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(llogin_lbl_search)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(login_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(refresh_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clear_search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fname_lbl_search)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lname_lbl_search)
+                        .addComponent(lname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(llogin_lbl_search)
+                            .addComponent(login_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(refresh_btn)
+                                .addComponent(clear_search_btn)))))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout user_list_panelLayout = new javax.swing.GroupLayout(user_list_panel);
         user_list_panel.setLayout(user_list_panelLayout);
         user_list_panelLayout.setHorizontalGroup(
@@ -639,40 +672,17 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
                 .addGroup(user_list_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(user_table_scroll)
                     .addGroup(user_list_panelLayout.createSequentialGroup()
-                        .addComponent(fname_lbl_search)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lname_lbl_search)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(llogin_lbl_search)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(login_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                        .addComponent(refresh_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clear_search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         user_list_panelLayout.setVerticalGroup(
             user_list_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_list_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(user_list_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(user_list_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(refresh_btn)
-                        .addComponent(clear_search_btn))
-                    .addGroup(user_list_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fname_lbl_search)
-                        .addComponent(lname_lbl_search)
-                        .addComponent(lname_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(llogin_lbl_search)
-                        .addComponent(login_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(user_table_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(user_table_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -847,7 +857,7 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_project_filterItemStateChanged
 
     private void project_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_project_filterActionPerformed
-        this.initHarnessTypeByProject(String.valueOf(project_filter.getSelectedItem()));
+        this.initHarnessFamilyByProject(String.valueOf(project_filter.getSelectedItem()));
     }//GEN-LAST:event_project_filterActionPerformed
 
 
@@ -866,6 +876,7 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JComboBox harnessType_filter;
     private javax.swing.JLabel id_lbl;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox level_combobox;
     private javax.swing.JLabel llogin_lbl_search;
     private javax.swing.JLabel lname_lbl;

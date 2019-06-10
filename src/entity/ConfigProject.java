@@ -86,11 +86,12 @@ public class ConfigProject extends DAO implements Serializable{
     public JComboBox loadProjectToJBox(JComboBox jbox) {
         List result = new ConfigProject().select();
         System.out.println("Projets trouvés "+result.size());
-        if (result.isEmpty()) {
+        if (result.size() == 0) {
             UILog.severeDialog(null, ErrorMsg.APP_ERR0035);
             UILog.severe(ErrorMsg.APP_ERR0035[1]);
         } else { //Map project data in the list
             jbox.removeAllItems();
+            jbox.addItem(new ComboItem("ALL", "ALL"));
             for (Object o : result) {
                 ConfigProject cp = (ConfigProject) o;
                 System.out.println("Add new  object "+cp.getId());

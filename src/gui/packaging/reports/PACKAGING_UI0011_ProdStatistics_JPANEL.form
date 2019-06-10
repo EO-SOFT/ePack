@@ -268,7 +268,6 @@
                                       <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="refresh_btn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="export_btn" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>

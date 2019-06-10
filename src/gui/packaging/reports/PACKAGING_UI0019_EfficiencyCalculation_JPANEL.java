@@ -88,10 +88,7 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
         //super(parent, modal);
         initComponents();
         initTimeSpinners();
-        //initFamillyFilter();
-        //initSegmentFilter();
-        //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
         this.workplace_filter.setEnabled(false);
         radioGroup.add(radio_all_harness);
         radioGroup.add(radio_filled_ucs);
@@ -102,20 +99,7 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
         //Helper.centerJFrame(this);
     }
 
-    /*private void initProjectFilter() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            project_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                project_filter.addItem(new ComboItem(o.toString(), o.toString()));
-            }
-        }
-    }*/
-
+    
     private void setWorkplaceBySegment(String segment) {
         System.out.println("setWorkplaceBySegment segment = " + segment);
         List result = new ConfigWorkplace().selectBySegment(segment);

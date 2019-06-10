@@ -205,4 +205,9 @@ public class ErrorMsg {
      * APP_ERR0043 CONFIG : No destinations found for this projet. Please check load_plan_dest table.
      */
     public static String[] APP_ERR0043 = {"APP_ERR0043", "APP_ERR0043 CONFIG :  No destinations found for this projet. Please check load_plan_dest table."};
+    
+     /**
+     * APP_ERR0044 CONFIG : No familly found in config_family table.
+     */
+    public static String[] APP_ERR0044 = {"APP_ERR0044", "APP_ERR0044 CONFIG : No familly found in config_family table."};
 }

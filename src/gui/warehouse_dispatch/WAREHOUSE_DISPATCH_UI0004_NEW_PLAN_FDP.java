@@ -47,7 +47,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN_FDP extends javax.swing.JD
         this.setResizable(false);
 
         //initProjectFilter();
-        GlobalMethods.initProjectFilter(this, project_filter);
+        GlobalMethods.loadProjectsCombobox(this, project_filter, false);
 
         this.setDestinationsTable("");
         disableEditingTable();
@@ -330,23 +330,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN_FDP extends javax.swing.JD
                 destinations_table.setDefaultEditor(col_class, null);        // remove editor            
             }
         }
-    }
-
-    /*private void initProjectFilter() {
-        List result = new ConfigProject().select();
-        System.out.println("Liste des éléments : "+result.size());
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            for (Object o : result) {
-                project_filter.addItem(o.toString());
-            }
-            
-            this.setDestinationsTable(String.valueOf(project_filter.getSelectedItem()));
-        }
-    }*/
+    }    
 
     private void setWarehouseByProject(String project) {
         List result = new ConfigWarehouse().selectByProjectAndType(project, "FINISH_GOODS");

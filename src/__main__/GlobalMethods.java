@@ -7,6 +7,7 @@ package __main__;
 
 import entity.ConfigBarcode;
 import entity.ConfigProject;
+import entity.ConfigWarehouse;
 import helper.CloseTabButtonComponent;
 import helper.ComboItem;
 import helper.HQLHelper;
@@ -274,23 +275,47 @@ public class GlobalMethods {
 
         UILog.info(ConfigMsg.APP_CONFIG0004[0], "" + GlobalVars.PARTNUMBER_PATTERN_LIST.length, harnessType);
     }
-    
+
     /**
-     * 
+     *
      * @param parentUI
-     * @param box 
+     * @param box
+     * @param displayAll display the "ALL" value in the first item
      */
-    public static void initProjectFilter(Object parentUI, JComboBox box) {
+    public static void loadProjectsCombobox(Object parentUI, JComboBox box, boolean displayAll) {
         List result = new ConfigProject().select();
         if (result.isEmpty()) {
             UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0035);
             UILog.severe(ErrorMsg.APP_ERR0035[1]);
         } else { //Map project data in the list
-            box.removeAllItems();            
-            box.addItem(new ComboItem("ALL", "ALL"));
+            box.removeAllItems();
+            if(displayAll)  box.addItem(new ComboItem("ALL", "ALL"));
             for (Object o : result) {
                 ConfigProject p = (ConfigProject) o;
                 box.addItem(new ComboItem(p.getProject(), p.getProject()));
+            }
+        }
+    }
+
+    /**
+     *
+     * @param parentUI
+     * @param project
+     * @param box
+     */
+    public static void setWarehouseComboboxByProject(Object parentUI, String project, JComboBox box) {
+        if (!project.toUpperCase().equals("ALL")) {
+            List result = new ConfigWarehouse().selectByProjectAndType(project, "FINISH_GOODS");
+            if (result.isEmpty()) {
+                UILog.severeDialog(null, ErrorMsg.APP_ERR0036);
+                UILog.severe(ErrorMsg.APP_ERR0036[1]);
+            } else { //Map project data in the list
+                box.removeAllItems();
+                for (Object o : result) {
+                    ConfigWarehouse cp = (ConfigWarehouse) o;
+                    box.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                }
+
             }
         }
     }
