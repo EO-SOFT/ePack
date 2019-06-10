@@ -215,7 +215,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="stdTime_txtbox" alignment="0" pref="193" max="32767" attributes="0"/>
-                              <Component id="harnessType_filter" alignment="0" max="32767" attributes="0"/>
+                              <Component id="family_filter" alignment="0" max="32767" attributes="0"/>
                               <Component id="segment_filter" alignment="0" max="32767" attributes="0"/>
                               <Component id="workplace_filter" alignment="0" max="32767" attributes="0"/>
                               <Component id="write_time_txt" max="32767" attributes="0"/>
@@ -284,7 +284,7 @@
                           <Group type="103" groupAlignment="2" attributes="0">
                               <Component id="packaging_wh_box" alignment="2" min="-2" max="-2" attributes="0"/>
                               <Component id="pwd_lbl7" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Component id="harnessType_filter" alignment="2" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="family_filter" alignment="2" min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="pwd_lbl1" alignment="2" min="-2" max="-2" attributes="0"/>
                               <Component id="index_txtbox" alignment="2" min="-2" max="-2" attributes="0"/>
                               <Component id="fname_lbl14" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -455,10 +455,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Harness Type *"/>
+                    <Property name="text" type="java.lang.String" value="Famille Article *"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="harnessType_filter">
+                <Component class="javax.swing.JComboBox" name="family_filter">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>

@@ -38,9 +38,11 @@ public final class PrintClosingPallet_A5_Mode3 {
     public String[][] DATA = null;
 
     public void prepareLabelData(BaseContainer bc) {
-        String fdp = "", articleDesc = "";
+        String fdp = "-", articleDesc = "";
         try {
-            fdp = bc.getDestination();
+            if (bc.getPrint_destination()) {
+                fdp = bc.getDestination();
+            }
         } catch (NullPointerException e) {
             fdp = "-";
         }
@@ -53,6 +55,9 @@ public final class PrintClosingPallet_A5_Mode3 {
             articleDesc = "-";
         }
 
+        if (bc.getPrint_destination()) {
+            fdp = bc.getDestination();
+        }
         this.DATA = new String[][]{
             /*0*/{"Customer Part no. (" + GlobalVars.HARN_PART_PREFIX + ")", bc.getHarnessPart(), GlobalVars.HARN_PART_PREFIX + bc.getHarnessPart()},
             /*1*/ {"Supplier Address", GlobalVars.COMPANY_INFO.getName(), GlobalVars.COMPANY_INFO.getAddress1()},
@@ -66,6 +71,7 @@ public final class PrintClosingPallet_A5_Mode3 {
             /*9*/ {"Gross Weight (" + GlobalVars.WEIGHT_PREFIX + ")", bc.getGrossWeight() + "", GlobalVars.WEIGHT_PREFIX + bc.getGrossWeight() + ""},
             /*10*/ {"FIFO Date. (" + GlobalVars.FIFO_DATE_PREFIX + ")", GlobalMethods.convertDateToStringFormat(new Date(), "yy.MM.dd"), GlobalVars.FIFO_DATE_PREFIX + GlobalMethods.convertDateToStringFormat(new Date(), "yy.MM.dd")},
             ///*11*/ {"Eng. Change", (bc.getEngChange().length() > 22) ? bc.getEngChange().substring(0, 22) : bc.getEngChange(), ""},            
+
             /*11*/ {"FDP", fdp, ""},
             /*12*/ {"Eng. Change Date", GlobalMethods.convertDateToStringFormat(bc.getEngChangeDate(), "yy.MM.dd"), ""},
             /*13*/ {"Pack Type", bc.getPackType(), ""},

@@ -101,6 +101,7 @@ public class Mode2_S030_NewPalletScan implements Mode2_State {
             bc.setOpenningSheetCopies(context.getBaseContainerTmp().getOpenSheetCopies());
             bc.setClosingSheetCopies(context.getBaseContainerTmp().getCloseSheetCopies());
             bc.setClosingSheetFormat(context.getBaseContainerTmp().getClosingSheetFormat());
+            bc.setPrint_destination(context.getBaseContainerTmp().getPrint_destination());
             //UILog.infoDialog("Closing format for mode 1: "+context.getBaseContainerTmp().getClosingSheetFormat());
             bc.create(bc);
             UILog.info(String.format("BaseContainer created %s ", bc.toString()));

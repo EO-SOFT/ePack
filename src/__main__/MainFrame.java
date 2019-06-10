@@ -809,10 +809,13 @@ public class MainFrame extends javax.swing.JFrame {
                 //Ferme l'interface contenu contenant s'elle ouverte.
                 if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
                     PackagingVars.Packaging_Gui_Mode2.dispose();
+                    MainFrame.OPENED_SCAN_WINDOW = 0;
                 } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
                     PackagingVars.Packaging_Gui_Mode3.dispose();
+                    MainFrame.OPENED_SCAN_WINDOW = 0;
                 }
             }
+            
 
             try {
 

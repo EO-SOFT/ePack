@@ -5,6 +5,7 @@
  */
 package gui.config;
 
+import __main__.GlobalMethods;
 import entity.ConfigFamily;
 import entity.ConfigProject;
 import entity.ConfigSegment;
@@ -92,7 +93,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         //Load pack master data
         initPackMasterBox();
 
-        project_filter = new ConfigProject().loadProjectToJBox(project_filter);
+        //project_filter = new ConfigProject().loadProjectToJBox(project_filter);
+        project_filter = GlobalMethods.loadProjectsCombobox(this, project_filter, false);
+        
         this.initContainerTableDoubleClick();
     }
 
@@ -105,33 +108,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         }
 
     }
-/*
-    private void initHarnessTypeByProject(String project) {
-        List result = new ConfigFamily().selectHarnessTypeByProject(project);
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            harnessType_filter.removeAllItems();
-            for (Object o : result) {
-                harnessType_filter.addItem(new ComboItem(o.toString(), o.toString()));
-            }
-        }
-    }*/
-    private void initHarnessFamilyByProject(String project) {
-        if (!project.toUpperCase().equals("ALL")) {
-            List result = new ConfigFamily().selectHarnessTypeByProject(project);
-            if (result.isEmpty()) {
-                UILog.severeDialog(this, ErrorMsg.APP_ERR0044);
-                UILog.severe(ErrorMsg.APP_ERR0044[1]);
-            } else { //Map project data in the list
-                harnessType_filter.removeAllItems();
-                for (Object o : result) {
-                    harnessType_filter.addItem(new ComboItem(o.toString(), o.toString()));
-                }
-            }
-        }
-    }
+
+    
 
     private void setWorkplaceBySegment(String segment) {
         if (segment != null && !segment.isEmpty() && segment != "null") {
@@ -253,6 +231,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                     priority.setText(aux.getPriority() + "");
                     open_sheet_copies.setText(aux.getOpenningSheetCopies() + "");
                     closing_sheet_copies.setText(aux.getOpenningSheetCopies() + "");
+                    print_destination_check.setSelected(aux.getPrint_destination());
                     //destination_txtbox.setText(aux.getDestination());
 
                     try {
@@ -303,9 +282,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                             break;
                         }
                     }
-                    for (int i = 0; i < harnessType_filter.getItemCount(); i++) {
-                        if (harnessType_filter.getItemAt(i).toString().equals(aux.getHarnessType())) {
-                            harnessType_filter.setSelectedIndex(i);
+                    for (int i = 0; i < family_filter.getItemCount(); i++) {
+                        if (family_filter.getItemAt(i).toString().equals(aux.getHarnessType())) {
+                            family_filter.setSelectedIndex(i);
                             break;
                         }
                     }
@@ -506,7 +485,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         pwd_lbl = new javax.swing.JLabel();
         workplace_filter = new javax.swing.JComboBox();
         pwd_lbl7 = new javax.swing.JLabel();
-        harnessType_filter = new javax.swing.JComboBox();
+        family_filter = new javax.swing.JComboBox();
         cpn_txtbox = new javax.swing.JTextField();
         fname_lbl = new javax.swing.JLabel();
         lname_lbl = new javax.swing.JLabel();
@@ -709,11 +688,11 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         });
 
         pwd_lbl7.setForeground(new java.awt.Color(255, 255, 255));
-        pwd_lbl7.setText("Harness Type *");
+        pwd_lbl7.setText("Famille Article *");
 
-        harnessType_filter.setMaximumSize(null);
-        harnessType_filter.setMinimumSize(new java.awt.Dimension(37, 26));
-        harnessType_filter.setPreferredSize(new java.awt.Dimension(37, 26));
+        family_filter.setMaximumSize(null);
+        family_filter.setMinimumSize(new java.awt.Dimension(37, 26));
+        family_filter.setPreferredSize(new java.awt.Dimension(37, 26));
 
         cpn_txtbox.setMaximumSize(null);
         cpn_txtbox.setName("cpn_txtbox"); // NOI18N
@@ -835,7 +814,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(stdTime_txtbox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(harnessType_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(family_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(segment_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(workplace_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(write_time_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -889,7 +868,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(packaging_wh_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwd_lbl7)
-                    .addComponent(harnessType_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(family_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwd_lbl1)
                     .addComponent(index_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fname_lbl14))
@@ -1409,9 +1388,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                     .addComponent(llogin_lbl_search1)
                     .addComponent(pack_type_txtbox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lname_lbl_search)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(clear_search_btn)
-                        .addComponent(filter_btn))))
+                    .addComponent(clear_search_btn)
+                    .addComponent(filter_btn)))
         );
 
         javax.swing.GroupLayout user_list_panelLayout = new javax.swing.GroupLayout(user_list_panel);
@@ -1632,9 +1610,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 break;
             }
         }
-        for (int i = 0; i < harnessType_filter.getItemCount(); i++) {
-            if (harnessType_filter.getItemAt(i).toString().equals(aux.getHarnessType())) {
-                harnessType_filter.setSelectedIndex(i);
+        for (int i = 0; i < family_filter.getItemCount(); i++) {
+            if (family_filter.getItemAt(i).toString().equals(aux.getHarnessType())) {
+                family_filter.setSelectedIndex(i);
                 break;
             }
         }
@@ -1765,14 +1743,14 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 mu.setWorkplace(workplace_filter.getSelectedItem().toString());
                 workplace_filter.setBackground(Color.white);
             }
-            if (harnessType_filter.getSelectedItem().toString().isEmpty()) {
+            if (family_filter.getSelectedItem().toString().isEmpty()) {
                 UILog.severeDialog(this, "Empty or invalid harness type.", "Harness type Error");
                 err = true;
-                harnessType_filter.requestFocus();
-                harnessType_filter.setBackground(Color.red);
+                family_filter.requestFocus();
+                family_filter.setBackground(Color.red);
             } else {
-                mu.setHarnessType(harnessType_filter.getSelectedItem().toString());
-                harnessType_filter.setBackground(Color.white);
+                mu.setHarnessType(family_filter.getSelectedItem().toString());
+                family_filter.setBackground(Color.white);
             }
             if (lifes_txtbox.getText().trim().isEmpty()) {
                 UILog.severeDialog(this, "Number of pack cannot be null.", "Number of packs Error");
@@ -1888,7 +1866,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             mu.setPriority(Integer.valueOf(priority.getText()));
             mu.setOpenningSheetCopies(Integer.valueOf(open_sheet_copies.getText()));
             mu.setClosingSheetCopies(Integer.valueOf(closing_sheet_copies.getText()));
-            mu.setClosingSheetFormat(Integer.valueOf(closing_sheet_format.getSelectedItem().toString()));
             if (assy_txtbox.getText().isEmpty()) {
                 mu.setAssyWorkstationName("-");
             } else {
@@ -2014,14 +1991,14 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 aux.setWorkplace(workplace_filter.getSelectedItem().toString());
                 workplace_filter.setBackground(Color.white);
             }
-            if (harnessType_filter.getSelectedItem().toString().isEmpty()) {
+            if (family_filter.getSelectedItem().toString().isEmpty()) {
                 UILog.severeDialog(this, "Empty or invalid harness type.", "Harness type Error");
                 err = true;
-                harnessType_filter.requestFocus();
-                harnessType_filter.setBackground(Color.red);
+                family_filter.requestFocus();
+                family_filter.setBackground(Color.red);
             } else {
-                aux.setHarnessType(harnessType_filter.getSelectedItem().toString());
-                harnessType_filter.setBackground(Color.white);
+                aux.setHarnessType(family_filter.getSelectedItem().toString());
+                family_filter.setBackground(Color.white);
             }
             if (lifes_txtbox.getText().trim().isEmpty()) {
                 UILog.severeDialog(this, "Number of pack cannot be null.", "Number of packs Error");
@@ -2219,6 +2196,12 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             } else {
                 aux.setLabelPerPiece(false);
             }
+            
+            if (print_destination_check.isSelected()) {
+                aux.setPrint_destination(true);
+            } else {
+                aux.setPrint_destination(false);
+            }
             aux.setWriteId(PackagingVars.context.getUser().getId());
             aux.setWriteTime(new Date());
             aux.setActive(Integer.valueOf(active_combobox.getSelectedItem().toString()));
@@ -2298,8 +2281,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             this.setPacakgingWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
             this.setDestinationByProject(String.valueOf(project_filter.getSelectedItem()));
             if (this.setSegmentByProject(String.valueOf(project_filter.getSelectedItem()))) {
-//                this.initHarnessTypeByProject(String.valueOf(project_filter.getSelectedItem()));
-                this.initHarnessFamilyByProject(String.valueOf(project_filter.getSelectedItem()));
+                  GlobalMethods.initHarnessFamilyByProject(String.valueOf(project_filter.getSelectedItem()), this, family_filter, false);
             }
         }
 
@@ -2361,6 +2343,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JButton duplicate_btn;
     private org.jdesktop.swingx.JXDatePicker engChangeDatePicker;
     private javax.swing.JTextArea engChange_textArea;
+    private javax.swing.JComboBox family_filter;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
@@ -2370,7 +2353,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JLabel fname_lbl14;
     private javax.swing.JLabel fname_lbl_search;
     private javax.swing.JTextField grossWeight_txtbox;
-    private javax.swing.JComboBox harnessType_filter;
     private javax.swing.JLabel id_lbl;
     private javax.swing.JTextField index_txtbox;
     private javax.swing.JLabel jLabel1;

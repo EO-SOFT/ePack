@@ -6,6 +6,7 @@
 package __main__;
 
 import entity.ConfigBarcode;
+import entity.ConfigFamily;
 import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import helper.CloseTabButtonComponent;
@@ -282,19 +283,22 @@ public class GlobalMethods {
      * @param box
      * @param displayAll display the "ALL" value in the first item
      */
-    public static void loadProjectsCombobox(Object parentUI, JComboBox box, boolean displayAll) {
+    public static JComboBox loadProjectsCombobox(Object parentUI, JComboBox box, boolean displayAll) {
         List result = new ConfigProject().select();
         if (result.isEmpty()) {
             UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0035);
             UILog.severe(ErrorMsg.APP_ERR0035[1]);
         } else { //Map project data in the list
             box.removeAllItems();
-            if(displayAll)  box.addItem(new ComboItem("ALL", "ALL"));
+            if (displayAll) {
+                box.addItem(new ComboItem("ALL", "ALL"));
+            }
             for (Object o : result) {
                 ConfigProject p = (ConfigProject) o;
                 box.addItem(new ComboItem(p.getProject(), p.getProject()));
             }
         }
+        return box;
     }
 
     /**
@@ -303,7 +307,7 @@ public class GlobalMethods {
      * @param project
      * @param box
      */
-    public static void setWarehouseComboboxByProject(Object parentUI, String project, JComboBox box) {
+    public static JComboBox setWarehouseComboboxByProject(Object parentUI, String project, JComboBox box) {
         if (!project.toUpperCase().equals("ALL")) {
             List result = new ConfigWarehouse().selectByProjectAndType(project, "FINISH_GOODS");
             if (result.isEmpty()) {
@@ -318,6 +322,31 @@ public class GlobalMethods {
 
             }
         }
+        return box;
+    }
+
+    /**
+     *
+     * @param project
+     * @param parentUI
+     * @param box
+     * @param displayAll
+     */
+    public static JComboBox initHarnessFamilyByProject(String project, Object parentUI, JComboBox box, boolean displayAll) {
+        
+            List result = new ConfigFamily().selectHarnessTypeByProject(project);
+            if (result.isEmpty()) {
+                UILog.severeDialog(null, ErrorMsg.APP_ERR0044);
+                UILog.severe(ErrorMsg.APP_ERR0044[1]);
+            } else { //Map project data in the list
+                box.removeAllItems();
+                if (displayAll) { box.addItem(new ComboItem("ALL", "ALL")); }
+                for (Object o : result) {
+                    box.addItem(new ComboItem(o.toString(), o.toString()));
+                }
+            }
+        
+        return box;
     }
 
 }

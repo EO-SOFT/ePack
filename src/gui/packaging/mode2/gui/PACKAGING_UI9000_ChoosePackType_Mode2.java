@@ -318,6 +318,7 @@ public final class PACKAGING_UI9000_ChoosePackType_Mode2 extends javax.swing.JDi
         PackagingVars.mode2_context.getBaseContainerTmp().setOpenSheetCopies(u.getOpenningSheetCopies());
         PackagingVars.mode2_context.getBaseContainerTmp().setCloseSheetCopies(u.getClosingSheetCopies());
         PackagingVars.mode2_context.getBaseContainerTmp().setClosingSheetFormat(u.getClosingSheetFormat());
+        PackagingVars.mode2_context.getBaseContainerTmp().setPrint_destination(u.getPrint_destination());
         //UILog.infoDialog("Base Container Temp for Mode 1 : "+u.getClosingSheetFormat());
         System.out.println(PackagingVars.mode2_context.getBaseContainerTmp().toString());
     }
