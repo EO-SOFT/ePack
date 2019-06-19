@@ -62,16 +62,7 @@ import ui.info.InfoMsg;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    //Prevent from openning many windows, maximum 1 window allowed
-    public static int OPENED_SCAN_WINDOW = 0;
-
-    public static int getOPENED_SCAN_WINDOW() {
-        return OPENED_SCAN_WINDOW;
-    }
-
-    public static void setOPENED_SCAN_WINDOW(int OPENED_SCAN_WINDOW) {
-        MainFrame.OPENED_SCAN_WINDOW = OPENED_SCAN_WINDOW;
-    }
+  
 
     //private ManufactureUsers user;
     public MainFrame(Frame parent, boolean b, ManufactureUsers user) {
@@ -646,7 +637,7 @@ public class MainFrame extends javax.swing.JFrame {
         PackagingHelper.user = GlobalVars.connectedUser;
         //Create and display the packaing main form
         //PackagingHelper.Packaging_Main_Gui = new PACKAGING_WAREHOUSE_UI0001_MAIN_FORM(null, this);
-        addNewTab(new PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL(), evt);
+        GlobalMethods.addNewTabToParent("Mouvements emballages",this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL(this.rootTabbedPane), evt);
     }//GEN-LAST:event_MENU_00_03_PACKAGING_STOCKActionPerformed
 
     private void MENU_01_02_CONFIG_PACK_MASTERDATAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_01_02_CONFIG_PACK_MASTERDATAActionPerformed
@@ -679,7 +670,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_packaging_stock_menuMouseClicked
 
     private void packaging_stock_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packaging_stock_menuActionPerformed
-        addNewTab(new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(), evt);
+        //addNewTab(new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(), evt);
+        GlobalMethods.addNewTabToParent("Stock packaging", this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(this.rootTabbedPane), evt);
     }//GEN-LAST:event_packaging_stock_menuActionPerformed
 
     private void menu_scan_mode_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_scan_mode_1ActionPerformed
@@ -718,14 +710,14 @@ public class MainFrame extends javax.swing.JFrame {
         GlobalMethods.addNewTabToParent("Packaging", rootTabbedPane, PackagingVars.Packaging_Gui_Mode3, evt);
         PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
         PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();*/
-        System.out.println("this.OPENED_SCAN_WINDOW " + this.OPENED_SCAN_WINDOW);
-        if (this.OPENED_SCAN_WINDOW == 0) {
+        System.out.println("GlobalVars.OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
+        if (GlobalVars.OPENED_SCAN_WINDOW == 0) {
             PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
             PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, this);
             PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
             PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();
-            this.OPENED_SCAN_WINDOW = 1;
-            System.out.println("OPENED_SCAN_WINDOW " + this.OPENED_SCAN_WINDOW);
+            GlobalVars.OPENED_SCAN_WINDOW = 1;
+            System.out.println("OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
         } else {
             //UILog.severeDialog(this, "Une fenêtre du module scanne déjà ouverte.", "Nombre de fenêtre maximal atteint !");
             PackagingVars.Packaging_Gui_Mode3.requestFocus();
@@ -809,10 +801,10 @@ public class MainFrame extends javax.swing.JFrame {
                 //Ferme l'interface contenu contenant s'elle ouverte.
                 if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
                     PackagingVars.Packaging_Gui_Mode2.dispose();
-                    MainFrame.OPENED_SCAN_WINDOW = 0;
+                    GlobalVars.OPENED_SCAN_WINDOW = 0;
                 } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
                     PackagingVars.Packaging_Gui_Mode3.dispose();
-                    MainFrame.OPENED_SCAN_WINDOW = 0;
+                    GlobalVars.OPENED_SCAN_WINDOW = 0;
                 }
             }
             

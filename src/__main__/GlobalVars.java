@@ -100,6 +100,10 @@ public class GlobalVars {
     public static String WEIGHT_PREFIX = GlobalVars.APP_PROP.getProperty("WEIGHT_PREFIX");
     public static String FIFO_DATE_PREFIX = GlobalVars.APP_PROP.getProperty("FIFO_DATE_PREFIX");
     
+    
+     //Prevent from openning many windows, maximum 1 window allowed
+    public static int OPENED_SCAN_WINDOW = 0;
+    
     /**
      * To do : This method must be migrated to a database table in order to 
      * facilitate the update.

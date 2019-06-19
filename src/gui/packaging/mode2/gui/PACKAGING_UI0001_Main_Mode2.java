@@ -726,8 +726,8 @@ public final class PACKAGING_UI0001_Main_Mode2 extends javax.swing.JFrame implem
          this.logout();
          }*/
 
-        MainFrame.setOPENED_SCAN_WINDOW(0);
-        System.out.println("MainFrame.OPENED_SCAN_WINDOW " + MainFrame.getOPENED_SCAN_WINDOW());
+        GlobalVars.OPENED_SCAN_WINDOW = 0;
+        System.out.println("MainFrame.OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
@@ -890,8 +890,8 @@ public final class PACKAGING_UI0001_Main_Mode2 extends javax.swing.JFrame implem
 
     @Override
     public void windowClosed(WindowEvent e) {
-        this.parent.setOPENED_SCAN_WINDOW(0);
-        System.out.println("OPENED_SCAN_WINDOW " + this.parent.getOPENED_SCAN_WINDOW());
+        GlobalVars.OPENED_SCAN_WINDOW = 0;
+        System.out.println("OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
     }
 
     @Override

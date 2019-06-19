@@ -824,9 +824,9 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                     PackagingStockMovement pm = new PackagingStockMovement();
                     pm.bookMasterPack(bc.getCreateUser(),
                             this.bc.getPackType(), 1, "IN",
-                            getPackagingWh(bc.getProject()),
+                            GlobalMethods.getPackagingWh(bc.getProject()),
                             bc.getFGwarehouse(),
-                            "Finish goods storage in " + bc.getFGwarehouse() + " warehouse", this.bc.getPalletNumber());
+                            "Finished goods booked in " + bc.getFGwarehouse() + " warehouse", this.bc.getPalletNumber());
                 }
 
                 return true;
@@ -1067,12 +1067,6 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
     private javax.swing.JTextField writeTime_txtbox;
     // End of variables declaration//GEN-END:variables
 
-    private String getPackagingWh(String project) {
-        ConfigWarehouse cw = new ConfigWarehouse();
-        List result = cw.selectByProjectAndType(project, "PACKAGING");
-
-        cw = (ConfigWarehouse) result.get(0);
-        return (String) cw.getWarehouse();
-    }
+    
 
 }

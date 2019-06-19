@@ -133,6 +133,20 @@ UPDATE public.load_plan_destination
 
 SELECT setval('public.load_plan_destination_id_seq', 13, true);
 
+UPDATE public.load_plan_destination
+	SET destination='PUP VOLVO FRANCE'
+	WHERE destination='VMI';
+	
+UPDATE public.load_plan_destination
+SET destination='PUP VOLVO SWEDEN'
+WHERE destination='SKOVDE';
+
+UPDATE public.load_plan_destination
+	SET destination='ORBASSANO ITALY'
+	WHERE destination='DUCATI';
+	
+
+-- Load plan
 ALTER TABLE public.load_plan ALTER COLUMN delivery_time TYPE timestamp with time zone;
 -- config_ucs
 ALTER TABLE public.config_ucs

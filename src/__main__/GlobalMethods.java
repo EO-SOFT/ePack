@@ -9,12 +9,15 @@ import entity.ConfigBarcode;
 import entity.ConfigFamily;
 import entity.ConfigProject;
 import entity.ConfigWarehouse;
+import gui.packaging.reports.PACKAGING_UI0020_PALLET_LIST_JPANEL;
+import gui.packaging_warehouse.PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL;
 import helper.CloseTabButtonComponent;
 import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.awt.AWTEvent;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
@@ -212,6 +215,27 @@ public class GlobalMethods {
                 new CloseTabButtonComponent(parent));
         parent.setSelectedIndex(parent.getTabCount() - 1);
     }
+    
+    /**
+     * Add new tab to the parent JTabbedPane
+     *
+     * @param title The title of the new tab
+     * @param parent The parent JTabbedPane
+     * @param newTab The new tab object
+     * @param evt ActionEvent that trigger this method
+     */
+    public static void addNewTabToParent(String title, JTabbedPane parent, JPanel newTab, ActionEvent evt) {
+        parent.addTab(title, null, newTab,
+                title);
+
+        parent.setMnemonicAt(0, KeyEvent.VK_1);
+
+        parent.setTabComponentAt(parent.getTabCount() - 1,
+                new CloseTabButtonComponent(parent));
+        parent.setSelectedIndex(parent.getTabCount() - 1);
+    }
+    
+
 
     /**
      *
@@ -348,5 +372,20 @@ public class GlobalMethods {
         
         return box;
     }
+    
+    /**
+     * 
+     * @param project
+     * @return 
+     */
+    public static String getPackagingWh(String project) {
+        ConfigWarehouse cw = new ConfigWarehouse();
+        List result = cw.selectByProjectAndType(project, "PACKAGING");
+
+        cw = (ConfigWarehouse) result.get(0);
+        return (String) cw.getWarehouse();
+    }
+
+    
 
 }

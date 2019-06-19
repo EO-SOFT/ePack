@@ -5,11 +5,13 @@
  */
 package gui.packaging_warehouse;
 
+import __main__.GlobalMethods;
 import entity.ConfigWarehouse;
 import entity.LoadPlanLinePackaging;
 import entity.PackagingItems;
 import entity.PackagingStockMovement;
 import __main__.MainFrame;
+import gui.packaging.reports.PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL;
 import helper.ComboItem;
 import helper.Helper;
 import helper.UIHelper;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.SQLQuery;
@@ -34,7 +37,7 @@ import ui.UILog;
  */
 public class PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL extends javax.swing.JPanel {
 
-    private MainFrame parent;
+    private JTabbedPane parent;
     Vector<String> transactions_table_header = new Vector<String>();
 
     List<String> header_columns = Arrays.asList(
@@ -57,13 +60,13 @@ public class PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL extends javax.swing.JPanel {
     /**
      * Creates new form WAREHOUSE_DISPATCH_UI0008_SET_PACKAGING_OF_PILE
      */
-    public PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL() {
-        //this.parent = parent;
+    public PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL(JTabbedPane parent) {
+        this.parent = parent;
         initComponents();
         initGui();
     }
 
-    public PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL(Object object, MainFrame parent) {
+    public PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL(Object object, JTabbedPane parent) {
         this.parent = parent;
         initComponents();
         initGui();
@@ -522,15 +525,18 @@ public class PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(warehouse_box_filter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fifoDateStartFilter, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fifoDateEndFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cancel_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fifoDateEndFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancel_btn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,15 +558,15 @@ public class PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fname_lbl14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(warehouse_box_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(warehouse_box_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(fifoDateStartFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fname_lbl15)
                     .addComponent(fifoDateEndFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refresh_btn)
-                    .addComponent(cancel_btn)
-                    .addComponent(jButton1))
+                    .addComponent(cancel_btn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -602,7 +608,9 @@ public class PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_document_id_txtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.parent.addNewTab(new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(), evt);
+//        this.parent.addNewTab(new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(), evt);
+        GlobalMethods.addNewTabToParent("Stock packaging", this.parent, new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(parent), evt);        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void pack_items_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pack_items_boxActionPerformed

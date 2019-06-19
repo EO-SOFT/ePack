@@ -191,6 +191,10 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
                 dp.setDispatchTime(bc.getDispatchTime());
                 dp.setConsignNo(bc.getConsignNo());
                 dp.setInvoiceNo(bc.getInvoiceNo());
+                dp.setPrint_destination(bc.getPrint_destination());
+                dp.setClosingSheetCopies(bc.getClosingSheetCopies());
+                dp.setClosingSheetFormat(bc.getClosingSheetFormat());
+                dp.setOpenningSheetCopies(bc.getOpenningSheetCopies());
                 //Copy the container into the DropBaseContainer table
                 dp.create(dp);
                 UILog.info("Droping harness list...{0}", this.bc.getHarnessList().size());
@@ -241,7 +245,7 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
                         pm.bookMasterPack(PackagingVars.context.getUser().getFirstName() + " " + PackagingVars.context.getUser().getLastName(),
                                 this.bc.getPackType(), 1, "IN",
                                 getPackagingWh(bc.getProject()),
-                                bc.getFGwarehouse(),                                
+                                bc.getFGwarehouse(),
                                 "Pallet dropped : " + this.dropFeedback_txtbox.getText(),
                                 bc.getPalletNumber());
                     }
@@ -273,18 +277,19 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
                     //Refresh the main table
                     PackagingVars.Packaging_Gui_Mode1.reloadDataTable();
                 } else */
-                    
+                if (GlobalVars.OPENED_SCAN_WINDOW == 0) {
                     if (this.scanMode == 2) {
-                    PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code à barre d'une référence.");
-                    PackagingVars.Packaging_Gui_Mode2.setRequestedPallet_txt("");
-                    //Refresh the main table
-                    PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
-                }
-                if (this.scanMode == 3) {
-                    PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code à barre d'une référence.");
-                    PackagingVars.Packaging_Gui_Mode3.setRequestedPallet_txt("");
-                    //Refresh the main table
-                    PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
+                        PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code à barre d'une référence.");
+                        PackagingVars.Packaging_Gui_Mode2.setRequestedPallet_txt("");
+                        //Refresh the main table
+                        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
+                    }
+                    if (this.scanMode == 3) {
+                        PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code à barre d'une référence.");
+                        PackagingVars.Packaging_Gui_Mode3.setRequestedPallet_txt("");
+                        //Refresh the main table
+                        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
+                    }
                 }
 
                 Helper.sess.flush();

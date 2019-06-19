@@ -1,0 +1,107 @@
+juin 19, 2019 10:26:28 PM ui.UILog log
+INFOS: File 2019_06_19.log is created!
+
+juin 19, 2019 10:26:28 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_06_19] created !
+open_sheet sub directory [.\print\2019_06_19\open_sheet] created !
+Print sub directory [.\print\2019_06_19\closing_sheet] created !
+Print sub directory [.\print\2019_06_19\picking_label] created !
+Print sub directory [.\print\2019_06_19\dispatch_label] created !
+
+juin 19, 2019 10:26:31 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 22:26:31 Module : Configuration : .
+juin 19, 2019 10:26:35 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 22:26:35 Dispatch interface : .
+juin 19, 2019 10:28:27 PM ui.UILog log
+GRAVE: APP_ERR0032 DISPATCH : Numero / Matricule du tracteur non saisi.
+ Editer le plan puis saisir un numéro tracteur.
+juin 19, 2019 10:28:31 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 10:30:43 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 22:30:43 Packaging warehouse interface : .
+juin 19, 2019 10:31:32 PM ui.UILog log
+INFOS: File 2019_06_19.log already exists.
+
+juin 19, 2019 10:31:33 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_06_19] already exist!
+open_sheet sub directory [.\print\2019_06_19\open_sheet] already exist!
+Print sub directory [.\print\2019_06_19\closing_sheet] already exist!
+Print sub directory [.\print\2019_06_19\picking_label] already exist!
+Print sub directory [.\print\2019_06_19\dispatch_label] already exist!
+
+juin 19, 2019 10:31:37 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 22:31:37 Module : Configuration : .
+juin 19, 2019 10:31:45 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 22:31:45 Packaging warehouse interface : .
+juin 19, 2019 10:57:12 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 22:57:12 Dispatch interface : .
+juin 19, 2019 10:57:15 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:08:39 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:08:39 Packaging warehouse interface : .
+juin 19, 2019 11:09:32 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:09:32 Dispatch interface : .
+juin 19, 2019 11:21:10 PM ui.UILog log
+INFOS: File 2019_06_19.log already exists.
+
+juin 19, 2019 11:21:10 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_06_19] already exist!
+open_sheet sub directory [.\print\2019_06_19\open_sheet] already exist!
+Print sub directory [.\print\2019_06_19\closing_sheet] already exist!
+Print sub directory [.\print\2019_06_19\picking_label] already exist!
+Print sub directory [.\print\2019_06_19\dispatch_label] already exist!
+
+juin 19, 2019 11:21:19 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:21:19 Module : Configuration : .
+juin 19, 2019 11:21:24 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:21:24 Packaging warehouse interface : .
+juin 19, 2019 11:23:47 PM ui.UILog log
+INFOS: File 2019_06_19.log already exists.
+
+juin 19, 2019 11:23:47 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_06_19] already exist!
+open_sheet sub directory [.\print\2019_06_19\open_sheet] already exist!
+Print sub directory [.\print\2019_06_19\closing_sheet] already exist!
+Print sub directory [.\print\2019_06_19\picking_label] already exist!
+Print sub directory [.\print\2019_06_19\dispatch_label] already exist!
+
+juin 19, 2019 11:23:49 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:23:49 Module : Configuration : .
+juin 19, 2019 11:23:52 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:23:52 Packaging warehouse interface : .
+juin 19, 2019 11:24:03 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:24:03 Packaging warehouse interface : .
+juin 19, 2019 11:24:07 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:24:07 Dispatch interface : .
+juin 19, 2019 11:24:22 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:25:04 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:25:04 Packaging warehouse interface : .
+juin 19, 2019 11:25:06 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:25:06 Packaging warehouse interface : .
+juin 19, 2019 11:36:30 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:36:31 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:36:44 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:37:47 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:43:04 PM ui.UILog log
+INFOS: File 2019_06_19.log already exists.
+
+juin 19, 2019 11:43:04 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_06_19] already exist!
+open_sheet sub directory [.\print\2019_06_19\open_sheet] already exist!
+Print sub directory [.\print\2019_06_19\closing_sheet] already exist!
+Print sub directory [.\print\2019_06_19\picking_label] already exist!
+Print sub directory [.\print\2019_06_19\dispatch_label] already exist!
+
+juin 19, 2019 11:43:16 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-06-19 23:43:16 Module : Configuration : .
+juin 19, 2019 11:43:18 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:43:28 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juin 19, 2019 11:43:53 PM ui.UILog log
+INFOS: Droping harness list...{0}

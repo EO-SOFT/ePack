@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.apache.poi.ss.usermodel.Cell;
@@ -39,7 +40,8 @@ import ui.error.ErrorMsg;
  * @author Administrator
  */
 public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel {
-
+    
+    JTabbedPane parent;
     Vector packaging_stock_result_table_data = new Vector();
     Vector<String> packaging_stock_result_table_header = new Vector<String>();
     private List<Object[]> resultList;
@@ -52,8 +54,8 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
     /**
      * Creates new form UI0011_ProdStatistics_
      */
-    public PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL() {
-        //super(parent, modal);
+    public PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(JTabbedPane parent) {
+        this.parent = parent;
         initComponents();
         initGui();
     }

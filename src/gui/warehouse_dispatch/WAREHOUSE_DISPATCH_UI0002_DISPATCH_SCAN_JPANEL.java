@@ -12,6 +12,7 @@ import entity.LoadPlan;
 import entity.LoadPlanDestinationRel;
 import entity.LoadPlanLine;
 import entity.ManufactureUsers;
+import entity.PackagingStockMovement;
 import gui.packaging.PackagingVars;
 import gui.packaging.reports.PACKAGING_UI0010_PalletDetails_JPANEL;
 import gui.packaging.reports.PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL;
@@ -133,16 +134,16 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         this.parent.setSelectedIndex(this.parent.getTabCount() - 1);
     }
 
-    private void addNewTab(String title, JPanel newTab, MouseEvent evt) {
-        this.parent.addTab(title, null, newTab,
-                title);
-
-        this.parent.setMnemonicAt(0, KeyEvent.VK_1);
-
-        this.parent.setTabComponentAt(parent.getTabCount() - 1,
-                new CloseTabButtonComponent(this.parent));
-        this.parent.setSelectedIndex(this.parent.getTabCount() - 1);
-    }
+//    private void addNewTab(String title, JPanel newTab, MouseEvent evt) {
+//        this.parent.addTab(title, null, newTab,
+//                title);
+//
+//        this.parent.setMnemonicAt(0, KeyEvent.VK_1);
+//
+//        this.parent.setTabComponentAt(parent.getTabCount() - 1,
+//                new CloseTabButtonComponent(this.parent));
+//        this.parent.setSelectedIndex(this.parent.getTabCount() - 1);
+//    }
 
     class ReleasingJob extends SwingWorker<Void, Void> {
 
@@ -606,7 +607,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         ///Charger les plan de la base
         //reloadPlansData();
-
         //
         //this.loadDestinations(0);
         //Disable destinations Jbox
@@ -845,11 +845,11 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
             query.setString("truckNo", "%" + lp_filter_val.getText() + "%");
             query.setString("user", "%" + lp_filter_val.getText() + "%");
             query.setString("state", plan_state_filter.getSelectedItem().toString().trim());
-            System.out.println("plan_state_filter.getSelectedItem().toString().trim() "+plan_state_filter.getSelectedItem().toString().trim());
+            System.out.println("plan_state_filter.getSelectedItem().toString().trim() " + plan_state_filter.getSelectedItem().toString().trim());
         } else {
             query = Helper.sess.createQuery(HQLHelper.GET_LOAD_ALL_PLANS);
             query.setString("state", plan_state_filter.getSelectedItem().toString().trim());
-            System.out.println("plan_state_filter.getSelectedItem().toString().trim() "+plan_state_filter.getSelectedItem().toString().trim());
+            System.out.println("plan_state_filter.getSelectedItem().toString().trim() " + plan_state_filter.getSelectedItem().toString().trim());
         }
         Helper.sess.getTransaction().commit();
         List result = query.list();
@@ -3236,6 +3236,13 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
                         line.setTruckNo(WarehouseHelper.temp_load_plan.getTruckNo());
 
+                        //Book packaging items
+                        PackagingStockMovement pm = new PackagingStockMovement();
+                        pm.bookMasterPack(bc.getCreateUser(),
+                                bc.getPackType(), 1, "IN",
+                                bc.getFGwarehouse(),
+                                bc.getDestination(),
+                                "Dispatch of finished goods to final destination " + bc.getDestination() + ".", bc.getPalletNumber());
                     }
 
                     Helper.startSession();
@@ -3254,7 +3261,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
                     Toolkit.getDefaultToolkit().beep();
                     setCursor(null);
-                    JOptionPane.showMessageDialog(null, "Consignement closed !\n");
+                    JOptionPane.showMessageDialog(null, "Plan de chargement clôturé avec succès !\n");
                     //UILog.infoDialog(null, new String["Plan released !\n");                
                 } else {
                     UILog.severe(ErrorMsg.APP_ERR0030[0], plan_num_label.getText());
@@ -3340,7 +3347,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     }//GEN-LAST:event_labels_control_btnActionPerformed
 
     private void pallet_list_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pallet_list_btnActionPerformed
-        addNewTab("Liste des palettes", new PACKAGING_UI0020_PALLET_LIST_JPANEL(null, false), evt);
+        //addNewTab("Liste des palettes", new PACKAGING_UI0020_PALLET_LIST_JPANEL(null, false), evt);
+        GlobalMethods.addNewTabToParent("Liste des palettes", this.parent, new PACKAGING_UI0020_PALLET_LIST_JPANEL(null, false), evt);
     }//GEN-LAST:event_pallet_list_btnActionPerformed
 
     private void transporteur_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporteur_txtActionPerformed
