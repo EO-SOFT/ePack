@@ -32,6 +32,16 @@ public class JDialogExcelFileChooser extends javax.swing.JDialog {
         //Center the this dialog in the screen
         Helper.centerJDialog(this);
     }
+    
+    public JDialogExcelFileChooser(java.awt.Frame parent, boolean modal, File file) {
+        super(parent, modal);
+        initComponents();        
+        //Center the this dialog in the screen
+        Helper.centerJDialog(this);
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

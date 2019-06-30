@@ -19,6 +19,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -406,6 +407,20 @@ public class Helper {
         int x = (screenSize.width - jdialog.getWidth()) / 2;
         int y = (screenSize.height - jdialog.getHeight()) / 2;
         jdialog.setLocation(x, y);
+    }
+    
+    /**
+     *
+     * @param jfilechooser
+     *
+     * Center the jdialog in the center of the screen
+     */
+    public static void centerJFileChooser(JFileChooser jfilechooser) {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        int x = (screenSize.width - jfilechooser.getWidth()) / 2;
+        int y = (screenSize.height - jfilechooser.getHeight()) / 2;
+        jfilechooser.setLocation(x, y);
     }
 
     /**

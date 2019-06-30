@@ -249,5 +249,7 @@ public class HQLHelper {
 
     public final static String GET_PACKAGING_STOCK_MOUVEMENTS = "FROM PackagingStockMovement ORDER BY fifoTime DESC";
 
-    //
+    //LoadPlanDispatchLabel
+    public final static String DEL_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID = "DELETE FROM LoadPlanDispatchLabel lpl WHERE lpl.loadPlanId = :loadPlanId";
+    
 }

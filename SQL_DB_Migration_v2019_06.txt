@@ -1,5 +1,5 @@
---############################# SQL Patch Version 2019.04 #################################
---SQL Patch to execute for new version 2019.04:
+--############################# SQL Patch Version 2019.06 #################################
+--SQL Patch to execute for new version 2019.06:
 --------------------------------
 
 -- base_container
@@ -397,3 +397,40 @@ keyword DISPATCH_QTY :
 ^-?\d*\.\d+$
 \d+
 
+
+
+-- Creation de la table des dispatch label no
+
+CREATE TABLE public.load_plan_dispatch_label
+(
+    id integer NOT NULL,
+    create_id integer,
+    create_time timestamp without time zone,
+    dispatch_label_no character varying(255) COLLATE pg_catalog."default",
+    fdp character varying(255) COLLATE pg_catalog."default",
+    load_plan_id integer,
+    part_number character varying(255) COLLATE pg_catalog."default",
+    qty double precision,
+    loadplan_id integer,
+    CONSTRAINT load_plan_dispatch_label_pkey PRIMARY KEY (id),
+    CONSTRAINT fkcb1b51ec215db945 FOREIGN KEY (loadplan_id)
+        REFERENCES public.load_plan (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.load_plan_dispatch_label
+    OWNER to openpg;
+
+CREATE SEQUENCE public.load_plan_dispatch_label_id_seq
+    INCREMENT 1
+    START 1
+    MAXVALUE 9223372036854775807  
+  CACHE 1;
+
+ALTER SEQUENCE public.load_plan_dispatch_label_id_seq
+    OWNER TO postgres;

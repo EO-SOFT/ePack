@@ -10,6 +10,7 @@ import __main__.GlobalVars;
 import entity.BaseContainer;
 import entity.LoadPlan;
 import entity.LoadPlanDestinationRel;
+import entity.LoadPlanDispatchLabel;
 import entity.LoadPlanLine;
 import entity.ManufactureUsers;
 import entity.PackagingStockMovement;
@@ -68,14 +69,31 @@ import ui.UILog;
 import ui.error.ErrorMsg;
 import gui.warehouse_dispatch.process_reservation.S001_ReservPalletNumberScan;
 import gui.packaging.reports.PACKAGING_UI0020_PALLET_LIST_JPANEL;
-import helper.CloseTabButtonComponent;
 import helper.JTableHelper;
 import java.awt.GridLayout;
-import javax.swing.JPanel;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 /**
  *
@@ -123,27 +141,17 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         return selectedDestination;
     }
 
-    private void addNewTab(String title, JPanel newTab, ActionEvent evt) {
-        this.parent.addTab(title, null, newTab,
-                title);
-
-        this.parent.setMnemonicAt(0, KeyEvent.VK_1);
-
-        this.parent.setTabComponentAt(parent.getTabCount() - 1,
-                new CloseTabButtonComponent(this.parent));
-        this.parent.setSelectedIndex(this.parent.getTabCount() - 1);
+    /**
+     * Insert new record into load_plan_dispatch_label table
+     *
+     * @param record
+     */
+    private void insertDispatchLabelLine(String planId, CSVRecord record) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.                
+        LoadPlanDispatchLabel item = new LoadPlanDispatchLabel(record.get("Destination"), record.get("Article"), Double.valueOf(record.get("Quantite")), Integer.valueOf(planId), record.get("NumSerie"));
+        item.create(item);
+        //System.out.println("New record inserted");
     }
-
-//    private void addNewTab(String title, JPanel newTab, MouseEvent evt) {
-//        this.parent.addTab(title, null, newTab,
-//                title);
-//
-//        this.parent.setMnemonicAt(0, KeyEvent.VK_1);
-//
-//        this.parent.setTabComponentAt(parent.getTabCount() - 1,
-//                new CloseTabButtonComponent(this.parent));
-//        this.parent.setSelectedIndex(this.parent.getTabCount() - 1);
-//    }
 
     class ReleasingJob extends SwingWorker<Void, Void> {
 
@@ -1131,7 +1139,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         plan_id_filter = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         plan_state_filter = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        plan_details = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_filter_part = new javax.swing.JTextField();
@@ -1153,7 +1161,15 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         txt_nbreLigne = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         load_plan_lines_table = new javax.swing.JTable();
+        labels_to_be_controled = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtable_total_packages1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        tab5_reset_labels_table = new javax.swing.JButton();
+        tab5_refresh = new javax.swing.JButton();
+        tab5_import_dispatch_labels = new javax.swing.JButton();
+        tab5_example = new javax.swing.JButton();
+        total_pn = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         total_per_pn_table = new javax.swing.JTable();
         tab2_destination = new javax.swing.JTextField();
@@ -1170,7 +1186,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         controlled_combobox_tab_2 = new javax.swing.JComboBox();
         jLabel22 = new javax.swing.JLabel();
         group_by_position = new javax.swing.JCheckBox();
-        jPanel2 = new javax.swing.JPanel();
+        packaging = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txt_total_hours = new javax.swing.JTextField();
         txt_total_value = new javax.swing.JTextField();
@@ -1235,17 +1251,17 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         scan_txt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         scan_txt.setForeground(new java.awt.Color(0, 0, 153));
-        scan_txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scan_txtActionPerformed(evt);
-            }
-        });
         scan_txt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 scan_txtFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 scan_txtFocusLost(evt);
+            }
+        });
+        scan_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scan_txtActionPerformed(evt);
             }
         });
         scan_txt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1484,13 +1500,13 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         current_plan_jpanel.addTab("Tous plans", all_plans_jpanel);
 
-        jPanel3.setBackground(new java.awt.Color(36, 65, 86));
+        plan_details.setBackground(new java.awt.Color(36, 65, 86));
 
         jPanel4.setBackground(new java.awt.Color(36, 65, 86));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CPN");
+        jLabel1.setText("Article / référence");
 
         txt_filter_part.setBackground(new java.awt.Color(204, 255, 204));
         txt_filter_part.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -1508,7 +1524,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Prod Pallet No.");
+        jLabel4.setText("Num Série Production");
 
         txt_filter_pal_number.setBackground(new java.awt.Color(204, 255, 204));
         txt_filter_pal_number.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -1521,7 +1537,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Dispatch Pallet No.");
+        jLabel8.setText("Num série Odette");
 
         txt_filter_dispatchl_number.setBackground(new java.awt.Color(204, 255, 204));
         txt_filter_dispatchl_number.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -1573,7 +1589,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         jLabel3.setText("Destination");
 
         set_packaging_pile_btn.setBackground(new java.awt.Color(153, 204, 255));
-        set_packaging_pile_btn.setText("External Packaging");
+        set_packaging_pile_btn.setText("Packaging supplémentaire");
         set_packaging_pile_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 set_packaging_pile_btnActionPerformed(evt);
@@ -1697,20 +1713,20 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         ));
         jScrollPane3.setViewportView(load_plan_lines_table);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout plan_detailsLayout = new javax.swing.GroupLayout(plan_details);
+        plan_details.setLayout(plan_detailsLayout);
+        plan_detailsLayout.setHorizontalGroup(
+            plan_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plan_detailsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(plan_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1204, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        plan_detailsLayout.setVerticalGroup(
+            plan_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plan_detailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1718,27 +1734,137 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 .addContainerGap(937, Short.MAX_VALUE))
         );
 
-        current_plan_jpanel.addTab("Détails plan", jPanel3);
+        current_plan_jpanel.addTab("Détails plan", plan_details);
 
-        jPanel1.setBackground(new java.awt.Color(36, 65, 86));
-        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
+        labels_to_be_controled.setBackground(new java.awt.Color(36, 65, 86));
+        labels_to_be_controled.setAutoscrolls(true);
+        labels_to_be_controled.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                labels_to_be_controledComponentShown(evt);
+            }
+        });
+
+        jtable_total_packages1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Destination", "Article", "NumSérie", "Quantité"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jtable_total_packages1);
+
+        tab5_reset_labels_table.setText("Réinitialiser la liste");
+        tab5_reset_labels_table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_reset_labels_tableActionPerformed(evt);
+            }
+        });
+
+        tab5_refresh.setText("Actualiser");
+        tab5_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_refreshActionPerformed(evt);
+            }
+        });
+
+        tab5_import_dispatch_labels.setText("Importer les Odettes dispatch (.csv)");
+        tab5_import_dispatch_labels.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_import_dispatch_labelsActionPerformed(evt);
+            }
+        });
+
+        tab5_example.setText("Exemple .CSV");
+        tab5_example.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_exampleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(tab5_refresh)
+                .addGap(18, 18, 18)
+                .addComponent(tab5_example)
+                .addGap(48, 48, 48)
+                .addComponent(tab5_import_dispatch_labels)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tab5_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tab5_import_dispatch_labels, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tab5_example, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout labels_to_be_controledLayout = new javax.swing.GroupLayout(labels_to_be_controled);
+        labels_to_be_controled.setLayout(labels_to_be_controledLayout);
+        labels_to_be_controledLayout.setHorizontalGroup(
+            labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(labels_to_be_controledLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE))
+                .addContainerGap(535, Short.MAX_VALUE))
+        );
+        labels_to_be_controledLayout.setVerticalGroup(
+            labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(labels_to_be_controledLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1020, Short.MAX_VALUE))
+        );
+
+        current_plan_jpanel.addTab("Odette à contrôler", labels_to_be_controled);
+
+        total_pn.setBackground(new java.awt.Color(36, 65, 86));
+        total_pn.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jPanel1FocusGained(evt);
+                total_pnFocusGained(evt);
             }
         });
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        total_pn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                total_pnMouseClicked(evt);
             }
         });
-        jPanel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        total_pn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jPanel1PropertyChange(evt);
+                total_pnPropertyChange(evt);
             }
         });
-        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+        total_pn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jPanel1KeyTyped(evt);
+                total_pnKeyTyped(evt);
             }
         });
 
@@ -1844,33 +1970,33 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout total_pnLayout = new javax.swing.GroupLayout(total_pn);
+        total_pn.setLayout(total_pnLayout);
+        total_pnLayout.setHorizontalGroup(
+            total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(total_pnLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(total_pnLayout.createSequentialGroup()
+                        .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(tab2_destination, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(tab2_cpn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(total_pnLayout.createSequentialGroup()
                                 .addComponent(tab2_packtype, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tab2_refresh))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, total_pnLayout.createSequentialGroup()
+                        .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(total_pnLayout.createSequentialGroup()
                                 .addComponent(controlled_combobox_tab_2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(group_by_position)))
@@ -1884,35 +2010,35 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                         .addComponent(tab2_txt_nbreLigne, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(596, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        total_pnLayout.setVerticalGroup(
+            total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(total_pnLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(tab2_refresh)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(total_pnLayout.createSequentialGroup()
                             .addGap(1, 1, 1)
                             .addComponent(tab2_packtype)
                             .addGap(2, 2, 2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(total_pnLayout.createSequentialGroup()
+                        .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel18)
                                 .addComponent(jLabel19)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tab2_cpn, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                             .addComponent(tab2_destination))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(controlled_combobox_tab_2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(group_by_position))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(total_pnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(jLabel20)
                         .addComponent(tab2_txt_totalQty)
                         .addComponent(jLabel21)
@@ -1922,13 +2048,13 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 .addContainerGap(1017, Short.MAX_VALUE))
         );
 
-        current_plan_jpanel.addTab("Total par PN", jPanel1);
+        current_plan_jpanel.addTab("Total par PN", total_pn);
 
-        jPanel2.setBackground(new java.awt.Color(36, 65, 86));
-        jPanel2.setAutoscrolls(true);
-        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
+        packaging.setBackground(new java.awt.Color(36, 65, 86));
+        packaging.setAutoscrolls(true);
+        packaging.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel2ComponentShown(evt);
+                packagingComponentShown(evt);
             }
         });
 
@@ -1983,47 +2109,47 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         ));
         jScrollPane4.setViewportView(jtable_total_packages);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout packagingLayout = new javax.swing.GroupLayout(packaging);
+        packaging.setLayout(packagingLayout);
+        packagingLayout.setHorizontalGroup(
+            packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(packagingLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(packagingLayout.createSequentialGroup()
+                        .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(packagingLayout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(59, 59, 59)
                                 .addComponent(txt_total_hours, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(packagingLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txt_total_volume, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel11))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(packagingLayout.createSequentialGroup()
                                 .addComponent(txt_total_value, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(jLabel14))
                             .addComponent(txt_gross_weight, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tab3_refresh)
                             .addComponent(txt_total_net_weight, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel16)
                     .addComponent(jScrollPane4))
                 .addContainerGap(628, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        packagingLayout.setVerticalGroup(
+            packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(packagingLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txt_total_net_weight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(txt_total_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2031,8 +2157,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                     .addComponent(txt_total_hours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(packagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(txt_gross_weight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13)
                         .addComponent(txt_total_volume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2045,7 +2171,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 .addContainerGap(989, Short.MAX_VALUE))
         );
 
-        current_plan_jpanel.addTab("Packaging", jPanel2);
+        current_plan_jpanel.addTab("Packaging", packaging);
 
         javax.swing.GroupLayout details_jpanelLayout = new javax.swing.GroupLayout(details_jpanel);
         details_jpanel.setLayout(details_jpanelLayout);
@@ -3134,9 +3260,9 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
     }//GEN-LAST:event_tab2_cpnKeyTyped
 
-    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+    private void total_pnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_total_pnKeyTyped
         total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_jPanel1KeyTyped
+    }//GEN-LAST:event_total_pnKeyTyped
 
     private void tab2_packtypeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_packtypeKeyTyped
         total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
@@ -3171,21 +3297,21 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         // TODO add your handling code here:
     }//GEN-LAST:event_controlled_combobox_tab_2ItemStateChanged
 
-    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
+    private void packagingComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_packagingComponentShown
         this.reloadPackagingContainerTab3(Integer.valueOf(plan_num_label.getText()));
-    }//GEN-LAST:event_jPanel2ComponentShown
+    }//GEN-LAST:event_packagingComponentShown
 
-    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
+    private void total_pnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_total_pnFocusGained
         total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_jPanel1FocusGained
+    }//GEN-LAST:event_total_pnFocusGained
 
-    private void jPanel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jPanel1PropertyChange
+    private void total_pnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_total_pnPropertyChange
 
-    }//GEN-LAST:event_jPanel1PropertyChange
+    }//GEN-LAST:event_total_pnPropertyChange
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+    private void total_pnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_total_pnMouseClicked
         total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_jPanel1MouseClicked
+    }//GEN-LAST:event_total_pnMouseClicked
 
     private void add_new_plan_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_new_plan_btnActionPerformed
         new WAREHOUSE_DISPATCH_UI0004_NEW_PLAN(null, true).setVisible(true);
@@ -3347,13 +3473,135 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     }//GEN-LAST:event_labels_control_btnActionPerformed
 
     private void pallet_list_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pallet_list_btnActionPerformed
-        //addNewTab("Liste des palettes", new PACKAGING_UI0020_PALLET_LIST_JPANEL(null, false), evt);
+
         GlobalMethods.addNewTabToParent("Liste des palettes", this.parent, new PACKAGING_UI0020_PALLET_LIST_JPANEL(null, false), evt);
     }//GEN-LAST:event_pallet_list_btnActionPerformed
 
     private void transporteur_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporteur_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_transporteur_txtActionPerformed
+
+    private void tab5_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_refreshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tab5_refreshActionPerformed
+
+    private void labels_to_be_controledComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_labels_to_be_controledComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labels_to_be_controledComponentShown
+
+    private void tab5_import_dispatch_labelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_import_dispatch_labelsActionPerformed
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV", "csv");
+            fileChooser.setFileFilter(filter);
+            int status = fileChooser.showOpenDialog(null);
+
+            if (status == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                //Past the workbook to the file chooser
+                String SAMPLE_CSV_FILE_PATH = selectedFile.getAbsolutePath();
+                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+                        .withFirstRecordAsHeader()
+                        .withIgnoreHeaderCase()
+                        .withTrim()
+                        .withDelimiter(';')
+                );
+
+                try {
+
+                    for (CSVRecord record : csvParser) {
+                        String destination = record.get("Destination");
+                        String article = record.get("Article");
+                        String serialNo = record.get("NumSerie");
+                        String quantite = record.get("Quantite");
+
+                        insertDispatchLabelLine(plan_num_label.getText(), record);
+
+                        System.out.println(destination + "\t" + article + "\t" + serialNo + "\t" + quantite);
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
+                    UILog.severeDialog(this, ex.getMessage(), "Exception");
+                }
+            } else if (status == JFileChooser.CANCEL_OPTION) {
+                System.out.println("Canceled");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
+            UILog.severeDialog(this, ex.getMessage(), "IOException");
+        }
+    }//GEN-LAST:event_tab5_import_dispatch_labelsActionPerformed
+
+    private void tab5_reset_labels_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_reset_labels_tableActionPerformed
+        int confirmed = JOptionPane.showConfirmDialog(
+                this,
+                "Confirmez-vous la suppression de la liste des odettes du plan de chargement actuel " + plan_num_label.getText() + " ?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION);
+        if (confirmed == 0) {
+            Helper.startSession();
+            Query query = Helper.sess.createQuery(HQLHelper.DEL_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID);
+            query.setParameter("loadPlanId", Integer.valueOf(plan_num_label.getText()));
+            int result = query.executeUpdate();
+            //Helper.sess.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "La liste a été supprimée !\n");
+        }
+    }//GEN-LAST:event_tab5_reset_labels_tableActionPerformed
+
+    private void tab5_exampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_exampleActionPerformed
+        //Files.copy(".\\..\\..\\..\\lib\\odette_csv_example.csv", dst, StandardCopyOption.REPLACE_EXISTING);
+
+        JFileChooser chooser = new javax.swing.JFileChooser();
+        chooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+        chooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+
+        Helper.centerJFileChooser(chooser);
+        int status = chooser.showSaveDialog(null);
+
+        if (status == JFileChooser.APPROVE_OPTION) {
+            //FileOutputStream target = null;
+            try {
+
+                File selectedFile = chooser.getSelectedFile();
+                //target.close();
+                File source = new File(".\\lib\\odette_csv_example.csv");
+                System.out.println(" source "+source.getAbsolutePath()+".csv");
+
+                File dest = chooser.getSelectedFile();
+
+                InputStream is = null;
+                OutputStream os = null;
+                try {
+                    is = new FileInputStream(source);
+                    os = new FileOutputStream(chooser.getSelectedFile()+".csv");
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = is.read(buffer)) > 0) {
+                        os.write(buffer, 0, length);
+                    }
+                } finally {
+                    is.close();
+                    os.close();
+                }
+
+                JOptionPane.showMessageDialog(null,
+                        "Fichier enregistré à l'emplacement \n " + selectedFile.getAbsolutePath()+".csv", "File saved !",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (FileNotFoundException ex) {
+                //
+                JOptionPane.showMessageDialog(null, "Le processus ne peut pas accéder au fichier car ce fichier est utilisé ou un fihier du même nom est ouvert.\n Fermer le fichier puis réessayer.", "Erreur de sauvegarde !", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(JDialogExcelFileChooser.class.getName()).log(Level.SEVERE, null, ex);
+
+            } catch (IOException ex) {
+                Logger.getLogger(JDialogExcelFileChooser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_tab5_exampleActionPerformed
 
     private void clearGui() {
 
@@ -3379,7 +3627,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         labels_control_btn.setEnabled(false);
 
-//        destinations_box.setEnabled(false);
         piles_box.setEnabled(false);
     }
 
@@ -3440,28 +3687,31 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel jpanel_destinations;
     private javax.swing.JTable jtable_total_packages;
+    private javax.swing.JTable jtable_total_packages1;
     private javax.swing.JButton labels_control_btn;
+    private javax.swing.JPanel labels_to_be_controled;
     private javax.swing.JTable load_plan_lines_table;
     private javax.swing.JTable load_plan_table;
     private javax.swing.JTextField lp_filter_val;
     private javax.swing.JTextField message_label;
     private javax.swing.JButton new_plan_btn;
     private javax.swing.JMenu new_plan_menu;
+    private javax.swing.JPanel packaging;
     private javax.swing.JMenu pallet_details_menu;
     private javax.swing.JButton pallet_list_btn;
     private javax.swing.JMenu pallet_stock;
     private javax.swing.JLabel pile_label_help;
     private javax.swing.JComboBox piles_box;
+    private javax.swing.JPanel plan_details;
     private javax.swing.JFormattedTextField plan_id_filter;
     private javax.swing.JLabel plan_num_label;
     private javax.swing.JComboBox<String> plan_state_filter;
@@ -3481,6 +3731,10 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.JLabel tab2_txt_nbreLigne;
     private javax.swing.JLabel tab2_txt_totalQty;
     private javax.swing.JButton tab3_refresh;
+    private javax.swing.JButton tab5_example;
+    private javax.swing.JButton tab5_import_dispatch_labels;
+    private javax.swing.JButton tab5_refresh;
+    private javax.swing.JButton tab5_reset_labels_table;
     private javax.swing.JLabel time_label1;
     private javax.swing.JLabel time_label10;
     private javax.swing.JLabel time_label11;
@@ -3493,6 +3747,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.JLabel time_label8;
     private javax.swing.JLabel time_label9;
     private javax.swing.JTable total_per_pn_table;
+    private javax.swing.JPanel total_pn;
     private javax.swing.JTextField transporteur_txt;
     private javax.swing.JTextField truck_no_txt1;
     private javax.swing.JTextField txt_filter_dispatchl_number;
