@@ -83,6 +83,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -110,6 +111,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     Vector load_plan_lines_table_data = new Vector();
     Vector load_plan_table_data = new Vector();
     Vector total_per_dest_table_data = new Vector();
+    Vector odette_list_data = new Vector();
+    Vector odette_list_header = new Vector<String>(Arrays.asList("Destination", "Article", "Quantite", "NumSerie"));
     Vector total_per_dest_table_data_header = new Vector<String>();
 
     //Used in tab 3
@@ -151,6 +154,65 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         LoadPlanDispatchLabel item = new LoadPlanDispatchLabel(record.get("Destination"), record.get("Article"), Double.valueOf(record.get("Quantite")), Integer.valueOf(planId), record.get("NumSerie"));
         item.create(item);
         //System.out.println("New record inserted");
+    }
+    
+    public void reset_odette_table_content() {
+        odette_list_data = new Vector();
+        jtable_odette_labels.setModel(new DefaultTableModel(odette_list_data, odette_list_header));
+    }
+
+    private void refreshOdetteTable() {
+        reset_odette_table_content();
+        
+        Helper.startSession();
+
+        String query_str = String.format(
+                HQLHelper.GET_LOAD_PLAN_DISPATCH_LABELS_NOT_YET_CHECKED,
+                Integer.valueOf(plan_num_label.getText()), 
+                Integer.valueOf(plan_num_label.getText()));
+
+        System.out.println("query_str Kotominei " + query_str);
+        SQLQuery query = Helper.sess.createSQLQuery(query_str);
+        query
+                .addScalar("DESTINATION", StandardBasicTypes.STRING)
+                .addScalar("ARTICLE", StandardBasicTypes.STRING)
+                .addScalar("QUANTITE", StandardBasicTypes.DOUBLE)
+                .addScalar("NUM_SERIE", StandardBasicTypes.STRING);
+        List<Object[]> result = query.list();
+        Helper.sess.getTransaction().commit();
+        for (Object[] obj : result) {
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add((String) obj[0]);
+            oneRow.add((String) obj[1]);
+            oneRow.add(String.format("%1$,.2f", obj[2]));
+            oneRow.add((String) obj[3]);
+
+            odette_list_data.add(oneRow);
+        }
+        
+        
+        jtable_odette_labels.setModel(new DefaultTableModel(odette_list_data, odette_list_header));
+    }
+
+    private boolean deleteOdetteTable() {
+        int confirmed = JOptionPane.showConfirmDialog(
+                this,
+                "Confirmez-vous la suppression de la liste des odettes actuelle " + plan_num_label.getText() + " ?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION);
+        if (confirmed == 0) {
+            Helper.startSession();
+            Query query = Helper.sess.createQuery(HQLHelper.DEL_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID);
+            query.setParameter("loadPlanId", Integer.valueOf(plan_num_label.getText()));
+            int result = query.executeUpdate();
+            //Helper.sess.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "La liste a été supprimée !\n");
+
+            refreshOdetteTable();
+            return true;
+        }
+
+        return false;
     }
 
     class ReleasingJob extends SwingWorker<Void, Void> {
@@ -1161,14 +1223,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         txt_nbreLigne = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         load_plan_lines_table = new javax.swing.JTable();
-        labels_to_be_controled = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jtable_total_packages1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        tab5_reset_labels_table = new javax.swing.JButton();
-        tab5_refresh = new javax.swing.JButton();
-        tab5_import_dispatch_labels = new javax.swing.JButton();
-        tab5_example = new javax.swing.JButton();
         total_pn = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         total_per_pn_table = new javax.swing.JTable();
@@ -1186,6 +1240,15 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         controlled_combobox_tab_2 = new javax.swing.JComboBox();
         jLabel22 = new javax.swing.JLabel();
         group_by_position = new javax.swing.JCheckBox();
+        labels_to_be_controled = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtable_odette_labels = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        tab5_reset_labels_table = new javax.swing.JButton();
+        tab5_refresh = new javax.swing.JButton();
+        tab5_import_dispatch_labels = new javax.swing.JButton();
+        tab5_example = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
         packaging = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txt_total_hours = new javax.swing.JTextField();
@@ -1736,116 +1799,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         current_plan_jpanel.addTab("Détails plan", plan_details);
 
-        labels_to_be_controled.setBackground(new java.awt.Color(36, 65, 86));
-        labels_to_be_controled.setAutoscrolls(true);
-        labels_to_be_controled.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                labels_to_be_controledComponentShown(evt);
-            }
-        });
-
-        jtable_total_packages1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Destination", "Article", "NumSérie", "Quantité"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(jtable_total_packages1);
-
-        tab5_reset_labels_table.setText("Réinitialiser la liste");
-        tab5_reset_labels_table.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tab5_reset_labels_tableActionPerformed(evt);
-            }
-        });
-
-        tab5_refresh.setText("Actualiser");
-        tab5_refresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tab5_refreshActionPerformed(evt);
-            }
-        });
-
-        tab5_import_dispatch_labels.setText("Importer les Odettes dispatch (.csv)");
-        tab5_import_dispatch_labels.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tab5_import_dispatch_labelsActionPerformed(evt);
-            }
-        });
-
-        tab5_example.setText("Exemple .CSV");
-        tab5_example.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tab5_exampleActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(tab5_refresh)
-                .addGap(18, 18, 18)
-                .addComponent(tab5_example)
-                .addGap(48, 48, 48)
-                .addComponent(tab5_import_dispatch_labels)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab5_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab5_import_dispatch_labels, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab5_example, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout labels_to_be_controledLayout = new javax.swing.GroupLayout(labels_to_be_controled);
-        labels_to_be_controled.setLayout(labels_to_be_controledLayout);
-        labels_to_be_controledLayout.setHorizontalGroup(
-            labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(labels_to_be_controledLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE))
-                .addContainerGap(535, Short.MAX_VALUE))
-        );
-        labels_to_be_controledLayout.setVerticalGroup(
-            labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(labels_to_be_controledLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1020, Short.MAX_VALUE))
-        );
-
-        current_plan_jpanel.addTab("Odette à contrôler", labels_to_be_controled);
-
         total_pn.setBackground(new java.awt.Color(36, 65, 86));
         total_pn.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2049,6 +2002,125 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         );
 
         current_plan_jpanel.addTab("Total par PN", total_pn);
+
+        labels_to_be_controled.setBackground(new java.awt.Color(36, 65, 86));
+        labels_to_be_controled.setAutoscrolls(true);
+        labels_to_be_controled.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                labels_to_be_controledComponentShown(evt);
+            }
+        });
+
+        jtable_odette_labels.setAutoCreateRowSorter(true);
+        jtable_odette_labels.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Destination", "Article", "Quantite", "NumSsrie"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtable_odette_labels.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jScrollPane5.setViewportView(jtable_odette_labels);
+
+        tab5_reset_labels_table.setText("Réinitialiser la liste");
+        tab5_reset_labels_table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_reset_labels_tableActionPerformed(evt);
+            }
+        });
+
+        tab5_refresh.setText("Actualiser");
+        tab5_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_refreshActionPerformed(evt);
+            }
+        });
+
+        tab5_import_dispatch_labels.setText("Importer les Odettes dispatch (.csv)");
+        tab5_import_dispatch_labels.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_import_dispatch_labelsActionPerformed(evt);
+            }
+        });
+
+        tab5_example.setText("Exemple .CSV");
+        tab5_example.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab5_exampleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(tab5_refresh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tab5_import_dispatch_labels)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tab5_example)
+                .addGap(18, 18, 18)
+                .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tab5_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tab5_import_dispatch_labels, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tab5_example, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jLabel23.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel23.setText("Packages à charger");
+
+        javax.swing.GroupLayout labels_to_be_controledLayout = new javax.swing.GroupLayout(labels_to_be_controled);
+        labels_to_be_controled.setLayout(labels_to_be_controledLayout);
+        labels_to_be_controledLayout.setHorizontalGroup(
+            labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(labels_to_be_controledLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE))
+                    .addComponent(jLabel23))
+                .addContainerGap(535, Short.MAX_VALUE))
+        );
+        labels_to_be_controledLayout.setVerticalGroup(
+            labels_to_be_controledLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(labels_to_be_controledLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1017, Short.MAX_VALUE))
+        );
+
+        current_plan_jpanel.addTab("Packages à charger", labels_to_be_controled);
 
         packaging.setBackground(new java.awt.Color(36, 65, 86));
         packaging.setAutoscrolls(true);
@@ -3482,7 +3554,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     }//GEN-LAST:event_transporteur_txtActionPerformed
 
     private void tab5_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_refreshActionPerformed
-        // TODO add your handling code here:
+        refreshOdetteTable();
     }//GEN-LAST:event_tab5_refreshActionPerformed
 
     private void labels_to_be_controledComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_labels_to_be_controledComponentShown
@@ -3498,7 +3570,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
             fileChooser.setFileFilter(filter);
             int status = fileChooser.showOpenDialog(null);
 
-            if (status == JFileChooser.APPROVE_OPTION) {
+            if (status == JFileChooser.APPROVE_OPTION && deleteOdetteTable()) {
+
                 File selectedFile = fileChooser.getSelectedFile();
                 //Past the workbook to the file chooser
                 String SAMPLE_CSV_FILE_PATH = selectedFile.getAbsolutePath();
@@ -3513,15 +3586,21 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 try {
 
                     for (CSVRecord record : csvParser) {
+                        
+                        //@Todo : Control sur la destination du plan
+                        
                         String destination = record.get("Destination");
                         String article = record.get("Article");
-                        String serialNo = record.get("NumSerie");
                         String quantite = record.get("Quantite");
+                        String serialNo = record.get("NumSerie");
 
                         insertDispatchLabelLine(plan_num_label.getText(), record);
 
-                        System.out.println(destination + "\t" + article + "\t" + serialNo + "\t" + quantite);
+                        System.out.println(destination + "\t" + article + "\t" + quantite + "\t" + serialNo);
                     }
+
+                    // In the end of the import, refresh the list
+                    refreshOdetteTable();
                 } catch (Exception ex) {
                     Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
                     UILog.severeDialog(this, ex.getMessage(), "Exception");
@@ -3536,19 +3615,10 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     }//GEN-LAST:event_tab5_import_dispatch_labelsActionPerformed
 
     private void tab5_reset_labels_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_reset_labels_tableActionPerformed
-        int confirmed = JOptionPane.showConfirmDialog(
-                this,
-                "Confirmez-vous la suppression de la liste des odettes du plan de chargement actuel " + plan_num_label.getText() + " ?",
-                "Confirmation",
-                JOptionPane.YES_NO_OPTION);
-        if (confirmed == 0) {
-            Helper.startSession();
-            Query query = Helper.sess.createQuery(HQLHelper.DEL_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID);
-            query.setParameter("loadPlanId", Integer.valueOf(plan_num_label.getText()));
-            int result = query.executeUpdate();
-            //Helper.sess.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "La liste a été supprimée !\n");
-        }
+
+        deleteOdetteTable();
+
+
     }//GEN-LAST:event_tab5_reset_labels_tableActionPerformed
 
     private void tab5_exampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_exampleActionPerformed
@@ -3569,7 +3639,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 File selectedFile = chooser.getSelectedFile();
                 //target.close();
                 File source = new File(".\\lib\\odette_csv_example.csv");
-                System.out.println(" source "+source.getAbsolutePath()+".csv");
+                System.out.println(" source " + source.getAbsolutePath() + ".csv");
 
                 File dest = chooser.getSelectedFile();
 
@@ -3577,7 +3647,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 OutputStream os = null;
                 try {
                     is = new FileInputStream(source);
-                    os = new FileOutputStream(chooser.getSelectedFile()+".csv");
+                    os = new FileOutputStream(chooser.getSelectedFile() + ".csv");
                     byte[] buffer = new byte[1024];
                     int length;
                     while ((length = is.read(buffer)) > 0) {
@@ -3589,7 +3659,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 }
 
                 JOptionPane.showMessageDialog(null,
-                        "Fichier enregistré à l'emplacement \n " + selectedFile.getAbsolutePath()+".csv", "File saved !",
+                        "Fichier enregistré à l'emplacement \n " + selectedFile.getAbsolutePath() + ".csv", "File saved !",
                         JOptionPane.INFORMATION_MESSAGE);
 
             } catch (FileNotFoundException ex) {
@@ -3678,6 +3748,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3695,8 +3766,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel jpanel_destinations;
+    private javax.swing.JTable jtable_odette_labels;
     private javax.swing.JTable jtable_total_packages;
-    private javax.swing.JTable jtable_total_packages1;
     private javax.swing.JButton labels_control_btn;
     private javax.swing.JPanel labels_to_be_controled;
     private javax.swing.JTable load_plan_lines_table;

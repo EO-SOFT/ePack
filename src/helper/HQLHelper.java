@@ -254,12 +254,12 @@ public class HQLHelper {
     public final static String GET_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID = "FROM LoadPlanDispatchLabel lpl WHERE lpl.loadPlanId = :loadPlanId ORDER BY fdp ASC, partNumber ASC";
     public final static String GET_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID_AND_FDP = "FROM LoadPlanDispatchLabel lpl WHERE lpl.loadPlanId = :loadPlanId AND fdp = :fdp ORDER BY fdp ASC, partNumber ASC";
     public final static String GET_LOAD_PLAN_DISPATCH_LABELS_NOT_YET_CHECKED = "SELECT \n"
-            + "fdp AS Destination, part_number AS Article, dispatch_label_no AS NumSérie, qty as Quantité \n"
+            + "fdp AS DESTINATION, part_number AS ARTICLE, qty as QUANTITE, dispatch_label_no AS NUM_SERIE \n"
             + "FROM load_plan_dispatch_label WHERE load_plan_id = %d AND dispatch_label_no NOT IN ("
             + " SELECT dispatch_label_no FROM load_plan_line "
             + " WHERE load_plan_id = %d "
             + " AND dispatch_label_no != '' "
             + " )\n"
-            + "GROUP BY destination_wh, part_number, dispatch_label_no, qty \n"
-            + "ORDER BY destination_wh;";
+            + "GROUP BY fdp, part_number, qty, dispatch_label_no \n"
+            + "ORDER BY fdp ;";
 }
