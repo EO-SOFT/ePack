@@ -74,8 +74,8 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="Format 1"/>
-            <StringItem index="1" value="Format 2"/>
+            <StringItem index="0" value="Format simple"/>
+            <StringItem index="1" value="Format avanc&#xe9;"/>
           </StringArray>
         </Property>
       </Properties>

@@ -40,7 +40,7 @@ public class WIZARD_PACKAGING_MODE_CHOICE extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Impression étiquette ferméture");
 
-        print_format_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Format 1", "Format 2" }));
+        print_format_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Format simple", "Format avancé" }));
 
         print_btn.setText("Imprimer");
         print_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +104,9 @@ public class WIZARD_PACKAGING_MODE_CHOICE extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void print_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_btnActionPerformed
-        if (print_format_combobox.getSelectedItem().toString().equals("Format 1")) {
+        if (print_format_combobox.getSelectedIndex() == 0) {
             this.mode = 1;
-        } else if (print_format_combobox.getSelectedItem().toString().equals("Format 2")) {
+        } else if (print_format_combobox.getSelectedIndex() == 1) {
             this.mode = 2;
         }
         setVisible(false);
