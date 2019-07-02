@@ -1,0 +1,16 @@
+juil. 03, 2019 12:11:47 AM ui.UILog log
+INFOS: File 2019_07_03.log is created!
+
+juil. 03, 2019 12:11:47 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_03] created !
+open_sheet sub directory [.\print\2019_07_03\open_sheet] created !
+Print sub directory [.\print\2019_07_03\closing_sheet] created !
+Print sub directory [.\print\2019_07_03\picking_label] created !
+Print sub directory [.\print\2019_07_03\dispatch_label] created !
+
+juil. 03, 2019 12:11:53 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-03 00:11:53 Module : Configuration : .
+juil. 03, 2019 12:11:56 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-03 00:11:56 Dispatch interface : .
+juil. 03, 2019 12:12:48 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC

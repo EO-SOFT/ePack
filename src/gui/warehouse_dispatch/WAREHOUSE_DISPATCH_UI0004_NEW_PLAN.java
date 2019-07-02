@@ -12,7 +12,6 @@ import entity.LoadPlanDestination;
 import entity.LoadPlanDestinationRel;
 import gui.warehouse_dispatch.process_reservation.S001_ReservPalletNumberScan;
 import gui.warehouse_dispatch.state.WarehouseHelper;
-import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.text.SimpleDateFormat;
@@ -376,8 +375,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
      *
      * @param project
      */
-    public void setDestinationsTable(String project) {
-        System.out.println("setDestinationsTable");
+    public void setDestinationsTable(String project) {        
         Helper.startSession();
         Query query;
         if (project == "") {
@@ -395,7 +393,6 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
 
             this.dispose();
         } else {
-
             //Create the destinations table component
             Object[][] data = new Object[result.size()][2];
             for (int i = 0; i < result.size(); i++) {

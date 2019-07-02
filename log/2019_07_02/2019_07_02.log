@@ -1,0 +1,24 @@
+juil. 02, 2019 11:47:56 PM ui.UILog log
+INFOS: File 2019_07_02.log is created!
+
+juil. 02, 2019 11:47:56 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_02] created !
+open_sheet sub directory [.\print\2019_07_02\open_sheet] created !
+Print sub directory [.\print\2019_07_02\closing_sheet] created !
+Print sub directory [.\print\2019_07_02\picking_label] created !
+Print sub directory [.\print\2019_07_02\dispatch_label] created !
+
+juil. 02, 2019 11:50:05 PM ui.UILog log
+INFOS: File 2019_07_02.log already exists.
+
+juil. 02, 2019 11:50:05 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_02] already exist!
+open_sheet sub directory [.\print\2019_07_02\open_sheet] already exist!
+Print sub directory [.\print\2019_07_02\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_02\picking_label] already exist!
+Print sub directory [.\print\2019_07_02\dispatch_label] already exist!
+
+juil. 02, 2019 11:50:13 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-02 23:50:13 Module : Configuration : .
+juil. 02, 2019 11:50:16 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-02 23:50:16 Dispatch interface : .

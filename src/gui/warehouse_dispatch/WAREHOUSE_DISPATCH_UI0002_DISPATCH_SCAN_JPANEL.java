@@ -155,7 +155,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         item.create(item);
         //System.out.println("New record inserted");
     }
-    
+
     public void reset_odette_table_content() {
         odette_list_data = new Vector();
         jtable_odette_labels.setModel(new DefaultTableModel(odette_list_data, odette_list_header));
@@ -163,12 +163,12 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
     private void refreshOdetteTable() {
         reset_odette_table_content();
-        
+
         Helper.startSession();
 
         String query_str = String.format(
                 HQLHelper.GET_LOAD_PLAN_DISPATCH_LABELS_NOT_YET_CHECKED,
-                Integer.valueOf(plan_num_label.getText()), 
+                Integer.valueOf(plan_num_label.getText()),
                 Integer.valueOf(plan_num_label.getText()));
 
         System.out.println("query_str Kotominei " + query_str);
@@ -189,8 +189,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
             odette_list_data.add(oneRow);
         }
-        
-        
+
         jtable_odette_labels.setModel(new DefaultTableModel(odette_list_data, odette_list_header));
     }
 
@@ -1248,6 +1247,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         tab5_refresh = new javax.swing.JButton();
         tab5_import_dispatch_labels = new javax.swing.JButton();
         tab5_example = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         packaging = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -1360,7 +1360,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         pile_label_help.setForeground(new java.awt.Color(0, 255, 102));
         pile_label_help.setText("0");
 
-        destination_label_help.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        destination_label_help.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         destination_label_help.setForeground(new java.awt.Color(0, 255, 102));
         destination_label_help.setText("#");
 
@@ -2066,6 +2066,13 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -2074,6 +2081,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 .addComponent(tab5_refresh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tab5_import_dispatch_labels)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tab5_example)
                 .addGap(18, 18, 18)
@@ -2088,11 +2097,13 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                     .addComponent(tab5_reset_labels_table, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tab5_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tab5_import_dispatch_labels, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tab5_example, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tab5_example, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jLabel23.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Packages à charger");
 
         javax.swing.GroupLayout labels_to_be_controledLayout = new javax.swing.GroupLayout(labels_to_be_controled);
@@ -2117,7 +2128,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1017, Short.MAX_VALUE))
+                .addContainerGap(1008, Short.MAX_VALUE))
         );
 
         current_plan_jpanel.addTab("Packages à charger", labels_to_be_controled);
@@ -2662,14 +2673,12 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(message_label)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGap(442, 442, 442)
                                         .addComponent(time_label5)
                                         .addGap(58, 58, 58)
-                                        .addComponent(destination_label_help, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(pile_label_help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(destination_label_help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2691,7 +2700,9 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(connectedUserName_label, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(pile_label_help)
+                                .addGap(672, 672, 672))
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
@@ -3561,7 +3572,17 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         // TODO add your handling code here:
     }//GEN-LAST:event_labels_to_be_controledComponentShown
 
+    private boolean destinationInList(String destination) {
+        for (JRadioButton jRadioButton : radioButtonList) {
+            if (destination.equals(jRadioButton.getText())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void tab5_import_dispatch_labelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_import_dispatch_labelsActionPerformed
+
         try {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "/Desktop"));
@@ -3584,19 +3605,23 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 );
 
                 try {
-
+                    int i = 0;
                     for (CSVRecord record : csvParser) {
-                        
+
                         //@Todo : Control sur la destination du plan
-                        
                         String destination = record.get("Destination");
                         String article = record.get("Article");
                         String quantite = record.get("Quantite");
                         String serialNo = record.get("NumSerie");
 
-                        insertDispatchLabelLine(plan_num_label.getText(), record);
-
-                        System.out.println(destination + "\t" + article + "\t" + quantite + "\t" + serialNo);
+                        if (!destinationInList(destination)) {
+                            UILog.errorDialog("Destination " + destination + " ne correspond pas à celle-ci du plan.\nErreur dans la ligne " + i);
+                            break;
+                        } else {
+                            insertDispatchLabelLine(plan_num_label.getText(), record);
+                            System.out.println(destination + "\t" + article + "\t" + quantite + "\t" + serialNo);
+                            i++;
+                        }
                     }
 
                     // In the end of the import, refresh the list
@@ -3673,6 +3698,13 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         }
     }//GEN-LAST:event_tab5_exampleActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.out.println("Saber ");
+        for (JRadioButton jRadioButton : radioButtonList) {
+            System.out.println("jRadioButton " + jRadioButton.getText());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void clearGui() {
 
         this.cleanDataLabels();
@@ -3733,6 +3765,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.Box.Filler filler2;
     private javax.swing.JCheckBox group_by_position;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
