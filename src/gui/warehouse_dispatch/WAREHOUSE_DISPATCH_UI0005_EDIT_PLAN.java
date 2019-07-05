@@ -6,7 +6,6 @@
 package gui.warehouse_dispatch;
 
 import __main__.GlobalMethods;
-import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestinationRel;
@@ -54,20 +53,6 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         initGui();
 
     }
-    
-    /*
-    private void loadProjectsCombobox() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            for (Object o : result) {
-                project_filter.addItem(new ComboItem(o.toString(), o.toString()));
-            }
-        }
-    }*/
 
     private void initGui() {
         try {
@@ -77,11 +62,12 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
             create_time_label.setText(sdf.format(this.lp.getCreateTime()));
             deliv_date_label.setText(sdf.format(this.lp.getDeliveryTime()));
             truck_no_text.setText(this.lp.getTruckNo());
+            transporter_text.setText(this.lp.getTransportCompany());
             state_label.setText(this.lp.getPlanState());
             newDeliveryDatePicker.setDate(this.lp.getDeliveryTime());
 
             //initProjectFilter();
-            GlobalMethods.loadProjectsCombobox(this, project_filter,false);
+            GlobalMethods.loadProjectsCombobox(this, project_filter, false);
 
             //Set the project value
             for (int i = 0; i < project_filter.getItemCount(); i++) {
@@ -251,7 +237,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         newDeliveryDatePicker = new org.jdesktop.swingx.JXDatePicker();
         jLabel2 = new javax.swing.JLabel();
-        transporter_jbox = new javax.swing.JComboBox<>();
+        transporter_text = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         truck_no_text = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -369,9 +355,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Transporteur");
         panel2.add(jLabel2);
-
-        transporter_jbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SJL", "Germanitti", "Vectorys", "GLT", "DHL", "Schenker", "Air Sea", " " }));
-        panel2.add(transporter_jbox);
+        panel2.add(transporter_text);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Matricule Remorque");
@@ -437,78 +421,37 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         //Get selected destinations 
         String[] selectedDestinations = new String[destinations_table.getRowCount()];
         boolean flag = false;
-//        boolean destinationsValidation = true;
-
-//        if (!flag) {
-//            UILog.severe(ErrorMsg.APP_ERR0026[0]);
-//            UILog.severeDialog(null, ErrorMsg.APP_ERR0026);
-//            this.main_tabbedPane.setSelectedIndex(1);
-//        } else {
         try {
-            //Remove old destinations from the plan
-//                for (LoadPlanDestinationRel obj : this.loadPlanDestRel) {
-//                    System.out.println("selected " + selectedDestinations.length);
-//                    if (ifDestIsSelected(obj.getDestination(), planDests) && !ifDestIsSelected(obj.getDestination(), selectedDestinations)) {
-//                        System.out.println(obj.getDestination() + "not selected");
-//                        //before remove the destination
-//                        // Check if contains any pallets
-//                        Helper.startSession();
-//
-//                        Query query = Helper.sess.createQuery(HQLHelper.GET_NBRE_LOAD_PLAN_LINES);
-//                        query.setParameter("loadPlanId", this.lp.getId());
-//                        query.setParameter("destinationWh", obj.getDestination());
-//                        Helper.sess.getTransaction().commit();
-//                        List result = query.list();
-//                        //Empty and Not selected
-//                        if (result.isEmpty()) {
-//                            obj.delete(obj);
-//                        } else {
-//                            UILog.infoDialog(null, ErrorMsg.APP_ERR0024, obj.getDestination());
-//                            UILog.info(ErrorMsg.APP_ERR0024[0], obj.getDestination());
-////                            destinationsValidation = false;
-//                            break;
-//                        }
-//                    }
-//                }
-//                String finalDest = "";
-//                if (destinationsValidation) {
-//                    //Save the destinations of the plan
-//                    for (String str : selectedDestinations) {
-//                        if (str != null && !"".equals(str)) {
-//                            if (!ifDestIsSelected(finalDest, this.planDests)) {
-//                                LoadPlanDestinationRel planRel = new LoadPlanDestinationRel(str, this.lp.getId());
-//                                planRel.create(planRel);
-//                            }
-//                        }
-//                        finalDest = str;
-//                    }
-//                }
-
             if (newDeliveryDatePicker.getDate() == null) {
                 UILog.severe(ErrorMsg.APP_ERR0027[0]);
                 UILog.severeDialog(null, ErrorMsg.APP_ERR0027);
                 newDeliveryDatePicker.requestFocus();
             } else {
                 this.lp.setDeliveryTime(newDeliveryDatePicker.getDate());
+                if (transporter_text.getText().isEmpty()) {
+                    UILog.severe(ErrorMsg.APP_ERR0045[0]);
+                    UILog.severeDialog(null, ErrorMsg.APP_ERR0045);
+                    transporter_text.requestFocus();
+                } else {
+
+                    this.lp.setTruckNo((truck_no_text.getText().isEmpty()) ? "" : truck_no_text.getText());
+                    this.lp.setFgWarehouse(warehouse_filter.getSelectedItem() + "");
+                    this.lp.setTransportCompany(transporter_text.getText());
+                    String packaging_wh = new ConfigWarehouse().getPackagingWh(project_filter.getSelectedItem().toString());
+                    lp.setPackagingWarehouse(packaging_wh);
+                    this.lp.update(this.lp);
+                    //Load data into labels
+                    WarehouseHelper.Dispatch_Gui_Jpanel.loadPlanDataToLabels(lp, this.planDests[0]);
+
+                    //Load plans JTable
+                    WarehouseHelper.Dispatch_Gui_Jpanel.loadPlanDataInGui(lp, this.planDests[0]);
+
+                    WarehouseHelper.Dispatch_Gui_Jpanel.reloadPlansData();
+
+                    this.dispose();
+                }
             }
 
-            this.lp.setTruckNo((truck_no_text.getText().isEmpty()) ? "" : truck_no_text.getText());
-            //this.lp.setProject(project_filter.getSelectedItem().toString());
-            this.lp.setFgWarehouse(warehouse_filter.getSelectedItem() + "");
-            String packaging_wh = new ConfigWarehouse().getPackagingWh(project_filter.getSelectedItem().toString());
-            lp.setPackagingWarehouse(packaging_wh);
-            this.lp.update(this.lp);
-            /*this.parent.reloadPlansData();
-                this.parent.loadPlanDataInGui();*/
-            //Load data into labels
-            WarehouseHelper.Dispatch_Gui_Jpanel.loadPlanDataToLabels(lp, this.planDests[0]);
-
-            //Load plans JTable
-            WarehouseHelper.Dispatch_Gui_Jpanel.loadPlanDataInGui(lp, this.planDests[0]);
-
-            WarehouseHelper.Dispatch_Gui_Jpanel.reloadPlansData();
-
-            this.dispose();
         } catch (HibernateException | HeadlessException e) {
             UILog.severe(ErrorMsg.APP_ERR0028[0]);
             UILog.severeDialog(null, ErrorMsg.APP_ERR0028);
@@ -564,7 +507,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
     private javax.swing.JLabel time_label3;
     private javax.swing.JLabel time_label4;
     private javax.swing.JLabel time_label6;
-    private javax.swing.JComboBox<String> transporter_jbox;
+    private javax.swing.JTextField transporter_text;
     private javax.swing.JTextField truck_no_text;
     private javax.swing.JComboBox warehouse_filter;
     // End of variables declaration//GEN-END:variables

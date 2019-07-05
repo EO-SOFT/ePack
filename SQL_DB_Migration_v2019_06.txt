@@ -157,6 +157,13 @@ COMMENT ON COLUMN public.config_ucs.print_destination
 True : Print the destination in closing sheet label
 False : Print à dash "-" unstead of destination';
 
+ALTER TABLE public.load_plan
+    ADD COLUMN transport_company character varying(255) NOT NULL;
+
+COMMENT ON COLUMN public.load_plan.transport_company
+    IS 'Transport partner';
+
+-- Config UCS
 
 ALTER TABLE config_ucs
     ADD COLUMN priority integer  NOT NULL DEFAULT 99,

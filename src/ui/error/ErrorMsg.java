@@ -210,4 +210,9 @@ public class ErrorMsg {
      * APP_ERR0044 CONFIG : No familly found in config_family table.
      */
     public static String[] APP_ERR0044 = {"APP_ERR0044", "APP_ERR0044 CONFIG : No familly found in config_family table."};
+    
+    /**
+     * APP_ERR0045 DISPATCH : No transport company specified.
+     */
+    public static String[] APP_ERR0045 = {"APP_ERR0045", "APP_ERR0045 DISPATCH : No transport company specified."};
 }

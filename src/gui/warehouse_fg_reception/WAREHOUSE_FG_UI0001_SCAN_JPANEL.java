@@ -11,12 +11,10 @@ import helper.Helper;
 import helper.HQLHelper;
 import entity.BaseContainer;
 import entity.BaseHarness;
-import entity.ConfigWarehouse;
 import entity.HisLogin;
 import entity.ManufactureUsers;
 import entity.PackagingStockMovement;
 import gui.packaging.PackagingVars;
-import gui.packaging.reports.PACKAGING_UI0010_PalletDetails_JPANEL;
 import gui.packaging.reports.PACKAGING_UI0014_PalletHistory_JPANEL;
 import gui.warehouse_dispatch.state.WarehouseHelper;
 import java.awt.Color;
@@ -25,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
@@ -835,7 +832,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                 return false;
             }
         } catch (Exception e) {
-            showMsg("Numero invalide !", -1);
+            showMsg("Numéro palette invalide !", -1);
             throw e;
             //return false;
         }

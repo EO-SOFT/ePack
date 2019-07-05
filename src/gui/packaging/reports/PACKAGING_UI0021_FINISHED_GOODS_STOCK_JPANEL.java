@@ -176,7 +176,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             declared_result_table_data.add(oneRow);
         }
         declared_result_table.setModel(new DefaultTableModel(declared_result_table_data, declared_result_table_header));
-        declared_result_table.setFont(new Font(String.valueOf(GlobalVars.APP_PROP.getProperty("JTABLE_FONT")), Font.BOLD, Integer.valueOf(GlobalVars.APP_PROP.getProperty("JTABLE_FONTSIZE"))));
+        //declared_result_table.setFont(new Font(String.valueOf(GlobalVars.APP_PROP.getProperty("JTABLE_FONT")), Font.BOLD, Integer.valueOf(GlobalVars.APP_PROP.getProperty("JTABLE_FONTSIZE"))));
         declared_result_table.setRowHeight(Integer.valueOf(GlobalVars.APP_PROP.getProperty("JTABLE_ROW_HEIGHT")));
 
     }
@@ -359,6 +359,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             }
         });
 
+        declared_result_table.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         declared_result_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -375,7 +376,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Stock produit fini");
+        jLabel11.setText("Stock produits finis");
 
         jPanel1.setBackground(new java.awt.Color(36, 65, 86));
 
@@ -531,7 +532,6 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -623,9 +623,10 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
         row.createCell(0).setCellValue("SEGMENT");
         row.createCell(1).setCellValue("WORKPLACE");
         row.createCell(2).setCellValue("PART NUMBER");
-        row.createCell(3).setCellValue("AVAILABLE");
-        row.createCell(4).setCellValue("RESERVED");
-        row.createCell(5).setCellValue("TOTAL");
+        row.createCell(3).setCellValue("INTERNAL PN");
+        row.createCell(4).setCellValue("AVAILABLE QTY");
+        row.createCell(5).setCellValue("RESERVED QTY");
+        row.createCell(6).setCellValue("TOTAL QTY");
 
         short sheetPointer = 1;
 
@@ -637,30 +638,26 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             if (String.valueOf(obj[2].toString()).startsWith("P")) {
                 row.createCell(2).setCellValue(String.valueOf(obj[2]).substring(1));//PART NUMBER
             } else {
-                row.createCell(2).setCellValue(String.valueOf(obj[2]));//PART NUMBER
+                row.createCell(2).setCellValue(String.valueOf(obj[2].toString()));//PART NUMBER
             }
+            row.createCell(3).setCellValue(String.valueOf(obj[3])); //INTERNAL PART NUMBER
             try {
-                row.createCell(3).setCellValue(Double.valueOf(obj[3].toString()));//AVAILABLE QTY
-                total_available += Double.valueOf(obj[3].toString());
-            } catch (NullPointerException e) {
-                row.createCell(3).setCellValue(0.00f);//RESERVED QTY                
-            }
-
-            try {
-                row.createCell(4).setCellValue(Double.valueOf(obj[4].toString()));//RESERVED QTY                
+                row.createCell(4).setCellValue(Double.valueOf(obj[4].toString()));//AVAILABLE QUANTITY
+                total_available += Double.valueOf(obj[4].toString());
             } catch (NullPointerException e) {
                 row.createCell(4).setCellValue(0.00f);//RESERVED QTY                
             }
 
-            row.createCell(5).setCellValue(Double.valueOf(obj[5].toString()));//TOTAL
+            try {
+                row.createCell(5).setCellValue(Double.valueOf(obj[5].toString()));//RESERVED QTY                
+            } catch (NullPointerException e) {
+                row.createCell(5).setCellValue(0.00f);//RESERVED QTY                
+            }
+
+            row.createCell(6).setCellValue(Double.valueOf(obj[6].toString()));//TOTAL
 
             sheetPointer++;
         }
-
-        //Total produced line
-        row = sheet.createRow(sheetPointer++);
-        row.createCell(0).setCellValue("TOTAL PRODUCED QTY :");
-        row.createCell(1).setCellValue(total_available);
 
         //Past the workbook to the file chooser
         new JDialogExcelFileChooser(null, true, wb).setVisible(true);

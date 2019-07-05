@@ -200,17 +200,19 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
     private boolean deleteOdetteTable() {
         int confirmed = JOptionPane.showConfirmDialog(
-                this,
-                "Confirmez-vous la suppression de la liste des odettes actuelle " + plan_num_label.getText() + " ?",
+                this.parent.getParent(),
+                "La liste des odettes actuelles sera écrasée " + plan_num_label.getText() + " ?",
                 "Confirmation",
                 JOptionPane.YES_NO_OPTION);
+        
+        
         if (confirmed == 0) {
             Helper.startSession();
             Query query = Helper.sess.createQuery(HQLHelper.DEL_LOAD_PLAN_DISPATCH_LABELS_BY_PLAN_ID);
             query.setParameter("loadPlanId", Integer.valueOf(plan_num_label.getText()));
             int result = query.executeUpdate();
             //Helper.sess.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "La liste a été supprimée !\n");
+            JOptionPane.showMessageDialog(null, "La liste a été écrasée !\n");
 
             refreshOdetteTable();
             return true;
@@ -330,6 +332,9 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         }
     }
 
+    /**
+     * 
+     */
     private void initPlanTableDoubleClick() {
 
         this.load_plan_lines_table.addMouseListener(
@@ -356,7 +361,11 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                     loadPlanDataInGui();
                 }
             }
-
+            
+            
+            /**
+             * Load plan data into the UI fields
+             */
             public void loadPlanDataInGui() {
                 String id = String.valueOf(load_plan_table.getValueAt(load_plan_table.getSelectedRow(), 1));
                 Helper.startSession();
@@ -369,7 +378,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 WarehouseHelper.temp_load_plan = (LoadPlan) result.get(0); //selectedPlan;
 
                 //Load destinations of the plan
-                //if (loadDestinations(Integer.valueOf(id))) {
                 if (loadDestinationsRadioGroup(Integer.valueOf(id))) {
                     loadPlanDataToLabels(WarehouseHelper.temp_load_plan, radioButtonList[0].getText());
                     reloadPlanLinesData(Integer.valueOf(id), radioButtonList[0].getText());
@@ -388,6 +396,11 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                         txt_filter_part.setEnabled(true);
                         radio_btn_20.setEnabled(false);
                         radio_btn_40.setEnabled(false);
+                        //Disable csv buttons
+                        tab5_refresh.setEnabled(false);
+                        tab5_import_dispatch_labels.setEnabled(false);
+                        tab5_example.setEnabled(false);
+                        tab5_reset_labels_table.setEnabled(false);
                     } else { // The plan still Open
                         export_to_excel_btn.setEnabled(true);
                         edit_plan_btn.setEnabled(true);
@@ -398,6 +411,11 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                         radio_btn_20.setEnabled(true);
                         radio_btn_40.setEnabled(true);
                         txt_filter_part.setEnabled(true);
+                        //Enable csv buttons
+                        tab5_refresh.setEnabled(true);
+                        tab5_import_dispatch_labels.setEnabled(true);
+                        tab5_example.setEnabled(true);
+                        tab5_reset_labels_table.setEnabled(true);
 
                         if (WarehouseHelper.warehouse_reserv_context.getUser().getAccessLevel() == GlobalVars.PROFIL_WAREHOUSE_AGENT
                                 || WarehouseHelper.warehouse_reserv_context.getUser().getAccessLevel() == GlobalVars.PROFIL_ADMIN) {
@@ -583,6 +601,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         this.state_label.setText(p.getPlanState());
 
         this.truck_no_txt1.setText(p.getTruckNo());
+        this.transporteur_txt.setText(p.getTransportCompany());
         this.fg_warehouse_label.setText(p.getFgWarehouse());
         //Select the last pile of the plan
         Helper.startSession();
@@ -609,6 +628,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
     public void cleanDataLabels() {
         this.truck_no_txt1.setText("#");
+        this.transporteur_txt.setText("#");
         this.plan_num_label.setText("#");
         this.create_user_label.setText("-----");
         this.create_time_label.setText("--/--/---- --:--");
@@ -1270,7 +1290,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         tab3_refresh = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtable_total_packages = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         new_plan_menu = new javax.swing.JMenu();
         export_plan_menu = new javax.swing.JMenu();
@@ -2074,11 +2094,11 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         });
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Total Packages ");
 
         tab4_txt_totalPackages.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tab4_txt_totalPackages.setForeground(new java.awt.Color(255, 255, 255));
+        tab4_txt_totalPackages.setForeground(new java.awt.Color(0, 0, 0));
         tab4_txt_totalPackages.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -2353,7 +2373,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
         jSplitPane2.setLeftComponent(details_jpanel);
 
-        jButton1.setText("jButton1");
+        jLabel25.setText(".");
+        jSplitPane2.setRightComponent(jLabel25);
 
         new_plan_menu.setMnemonic(KeyEvent.VK_F5);
         new_plan_menu.setText("New Plan");
@@ -2505,7 +2526,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         truck_no_txt1.setEditable(false);
         truck_no_txt1.setBackground(new java.awt.Color(153, 255, 255));
         truck_no_txt1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        truck_no_txt1.setText("0");
+        truck_no_txt1.setText("#");
         truck_no_txt1.setToolTipText("");
         truck_no_txt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2669,7 +2690,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         transporteur_txt.setEditable(false);
         transporteur_txt.setBackground(new java.awt.Color(153, 255, 255));
         transporteur_txt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        transporteur_txt.setText("0");
+        transporteur_txt.setText("#");
         transporteur_txt.setToolTipText("");
         transporteur_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3133,83 +3154,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         // TODO add your handling code here:
     }//GEN-LAST:event_message_labelActionPerformed
 
-    private void btn_filter_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filter_okActionPerformed
-        load_plan_lines_table.setAutoCreateRowSorter(true);
-        load_plan_lines_table.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "PILE NUM", "PALLET NUM", "CPN", "INTERNAL PN", "PACK TYPE", "PACK SIZE", "DESTINATION", "LINE ID", "FAMILY", "FIFO"
-                }
-        ));
-        this.reloadPlansData();
-        //this.loadPlanDataInGui();
-        filterPlanLines(false);
-    }//GEN-LAST:event_btn_filter_okActionPerformed
-
-    private void set_packaging_pile_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_packaging_pile_btnActionPerformed
-        new WAREHOUSE_DISPATCH_UI0008_SET_PACKAGING_OF_PILE(null, WarehouseHelper.temp_load_plan, selectedDestination);
-    }//GEN-LAST:event_set_packaging_pile_btnActionPerformed
-
-    private void controlled_comboboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controlled_comboboxItemStateChanged
-        filterPlanLines(false);
-    }//GEN-LAST:event_controlled_comboboxItemStateChanged
-
-    private void piles_boxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_piles_boxItemStateChanged
-        //Set the values of destination and pile labels help
-        try {
-            destination_label_help.setText(selectedDestination);
-            pile_label_help.setText(piles_box.getSelectedItem().toString());
-            filterPlanLines(false);
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_piles_boxItemStateChanged
-
-    private void txt_filter_dispatchl_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filter_dispatchl_numberKeyTyped
-        filterPlanLines(false);
-    }//GEN-LAST:event_txt_filter_dispatchl_numberKeyTyped
-
-    private void txt_filter_pal_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filter_pal_numberKeyTyped
-        filterPlanLines(false);
-    }//GEN-LAST:event_txt_filter_pal_numberKeyTyped
-
-    private void txt_filter_partKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filter_partKeyTyped
-        filterPlanLines(false);
-    }//GEN-LAST:event_txt_filter_partKeyTyped
-
-    private void txt_filter_partActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_filter_partActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_filter_partActionPerformed
-
-    private void plan_id_filterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plan_id_filterKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                if (loadPlanDataInGui(Integer.valueOf(plan_id_filter.getText()))) {
-                    current_plan_jpanel.setSelectedIndex(1);
-                } else {
-                    JOptionPane.showOptionDialog(null, "Plan " + plan_id_filter.getText() + " introuvable !", "Plan introuvable  !", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
-                }
-            } catch (NumberFormatException ex) {
-                JOptionPane.showOptionDialog(null, "Plan " + plan_id_filter.getText() + " introuvable !", "Plan introuvable  !", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
-            }
-        }
-    }//GEN-LAST:event_plan_id_filterKeyPressed
-
-    private void lp_filter_valKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lp_filter_valKeyTyped
-        reloadPlansData();
-    }//GEN-LAST:event_lp_filter_valKeyTyped
-
-    private void lp_filter_valActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_filter_valActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lp_filter_valActionPerformed
-
-    private void refresh_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btnActionPerformed
-        reloadPlansData();
-    }//GEN-LAST:event_refresh_btnActionPerformed
-
-    private void new_plan_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_plan_btnActionPerformed
-        new WAREHOUSE_DISPATCH_UI0004_NEW_PLAN(null, true);
-    }//GEN-LAST:event_new_plan_btnActionPerformed
-
     private void truck_no_txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_truck_no_txt1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_truck_no_txt1ActionPerformed
@@ -3338,39 +3282,9 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
     }
 
-    private void tab2_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab2_refreshActionPerformed
-
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_tab2_refreshActionPerformed
-
     private void export_plan_menuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_export_plan_menuMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_export_plan_menuMouseEntered
-
-    private void current_plan_jpanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_current_plan_jpanelMouseClicked
-
-    }//GEN-LAST:event_current_plan_jpanelMouseClicked
-
-    private void tab2_destinationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_destinationKeyTyped
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_tab2_destinationKeyTyped
-
-    private void tab2_cpnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_cpnKeyTyped
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-
-    }//GEN-LAST:event_tab2_cpnKeyTyped
-
-    private void tab3_total_pnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab3_total_pnKeyTyped
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_tab3_total_pnKeyTyped
-
-    private void tab2_packtypeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_packtypeKeyTyped
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_tab2_packtypeKeyTyped
-
-    private void tab3_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab3_refreshActionPerformed
-        this.reloadPackagingContainerTab3(Integer.valueOf(plan_num_label.getText()));
-    }//GEN-LAST:event_tab3_refreshActionPerformed
 
     private void pallet_stockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pallet_stockMouseClicked
         GlobalMethods.addNewTabToParent("Historique palette", parent,
@@ -3392,26 +3306,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private void scan_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_scan_txtFocusLost
         scan_txt.setBackground(Color.WHITE);
     }//GEN-LAST:event_scan_txtFocusLost
-
-    private void controlled_combobox_tab_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controlled_combobox_tab_2ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_controlled_combobox_tab_2ItemStateChanged
-
-    private void tab5_packagingComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tab5_packagingComponentShown
-        this.reloadPackagingContainerTab3(Integer.valueOf(plan_num_label.getText()));
-    }//GEN-LAST:event_tab5_packagingComponentShown
-
-    private void tab3_total_pnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tab3_total_pnFocusGained
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_tab3_total_pnFocusGained
-
-    private void tab3_total_pnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tab3_total_pnPropertyChange
-
-    }//GEN-LAST:event_tab3_total_pnPropertyChange
-
-    private void tab3_total_pnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab3_total_pnMouseClicked
-        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
-    }//GEN-LAST:event_tab3_total_pnMouseClicked
 
     private void add_new_plan_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_new_plan_btnActionPerformed
         new WAREHOUSE_DISPATCH_UI0004_NEW_PLAN(null, true).setVisible(true);
@@ -3513,7 +3407,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
 
     private void delete_plan_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_plan_btnActionPerformed
         int confirmed = JOptionPane.showConfirmDialog(null,
-                "Voulez-vous supprimer le plan de chargement sélectionné ?", "Confirmation de suppression",
+                "Voulez-vous supprimer le plan de chargement "+plan_num_label.getText()+" ?", "Confirmation de suppression",
                 JOptionPane.YES_NO_OPTION);
         if (confirmed == 0) {
             Helper.startSession();
@@ -3537,6 +3431,12 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 query = Helper.sess.createQuery(HQLHelper.DEL_LOAD_PLAN_LINE_BY_PLAN_ID);
                 query.setParameter("load_plan_id", plan.getId());
                 query.executeUpdate();
+                
+                
+                //############ REMOVE THE PLAN'S ODETTES ###############
+                query = Helper.sess.createQuery(HQLHelper.DEL_DISPATCH_LABELS_BY_PLAN_ID);
+                query.setParameter("load_plan_id", plan.getId());
+                query.executeUpdate();
 
                 plan.delete(plan);
 
@@ -3556,10 +3456,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
             }
         }
     }//GEN-LAST:event_delete_plan_btnActionPerformed
-
-    private void group_by_positionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group_by_positionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_group_by_positionActionPerformed
 
     private void labels_control_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labels_control_btnActionPerformed
         WarehouseHelper.Label_Control_Gui = new WAREHOUSE_DISPATCH_UI0009_LABELS_CONTROL(WarehouseHelper.temp_load_plan);
@@ -3581,87 +3477,21 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         // TODO add your handling code here:
     }//GEN-LAST:event_transporteur_txtActionPerformed
 
-    private void tab5_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_refreshActionPerformed
-        refreshOdetteTable();
-    }//GEN-LAST:event_tab5_refreshActionPerformed
+    private void current_plan_jpanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_current_plan_jpanelMouseClicked
+
+    }//GEN-LAST:event_current_plan_jpanelMouseClicked
+
+    private void tab5_packagingComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tab5_packagingComponentShown
+        this.reloadPackagingContainerTab3(Integer.valueOf(plan_num_label.getText()));
+    }//GEN-LAST:event_tab5_packagingComponentShown
+
+    private void tab3_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab3_refreshActionPerformed
+        this.reloadPackagingContainerTab3(Integer.valueOf(plan_num_label.getText()));
+    }//GEN-LAST:event_tab3_refreshActionPerformed
 
     private void tab4_labels_to_be_controledComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tab4_labels_to_be_controledComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_tab4_labels_to_be_controledComponentShown
-
-    private boolean destinationInList(String destination) {
-        for (JRadioButton jRadioButton : radioButtonList) {
-            if (destination.equals(jRadioButton.getText())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void tab5_import_dispatch_labelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_import_dispatch_labelsActionPerformed
-
-        try {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "/Desktop"));
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV", "csv");
-            fileChooser.setFileFilter(filter);
-            int status = fileChooser.showOpenDialog(null);
-
-            if (status == JFileChooser.APPROVE_OPTION && deleteOdetteTable()) {
-
-                File selectedFile = fileChooser.getSelectedFile();
-                //Past the workbook to the file chooser
-                String SAMPLE_CSV_FILE_PATH = selectedFile.getAbsolutePath();
-                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
-                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
-                        .withFirstRecordAsHeader()
-                        .withIgnoreHeaderCase()
-                        .withTrim()
-                        .withDelimiter(';')
-                );
-
-                try {
-                    int i = 0;
-                    for (CSVRecord record : csvParser) {
-
-                        //@Todo : Control sur la destination du plan
-                        String destination = record.get("Destination");
-                        String article = record.get("Article");
-                        String quantite = record.get("Quantite");
-                        String serialNo = record.get("NumSerie");
-
-                        if (!destinationInList(destination)) {
-                            UILog.errorDialog("Destination " + destination + " ne correspond pas à celle-ci du plan.\nErreur dans la ligne " + i);
-                            break;
-                        } else {
-                            insertDispatchLabelLine(plan_num_label.getText(), record);
-                            System.out.println(destination + "\t" + article + "\t" + quantite + "\t" + serialNo);
-                            i++;
-                        }
-                    }
-
-                    // In the end of the import, refresh the list
-                    refreshOdetteTable();
-                } catch (Exception ex) {
-                    Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
-                    UILog.severeDialog(this, ex.getMessage(), "Exception");
-                }
-            } else if (status == JFileChooser.CANCEL_OPTION) {
-                System.out.println("Canceled");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
-            UILog.severeDialog(this, ex.getMessage(), "IOException");
-        }
-    }//GEN-LAST:event_tab5_import_dispatch_labelsActionPerformed
-
-    private void tab5_reset_labels_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_reset_labels_tableActionPerformed
-
-        deleteOdetteTable();
-
-
-    }//GEN-LAST:event_tab5_reset_labels_tableActionPerformed
 
     private void tab5_exampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_exampleActionPerformed
         //Files.copy(".\\..\\..\\..\\lib\\odette_csv_example.csv", dst, StandardCopyOption.REPLACE_EXISTING);
@@ -3701,8 +3531,8 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
                 }
 
                 JOptionPane.showMessageDialog(null,
-                        "Fichier enregistré à l'emplacement \n " + selectedFile.getAbsolutePath() + ".csv", "File saved !",
-                        JOptionPane.INFORMATION_MESSAGE);
+                    "Fichier enregistré à l'emplacement \n " + selectedFile.getAbsolutePath() + ".csv", "File saved !",
+                    JOptionPane.INFORMATION_MESSAGE);
 
             } catch (FileNotFoundException ex) {
                 //
@@ -3714,6 +3544,201 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
             }
         }
     }//GEN-LAST:event_tab5_exampleActionPerformed
+
+    private void tab5_import_dispatch_labelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_import_dispatch_labelsActionPerformed
+
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV", "csv");
+            fileChooser.setFileFilter(filter);
+            int status = fileChooser.showOpenDialog(null);
+
+            if (status == JFileChooser.APPROVE_OPTION && deleteOdetteTable()) {
+
+                File selectedFile = fileChooser.getSelectedFile();
+                //Past the workbook to the file chooser
+                String SAMPLE_CSV_FILE_PATH = selectedFile.getAbsolutePath();
+                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+                    .withFirstRecordAsHeader()
+                    .withIgnoreHeaderCase()
+                    .withTrim()
+                    .withDelimiter(';')
+                );
+
+                try {
+                    int i = 1;
+                    for (CSVRecord record : csvParser) {
+
+                        //@Todo : Control sur la destination du plan
+                        String destination = record.get("Destination");
+                        String article = record.get("Article");
+                        String quantite = record.get("Quantite");
+                        String serialNo = record.get("NumSerie");
+
+                        if (!destinationInList(destination)) {
+                            UILog.errorDialog("Destination " + destination + " ne correspond pas à celle-ci du plan.\nErreur dans la ligne " + i);
+                            break;
+                        } else {
+                            insertDispatchLabelLine(plan_num_label.getText(), record);
+                            System.out.println(destination + "\t" + article + "\t" + quantite + "\t" + serialNo);
+                            i++;
+                        }
+                    }
+
+                    // In the end of the import, refresh the list
+                    refreshOdetteTable();
+                } catch (Exception ex) {
+                    Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
+                    UILog.severeDialog(this, ex.getMessage(), "Exception");
+                }
+            } else if (status == JFileChooser.CANCEL_OPTION) {
+                System.out.println("Canceled");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
+            UILog.severeDialog(this, ex.getMessage(), "IOException");
+        }
+    }//GEN-LAST:event_tab5_import_dispatch_labelsActionPerformed
+
+    private void tab5_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_refreshActionPerformed
+        refreshOdetteTable();
+    }//GEN-LAST:event_tab5_refreshActionPerformed
+
+    private void tab5_reset_labels_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab5_reset_labels_tableActionPerformed
+
+        deleteOdetteTable();
+
+    }//GEN-LAST:event_tab5_reset_labels_tableActionPerformed
+
+    private void tab3_total_pnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab3_total_pnKeyTyped
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab3_total_pnKeyTyped
+
+    private void tab3_total_pnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tab3_total_pnPropertyChange
+
+    }//GEN-LAST:event_tab3_total_pnPropertyChange
+
+    private void tab3_total_pnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab3_total_pnMouseClicked
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab3_total_pnMouseClicked
+
+    private void tab3_total_pnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tab3_total_pnFocusGained
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab3_total_pnFocusGained
+
+    private void group_by_positionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group_by_positionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_group_by_positionActionPerformed
+
+    private void controlled_combobox_tab_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controlled_combobox_tab_2ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_controlled_combobox_tab_2ItemStateChanged
+
+    private void tab2_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab2_refreshActionPerformed
+
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab2_refreshActionPerformed
+
+    private void tab2_packtypeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_packtypeKeyTyped
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab2_packtypeKeyTyped
+
+    private void tab2_cpnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_cpnKeyTyped
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab2_cpnKeyTyped
+
+    private void tab2_destinationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tab2_destinationKeyTyped
+        total_per_part_and_destination(tab2_destination.getText().trim(), tab2_cpn.getText().trim(), tab2_packtype.getText().trim(), controlled_combobox_tab_2.getSelectedIndex());
+    }//GEN-LAST:event_tab2_destinationKeyTyped
+
+    private void btn_filter_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filter_okActionPerformed
+        load_plan_lines_table.setAutoCreateRowSorter(true);
+        load_plan_lines_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object[][]{},
+            new String[]{
+                "PILE NUM", "PALLET NUM", "CPN", "INTERNAL PN", "PACK TYPE", "PACK SIZE", "DESTINATION", "LINE ID", "FAMILY", "FIFO"
+            }
+        ));
+        this.reloadPlansData();
+        //this.loadPlanDataInGui();
+        filterPlanLines(false);
+    }//GEN-LAST:event_btn_filter_okActionPerformed
+
+    private void set_packaging_pile_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_packaging_pile_btnActionPerformed
+        new WAREHOUSE_DISPATCH_UI0008_SET_PACKAGING_OF_PILE(null, WarehouseHelper.temp_load_plan, selectedDestination);
+    }//GEN-LAST:event_set_packaging_pile_btnActionPerformed
+
+    private void controlled_comboboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controlled_comboboxItemStateChanged
+        filterPlanLines(false);
+    }//GEN-LAST:event_controlled_comboboxItemStateChanged
+
+    private void piles_boxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_piles_boxItemStateChanged
+        //Set the values of destination and pile labels help
+        try {
+            destination_label_help.setText(selectedDestination);
+            pile_label_help.setText(piles_box.getSelectedItem().toString());
+            filterPlanLines(false);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_piles_boxItemStateChanged
+
+    private void txt_filter_dispatchl_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filter_dispatchl_numberKeyTyped
+        filterPlanLines(false);
+    }//GEN-LAST:event_txt_filter_dispatchl_numberKeyTyped
+
+    private void txt_filter_pal_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filter_pal_numberKeyTyped
+        filterPlanLines(false);
+    }//GEN-LAST:event_txt_filter_pal_numberKeyTyped
+
+    private void txt_filter_partKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filter_partKeyTyped
+        filterPlanLines(false);
+    }//GEN-LAST:event_txt_filter_partKeyTyped
+
+    private void txt_filter_partActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_filter_partActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_filter_partActionPerformed
+
+    private void plan_id_filterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_plan_id_filterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                if (loadPlanDataInGui(Integer.valueOf(plan_id_filter.getText()))) {
+                    current_plan_jpanel.setSelectedIndex(1);
+                } else {
+                    JOptionPane.showOptionDialog(null, "Plan " + plan_id_filter.getText() + " introuvable !", "Plan introuvable  !", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showOptionDialog(null, "Plan " + plan_id_filter.getText() + " introuvable !", "Plan introuvable  !", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
+            }
+        }
+    }//GEN-LAST:event_plan_id_filterKeyPressed
+
+    private void lp_filter_valKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lp_filter_valKeyTyped
+        reloadPlansData();
+    }//GEN-LAST:event_lp_filter_valKeyTyped
+
+    private void lp_filter_valActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_filter_valActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lp_filter_valActionPerformed
+
+    private void refresh_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btnActionPerformed
+        reloadPlansData();
+    }//GEN-LAST:event_refresh_btnActionPerformed
+
+    private void new_plan_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_plan_btnActionPerformed
+        new WAREHOUSE_DISPATCH_UI0004_NEW_PLAN(null, true);
+    }//GEN-LAST:event_new_plan_btnActionPerformed
+
+    private boolean destinationInList(String destination) {
+        for (JRadioButton jRadioButton : radioButtonList) {
+            if (destination.equals(jRadioButton.getText())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void clearGui() {
 
@@ -3773,7 +3798,6 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JCheckBox group_by_position;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3791,6 +3815,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

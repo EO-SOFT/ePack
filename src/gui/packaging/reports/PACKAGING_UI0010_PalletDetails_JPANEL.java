@@ -353,6 +353,7 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
         set_state_btn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(36, 65, 86));
+        setForeground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -920,7 +921,7 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel43.setText("Donées techniques");
+        jLabel43.setText("Données techniques");
 
         javax.swing.GroupLayout donnes_techniqueLayout = new javax.swing.GroupLayout(donnes_technique);
         donnes_technique.setLayout(donnes_techniqueLayout);
@@ -2096,11 +2097,17 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
     }//GEN-LAST:event_dropButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        reload_harness_list(this.bc.getPalletNumber());
+        
+        try {
+            reload_harness_list(this.bc.getPalletNumber());
+            
+        } catch (Exception e) {
+            UILog.severeDialog(this, "Numéro palette invalide !", "Erreur !");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void set_state_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_state_btnActionPerformed
-        // TODO add your handling code here:
+        UILog.infoDialog("Fonctionnalité bientôt disponible !");
     }//GEN-LAST:event_set_state_btnActionPerformed
 
     public JTextField getPlanId_txtbox() {

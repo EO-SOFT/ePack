@@ -574,7 +574,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         setName("Configuration packaging par référence"); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(36, 65, 86));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Standard Pack Master Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Standard Pack Master Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setToolTipText("Standard Pack Master Data");
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setName("Standard Pack Master Data"); // NOI18N
@@ -611,7 +612,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
 
         msg_lbl.setBackground(new java.awt.Color(255, 255, 255));
         msg_lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        msg_lbl.setForeground(new java.awt.Color(0, 0, 255));
+        msg_lbl.setForeground(new java.awt.Color(0, 255, 51));
 
         jPanel2.setBackground(new java.awt.Color(36, 65, 86));
         jPanel2.setMaximumSize(null);
@@ -1229,7 +1230,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         id_lbl.setRequestFocusEnabled(false);
 
         user_list_panel.setBackground(new java.awt.Color(36, 65, 86));
-        user_list_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "UCS list", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        user_list_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "UCS list", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        user_list_panel.setForeground(new java.awt.Color(255, 255, 255));
         user_list_panel.setToolTipText("");
 
         ucs_table.setModel(new javax.swing.table.DefaultTableModel(

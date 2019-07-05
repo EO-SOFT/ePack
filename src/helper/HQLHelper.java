@@ -262,4 +262,9 @@ public class HQLHelper {
             + " )\n"
             + "GROUP BY fdp, part_number, qty, dispatch_label_no \n"
             + "ORDER BY fdp ;";
+
+    /**
+     *
+     */
+    public final static String DEL_DISPATCH_LABELS_BY_PLAN_ID =  "DELETE FROM LoadPlanDispatchLabel lpl WHERE lpl.loadPlanId = :load_plan_id";
 }

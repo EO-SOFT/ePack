@@ -14,9 +14,7 @@ import entity.BaseHarness;
 import entity.HisOpenPalPrint;
 import entity.LoadPlan;
 import entity.LoadPlanLine;
-import __main__.MainFrame;
 import gui.packaging.PackagingVars;
-//import gui.packaging.mode1.state.Mode1_S050_ClosingPallet;
 import gui.packaging.mode3.state.Mode3_S040_ClosingPallet;
 import helper.PrinterHelper;
 import java.awt.event.KeyEvent;
@@ -29,11 +27,9 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import gui.packaging.mode2.state.Mode2_S040_ClosingPallet;
-import helper.UIHelper;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -121,6 +117,8 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
         if (canChangeStatus == false || this.bc == null) {
             set_state_btn.setEnabled(false);
         }
+        
+        history_btn.setEnabled(false);
 
         initGui(parent);
     }
@@ -1188,7 +1186,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel43.setText("Donées techniques");
+        jLabel43.setText("Données techniques");
 
         javax.swing.GroupLayout donnes_techniqueLayout = new javax.swing.GroupLayout(donnes_technique);
         donnes_technique.setLayout(donnes_techniqueLayout);
@@ -1416,6 +1414,8 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1))
         );
+
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         continue_btn.setBackground(java.awt.Color.cyan);
         continue_btn.setText("Continuer fermeture...");
@@ -2146,7 +2146,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void set_state_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_state_btnActionPerformed
-        // TODO add your handling code here:
+                UILog.infoDialog("Fonctionnalité bientôt disponible !");
     }//GEN-LAST:event_set_state_btnActionPerformed
 
     public JTextField getPlanId_txtbox() {
