@@ -79,12 +79,12 @@ public class S004_DISPATCH_LABEL_NO implements ControlState {
                 
                 SoundHelper.PlayOkSound(null);
                 clearScanBox(scan_txtbox);
-                WarehouseHelper.Label_Control_Gui.setProgressValue(100);
-                
+                WarehouseHelper.Label_Control_Gui.setProgressValue(100);                
                 WarehouseHelper.Label_Control_Gui.setTxt_dispatchPN(this.dispatchLabelNo);
                 WarehouseHelper.Label_Control_Gui.clearTextFields();
                 S001_PalletNumberScan state = new S001_PalletNumberScan();
                 context.setState(state);
+                
             }
         }
 
