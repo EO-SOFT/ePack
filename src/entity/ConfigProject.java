@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Query;
 import helper.HQLHelper;
 import hibernate.DAO;
+import java.awt.Component;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -76,30 +77,31 @@ public class ConfigProject extends DAO implements Serializable{
         UILog.info(query.getQueryString());
         Helper.sess.getTransaction().commit();
         return query.list();
-    }
+    }       
     
     /**
-     * Load all projects into a Java Combobox
-     * 
-     * @param jbox 
+     *
+     * @param parentUI
+     * @param box
+     * @param displayAll display the "ALL" filter in shown values in the first 
+     * position of the list
      */
-    public JComboBox loadProjectToJBox(JComboBox jbox) {
+    public static JComboBox initProjectsJBox(Object parentUI, JComboBox box, boolean displayAll) {
         List result = new ConfigProject().select();
-        System.out.println("Projets trouvés "+result.size());
-        if (result.size() == 0) {
-            UILog.severeDialog(null, ErrorMsg.APP_ERR0035);
+        if (result.isEmpty()) {
+            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0035);
             UILog.severe(ErrorMsg.APP_ERR0035[1]);
         } else { //Map project data in the list
-            jbox.removeAllItems();
-            jbox.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                ConfigProject cp = (ConfigProject) o;
-                System.out.println("Add new  object "+cp.getId());
-                jbox.addItem(new ComboItem(cp.getProject(), cp.getProject()));                
+            box.removeAllItems();
+            if (displayAll) {
+                box.addItem(new ComboItem("ALL", "ALL"));
             }
-            return jbox;
+            for (Object o : result) {
+                ConfigProject p = (ConfigProject) o;
+                box.addItem(new ComboItem(p.getProject(), p.getProject()));
+            }
         }
-        return null;
+        return box;
     }
 
 }

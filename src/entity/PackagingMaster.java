@@ -1,10 +1,12 @@
 package entity;
 // Generated 6 f�vr. 2016 21:43:55 by Hibernate Tools 3.6.0
 
+import helper.ComboItem;
 import helper.Helper;
 import java.util.List;
 import helper.HQLHelper;
 import hibernate.DAO;
+import java.awt.Component;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -14,7 +16,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.swing.JComboBox;
 import org.hibernate.Query;
+import ui.UILog;
+import ui.error.ErrorMsg;
 
 /**
  * 
@@ -150,7 +155,7 @@ public class PackagingMaster extends DAO implements Serializable {
     }
     
     //######################################################################
-    public List selectAllMasterPack() {
+    public List select() {
         Helper.startSession();
 
         Query query = Helper.sess.createQuery(HQLHelper.GET_ALL_PACK_MASTER);
@@ -167,6 +172,33 @@ public class PackagingMaster extends DAO implements Serializable {
 
         Helper.sess.getTransaction().commit();
         return query.list();
+    }
+    
+    /**
+     *
+     * @param parentUI
+     * @param box
+     * @param displayAll display the "ALL" filter in shown values in the first 
+     * position of the list
+     * @return 
+     */
+    public static JComboBox initPackMasterJBox(Object parentUI, JComboBox box, boolean displayAll) {
+        List result = new PackagingMaster().select();
+        if (result.isEmpty()) {
+            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0046);
+            UILog.severe(ErrorMsg.APP_ERR0046[1]);
+        } else { //Map project data in the list
+            box.removeAllItems();
+            if (displayAll) {
+                box.addItem(new ComboItem("ALL", "ALL"));
+            }
+            for (Object o : result) {
+                PackagingMaster p = (PackagingMaster) o;
+                box.addItem(new ComboItem(p.getPackMaster(), p.getPackMaster()));
+            }
+        }
+        return box;             
+
     }
 
     

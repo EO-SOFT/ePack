@@ -6,6 +6,7 @@
 package gui.warehouse_dispatch;
 
 import __main__.GlobalMethods;
+import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestination;
@@ -14,7 +15,6 @@ import gui.warehouse_dispatch.process_reservation.S001_ReservPalletNumberScan;
 import gui.warehouse_dispatch.state.WarehouseHelper;
 import helper.HQLHelper;
 import helper.Helper;
-import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -46,10 +46,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
     private void initGui() {
         Helper.centerJDialog(this);
         this.setResizable(false);
-
-//        loadProjectsCombobox();
-        GlobalMethods.loadProjectsCombobox(this, project_filter, false);
-
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
         this.ok_btn.setEnabled(false);
         disableEditingTable();
 

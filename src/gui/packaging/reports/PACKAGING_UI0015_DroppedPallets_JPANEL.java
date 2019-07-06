@@ -126,7 +126,7 @@ public class PACKAGING_UI0015_DroppedPallets_JPANEL extends javax.swing.JPanel {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigFamily cp = (ConfigFamily) o;
-                harness_type_filter.addItem(new ComboItem(cp.getHarnessType(), cp.getHarnessType()));
+                harness_type_filter.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
             }
         }
     }

@@ -5,7 +5,7 @@
  */
 package gui.warehouse_dispatch;
 
-import __main__.GlobalMethods;
+import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestinationRel;
@@ -66,9 +66,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
             state_label.setText(this.lp.getPlanState());
             newDeliveryDatePicker.setDate(this.lp.getDeliveryTime());
 
-            //initProjectFilter();
-            GlobalMethods.loadProjectsCombobox(this, project_filter, false);
-
+            project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
             //Set the project value
             for (int i = 0; i < project_filter.getItemCount(); i++) {
                 if (project_filter.getItemAt(i).toString().equals(this.lp.getProject())) {

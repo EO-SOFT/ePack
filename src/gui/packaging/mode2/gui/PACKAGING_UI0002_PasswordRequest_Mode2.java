@@ -148,7 +148,7 @@ public class PACKAGING_UI0002_PasswordRequest_Mode2 extends javax.swing.JDialog 
         query.setParameter("login", this.user.getLogin());
         query.setParameter("password", String.valueOf(admin_password_txtbox.getPassword()));
         //query.setParameter("active", PackagingVars.context.getUser().getActive()); //active user only
-        //query.setParameter("harnessType", PackagingVars.context.getUser().getHarnessType());
+        //query.setParameter("harnessType", PackagingVars.context.getUser().getFamily());
         Helper.sess.getTransaction().commit();
         List result = query.list();
         System.out.println("Resultat du check " + result.size());
@@ -244,7 +244,7 @@ public class PACKAGING_UI0002_PasswordRequest_Mode2 extends javax.swing.JDialog 
         PackagingVars.context.setUser(this.user);
         PackagingVars.context.getUser().update(PackagingVars.context.getUser());
         PackagingVars.mode2_context.getBaseContainerTmp().setHarnessType(harnessType);
-        PackagingVars.PROJECT = PackagingVars.PROJECT.getProjectByHarnessType(harnessType);
+        PackagingVars.PRODUCT_FAMILY = PackagingVars.PRODUCT_FAMILY.getFamilyByName(harnessType);
         System.out.println("PackagingVars.context.getUser() "+PackagingVars.context.getUser().getProject());
         try {
             GlobalVars.APP_HOSTNAME = InetAddress.getLocalHost().getHostName();

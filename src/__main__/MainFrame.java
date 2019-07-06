@@ -67,7 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
     //private ManufactureUsers user;
     public MainFrame(Frame parent, boolean b, ManufactureUsers user) {
         initComponents();
-        GlobalVars.connectedUser = user;
+        GlobalVars.CONNECTED_USER = user;
         initMenus();
         intiGui();
     }
@@ -104,17 +104,17 @@ public class MainFrame extends javax.swing.JFrame {
         MENU_04_MODULE_STOCK_PACKAGING.setVisible(false);
 
         MENU_05_MODULE_CONFIG.setVisible(false);
-        if (GlobalVars.connectedUser.getAccessLevel() == 0) {
+        if (GlobalVars.CONNECTED_USER.getAccessLevel() == 0) {
             packaging_submenu.setVisible(false);
         }
         //Warehouse agent
-        if (GlobalVars.connectedUser.getAccessLevel() == 2000) {
+        if (GlobalVars.CONNECTED_USER.getAccessLevel() == 2000) {
             MENU_02_MODULE_FG.setVisible(true);
             MENU_03_MODULE_DISPATCH.setVisible(true);
             MENU_04_MODULE_STOCK_PACKAGING.setVisible(true);
         }
         //Administrator
-        if (GlobalVars.connectedUser.getAccessLevel() == 9000) {
+        if (GlobalVars.CONNECTED_USER.getAccessLevel() == 9000) {
             MENU_02_MODULE_FG.setVisible(true);
             MENU_03_MODULE_DISPATCH.setVisible(true);
             MENU_04_MODULE_STOCK_PACKAGING.setVisible(true);
@@ -571,7 +571,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void MENU_00_01_FG_RECEPTIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_00_01_FG_RECEPTIONActionPerformed
         //Create and display the dispatch interface
-        addNewTab(new WAREHOUSE_FG_UI0001_SCAN_JPANEL(null, rootTabbedPane, GlobalVars.connectedUser), evt);
+        addNewTab(new WAREHOUSE_FG_UI0001_SCAN_JPANEL(null, rootTabbedPane, GlobalVars.CONNECTED_USER), evt);
     }//GEN-LAST:event_MENU_00_01_FG_RECEPTIONActionPerformed
 
     private void MENU_01_00_CONFIG_UCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_01_00_CONFIG_UCSActionPerformed
@@ -591,26 +591,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void MENU_00_03_PACKAGING_STOCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_00_03_PACKAGING_STOCKActionPerformed
         Helper.startSession();
 
-        GlobalVars.connectedUser.setLoginTime(new Date());
-        WarehouseHelper.warehouse_reserv_context.setUser(GlobalVars.connectedUser);
+        GlobalVars.CONNECTED_USER.setLoginTime(new Date());
+        WarehouseHelper.warehouse_reserv_context.setUser(GlobalVars.CONNECTED_USER);
         WarehouseHelper.warehouse_reserv_context.getUser().update(WarehouseHelper.warehouse_reserv_context.getUser());
-        
-        /*
-        //Go back to step S020
-        try {
-            GlobalVars.APP_HOSTNAME = InetAddress.getLocalHost().getHostName();
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        String str = String.format(InfoMsg.APP_INFO0003[1],
-                GlobalVars.connectedUser.getFirstName() + " " + GlobalVars.connectedUser.getLastName()
-                + " / " + GlobalVars.connectedUser.getLogin(), GlobalVars.APP_HOSTNAME,
-                GlobalMethods.getStrTimeStamp() + " Packaging warehouse interface : ");
-
-        UILog.info(str);
-        */
-        PackagingHelper.user = GlobalVars.connectedUser;
+               
+        PackagingHelper.user = GlobalVars.CONNECTED_USER;
         //Create and display the packaing main form
         GlobalMethods.addNewTabToParent("Mouvements des emballages",this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL(this.rootTabbedPane), evt);
     }//GEN-LAST:event_MENU_00_03_PACKAGING_STOCKActionPerformed
@@ -714,15 +699,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void menu_dispatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_dispatchActionPerformed
         Helper.startSession();
 
-        GlobalVars.connectedUser.setLoginTime(new Date());
-        WarehouseHelper.warehouse_reserv_context.setUser(GlobalVars.connectedUser);
+        GlobalVars.CONNECTED_USER.setLoginTime(new Date());
+        WarehouseHelper.warehouse_reserv_context.setUser(GlobalVars.CONNECTED_USER);
         WarehouseHelper.warehouse_reserv_context.getUser().update(WarehouseHelper.warehouse_reserv_context.getUser());
         //Go back to step S020
         ReservationState state = new S001_ReservPalletNumberScan();
         WarehouseHelper.warehouse_reserv_context.setState(state);
         String str = String.format(InfoMsg.APP_INFO0003[1],
-                GlobalVars.connectedUser.getFirstName() + " " + GlobalVars.connectedUser.getLastName()
-                + " / " + GlobalVars.connectedUser.getLogin(), GlobalVars.APP_HOSTNAME,
+                GlobalVars.CONNECTED_USER.getFirstName() + " " + GlobalVars.CONNECTED_USER.getLastName()
+                + " / " + GlobalVars.CONNECTED_USER.getLogin(), GlobalVars.APP_HOSTNAME,
                 GlobalMethods.getStrTimeStamp() + " Dispatch interface : ");
 
         UILog.info(str);
@@ -733,8 +718,8 @@ public class MainFrame extends javax.swing.JFrame {
         WarehouseHelper.Dispatch_Gui_Jpanel = new WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL(objects, this);
         addNewTab(WarehouseHelper.Dispatch_Gui_Jpanel, evt);
         //Set connected user label text
-        WarehouseHelper.Dispatch_Gui_Jpanel.setUserLabelText(GlobalVars.connectedUser.getFirstName() + " "
-                + GlobalVars.connectedUser.getLastName() + " Connecté à la machine "
+        WarehouseHelper.Dispatch_Gui_Jpanel.setUserLabelText(GlobalVars.CONNECTED_USER.getFirstName() + " "
+                + GlobalVars.CONNECTED_USER.getLastName() + " Connecté à la machine "
                 + "[" + GlobalVars.APP_HOSTNAME + "]"
         );
 

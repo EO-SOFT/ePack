@@ -26,6 +26,7 @@ import java.util.Vector;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
+import ui.UILog;
 
 /**
  *
@@ -63,8 +64,6 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
      * @param PalletNumber : Requested container number to be displayed
      */
     public WAREHOUSE_FG_UI0001_SCAN_JPANEL(JTabbedPane parent, String PalletNumber) {
-        //super(parent, modal);
-        //this.setModal(modal);
         initComponents();
         initGui(parent);
         this.searchForPallet(PalletNumber);
@@ -96,9 +95,6 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
     private void initGui(JTabbedPane parent) {
         this.parent = parent;
-        //Center the this dialog in the screen
-//        Helper.centerJFrame(this);
-
         //Desable table edition
         disableEditingTable();
 
@@ -106,17 +102,15 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
         load_container_table_header();
 
         this.setVisible(true);
-        //Disable resizing
-        //this.setResizable(false);
     }
 
     public void showMsg(String msg, int msgLevel) {
         if (msgLevel == 1) {//info msg
-            log_lbl.setForeground(Color.blue);
-            log_lbl.setText(msg);
+            msg_lbl.setForeground(Color.GREEN);
+            msg_lbl.setText(msg);
         } else if (msgLevel == -1) { // error msg
-            log_lbl.setForeground(Color.red);
-            log_lbl.setText(msg);
+            msg_lbl.setForeground(Color.red);
+            msg_lbl.setText(msg);
         }
 
     }
@@ -175,7 +169,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         table_scroll = new javax.swing.JScrollPane();
         searchResult_table = new javax.swing.JTable();
-        log_lbl = new javax.swing.JLabel();
+        msg_lbl = new javax.swing.JLabel();
         palletNumber_txtbox = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         store_txt = new javax.swing.JTextField();
@@ -186,6 +180,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         history_btn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
 
         setToolTipText("");
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -198,7 +193,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("User Number");
+        jLabel2.setText("Utilisateur");
 
         user_txtbox.setEditable(false);
         user_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -210,7 +205,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Harness Part");
+        jLabel8.setText("Article");
 
         harnessPart_txtbox.setEditable(false);
         harnessPart_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -234,7 +229,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Supplier Part Number");
+        jLabel10.setText("Code article interne");
 
         supplierPartNumber_txtbox.setEditable(false);
         supplierPartNumber_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -254,7 +249,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("State");
+        jLabel5.setText("Statut");
 
         packType_txtbox.setEditable(false);
         packType_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,7 +261,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Pack Type");
+        jLabel11.setText("Type d'emballage");
 
         qtyRead_txtbox.setEditable(false);
         qtyRead_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -278,7 +273,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Quantity Read");
+        jLabel4.setText("Quantité scannée");
 
         qtyExptected_txtbox.setEditable(false);
         qtyExptected_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -290,7 +285,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Quantity Expected");
+        jLabel3.setText("Quantité standard");
 
         startTime_txtbox.setEditable(false);
         startTime_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -302,7 +297,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Start Time");
+        jLabel6.setText("Démarrer le");
 
         completeTime_txtbox.setEditable(false);
         completeTime_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -314,7 +309,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Complete Time");
+        jLabel7.setText("Terminé le");
 
         workingTime_txtbox.setEditable(false);
         workingTime_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -326,7 +321,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Working time (min)");
+        jLabel12.setText("Temps de travail (min)");
 
         search_txtbox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         search_txtbox.setForeground(new java.awt.Color(0, 0, 153));
@@ -392,10 +387,10 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
         ));
         table_scroll.setViewportView(searchResult_table);
 
-        log_lbl.setBackground(new java.awt.Color(204, 204, 204));
-        log_lbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        log_lbl.setForeground(new java.awt.Color(51, 255, 0));
-        log_lbl.setText(" ");
+        msg_lbl.setBackground(new java.awt.Color(204, 204, 204));
+        msg_lbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        msg_lbl.setForeground(new java.awt.Color(51, 255, 0));
+        msg_lbl.setText(" ");
 
         palletNumber_txtbox.setEditable(false);
         palletNumber_txtbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -407,7 +402,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Pack Number");
+        jLabel14.setText("Numéro palette");
 
         store_txt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         store_txt.setForeground(new java.awt.Color(0, 0, 153));
@@ -449,10 +444,10 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Write Time");
+        jLabel16.setText("Modifé le");
 
         history_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/time-icon.png"))); // NOI18N
-        history_btn.setText("History");
+        history_btn.setText("Historique");
         history_btn.setToolTipText("Search");
         history_btn.setBorderPainted(false);
         history_btn.setMaximumSize(new java.awt.Dimension(24, 24));
@@ -465,6 +460,13 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Charger la liste des pièces");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -472,6 +474,27 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(msg_lbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addGap(261, 261, 261))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(store_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(set_to_stored_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(search_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(108, 108, 108)))
+                        .addGap(300, 300, 300))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -500,8 +523,8 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(user_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
@@ -528,32 +551,13 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                                     .addComponent(supplierPartNumber_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stateCode_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(log_lbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addGap(261, 261, 261))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(store_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(set_to_stored_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(16, 16, 16)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(search_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(108, 108, 108)))
-                        .addGap(300, 300, 300))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1017, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton1)
+                        .addComponent(table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -577,7 +581,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                                         .addComponent(store_txt)
                                         .addComponent(set_to_stored_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(log_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(msg_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -645,8 +649,10 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(writeTime_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addComponent(table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         store_txt.getAccessibleContext().setAccessibleName("");
@@ -715,7 +721,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
     }
 
     private void searchForPallet(String palletNumber) {
-        log_lbl.setText("");
+        msg_lbl.setText("");
         this.clearContainerFieldsValues();
         this.reset_container_table_content();
         if (!palletNumber.trim().equals("")) {
@@ -727,25 +733,17 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
             Helper.sess.getTransaction().commit();
             List result = query.list();
             if (result.isEmpty()) {
-                showMsg("Pallet not found !", -1);
+                showMsg("Palette introuvable !", -1);
                 this.reset_container_table_content();
                 //Show / Hide tools buttons
             } else {
-                log_lbl.setText("");
+                msg_lbl.setText("");
                 this.setBaseContainer((BaseContainer) result.get(0));
-                this.setContainerFieldsValues(this.bc);
-                //################# Harness Data ####################
-                Helper.startSession();
-                query = Helper.sess.createQuery(HQLHelper.GET_HP_BY_PALLET_NUMBER);
-                query.setParameter("palletNumber", palletNumber.trim());
-                Helper.sess.getTransaction().commit();
-                result = query.list();
-                //reload table data                
-                this.reload_container_table_data(result);
+                this.setContainerFieldsValues(this.bc);                
             }
 
         } else {
-            showMsg("Please specify existing pallet number !", -1);
+            showMsg("Merci de saisir un numéro de palette valide !", -1);
             clearSearchBox();
         }
 
@@ -790,11 +788,11 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
     }
 
     public void setOkText(String newTxt) {
-        log_lbl.setText(newTxt);
+        msg_lbl.setText(newTxt);
     }
 
     public boolean updateStatus() {
-        log_lbl.setText("");
+        msg_lbl.setText("");
         String palletNum = store_txt.getText().trim();
         try {
             BaseContainer bc = new BaseContainer().checkContainerByState(palletNum.substring(GlobalVars.CLOSING_PALLET_PREFIX.length()), GlobalVars.PALLET_CLOSED);
@@ -802,13 +800,13 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
             if (bc != null) {
                 Helper.startSession();
                 this.searchForPallet(palletNum.substring(GlobalVars.CLOSING_PALLET_PREFIX.length()));
-                System.out.println("Exist and closed. set to stored ! " + palletNum.substring(GlobalVars.CLOSING_PALLET_PREFIX.length()));
                 Date fifoTime = new Date();
                 bc.setContainerState(GlobalVars.PALLET_STORED);
                 bc.setContainerStateCode(GlobalVars.PALLET_STORED_CODE);
                 //The user who receive the goods, not the one who created the pallet
-                //bc.setCreateUser(this.u.getFirstName() + " " + this.u.getLastName());
-                //bc.setUser(this.u.getLogin());
+                bc.setCreateUser(GlobalVars.CONNECTED_USER.getFirstName()+ " "+ GlobalVars.CONNECTED_USER.getLastName());
+                bc.setUser(GlobalVars.CONNECTED_USER.getLogin());
+                
                 bc.setFifoTime(fifoTime);
                 bc.setStoredTime(fifoTime);
                 bc.update(bc);
@@ -823,7 +821,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                             this.bc.getPackType(), 1, "IN",
                             GlobalMethods.getPackagingWh(bc.getProject()),
                             bc.getFGwarehouse(),
-                            "Finished goods booked in " + bc.getFGwarehouse() + " warehouse", this.bc.getPalletNumber());
+                            "Produits finis déclarés au niveau magasin " + bc.getFGwarehouse() + ".", this.bc.getPalletNumber());
                 }
 
                 return true;
@@ -834,7 +832,6 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
         } catch (Exception e) {
             showMsg("Numéro palette invalide !", -1);
             throw e;
-            //return false;
         }
 
     }
@@ -921,7 +918,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
             search_btn.setEnabled(true);
         } else {
             search_btn.setEnabled(false);
-            log_lbl.setText("");
+            msg_lbl.setText("");
         }
     }//GEN-LAST:event_search_txtboxKeyTyped
 
@@ -930,13 +927,13 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
             search_btn.setEnabled(true);
         } else {
             search_btn.setEnabled(false);
-            log_lbl.setText("");
+            msg_lbl.setText("");
         }
     }//GEN-LAST:event_search_txtboxKeyReleased
 
     private void search_txtboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_txtboxKeyPressed
 
-        log_lbl.setText("");
+        msg_lbl.setText("");
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (!search_txtbox.getText().toUpperCase().equals("")
                     && search_txtbox.getText().matches(Helper.PALLET_NUMBER_PATTERN)) {
@@ -957,7 +954,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
                 search_btn.setEnabled(true);
             } else {
                 search_btn.setEnabled(false);
-                log_lbl.setText("");
+                msg_lbl.setText("");
             }
         }
     }//GEN-LAST:event_search_txtboxKeyPressed
@@ -1019,12 +1016,41 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
         GlobalMethods.addNewTabToParent("Historique palette", parent, new PACKAGING_UI0014_PalletHistory_JPANEL(parent, palletNumber_txtbox.getText()), evt);
 
     }//GEN-LAST:event_history_btnActionPerformed
+    
+    private void reload_harness_list(String palletNumber) {
+        //################# Harness Data ####################
+        try {
+            Helper.startSession();
+            Query query = null;
+            List result;
+            query = Helper.sess.createQuery(HQLHelper.GET_HP_BY_PALLET_NUMBER);
+            query.setParameter("palletNumber", palletNumber);
+            Helper.sess.getTransaction().commit();
+            result = query.list();
+
+            //reload table data                
+            this.reload_container_table_data(result);
+        } catch (Exception e) {
+            msg_lbl.setText("Numéro palette invalide ou introuvale !");
+        }
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            reload_harness_list(this.bc.getPalletNumber());
+
+        } catch (Exception e) {
+            UILog.severeDialog(this, "Numéro palette invalide !", "Erreur !");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField completeTime_txtbox;
     private javax.swing.JTextField harnessPart_txtbox;
     private javax.swing.JButton history_btn;
     private javax.swing.JTextField index_txtbox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1043,7 +1069,7 @@ public class WAREHOUSE_FG_UI0001_SCAN_JPANEL extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel log_lbl;
+    private javax.swing.JLabel msg_lbl;
     private javax.swing.JTextField packType_txtbox;
     private javax.swing.JTextField palletId_txtbox;
     private javax.swing.JTextField palletNumber_txtbox;

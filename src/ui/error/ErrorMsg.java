@@ -206,13 +206,24 @@ public class ErrorMsg {
      */
     public static String[] APP_ERR0043 = {"APP_ERR0043", "APP_ERR0043 CONFIG :  No destinations found for this projet. Please check load_plan_dest table."};
     
-     /**
-     * APP_ERR0044 CONFIG : No familly found in config_family table.
+    /**
+     * APP_ERR0044 CONFIG : No family found in config_family table.
      */
-    public static String[] APP_ERR0044 = {"APP_ERR0044", "APP_ERR0044 CONFIG : No familly found in config_family table."};
+    public static String[] APP_ERR0044 = {"APP_ERR0044", "APP_ERR0044 CONFIG : No family found in config_family table."};
     
     /**
      * APP_ERR0045 DISPATCH : No transport company specified.
      */
     public static String[] APP_ERR0045 = {"APP_ERR0045", "APP_ERR0045 DISPATCH : No transport company specified."};
+    
+    /**
+     * APP_ERR0046 CONFIG : No packaging master found in packaging_config table.
+     */
+    public static String[] APP_ERR0046 = {"APP_ERR0046", "APP_ERR0046 CONFIG : No packaging master found in packaging_config table."};
+ 
+    /**
+     * APP_ERR0047 CONFIG : No family found for selected project. Check the project master data.
+     */
+    public static String[] APP_ERR0047 = {"APP_ERR0047", "APP_ERR0047 CONFIG : No family found for selected project. Check the project master data."};
+    
 }

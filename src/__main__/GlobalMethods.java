@@ -301,30 +301,7 @@ public class GlobalMethods {
         UILog.info(ConfigMsg.APP_CONFIG0004[0], "" + GlobalVars.PARTNUMBER_PATTERN_LIST.length, harnessType);
     }
 
-    /**
-     *
-     * @param parentUI
-     * @param box
-     * @param displayAll display the "ALL" value in the first item
-     */
-    public static JComboBox loadProjectsCombobox(Object parentUI, JComboBox box, boolean displayAll) {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            box.removeAllItems();
-            if (displayAll) {
-                box.addItem(new ComboItem("ALL", "ALL"));
-            }
-            for (Object o : result) {
-                ConfigProject p = (ConfigProject) o;
-                box.addItem(new ComboItem(p.getProject(), p.getProject()));
-            }
-        }
-        return box;
-    }
-
+    
     /**
      *
      * @param parentUI
@@ -349,29 +326,6 @@ public class GlobalMethods {
         return box;
     }
 
-    /**
-     *
-     * @param project
-     * @param parentUI
-     * @param box
-     * @param displayAll
-     */
-    public static JComboBox initHarnessFamilyByProject(String project, Object parentUI, JComboBox box, boolean displayAll) {
-        
-            List result = new ConfigFamily().selectHarnessTypeByProject(project);
-            if (result.isEmpty()) {
-                UILog.severeDialog(null, ErrorMsg.APP_ERR0044);
-                UILog.severe(ErrorMsg.APP_ERR0044[1]);
-            } else { //Map project data in the list
-                box.removeAllItems();
-                if (displayAll) { box.addItem(new ComboItem("ALL", "ALL")); }
-                for (Object o : result) {
-                    box.addItem(new ComboItem(o.toString(), o.toString()));
-                }
-            }
-        
-        return box;
-    }
     
     /**
      * 

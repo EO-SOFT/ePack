@@ -6,9 +6,8 @@
 package gui.packaging.reports;
 
 import __main__.GlobalVars;
-import entity.ConfigFamily;
+import entity.ConfigProject;
 import gui.packaging.PackagingVars;
-import helper.ComboItem;
 import helper.Helper;
 import helper.JTableHelper;
 import java.awt.Font;
@@ -21,8 +20,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.HibernateException;
@@ -42,7 +39,8 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
     Vector<String> open_result_table_header = new Vector<String>();
     Vector open_result_table_data = new Vector();
     List<String> table_header = Arrays.asList(
-            "Project",
+            "Segment",
+            "Workplace",
             "Pack Number",
             "CPN",
             "Pack Type",
@@ -50,19 +48,16 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
             "Qty Read",
             "Index",
             "User",
-            "Create time",
-            "Working days"
+            "Create time"
     );
 
     /**
      * Creates new form UI0011_ProdStatistics_
      */
     public PACKAGING_UI0018_OpenPallets_JPANEL(JTabbedPane parent) {
-        //super(parent, modal);
         initComponents();
         this.initGui(parent);
         this.refresh();
-        //Helper.centerJDialog(this);
     }
 
     private void initGui(JTabbedPane parent) {
@@ -76,7 +71,7 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
         load_table_header();
 
         //Init projects filter
-        initProjectsFilter();
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
 
         //Initialize double clique on table row
         this.initContainerTableDoubleClick();
@@ -108,19 +103,6 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
         open_result_table.setModel(new DefaultTableModel(open_result_table_data, open_result_table_header));
     }
 
-    private void initProjectsFilter() {
-        List result = new ConfigFamily().select();
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0014_NO_PROJECT_FOUND, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0014_NO_PROJECT_FOUND);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigFamily cp = (ConfigFamily) o;
-                harness_type_filter.addItem(new ComboItem(cp.getHarnessType(), cp.getHarnessType()));
-            }
-        }
-    }
-
     public void reset_table_content() {
         open_result_table_data = new Vector();
         DefaultTableModel openDataModel = new DefaultTableModel(open_result_table_data, open_result_table_header);
@@ -142,16 +124,16 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
 
             Vector<Object> oneRow = new Vector<Object>();
 
-            oneRow.add(String.valueOf(obj[0])); // Project
-            oneRow.add(String.valueOf(obj[1])); // Pallet Number
-            oneRow.add(String.valueOf(obj[2])); // Harness Part                        
-            oneRow.add(String.valueOf(obj[3])); // Pack Type
-            oneRow.add(String.valueOf(obj[4])); // Qty Expected
-            oneRow.add(String.valueOf(obj[5])); // Qty Read
-            oneRow.add(String.valueOf(obj[6])); // Index
-            oneRow.add(String.valueOf(obj[7])); // USER            
-            oneRow.add(String.valueOf(obj[8])); // Create Time            
-            oneRow.add(String.valueOf(obj[9])); // Working days                        
+            oneRow.add(String.valueOf(obj[0])); // Segment
+            oneRow.add(String.valueOf(obj[1])); // Workplace
+            oneRow.add(String.valueOf(obj[2])); // Pallet Number
+            oneRow.add(String.valueOf(obj[3])); // Harness Part                        
+            oneRow.add(String.valueOf(obj[4])); // Pack Type
+            oneRow.add(String.valueOf(obj[5])); // Qty Expected
+            oneRow.add(String.valueOf(obj[6])); // Qty Read
+            oneRow.add(String.valueOf(obj[7])); // Index
+            oneRow.add(String.valueOf(obj[8])); // USER            
+            oneRow.add(String.valueOf(obj[9])); // Create Time            
             open_result_table_data.add(oneRow);
         }
         open_result_table.setModel(new DefaultTableModel(open_result_table_data, open_result_table_header));
@@ -171,12 +153,12 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
         List<Object> projects = new ArrayList<Object>();
         projects.add("1");
 
-        if (String.valueOf(harness_type_filter.getSelectedItem()).equals("ALL")) {
-            for (int i = 0; i < harness_type_filter.getItemCount(); i++) {
-                projects.add(String.valueOf(harness_type_filter.getItemAt(i)));
+        if (String.valueOf(project_filter.getSelectedItem()).equals("ALL")) {
+            for (int i = 0; i < project_filter.getItemCount(); i++) {
+                projects.add(String.valueOf(project_filter.getItemAt(i)));
             }
         } else {
-            projects.add(String.valueOf(harness_type_filter.getSelectedItem()));
+            projects.add(String.valueOf(project_filter.getSelectedItem()));
         }
 
         /**
@@ -191,7 +173,9 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
 
             //################# Dropped Harness Data #################### 
             Helper.startSession();
-            String query_str = " SELECT bc.harness_type AS project, "
+            String query_str = " SELECT "
+                    + " bc.segment AS segment, "
+                    + " bc.workplace AS workplace, "
                     + " bc.pallet_number AS pack_number, "
                     + " bc.harness_part AS harness_part, "
                     + " bc.pack_type AS pack_type, "
@@ -199,16 +183,16 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
                     + " bc.qty_read AS qty_read, "
                     + " bc.harness_index AS index, "
                     + " bc.m_user AS user, "
-                    + " bc.create_time as create_time, "
-                    + " 0.00 as working_days "
+                    + " bc.create_time as create_time "
                     + " FROM base_container bc "
-                    + " WHERE bc.harness_type IN (:projects) "
-                    + " AND bc.container_state = '%s' ORDER BY project ASC, working_days ASC ";
+                    + " WHERE bc.project IN (:projects) "
+                    + " AND bc.container_state = '%s' ORDER BY segment, workplace, harness_part ASC ";
 
             query_str = String.format(query_str, GlobalVars.PALLET_OPEN);
             SQLQuery query = Helper.sess.createSQLQuery(query_str);
 
-            query.addScalar("project", StandardBasicTypes.STRING)
+            query.addScalar("segment", StandardBasicTypes.STRING)
+                    .addScalar("workplace", StandardBasicTypes.STRING)
                     .addScalar("pack_number", StandardBasicTypes.STRING)
                     .addScalar("harness_part", StandardBasicTypes.STRING)
                     .addScalar("pack_type", StandardBasicTypes.STRING)
@@ -217,7 +201,6 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
                     .addScalar("index", StandardBasicTypes.STRING)
                     .addScalar("user", StandardBasicTypes.STRING)
                     .addScalar("create_time", StandardBasicTypes.TIMESTAMP)
-                    .addScalar("working_days", StandardBasicTypes.DOUBLE)
                     .setParameterList("projects", projects);
 
             List<Object[]> openResultList = query.list();
@@ -250,10 +233,10 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
         refresh_btn = new javax.swing.JButton();
         result_table_scroll = new javax.swing.JScrollPane();
         open_result_table = new javax.swing.JTable();
-        harness_type_filter = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        project_filter = new javax.swing.JComboBox();
+        jLabel23 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(36, 65, 86));
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -289,28 +272,27 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        open_result_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         result_table_scroll.setViewportView(open_result_table);
-
-        harness_type_filter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        harness_type_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
-        harness_type_filter.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                harness_type_filterItemStateChanged(evt);
-            }
-        });
-        harness_type_filter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                harness_type_filterActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Liste des palettes ouvertes");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Projet");
+        project_filter.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                project_filterItemStateChanged(evt);
+            }
+        });
+        project_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                project_filterActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Projet");
 
         javax.swing.GroupLayout north_panelLayout = new javax.swing.GroupLayout(north_panel);
         north_panel.setLayout(north_panelLayout);
@@ -319,15 +301,18 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
             .addComponent(result_table_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1153, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(north_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, north_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(harness_type_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(north_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6))
+                    .addGroup(north_panelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addGroup(north_panelLayout.createSequentialGroup()
+                                .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         north_panelLayout.setVerticalGroup(
@@ -336,9 +321,10 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel23)
+                .addGap(1, 1, 1)
                 .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(harness_type_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(result_table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,22 +363,22 @@ public class PACKAGING_UI0018_OpenPallets_JPANEL extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_north_panelKeyPressed
 
-    private void harness_type_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_harness_type_filterItemStateChanged
-        //
-    }//GEN-LAST:event_harness_type_filterItemStateChanged
+    private void project_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_project_filterItemStateChanged
 
-    private void harness_type_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_harness_type_filterActionPerformed
-        refresh();
-    }//GEN-LAST:event_harness_type_filterActionPerformed
+    }//GEN-LAST:event_project_filterItemStateChanged
+
+    private void project_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_project_filterActionPerformed
+        
+    }//GEN-LAST:event_project_filterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox harness_type_filter;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel north_panel;
     private javax.swing.JTable open_result_table;
+    private javax.swing.JComboBox project_filter;
     private javax.swing.JButton refresh_btn;
     private javax.swing.JScrollPane result_table_scroll;
     // End of variables declaration//GEN-END:variables

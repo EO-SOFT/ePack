@@ -5,7 +5,6 @@
  */
 package gui.packaging.reports;
 
-import __main__.GlobalMethods;
 import __main__.GlobalVars;
 import entity.ConfigProject;
 import entity.ConfigSegment;
@@ -79,14 +78,11 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         //super(parent, modal);
         initComponents();
         initTimeSpinners();
-        //initProjectFilter();
-        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
-        //initSegmentFilter();
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
         this.workplace_filter.setEnabled(false);
         radioGroup.add(radio_all_harness);
         radioGroup.add(radio_filled_ucs);
         this.reset_tables_content();
-        //this.refresh();
     }
 
     
@@ -118,7 +114,6 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                 segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
             }
             segment_filter.setSelectedIndex(0);
-            //this.setWorkplaceBySegment(String.valueOf(segment_filter.getSelectedItem()));
             return true;
         }
     }
@@ -738,14 +733,14 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                     .addComponent(jLabel20)
                     .addComponent(jLabel23))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -763,6 +758,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(radio_filled_ucs)
                                 .addGap(5, 5, 5)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -818,8 +814,8 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                     .addGroup(north_panelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(result_table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(result_table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 

@@ -67,7 +67,7 @@ public class HQLHelper {
     public final static String GET_UCS_BY_HP_AND_SUPPLIER_PART_AND_INDEX_PACKTYPE_AND_PACKSIZE = "FROM ConfigUcs cu WHERE cu.harnessPart = :harnessPart AND cu.supplierPartNumber = :supplierPartNumber AND cu.harnessIndex = :harnessIndex  AND cu.packType = :packType AND cu.packSize = :packSize ORDER BY priority ASC";
     //ConfigFamily
     public final static String GET_ALL_FAMILIES = "FROM ConfigFamily bp ORDER BY harnessType ASC";
-    public final static String GET_FAMILY_BY_HARNESSTYPE = "FROM ConfigFamily bp WHERE harnessType = :harnessType ORDER BY harnessType ASC";
+    public final static String GET_FAMILY_BY_NAME = "FROM ConfigFamily bp WHERE harnessType = :harnessType ORDER BY harnessType ASC";
     
     //ConfigProject
     public final static String GET_ALL_PROJECT = "FROM ConfigProject bp ORDER BY project ASC";

@@ -45,7 +45,7 @@ public class GlobalVars {
     public static ConfigCompany COMPANY_INFO = new ConfigCompany();
 
     
-    public static ManufactureUsers connectedUser = new ManufactureUsers();
+    public static ManufactureUsers CONNECTED_USER = new ManufactureUsers();
     //........................ PREFIXS .........................
     /**
      *

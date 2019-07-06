@@ -5,7 +5,6 @@
  */
 package gui.config;
 
-import __main__.GlobalMethods;
 import entity.ConfigFamily;
 import entity.ConfigProject;
 import entity.ConfigSegment;
@@ -22,6 +21,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
@@ -91,26 +91,14 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         load_table_header();
 
         //Load pack master data
-        initPackMasterBox();
+        pack_type_filter = PackagingMaster.initPackMasterJBox(this, pack_type_filter, false);
 
-        //project_filter = new ConfigProject().loadProjectToJBox(project_filter);
-        project_filter = GlobalMethods.loadProjectsCombobox(this, project_filter, false);
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
         
-        this.initContainerTableDoubleClick();
+        this.initLineTableDoubleClick();
     }
 
-    private void initPackMasterBox() {
-        List result = new PackagingMaster().selectAllMasterPack();
-        //Map project data in the list
-        for (Object o : result) {
-            PackagingMaster pc = (PackagingMaster) o;
-            pack_type_filter.addItem(new ComboItem(pc.getPackMaster(), pc.getPackMaster()));
-        }
-
-    }
-
-    
-
+   
     private void setWorkplaceBySegment(String segment) {
         if (segment != null && !segment.isEmpty() && segment != "null") {
             System.out.println("setWorkplaceBySegment " + segment);
@@ -198,21 +186,22 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         ucs_table.setModel(new DefaultTableModel(ucs_table_data, ucs_table_header));
     }
 
-    private void initContainerTableDoubleClick() {
+    private void initLineTableDoubleClick() {
         this.ucs_table.addMouseListener(
                 new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Helper.startSession();
                     Query query = Helper.sess.createQuery(HQLHelper.GET_UCS_BY_ID);
                     query.setParameter("id", Integer.valueOf(ucs_table.getValueAt(ucs_table.getSelectedRow(), 0).toString()));
                     Helper.sess.getTransaction().commit();
                     aux = (ConfigUcs) query.list().get(0);
-
+                    
                     id_lbl.setText(aux.getId().toString());
-                    create_time_txt.setText(aux.getCreateTime().toString());
-                    write_time_txt.setText(aux.getWriteTime().toString());
+                    create_time_txt.setText(sdf.format(aux.getCreateTime()));
+                    write_time_txt.setText(sdf.format(aux.getWriteTime()));
                     cpn_txtbox.setText(aux.getHarnessPart());
                     lpn_txtbox.setText(aux.getSupplierPartNumber());
                     index_txtbox.setText(aux.getHarnessIndex());
@@ -2283,7 +2272,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             this.setPacakgingWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
             this.setDestinationByProject(String.valueOf(project_filter.getSelectedItem()));
             if (this.setSegmentByProject(String.valueOf(project_filter.getSelectedItem()))) {
-                  GlobalMethods.initHarnessFamilyByProject(String.valueOf(project_filter.getSelectedItem()), this, family_filter, false);
+                  family_filter = ConfigFamily.initFamilyByProject(this, family_filter, String.valueOf(project_filter.getSelectedItem()));
             }
         }
 

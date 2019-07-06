@@ -94,59 +94,7 @@ public class Helper {
      */
     public static FileHandler logFileHandler;
 
-    /**
-     *
-     */
-    //public static String ERR0035_PART_NUMBER_FORMAT = "Invalid part number format [%s]!";
-
-    /**
-     *
-     */
-    //public static String ERR0034_NOT_EMPTY_LOAD_PLAN = "Plan de chargement contient des élements.\n Merci d'annuler les élements "
-    //        + "avant de supprimer le plan.";
-
-    /**
-     *
-     */
-    //public static String ERR0033_DESTINATIONS_NOT_EMPTY = "Une ou plusieurs élements associés à cette destination %s.\nSupprimer ses élements en premier.";
-
-    /**
-     *
-     */
-    //public static String ERR0032_INCORRECT_DATE_FORMAT = "Format de date incorrecte.";
-
-    /**
-     *
-     */
-    //public static String ERR0031_NO_FINAL_DESTINATION_SELECTED = "Veuillez selectionner au moins une destination finale.";
-    /**
-     *
-     */
-    //public static String ERR0030_NO_DELIVERY_DATE_SELECTED = "Aucune date dispatch n'est selectionnée.";
-
-    /**
-     *
-     */
-    //public static String ERR0025_PACKTYPE_ALREADY_OPEN_IN_THE_SAME_WORKSTATION = "Palette/Box déjà ouvert(e) du type %s dans ce poste %s, pour la référence %s.\n"
-      //      + "Solution N° 1 : - Veuillez terminer le packaging de la palette %s avant d'ouvrir une nouvelle palette de type %s.\n"
-      //      + "Solution N° 2 : - Emballer cette référence dans un autre poste packaging.";
-
-    /**
-     *
-     */
-    //public static String ERR0030_PALLET_NOT_OPEN = "Palette %s n'est pas ouverte.\nMerci de scanner une palette ouverte ou ouvrir une nouvelle palette !";
-
-    /**
-     *
-     */
-    //public static String ERR0029_NO_DESTINATIONS_FOR_DISPATCH = "Aucune destination trouvé pour le dispatch. Merci de créer des destinations dans la table 'load_plan_destination'.";
-    /**
-     *
-     */
-    //public static String ERR0028_EMPTY_LOAD_PLAN = "Aucune pile enregistrée pour cette destination %s.";
-    /**
-     *
-     */
+    
     public static String ERR0027_NO_WORKPLACE_FOUND = "No Workplace found in database. Please check Config_Workplace table.";
     /**
      *
@@ -155,17 +103,12 @@ public class Helper {
     /**
      *
      */
-    //public static String ERR0025_WORKSTATION_PALLET = "Vous êtes dans le poste %s. Vous devez scanner le faisceau dans le poste %s !";
-
-    /**
-     *
-     */
     public static String ERR0024_PALLET_ALREADY_OPEN = "Palette déjà ouverte pour la référence %s !";
 
     /**
      *
      */
-    public static String ERR0023_PALLET_NOT_FOUND = "No pallet found for this number %s !";
+    public static String ERR0023_PALLET_NOT_FOUND = "Aucune palette trouvée avec ce numéro %s !";
 
     /**
      *
@@ -301,10 +244,6 @@ public class Helper {
 
     public static String BOOK_WAREHOUSE_OUT_PACK_FG = "BOOK PACKAGING SHIPPED FINISH GOODS";
 
-    /**
-     *
-     */
-    //public static Integer ENGINE_LABEL_TIMES = 2;
     //-------------------------- NEW PALLET MASK
     /**
      *
@@ -316,35 +255,8 @@ public class Helper {
      */
     public static String CLOSING_PALLET_PATTERN = "^[C]{1}[P]{1}\\d{9}";
 
-    //USER LEVELS
-    /**
-     *
-     */
-    //public static final Integer PROFIL_OPERATOR = 1000;
-    //public static final Integer PROFIL_ADMIN = 9000;
-    /**
-     * true: Active le vérouillage pour une seule palette par part number
-     *
-     */
-    //public static final boolean UNIQUE_PALLET_PER_PART_NUMBER = false;
-    /**
-     * true: Active le vérouillage pour une seule palette par type de packaging
-     * (KLTV, HV, RV)
-     *
-     */
-    //public static final boolean UNIQUE_PALLET_PER_PACK_TYPE = false;
-    //SUPPLIER PART LENGTH
-    //public static Integer SUPP_PART_LEN = 9;
-    /**
-     *
-     */
     public static void startSession() {
         Helper.sess.flush();
-//        if (Helper.sess.isDirty()) {
-//            Helper.sess.flush();
-//            Helper.sess.clear();
-//        }
-        //if(!Helper.sess.isOpen())
         try {
             //Helper.openSession();
             Helper.sess.beginTransaction();
@@ -445,7 +357,7 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigFamily cp = (ConfigFamily) o;
-                jbox.addItem(new ComboItem(cp.getHarnessType(), cp.getHarnessType()));
+                jbox.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
             }
         }
     }

@@ -172,7 +172,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
         //Disable continue button
         continue_btn.setEnabled(false);
 
-        if (GlobalVars.connectedUser.getAccessLevel() == GlobalVars.PROFIL_OPERATOR) {
+        if (GlobalVars.CONNECTED_USER.getAccessLevel() == GlobalVars.PROFIL_OPERATOR) {
             set_state_btn.setVisible(false);
             dropButton.setVisible(false);
         }

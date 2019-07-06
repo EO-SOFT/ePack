@@ -73,6 +73,12 @@ ALTER TABLE public.config_family
 ALTER SEQUENCE public.config_project_id_seq
     RENAME TO config_family_id_seq;
 
+ALTER TABLE public.config_family
+    RENAME customer TO project;
+
+ALTER TABLE public.config_family
+    ALTER COLUMN project TYPE character varying (255) COLLATE pg_catalog."default";
+
 -- Création de la table config_project et ajouter les projets éxistants
 -- Table: public.config_project
 

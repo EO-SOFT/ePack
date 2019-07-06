@@ -9,12 +9,10 @@ import __main__.GlobalMethods;
 import __main__.GlobalVars;
 import helper.Helper;
 import entity.BaseContainer;
-import entity.ConfigFamily;
 import entity.ConfigProject;
 import entity.ConfigSegment;
 import entity.ConfigWorkplace;
 import gui.packaging.PackagingVars;
-import gui.packaging.reports.PACKAGING_UI0010_PalletDetails_JPANEL;
 import gui.warehouse_fg_reception.WAREHOUSE_FG_UI0001_SCAN_JPANEL;
 import helper.CloseTabButtonComponent;
 import helper.ComboItem;
@@ -225,8 +223,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         //Init time spinner
         initTimeSpinners();
 
-        //initProjectFilter();
-        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
         //initSegmentFilter();
 
         initStateFilters();
@@ -237,21 +234,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         this.initContainerTableDoubleClick();
     }
 
-    /*
-    private void loadProjectsCombobox() {
-        List result = new ConfigProject().select();
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0035);
-            UILog.severe(ErrorMsg.APP_ERR0035[1]);
-        } else { //Map project data in the list
-            project_filter.removeAllItems();
-            project_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                ConfigProject p = (ConfigProject) o;                        
-                project_filter.addItem(new ComboItem(p.getProject(), p.getProject()));
-            }
-        }
-    }*/
+   
     private void setWorkplaceBySegment(String segment) {
         System.out.println("setWorkplaceBySegment segment = " + segment);
         List result = new ConfigWorkplace().selectBySegment(segment);

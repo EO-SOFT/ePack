@@ -46,6 +46,6 @@ public class PackagingVars {
      */
     public static PACKAGING_UI0001_Main_Mode3 Packaging_Gui_Mode3 = null;
 
-    public static ConfigFamily PROJECT = new ConfigFamily();
+    public static ConfigFamily PRODUCT_FAMILY = new ConfigFamily();
 
 }

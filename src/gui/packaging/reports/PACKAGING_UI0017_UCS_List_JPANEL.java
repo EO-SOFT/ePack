@@ -5,7 +5,6 @@
  */
 package gui.packaging.reports;
 
-import __main__.GlobalMethods;
 import __main__.GlobalVars;
 import entity.ConfigProject;
 import entity.ConfigSegment;
@@ -82,8 +81,7 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
         load_table_header();
 
         //Init projects filter
-        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
-
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
         //Focuse on text filter field
         harness_part_filter.requestFocus();
     }

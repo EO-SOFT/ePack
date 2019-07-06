@@ -5,7 +5,6 @@
  */
 package gui.packaging.reports;
 
-import __main__.GlobalMethods;
 import __main__.GlobalVars;
 import entity.ConfigProject;
 import entity.ConfigSegment;
@@ -88,15 +87,13 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
         //super(parent, modal);
         initComponents();
         initTimeSpinners();
-        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
         this.workplace_filter.setEnabled(false);
         radioGroup.add(radio_all_harness);
         radioGroup.add(radio_filled_ucs);
         operators_txt.setValue(1);
-        //initWorkplaceFilter();
         this.reset_tables_content();
         this.refresh();
-        //Helper.centerJFrame(this);
     }
 
     

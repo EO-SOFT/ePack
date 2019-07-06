@@ -618,14 +618,14 @@ public final class PACKAGING_UI0001_Main_Mode3 extends javax.swing.JFrame implem
     }
 
     //########################################################################
-    //####################### PROJECT BOX FILTER METHODS #####################
+    //####################### PRODUCT_FAMILY BOX FILTER METHODS #####################
     //########################################################################
     public void HarnessTypeFilterSetSelectedItem(String value) {
         harnessTypeFilterBox.setSelectedItem(value);
     }
 
     //########################################################################
-    //########################## PROJECT BOX METHODS #########################
+    //########################## PRODUCT_FAMILY BOX METHODS #########################
     //########################################################################
     public void setHarnessTypeBoxState(boolean state) {
         harnessTypeBox.setEnabled(state);

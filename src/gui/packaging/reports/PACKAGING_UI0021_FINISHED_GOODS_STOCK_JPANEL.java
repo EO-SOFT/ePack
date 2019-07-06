@@ -5,7 +5,6 @@
  */
 package gui.packaging.reports;
 
-import __main__.GlobalMethods;
 import __main__.GlobalVars;
 import entity.ConfigProject;
 import entity.ConfigSegment;
@@ -13,7 +12,6 @@ import entity.ConfigWorkplace;
 import helper.ComboItem;
 import helper.Helper;
 import helper.JDialogExcelFileChooser;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,7 +66,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
     public PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL(JTabbedPane parent) {
         this.parent = parent;
         initComponents();
-        GlobalMethods.loadProjectsCombobox(this, project_filter, true);
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
         this.workplace_filter.setEnabled(false);
         this.reset_tables_content();
     }

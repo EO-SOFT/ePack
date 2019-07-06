@@ -6,8 +6,6 @@ Faire une check box (print destination in production label) dans config_ucs, ça
 [OK] Ajouter le checkbox pour afficher/masquer la colonne « pack type » + filtre textbox pack_type, combobox « speciale order » et dans le UI Stock F.G ;
 [OK] Filtre « commande spéciale », « pack type » dans listes des palettes ;
 
-
-
 - Nouveau status du design pattern state après le choix de la config "ChoosePackType" :
         - Charger la liste des code à barre équivalent à la référence
         - Si l'index de la config contient des sachet code à barre, 
@@ -19,21 +17,18 @@ Faire une check box (print destination in production label) dans config_ucs, ça
 
 - Continuer l'integration de JTabbedPane parent et GlobalMethods.addNewTabToParent
 dans la totalité des UI
-- Ajouter un filtre projet dans la UI config_ucs 
-- Ajouter un filter "packaging item" dans l'UI Stock Emballage
-- Ajouter un filter "pack item", "packaging item" dans l'UI Mouvement Stock Emballage
-- Enlever les UIs obsolètes
+[OK]- Ajouter un filtre projet dans la UI config_ucs 
+[OK]- Ajouter un filter "packaging item" dans l'UI Stock Emballage
+[OK]- Ajouter un filter "pack item", "packaging item" dans l'UI Mouvement Stock Emballage
+[OK]- Enlever les UIs obsolètes
 
 ·         Lié le nombre de sachet à charger à l’indice de la référence (il se peut que la même référence sera active mais avec des indices différents, chaque indice avec un nombre de sachets différent)
-
 ·         Faire la possibilité de retourner la palette à l’état closed par le magasinier avec obligation de saisir un motif.
 
-
-
 - Centraliser les méthodes dans leurs classes :
-    initProjectFilter() (DONE)
-    initPackMasterBox()
-    initHarnessTypeByProject
+[OK]    initProjectJBox() 
+[OK]    initPackMasterJBox()
+[OK]    initFamilyByProject()
     setWorkplaceBySegment
     setPacakgingWarehouseByProject
     setWarehouseByProject

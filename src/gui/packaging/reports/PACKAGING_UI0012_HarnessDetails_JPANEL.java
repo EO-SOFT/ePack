@@ -38,12 +38,12 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
     boolean drop;
 
     //ERROR MESSAGES
-    String ERR_HARNESS_NOT_FOUND = "Harness Not Found !";
-    String ERR_REQUIRED_COMMENT = "Drop comment required !";
-    String ERR_PALLET_STATE_ERROR = "Drop not allowed ! Pallet must be OPEN to drop the harness !";
+    String ERR_HARNESS_NOT_FOUND = "Faisceau introuvable !";
+    String ERR_REQUIRED_COMMENT = "Merci de saisir un commentaire !";
+    String ERR_PALLET_STATE_ERROR = "Echec de suppression ! La palette doit être ouverte pour supprimer des pièces !";
 
     //SUCCESS MESSAGES
-    String OK_HARNESS_DROPPED = "Harness dropped successfully !";
+    String OK_HARNESS_DROPPED = "Pièce supprimée !";
 
     /**
      * Creates new form UI0010_PalletDetails
@@ -55,8 +55,6 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
     public PACKAGING_UI0012_HarnessDetails_JPANEL(JTabbedPane parent, boolean drop) {
 
         initComponents();
-        //this.setResizable(false);
-        //Helper.centerJDialog(this);
         success_lbl.setVisible(false);
         if (drop) {
             this.drop = true;
@@ -673,7 +671,7 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Empty pallet number", "Pallet Number Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Merci de scanner ou saisir un identifiant faisceau !", "Champs requis", JOptionPane.ERROR_MESSAGE);
             clearSearchBox();
         }
 

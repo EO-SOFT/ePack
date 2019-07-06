@@ -53,6 +53,35 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="msg_lbl" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="store_txt" min="-2" pref="265" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="set_to_stored_btn" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="search_txtbox" min="-2" pref="180" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="search_btn" min="-2" pref="147" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -86,11 +115,11 @@
                                       <Group type="102" attributes="0">
                                           <Component id="user_txtbox" min="-2" pref="101" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="history_btn" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="history_btn" min="-2" pref="136" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -126,41 +155,15 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="log_lbl" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="store_txt" min="-2" pref="265" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="set_to_stored_btn" min="-2" pref="219" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="search_txtbox" min="-2" pref="180" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="search_btn" min="-2" pref="147" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jSeparator1" min="-2" pref="1017" max="-2" attributes="0"/>
-                      <Component id="table_scroll" min="-2" pref="1006" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="table_scroll" min="-2" pref="1006" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -195,7 +198,7 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
-                  <Component id="log_lbl" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="msg_lbl" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="19" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -284,8 +287,10 @@
                           <Component id="writeTime_txtbox" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="table_scroll" min="-2" pref="485" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="table_scroll" min="-2" pref="463" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -299,7 +304,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="User Number"/>
+            <Property name="text" type="java.lang.String" value="Utilisateur"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="user_txtbox">
@@ -321,7 +326,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Harness Part"/>
+            <Property name="text" type="java.lang.String" value="Article"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="harnessPart_txtbox">
@@ -365,7 +370,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Supplier Part Number"/>
+            <Property name="text" type="java.lang.String" value="Code article interne"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="supplierPartNumber_txtbox">
@@ -398,7 +403,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="State"/>
+            <Property name="text" type="java.lang.String" value="Statut"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="packType_txtbox">
@@ -420,7 +425,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pack Type"/>
+            <Property name="text" type="java.lang.String" value="Type d&apos;emballage"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="qtyRead_txtbox">
@@ -442,7 +447,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Quantity Read"/>
+            <Property name="text" type="java.lang.String" value="Quantit&#xe9; scann&#xe9;e"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="qtyExptected_txtbox">
@@ -464,7 +469,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Quantity Expected"/>
+            <Property name="text" type="java.lang.String" value="Quantit&#xe9; standard"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="startTime_txtbox">
@@ -486,7 +491,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Start Time"/>
+            <Property name="text" type="java.lang.String" value="D&#xe9;marrer le"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="completeTime_txtbox">
@@ -508,7 +513,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Complete Time"/>
+            <Property name="text" type="java.lang.String" value="Termin&#xe9; le"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="workingTime_txtbox">
@@ -530,7 +535,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Working time (min)"/>
+            <Property name="text" type="java.lang.String" value="Temps de travail (min)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="search_txtbox">
@@ -632,7 +637,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="log_lbl">
+        <Component class="javax.swing.JLabel" name="msg_lbl">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -665,7 +670,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pack Number"/>
+            <Property name="text" type="java.lang.String" value="Num&#xe9;ro palette"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="store_txt">
@@ -742,7 +747,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Write Time"/>
+            <Property name="text" type="java.lang.String" value="Modif&#xe9; le"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="history_btn">
@@ -750,7 +755,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/gui/time-icon.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="History"/>
+            <Property name="text" type="java.lang.String" value="Historique"/>
             <Property name="toolTipText" type="java.lang.String" value="Search"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -769,6 +774,14 @@
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Charger la liste des pi&#xe8;ces"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

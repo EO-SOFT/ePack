@@ -859,7 +859,7 @@ public class BaseContainer extends DAO implements java.io.Serializable {
     public void update(Object obj) {
         String feedback = "-";
         BaseContainer bc = (BaseContainer) obj;
-        bc.setWriteId(GlobalVars.connectedUser.getId());
+        bc.setWriteId(GlobalVars.CONNECTED_USER.getId());
         if (!bc.getContainerState().equals(GlobalVars.PALLET_OPEN)) {
             //##############################################################    
             if (bc.getContainerState().equals(GlobalVars.PALLET_WAITING)) {

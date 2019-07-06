@@ -5,7 +5,6 @@
  */
 package gui.warehouse_dispatch;
 
-import __main__.GlobalMethods;
 import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
@@ -46,9 +45,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN_FDP extends javax.swing.JD
         Helper.centerJDialog(this);
         this.setResizable(false);
 
-        //initProjectFilter();
-        GlobalMethods.loadProjectsCombobox(this, project_filter, false);
-
+        project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
         this.setDestinationsTable("");
         disableEditingTable();
     }

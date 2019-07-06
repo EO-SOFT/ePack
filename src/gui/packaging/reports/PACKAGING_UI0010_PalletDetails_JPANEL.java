@@ -172,7 +172,7 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
         //this.setTitle(this.getTitle() + " " + this.palletNumber);
         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Détails " + this.palletNumber));
         
-        if(GlobalVars.connectedUser.getAccessLevel() == GlobalVars.PROFIL_OPERATOR){
+        if(GlobalVars.CONNECTED_USER.getAccessLevel() == GlobalVars.PROFIL_OPERATOR){
             set_state_btn.setVisible(false);
             dropButton.setVisible(false);            
         }

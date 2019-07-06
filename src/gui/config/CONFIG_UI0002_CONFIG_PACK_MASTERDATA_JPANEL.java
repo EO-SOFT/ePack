@@ -144,7 +144,8 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
         //init config pack items jbox
         initPackItemsBox();
         //init config pack Master jbox
-        initPackMasterBox();
+        pack_master_box = PackagingMaster.initPackMasterJBox(this, pack_master_box, false);
+        
         resetConfigJtableContent();
         refreshConfigs();
         initConfigsjTableDoubleClick();
@@ -161,17 +162,6 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
         for (Object o : result) {
             PackagingItems pc = (PackagingItems) o;
             pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
-        }
-
-    }
-
-    private void initPackMasterBox() {
-        pack_master_box.removeAllItems();
-        List result = new PackagingMaster().selectAllMasterPack();
-        //Map project data in the list
-        for (Object o : result) {
-            PackagingMaster pc = (PackagingMaster) o;
-            pack_master_box.addItem(new ComboItem(pc.getPackMaster(), pc.getPackMaster()));
         }
 
     }
@@ -670,7 +660,7 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
         });
 
         jPanel2.setBackground(new java.awt.Color(36, 65, 86));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Packaging Master", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Packaging Master", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setToolTipText("Packaging Master");
         jPanel2.setAutoscrolls(true);
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -983,7 +973,7 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
         tabs.addTab("Packaging Master", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(36, 65, 86));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configuration Packaging", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configuration Packaging", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel3.setToolTipText("Configuration Packaging");
         jPanel3.setAutoscrolls(true);
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1206,7 +1196,7 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
         tabs.addTab("Configuration Packaging", jPanel3);
 
         jPanel1.setBackground(new java.awt.Color(36, 65, 86));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Packaging Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Packaging Items", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setToolTipText("Packaging Items");
         jPanel1.setAutoscrolls(true);
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

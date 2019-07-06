@@ -26,7 +26,7 @@ public class ComboBoxHelper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigFamily cp = (ConfigFamily) o;
-                cbox.addItem(new ComboItem(cp.getHarnessType(), cp.getHarnessType()));
+                cbox.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
             }
         }
         return cbox;
