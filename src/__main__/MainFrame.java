@@ -27,7 +27,7 @@ import gui.packaging.reports.PACKAGING_UI0018_OpenPallets_JPANEL;
 import gui.packaging.reports.PACKAGING_UI0019_EfficiencyCalculation_JPANEL;
 import gui.packaging.reports.PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL;
 import gui.packaging.reports.PACKAGING_UI0022_ClosedPallets_JPANEL;
-import gui.packaging_warehouse.PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL;
+import gui.packaging_warehouse.PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL;
 //import gui.packaging_warehouse.PACKAGING_WAREHOUSE_UI0001_PasswordRequest;
 import gui.packaging_warehouse.PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL;
 import gui.packaging_warehouse.PackagingHelper;
@@ -375,7 +375,7 @@ public class MainFrame extends javax.swing.JFrame {
         MENU_04_MODULE_STOCK_PACKAGING.setText("Magasin emballage");
 
         MENU_00_03_PACKAGING_STOCK.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        MENU_00_03_PACKAGING_STOCK.setText("Mouvements emballage");
+        MENU_00_03_PACKAGING_STOCK.setText("Mouvements des emballages");
         MENU_00_03_PACKAGING_STOCK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_00_03_PACKAGING_STOCKActionPerformed(evt);
@@ -383,7 +383,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         MENU_04_MODULE_STOCK_PACKAGING.add(MENU_00_03_PACKAGING_STOCK);
 
-        packaging_stock_menu.setText("Stock emballage");
+        packaging_stock_menu.setText("Stock d'emballage");
         packaging_stock_menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 packaging_stock_menuMouseClicked(evt);
@@ -594,6 +594,8 @@ public class MainFrame extends javax.swing.JFrame {
         GlobalVars.connectedUser.setLoginTime(new Date());
         WarehouseHelper.warehouse_reserv_context.setUser(GlobalVars.connectedUser);
         WarehouseHelper.warehouse_reserv_context.getUser().update(WarehouseHelper.warehouse_reserv_context.getUser());
+        
+        /*
         //Go back to step S020
         try {
             GlobalVars.APP_HOSTNAME = InetAddress.getLocalHost().getHostName();
@@ -607,10 +609,10 @@ public class MainFrame extends javax.swing.JFrame {
                 GlobalMethods.getStrTimeStamp() + " Packaging warehouse interface : ");
 
         UILog.info(str);
-
+        */
         PackagingHelper.user = GlobalVars.connectedUser;
         //Create and display the packaing main form
-        GlobalMethods.addNewTabToParent("Mouvements emballages",this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0001_MAIN_JPANEL(this.rootTabbedPane), evt);
+        GlobalMethods.addNewTabToParent("Mouvements des emballages",this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL(this.rootTabbedPane), evt);
     }//GEN-LAST:event_MENU_00_03_PACKAGING_STOCKActionPerformed
 
     private void MENU_01_02_CONFIG_PACK_MASTERDATAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_01_02_CONFIG_PACK_MASTERDATAActionPerformed
@@ -637,8 +639,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_packaging_stock_menuMouseClicked
 
     private void packaging_stock_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packaging_stock_menuActionPerformed
-        //addNewTab(new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(), evt);
-        GlobalMethods.addNewTabToParent("Stock packaging", this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(this.rootTabbedPane), evt);
+        GlobalMethods.addNewTabToParent("Stock d'emballage", this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(this.rootTabbedPane), evt);
     }//GEN-LAST:event_packaging_stock_menuActionPerformed
 
     private void menu_scan_mode_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_scan_mode_1ActionPerformed

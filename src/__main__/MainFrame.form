@@ -232,7 +232,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+P"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mouvements emballage"/>
+                <Property name="text" type="java.lang.String" value="Mouvements des emballages"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_00_03_PACKAGING_STOCKActionPerformed"/>
@@ -240,7 +240,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="packaging_stock_menu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Stock emballage"/>
+                <Property name="text" type="java.lang.String" value="Stock d&apos;emballage"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="packaging_stock_menuMouseClicked"/>
