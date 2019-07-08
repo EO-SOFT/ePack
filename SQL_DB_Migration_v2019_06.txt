@@ -2,6 +2,10 @@
 --SQL Patch to execute for new version 2019.06:
 --------------------------------
 
+UPDATE public.config_warehouse
+	SET wh_type='FINISHED_GOODS'
+	WHERE wh_type='FINISH_GOODS';
+
 -- base_container
 ALTER TABLE base_container
     ADD COLUMN priority integer NOT NULL DEFAULT 99,

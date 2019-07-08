@@ -5,7 +5,6 @@
  */
 package gui.warehouse_dispatch;
 
-import __main__.GlobalMethods;
 import entity.ConfigProject;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
@@ -361,8 +360,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
     }//GEN-LAST:event_project_filterItemStateChanged
 
     private void project_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_project_filterActionPerformed
-        //this.setWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
-        GlobalMethods.setWarehouseComboboxByProject(this, project_filter.getSelectedItem().toString(), warehouse_filter);
+        warehouse_filter = ConfigWarehouse.initWarehouseJBox(this, warehouse_filter, String.valueOf(project_filter.getSelectedItem()), 1, false);
     }//GEN-LAST:event_project_filterActionPerformed
 
     private void destinations_tableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destinations_tableMouseEntered

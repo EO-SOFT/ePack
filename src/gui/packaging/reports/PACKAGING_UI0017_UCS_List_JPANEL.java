@@ -69,11 +69,8 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
      * Creates new form UI0011_ProdStatistics_
      */
     public PACKAGING_UI0017_UCS_List_JPANEL(java.awt.Frame parent, boolean modal) {
-        //super(parent, modal);
         initComponents();
         initGui();
-        //refresh();
-
     }
 
     private void initGui() {
@@ -108,23 +105,10 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
                 segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
             }
             segment_filter.setSelectedIndex(0);
-            //this.setWorkplaceBySegment(String.valueOf(segment_filter.getSelectedItem()));
             return true;
         }
     }
 
-//    private void initSegmentFilter() {
-//        List result = new ConfigSegment().select();
-//        if (result.isEmpty()) {
-//            JOptionPane.showMessageDialog(null, Helper.ERR0026_NO_SEGMENT_FOUND, "Configuration error !", ERROR_MESSAGE);
-//            System.err.println(Helper.ERR0026_NO_SEGMENT_FOUND);
-//        } else { //Map project data in the list
-//            for (Object o : result) {
-//                ConfigSegment cp = (ConfigSegment) o;
-//                segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-//            }
-//        }
-//    }
     public void reset_table_content() {
         ucs_result_table_data = new Vector();
         ucs_result_table.setModel(new DefaultTableModel(ucs_result_table_data, ucs_result_table_header));
@@ -674,29 +658,16 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
         } else {
-            this.setWorkplaceBySegment(segment);
+            workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, segment, true);
             this.workplace_filter.setEnabled(true);
         }
     }//GEN-LAST:event_segment_filterActionPerformed
 
     private void segment_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_segment_filterItemStateChanged
 
-        //refresh();
     }//GEN-LAST:event_segment_filterItemStateChanged
 
-    private void setWorkplaceBySegment(String segment) {
-        List result = new ConfigWorkplace().selectBySegment(segment);
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0027_NO_WORKPLACE_FOUND, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0027_NO_WORKPLACE_FOUND);
-        } else { //Map project data in the list
-            //workplace_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                ConfigWorkplace cp = (ConfigWorkplace) o;
-                workplace_filter.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
-            }
-        }
-    }
+
 
     private void refresh_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btnActionPerformed
         refresh();
@@ -713,7 +684,7 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
 
         //Create the excel workbook
         Workbook wb = new XSSFWorkbook(); // new HSSFWorkbook();
-        Sheet sheet = wb.createSheet("UCS");
+        Sheet sheet = wb.createSheet("UCS List");
         CreationHelper createHelper = wb.getCreationHelper();
 
         //######################################################################
@@ -774,7 +745,7 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_workplace_filterItemStateChanged
 
     private void workplace_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workplace_filterActionPerformed
-        //refresh();
+        
     }//GEN-LAST:event_workplace_filterActionPerformed
 
     private void active_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_active_checkboxActionPerformed

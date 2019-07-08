@@ -120,7 +120,7 @@ public class PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL extends javax.swing.
 //        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 //        this.setResizable(true);
 //        this.setVisible(true);
-        //refresh();
+        
     }
 
     private void postForm() {

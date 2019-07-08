@@ -200,7 +200,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="packaging_wh_box" max="32767" attributes="0"/>
+                              <Component id="packaging_wh_filter" max="32767" attributes="0"/>
                               <Component id="create_time_txt" alignment="0" max="32767" attributes="0"/>
                               <Component id="warehouse_filter" alignment="0" max="32767" attributes="0"/>
                               <Component id="project_filter" alignment="0" pref="176" max="32767" attributes="0"/>
@@ -286,7 +286,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="packaging_wh_box" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="packaging_wh_filter" alignment="2" min="-2" max="-2" attributes="0"/>
                               <Component id="pwd_lbl7" alignment="2" min="-2" max="-2" attributes="0"/>
                               <Component id="family_filter" alignment="2" min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="pwd_lbl1" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -636,7 +636,7 @@
                     <Property name="name" type="java.lang.String" value="fname_txtbox" noResource="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="packaging_wh_box">
+                <Component class="javax.swing.JComboBox" name="packaging_wh_filter">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="12" style="1"/>
@@ -655,7 +655,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="packaging_wh_boxActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="packaging_wh_filterActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="fname_lbl14">

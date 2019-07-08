@@ -43,13 +43,7 @@ import ui.error.ErrorMsg;
 public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
 
     JTabbedPane parent;
-    /**
-     * Les méthodes JTable qauxi sauxivent doivent être dans auxne class
-     * interface initGauxi() initContainerTableDoauxbleClick load_table_header
-     * reset_table_content disableEditingTable refresh
-     *
-     * Les 4 champs qauxi sauxivent doivent être dans auxne class interface
-     */
+    
     Vector<String> ucs_table_header = new Vector<String>();
 
     List<String> table_header = Arrays.asList(
@@ -77,7 +71,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     ConfigUcs aux;
 
     public CONFIG_UI0001_CONFIG_UCS_JPANEL(JTabbedPane parent) {
-        //super(parent, modal);
         initComponents();
         initGui(parent);
 
@@ -98,52 +91,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         this.initLineTableDoubleClick();
     }
 
-   
-    private void setWorkplaceBySegment(String segment) {
-        if (segment != null && !segment.isEmpty() && segment != "null") {
-            System.out.println("setWorkplaceBySegment " + segment);
-            List result = new ConfigWorkplace().selectBySegment(segment);
-            if (result.isEmpty()) {
-                UILog.severeDialog(this, ErrorMsg.APP_ERR0038);
-                UILog.severe(ErrorMsg.APP_ERR0038[1]);
-            } else { //Map project data in the list
-                workplace_filter.removeAllItems();
-                for (Object o : result) {
-                    ConfigWorkplace cp = (ConfigWorkplace) o;
-                    workplace_filter.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
-                }
-            }
-        }
-    }
-
-    private void setPacakgingWarehouseByProject(String project) {
-        List result = new ConfigWarehouse().selectByProjectAndType(project, "PACKAGING");
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0042);
-            UILog.severe(ErrorMsg.APP_ERR0042[1]);
-        } else { //Map project data in the list
-            packaging_wh_box.removeAllItems();
-            for (Object o : result) {
-                ConfigWarehouse cp = (ConfigWarehouse) o;
-                packaging_wh_box.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
-            }
-        }
-    }
-
-    private void setWarehouseByProject(String project) {
-        List result = new ConfigWarehouse().selectByProjectAndType(project, "FINISH_GOODS");
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0036);
-            UILog.severe(ErrorMsg.APP_ERR0036[1]);
-        } else { //Map project data in the list
-            warehouse_filter.removeAllItems();
-            for (Object o : result) {
-                ConfigWarehouse cp = (ConfigWarehouse) o;
-                warehouse_filter.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
-            }
-        }
-    }
-
     private boolean setSegmentByProject(String project) {
         List result = new ConfigSegment().selectBySegment(project);
         if (result.isEmpty()) {
@@ -157,7 +104,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
             }
             segment_filter.setSelectedIndex(0);
-            this.setWorkplaceBySegment(String.valueOf(segment_filter.getSelectedItem()));
+            workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, String.valueOf(segment_filter.getSelectedItem()), false);
             return true;
         }
     }
@@ -277,9 +224,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                             break;
                         }
                     }
-                    for (int i = 0; i < packaging_wh_box.getItemCount(); i++) {
-                        if (packaging_wh_box.getItemAt(i).toString().equals(aux.getPackaging_warehouse())) {
-                            packaging_wh_box.setSelectedIndex(i);
+                    for (int i = 0; i < packaging_wh_filter.getItemCount(); i++) {
+                        if (packaging_wh_filter.getItemAt(i).toString().equals(aux.getPackaging_warehouse())) {
+                            packaging_wh_filter.setSelectedIndex(i);
                             break;
                         }
                     }
@@ -493,7 +440,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         create_time_txt = new javax.swing.JTextField();
         lname_lbl2 = new javax.swing.JLabel();
         write_time_txt = new javax.swing.JTextField();
-        packaging_wh_box = new javax.swing.JComboBox();
+        packaging_wh_filter = new javax.swing.JComboBox();
         fname_lbl14 = new javax.swing.JLabel();
         destination_combobox = new javax.swing.JComboBox();
         priority = new javax.swing.JTextField();
@@ -751,13 +698,13 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         write_time_txt.setMaximumSize(null);
         write_time_txt.setName("fname_txtbox"); // NOI18N
 
-        packaging_wh_box.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        packaging_wh_box.setMaximumSize(null);
-        packaging_wh_box.setMinimumSize(new java.awt.Dimension(37, 26));
-        packaging_wh_box.setPreferredSize(new java.awt.Dimension(37, 26));
-        packaging_wh_box.addActionListener(new java.awt.event.ActionListener() {
+        packaging_wh_filter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        packaging_wh_filter.setMaximumSize(null);
+        packaging_wh_filter.setMinimumSize(new java.awt.Dimension(37, 26));
+        packaging_wh_filter.setPreferredSize(new java.awt.Dimension(37, 26));
+        packaging_wh_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                packaging_wh_boxActionPerformed(evt);
+                packaging_wh_filterActionPerformed(evt);
             }
         });
 
@@ -787,7 +734,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                     .addComponent(login_lbl3))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(packaging_wh_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(packaging_wh_filter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(create_time_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(warehouse_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(project_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, 176, Short.MAX_VALUE)
@@ -856,7 +803,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                             .addComponent(lpn_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(packaging_wh_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(packaging_wh_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwd_lbl7)
                     .addComponent(family_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwd_lbl1)
@@ -1544,7 +1491,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         lifes_txtbox.setText(aux.getLifes() + "");
         aux.setProject(project_filter.getSelectedItem().toString());
         aux.setWarehouse(warehouse_filter.getSelectedItem().toString());
-        aux.setPackaging_warehouse(packaging_wh_box.getSelectedItem().toString());
+        aux.setPackaging_warehouse(packaging_wh_filter.getSelectedItem().toString());
         aux.setArticleDesc(articleDesc_textArea.getText());
         aux.setEngChange(engChange_textArea.getText());
         aux.setEngChangeDate(engChangeDatePicker.getDate());
@@ -1607,9 +1554,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 break;
             }
         }
-        for (int i = 0; i < packaging_wh_box.getItemCount(); i++) {
-            if (packaging_wh_box.getItemAt(i).toString().equals(aux.getPackaging_warehouse())) {
-                packaging_wh_box.setSelectedIndex(i);
+        for (int i = 0; i < packaging_wh_filter.getItemCount(); i++) {
+            if (packaging_wh_filter.getItemAt(i).toString().equals(aux.getPackaging_warehouse())) {
+                packaging_wh_filter.setSelectedIndex(i);
                 break;
             }
         }
@@ -1847,7 +1794,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             mu.setActive(Integer.valueOf(active_combobox.getSelectedItem().toString()));
             mu.setProject(project_filter.getSelectedItem().toString());
             mu.setWarehouse(warehouse_filter.getSelectedItem().toString());
-            mu.setPackaging_warehouse(packaging_wh_box.getSelectedItem().toString());
+            mu.setPackaging_warehouse(packaging_wh_filter.getSelectedItem().toString());
 
             mu.setDestination(destination_combobox.getSelectedItem().toString());
             mu.setArticleDesc((articleDesc_textArea.getText().length() > 25) ? articleDesc_textArea.getText().substring(0, 25) : articleDesc_textArea.getText());
@@ -2198,7 +2145,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             aux.setActive(Integer.valueOf(active_combobox.getSelectedItem().toString()));
             aux.setProject(project_filter.getSelectedItem().toString());
             aux.setWarehouse(warehouse_filter.getSelectedItem().toString());
-            aux.setPackaging_warehouse(packaging_wh_box.getSelectedItem().toString());
+            aux.setPackaging_warehouse(packaging_wh_filter.getSelectedItem().toString());
             aux.setDestination(destination_combobox.getSelectedItem().toString());
             aux.setClosingSheetFormat(Integer.valueOf(closing_sheet_format.getSelectedItem().toString()));
             aux.setArticleDesc(articleDesc_textArea.getText());
@@ -2244,10 +2191,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         } else {
             this.workplace_filter.removeAllItems();
             this.workplace_filter.setEnabled(true);
-            this.setWorkplaceBySegment(String.valueOf(segment_filter.getSelectedItem()));
+            this.workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, String.valueOf(segment_filter.getSelectedItem()), false);
         }
-
-        //refresh();
     }//GEN-LAST:event_segment_filterActionPerformed
 
     private void segment_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_segment_filterItemStateChanged
@@ -2268,8 +2213,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             this.segment_filter.setSelectedIndex(0);
             this.segment_filter.setEnabled(false);
         } else {
-            this.setWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
-            this.setPacakgingWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
+            warehouse_filter = ConfigWarehouse.initWarehouseJBox(this, warehouse_filter, String.valueOf(project_filter.getSelectedItem()), 1, false);
+            packaging_wh_filter = ConfigWarehouse.initWarehouseJBox(this, packaging_wh_filter, String.valueOf(project_filter.getSelectedItem()), 0, false);
             this.setDestinationByProject(String.valueOf(project_filter.getSelectedItem()));
             if (this.setSegmentByProject(String.valueOf(project_filter.getSelectedItem()))) {
                   family_filter = ConfigFamily.initFamilyByProject(this, family_filter, String.valueOf(project_filter.getSelectedItem()));
@@ -2289,9 +2234,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
 //        comment_txt.setText("");
     }//GEN-LAST:event_comment_txtFocusGained
 
-    private void packaging_wh_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packaging_wh_boxActionPerformed
+    private void packaging_wh_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packaging_wh_filterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_packaging_wh_boxActionPerformed
+    }//GEN-LAST:event_packaging_wh_filterActionPerformed
 
     private void supplier_pn_txtbox_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplier_pn_txtbox_searchActionPerformed
         // TODO add your handling code here:
@@ -2385,7 +2330,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JTextField pack_size_txtbox;
     private javax.swing.JComboBox pack_type_filter;
     private javax.swing.JTextField pack_type_txtbox_search;
-    private javax.swing.JComboBox packaging_wh_box;
+    private javax.swing.JComboBox packaging_wh_filter;
     private javax.swing.JTextField price_txtbox;
     private javax.swing.JCheckBox print_destination_check;
     private javax.swing.JTextField priority;

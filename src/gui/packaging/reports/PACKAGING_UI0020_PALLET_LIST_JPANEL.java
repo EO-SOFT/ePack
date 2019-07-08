@@ -14,7 +14,6 @@ import entity.ConfigSegment;
 import entity.ConfigWorkplace;
 import gui.packaging.PackagingVars;
 import gui.warehouse_fg_reception.WAREHOUSE_FG_UI0001_SCAN_JPANEL;
-import helper.CloseTabButtonComponent;
 import helper.ComboItem;
 import helper.JDialogExcelFileChooser;
 import helper.JTableHelper;
@@ -38,7 +37,6 @@ import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
@@ -161,30 +159,6 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         );
     }
 
-    private void addNewTab(String title, JPanel newTab, MouseEvent evt) {
-        this.parent.addTab(title, null, newTab,
-                title);
-
-        this.parent.setMnemonicAt(0, KeyEvent.VK_1);
-
-        this.parent.setTabComponentAt(parent.getTabCount() - 1,
-                new CloseTabButtonComponent(this.parent));
-        this.parent.setSelectedIndex(this.parent.getTabCount() - 1);
-    }
-
-    private void initSegmentFilter() {
-        List result = new ConfigSegment().select();
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0026_NO_SEGMENT_FOUND, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0026_NO_SEGMENT_FOUND);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigSegment cp = (ConfigSegment) o;
-                segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-            }
-        }
-    }
-
     private void initStateFilters() {
         JRadioButton[] radioButtonList = new JRadioButton[GlobalVars.PALLET_STATES.length];
         jpanel_state.setLayout(new GridLayout(1, 8, 6, 6));
@@ -195,14 +169,6 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
             } else {
                 radioButtonList[i] = new JRadioButton(GlobalVars.PALLET_STATES[i][0], false);
             }
-            /*
-            radioButtonList[i].addActionListener(new java.awt.event.ActionListener() {
-                @Override
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    //export_btnActionPerformed(evt);
-                    refresh_btnActionPerformed(evt);
-                }
-            });*/
             group.add(radioButtonList[i]);
             jpanel_state.add(radioButtonList[i]);
             jpanel_state.revalidate();
@@ -212,8 +178,6 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
 
     private void initGui() {
         //Center the this dialog in the screen
-        //Helper.centerJFrame(this);
-
         JTableHelper.sizeColumnsToFit(searchResult_table);
 
         //Load table header
@@ -224,7 +188,6 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         initTimeSpinners();
 
         project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
-        //initSegmentFilter();
 
         initStateFilters();
 
@@ -232,22 +195,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
 
         //Support double click on rows in container jtable to display history
         this.initContainerTableDoubleClick();
-    }
-
-   
-    private void setWorkplaceBySegment(String segment) {
-        System.out.println("setWorkplaceBySegment segment = " + segment);
-        List result = new ConfigWorkplace().selectBySegment(segment);
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0027_NO_WORKPLACE_FOUND + " for " + segment, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0027_NO_WORKPLACE_FOUND + " for " + segment);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigWorkplace cp = (ConfigWorkplace) o;
-                workplace_filter.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
-            }
-        }
-    }
+    }       
 
     private boolean setSegmentByProject(String project) {
         List result = new ConfigSegment().selectBySegment(project);
@@ -387,7 +335,6 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
             }
         });
 
-        segment_filter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         segment_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
         segment_filter.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -404,7 +351,6 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Segment");
 
-        workplace_filter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         workplace_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
         workplace_filter.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -557,17 +503,17 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21))
-                        .addGap(28, 28, 28)
+                            .addComponent(jLabel21)
+                            .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
-                            .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel22)
+                            .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(filter_harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1268,11 +1214,11 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
         } else {
-            this.setWorkplaceBySegment(segment);
+            workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, segment, true);
             this.workplace_filter.setEnabled(true);
         }
 
-        //refresh();
+        
     }//GEN-LAST:event_segment_filterActionPerformed
 
     private void workplace_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_workplace_filterItemStateChanged
@@ -1473,7 +1419,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
             this.setSegmentByProject(project);
             this.segment_filter.setEnabled(true);
         }
-        //refresh();
+        
     }//GEN-LAST:event_project_filterActionPerformed
 
     private void filter_spn_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_spn_txtActionPerformed

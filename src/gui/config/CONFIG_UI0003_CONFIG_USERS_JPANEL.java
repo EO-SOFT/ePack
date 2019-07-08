@@ -826,15 +826,15 @@ public class CONFIG_UI0003_CONFIG_USERS_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_duplicate_btnActionPerformed
 
     private void fname_txtbox_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fname_txtbox_searchKeyPressed
-        //refresh();
+        
     }//GEN-LAST:event_fname_txtbox_searchKeyPressed
 
     private void lname_txtbox_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lname_txtbox_searchKeyPressed
-        //refresh();
+        
     }//GEN-LAST:event_lname_txtbox_searchKeyPressed
 
     private void login_txtbox_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_txtbox_searchKeyPressed
-        //refresh();
+        
     }//GEN-LAST:event_login_txtbox_searchKeyPressed
 
     private void project_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_project_filterItemStateChanged

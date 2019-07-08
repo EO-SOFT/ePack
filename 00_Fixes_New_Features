@@ -29,9 +29,9 @@ dans la totalité des UI
 [OK]    initProjectJBox() 
 [OK]    initPackMasterJBox()
 [OK]    initFamilyByProject()
-    setWorkplaceBySegment
-    setPacakgingWarehouseByProject
-    setWarehouseByProject
+[OK]    setWorkplaceBySegment
+[OK]    setPacakgingWarehouseByProject
+[OK]    setWarehouseByProject
     setSegmentByProject
     setDestinationByProject
 ################################## New features ###############################

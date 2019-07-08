@@ -56,11 +56,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="result_table_scroll" max="32767" attributes="0"/>
                       <Component id="jLabel11" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
+                      <Component id="result_table_scroll" alignment="0" max="32767" attributes="0"/>
                       <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="297" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,36 +123,35 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="project_filter" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="special_combobox" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                          <Component id="project_filter" alignment="0" max="32767" attributes="0"/>
+                          <Component id="special_combobox" alignment="0" pref="187" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                          <Component id="segment_filter" min="-2" pref="169" max="-2" attributes="0"/>
-                          <Component id="internal_pn_txt" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                           <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="segment_filter" pref="221" max="32767" attributes="0"/>
+                          <Component id="internal_pn_txt" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel6" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                           <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="workplace_filter" pref="223" max="32767" attributes="0"/>
                                   <Component id="cpn_txt" max="32767" attributes="0"/>
-                                  <Component id="workplace_filter" pref="164" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="export_btn" min="-2" max="-2" attributes="0"/>
-                                  <Component id="refresh_btn" alignment="1" max="32767" attributes="0"/>
-                              </Group>
+                              <EmptySpace pref="40" max="32767" attributes="0"/>
+                              <Component id="refresh_btn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="export_btn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -176,10 +175,7 @@
                               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="workplace_filter" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                              <Component id="export_btn" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="workplace_filter" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
@@ -190,6 +186,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cpn_txt" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="refresh_btn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="export_btn" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">

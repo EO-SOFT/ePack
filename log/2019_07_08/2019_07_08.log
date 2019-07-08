@@ -1,0 +1,254 @@
+juil. 08, 2019 10:10:16 PM ui.UILog log
+INFOS: File 2019_07_08.log is created!
+
+juil. 08, 2019 10:10:16 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] created !
+open_sheet sub directory [.\print\2019_07_08\open_sheet] created !
+Print sub directory [.\print\2019_07_08\closing_sheet] created !
+Print sub directory [.\print\2019_07_08\picking_label] created !
+Print sub directory [.\print\2019_07_08\dispatch_label] created !
+
+juil. 08, 2019 10:10:24 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:10:24 Module : Configuration : .
+juil. 08, 2019 10:10:26 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:10:33 PM ui.UILog log
+GRAVE: APP_ERR0038 CONFIG : No Workplace associated with selected Segment.
+juil. 08, 2019 10:10:33 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:10:34 PM ui.UILog log
+GRAVE: APP_ERR0038 CONFIG : No Workplace associated with selected Segment.
+juil. 08, 2019 10:11:59 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:11:59 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:12:06 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:12:06 Module : Configuration : .
+juil. 08, 2019 10:12:08 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:12:08 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:12:08 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:12:10 PM ui.UILog log
+GRAVE: APP_ERR0038 CONFIG : No Workplace associated with selected Segment.
+juil. 08, 2019 10:14:52 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:14:52 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:15:03 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:15:03 Module : Configuration : .
+juil. 08, 2019 10:15:25 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:15:30 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:15:31 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:15:49 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:15:51 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:21:10 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:21:10 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:21:13 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:21:13 Module : Configuration : .
+juil. 08, 2019 10:21:24 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:21:27 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:22:06 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:22:06 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:22:09 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:22:09 Module : Configuration : .
+juil. 08, 2019 10:22:11 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:24:10 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:24:13 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:24:14 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:26:49 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:29:02 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:29:02 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:29:05 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:29:05 Module : Configuration : .
+juil. 08, 2019 10:29:09 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:34:54 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:34:54 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:35:02 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:35:02 Module : Configuration : .
+juil. 08, 2019 10:35:15 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:35:17 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:37:19 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:37:25 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:37:43 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:37:46 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:39:13 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:39:13 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:39:15 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:39:15 Module : Configuration : .
+juil. 08, 2019 10:39:18 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:39:19 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:39:21 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:39:24 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:40:57 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:40:57 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:41:00 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:41:00 Module : Configuration : .
+juil. 08, 2019 10:41:06 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:41:49 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:41:56 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:42:15 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:42:24 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:42:28 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 10:53:21 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:53:21 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:53:23 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:53:23 Module : Configuration : .
+juil. 08, 2019 10:53:26 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:53:43 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 10:53:43 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 10:53:44 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 22:53:44 Module : Configuration : .
+juil. 08, 2019 10:53:46 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 10:53:49 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 11:05:27 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 11:05:27 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 11:08:59 PM ui.UILog log
+INFOS: File 2019_07_08.log already exists.
+
+juil. 08, 2019 11:08:59 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_08] already exist!
+open_sheet sub directory [.\print\2019_07_08\open_sheet] already exist!
+Print sub directory [.\print\2019_07_08\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_08\picking_label] already exist!
+Print sub directory [.\print\2019_07_08\dispatch_label] already exist!
+
+juil. 08, 2019 11:09:02 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 23:09:02 Module : Configuration : .
+juil. 08, 2019 11:09:10 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 11:09:12 PM ui.UILog log
+GRAVE: APP_ERR0042 CONFIG : No warehouse found for the selected project.
+juil. 08, 2019 11:11:58 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 11:12:01 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 11:12:03 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 11:12:09 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 08, 2019 11:13:12 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-08 23:13:12 Dispatch interface : .
+juil. 08, 2019 11:13:14 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 11:16:26 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 08, 2019 11:16:34 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC

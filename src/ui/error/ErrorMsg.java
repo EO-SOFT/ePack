@@ -200,7 +200,7 @@ public class ErrorMsg {
     /**
      * APP_ERR0042 CONFIG : No packaging warehouse found for the selected project.
      */
-    public static String[] APP_ERR0042 = {"APP_ERR0042", "APP_ERR0042 CONFIG : No packaging warehouse found for the selected project."};
+    public static String[] APP_ERR0042 = {"APP_ERR0042", "APP_ERR0042 CONFIG : No warehouse found for the selected project."};
     /**
      * APP_ERR0043 CONFIG : No destinations found for this projet. Please check load_plan_dest table.
      */

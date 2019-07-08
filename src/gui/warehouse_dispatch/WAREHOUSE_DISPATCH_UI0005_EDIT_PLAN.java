@@ -10,7 +10,6 @@ import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestinationRel;
 import gui.warehouse_dispatch.state.WarehouseHelper;
-import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.awt.HeadlessException;
@@ -140,20 +139,6 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
             }
 
             return this.planDests;
-        }
-    }
-
-    private void setWarehouseByProject(String project) {
-        List result = new ConfigWarehouse().selectByProjectAndType(project, "FINISH_GOODS");
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0036);
-            UILog.severe(ErrorMsg.APP_ERR0036[1]);
-        } else { //Map project data in the list
-            warehouse_filter.removeAllItems();
-            for (Object o : result) {
-                ConfigWarehouse cp = (ConfigWarehouse) o;
-                warehouse_filter.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
-            }
         }
     }
 
@@ -463,7 +448,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
     }//GEN-LAST:event_cancel_btnActionPerformed
 
     private void project_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_project_filterItemStateChanged
-        this.setWarehouseByProject(String.valueOf(project_filter.getSelectedItem()));
+        warehouse_filter = ConfigWarehouse.initWarehouseJBox(this, warehouse_filter, String.valueOf(project_filter.getSelectedItem()), 1, false);
     }//GEN-LAST:event_project_filterItemStateChanged
 
     private void project_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_project_filterActionPerformed

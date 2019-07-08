@@ -75,7 +75,6 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
      * Creates new form UI0011_ProdStatistics_
      */
     public PACKAGING_UI0011_ProdStatistics_JPANEL(JTabbedPane parent) {
-        //super(parent, modal);
         initComponents();
         initTimeSpinners();
         project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
@@ -83,21 +82,6 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         radioGroup.add(radio_all_harness);
         radioGroup.add(radio_filled_ucs);
         this.reset_tables_content();
-    }
-
-    
-    private void setWorkplaceBySegment(String segment) {
-        System.out.println("setWorkplaceBySegment segment = " + segment);
-        List result = new ConfigWorkplace().selectBySegment(segment);
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0027_NO_WORKPLACE_FOUND + " for " + segment, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0027_NO_WORKPLACE_FOUND + " for " + segment);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigWorkplace cp = (ConfigWorkplace) o;
-                workplace_filter.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
-            }
-        }
     }
 
     private boolean setSegmentByProject(String project) {
@@ -194,12 +178,9 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
             } else {
                 oneRow.add(String.valueOf(obj[0])); //harness_part
             }
-            //oneRow.add(String.valueOf(String.format("%d", obj[1]))); //produced_qty;
             oneRow.add(new DecimalFormat("0.00").format(Double.parseDouble(obj[1].toString()))); // produced_qty
             oneRow.add(String.valueOf(obj[2])); //segment
             oneRow.add(String.valueOf(obj[3])); //workplace
-            //oneRow.add(String.valueOf(String.format("%1$,.2f", obj[4]))); //std_time            
-            //oneRow.add(String.valueOf(String.format("%1$,.2f", obj[5]))); //produced_hours
             oneRow.add(new DecimalFormat("00.00").format(Double.parseDouble(obj[4].toString()))); // std_time            
             oneRow.add(new DecimalFormat("00.00").format(Double.parseDouble(obj[5].toString()))); // produced hours
 
@@ -249,8 +230,6 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
             } catch (Exception ex) {
                 Logger.getLogger(PACKAGING_UI0011_ProdStatistics_JPANEL.class.getName()).log(Level.SEVERE, null, ex);
             }
-//            System.out.println("startDate " + startDateStr);
-//            System.out.println("endDate " + endDateStr);
 
             //Populate the segments Array with data
             if (String.valueOf(project_filter.getSelectedItem()).equals("ALL") || String.valueOf(project_filter.getSelectedItem()).equals("null")) {
@@ -677,7 +656,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(startDatePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -687,25 +666,23 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                                     .addComponent(endTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(startTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(radio_all_harness, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(radio_filled_ucs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(radio_filled_ucs, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel23))
-                                .addGap(18, 18, 18)
+                                    .addComponent(jLabel23)
+                                    .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel20)
-                                    .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                    .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel22))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel22)
+                                    .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,22 +702,24 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel23))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(5, 5, 5)
+                        .addComponent(harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -758,7 +737,6 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(radio_filled_ucs)
                                 .addGap(5, 5, 5)))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -934,14 +912,9 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_export_btnActionPerformed
 
     private void workplace_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_workplace_filterItemStateChanged
-        //refresh();
     }//GEN-LAST:event_workplace_filterItemStateChanged
 
     private void workplace_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workplace_filterActionPerformed
-//        System.out.println("workplace_filterActionPerformed segment value "+segment_filter.getSelectedItem().toString());
-//        if (!segment_filter.getSelectedItem().toString().equals("ALL")) {
-//            refresh();
-//        }
     }//GEN-LAST:event_workplace_filterActionPerformed
 
     private void segment_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_segment_filterItemStateChanged
@@ -950,18 +923,15 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
 
     private void segment_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segment_filterActionPerformed
         String segment = String.valueOf(segment_filter.getSelectedItem()).trim();
-        this.workplace_filter.removeAllItems();
         this.workplace_filter.addItem(new ComboItem("ALL", "ALL"));
         if ("ALL".equals(segment) || segment.equals("null")) {
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
 
         } else {
-            this.setWorkplaceBySegment(segment);
+            workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, segment, true);
             this.workplace_filter.setEnabled(true);
         }
-//        refresh();
-
     }//GEN-LAST:event_segment_filterActionPerformed
 
     private void radio_all_harnessItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radio_all_harnessItemStateChanged
@@ -994,7 +964,6 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         } else {
             this.setSegmentByProject(project);
             this.segment_filter.setEnabled(true);
-            //refresh();
         }
     }//GEN-LAST:event_project_filterActionPerformed
 

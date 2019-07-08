@@ -94,22 +94,7 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
         operators_txt.setValue(1);
         this.reset_tables_content();
         this.refresh();
-    }
-
-    
-    private void setWorkplaceBySegment(String segment) {
-        System.out.println("setWorkplaceBySegment segment = " + segment);
-        List result = new ConfigWorkplace().selectBySegment(segment);
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0027_NO_WORKPLACE_FOUND + " for " + segment, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0027_NO_WORKPLACE_FOUND + " for " + segment);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigWorkplace cp = (ConfigWorkplace) o;
-                workplace_filter.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
-            }
-        }
-    }
+    }        
 
     private boolean setSegmentByProject(String project) {
         List result = new ConfigSegment().selectBySegment(project);
@@ -125,21 +110,7 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
                 segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
             }
             segment_filter.setSelectedIndex(0);
-            //this.setWorkplaceBySegment(String.valueOf(segment_filter.getSelectedItem()));
             return true;
-        }
-    }
-
-    private void initSegmentFilter() {
-        List result = new ConfigSegment().select();
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0026_NO_SEGMENT_FOUND, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0026_NO_SEGMENT_FOUND);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigSegment cp = (ConfigSegment) o;
-                segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-            }
         }
     }
 
@@ -898,7 +869,6 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            //this.dispose();
             this.setVisible(false);
         }
     }//GEN-LAST:event_formKeyPressed
@@ -918,11 +888,11 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
         } else {
-            this.setWorkplaceBySegment(segment);
+            workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, segment, true);
             this.workplace_filter.setEnabled(true);
         }
 
-        //refresh();
+        
     }//GEN-LAST:event_segment_filterActionPerformed
 
     private void segment_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_segment_filterItemStateChanged
@@ -930,7 +900,7 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
     }//GEN-LAST:event_segment_filterItemStateChanged
 
     private void workplace_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workplace_filterActionPerformed
-        //refresh();
+        
     }//GEN-LAST:event_workplace_filterActionPerformed
 
     private void workplace_filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_workplace_filterItemStateChanged
@@ -1087,7 +1057,7 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
             this.setSegmentByProject(project);
             this.segment_filter.setEnabled(true);
         }
-        //refresh();
+        
     }//GEN-LAST:event_project_filterActionPerformed
 
 

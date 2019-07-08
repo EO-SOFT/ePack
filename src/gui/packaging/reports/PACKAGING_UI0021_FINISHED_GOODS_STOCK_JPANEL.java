@@ -70,25 +70,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
         this.workplace_filter.setEnabled(false);
         this.reset_tables_content();
     }
-
-    
-    private void setWorkplaceBySegment(String segment) {
-        if (segment != null && !segment.isEmpty() && segment != "null") {
-            System.out.println("setWorkplaceBySegment " + segment);
-            List result = new ConfigWorkplace().selectBySegment(segment);
-            if (result.isEmpty()) {
-                UILog.severeDialog(this, ErrorMsg.APP_ERR0038);
-                UILog.severe(ErrorMsg.APP_ERR0038[1]);
-            } else { //Map project data in the list
-                workplace_filter.removeAllItems();
-                workplace_filter.addItem(new ComboItem("ALL", "ALL"));
-                for (Object o : result) {
-                    ConfigWorkplace cp = (ConfigWorkplace) o;
-                    workplace_filter.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
-                }
-            }
-        }
-    }
+        
 
     private boolean setSegmentByProject(String project) {
         List result = new ConfigSegment().selectBySegment(project);
@@ -104,21 +86,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
                 segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
             }
             segment_filter.setSelectedIndex(0);
-            //this.setWorkplaceBySegment(String.valueOf(segment_filter.getSelectedItem()));
             return true;
-        }
-    }
-
-    private void initSegmentFilter() {
-        List result = new ConfigSegment().select();
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, Helper.ERR0026_NO_SEGMENT_FOUND, "Configuration error !", ERROR_MESSAGE);
-            System.err.println(Helper.ERR0026_NO_SEGMENT_FOUND);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigSegment cp = (ConfigSegment) o;
-                segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-            }
         }
     }
 
@@ -486,30 +454,30 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21)
                     .addComponent(jLabel25)
-                    .addComponent(special_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(project_filter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(special_combobox, 0, 187, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel20)
-                    .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(internal_pn_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel24)
+                    .addComponent(segment_filter, 0, 221, Short.MAX_VALUE)
+                    .addComponent(internal_pn_txt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cpn_txt)
-                            .addComponent(workplace_filter, 0, 164, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(export_btn)
-                            .addComponent(refresh_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(workplace_filter, 0, 223, Short.MAX_VALUE)
+                            .addComponent(cpn_txt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(refresh_btn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(export_btn)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,9 +495,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(workplace_filter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -538,7 +504,8 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
                             .addGap(1, 1, 1)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cpn_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(refresh_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(export_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel25)
                             .addGap(2, 2, 2)
@@ -555,10 +522,10 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             .addGroup(north_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(result_table_scroll)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(result_table_scroll)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         north_panelLayout.setVerticalGroup(
             north_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,7 +575,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
 
         //Create the excel workbook
         Workbook wb = new XSSFWorkbook(); // new HSSFWorkbook();
-        Sheet sheet = wb.createSheet("PROD_STATISTICS");
+        Sheet sheet = wb.createSheet("Finished goods");
         CreationHelper createHelper = wb.getCreationHelper();
         double total_available = 0;
 
@@ -680,11 +647,11 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
         } else {
-            this.setWorkplaceBySegment(segment);
+            workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, segment, true);
             this.workplace_filter.setEnabled(true);
         }
 
-        //refresh();
+        
     }//GEN-LAST:event_segment_filterActionPerformed
 
     private void cpn_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpn_txtKeyPressed
@@ -708,7 +675,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             this.setSegmentByProject(project);
             this.segment_filter.setEnabled(true);
         }
-        //refresh();
+        
     }//GEN-LAST:event_project_filterActionPerformed
 
     private void cpn_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpn_txtActionPerformed
