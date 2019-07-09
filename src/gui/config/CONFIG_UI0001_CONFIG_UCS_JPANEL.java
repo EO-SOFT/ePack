@@ -91,20 +91,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         this.initLineTableDoubleClick();
     }
 
-    private void setDestinationByProject(String project) {
-        List result = new LoadPlanDestination().selectDestinationByProject(project);
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0043);
-            UILog.severe(ErrorMsg.APP_ERR0043[1]);
-        } else { //Map project data in the list
-            destination_filter.removeAllItems();
-            for (Object o : result) {
-                LoadPlanDestination cp = (LoadPlanDestination) o;
-                destination_filter.addItem(new ComboItem(cp.getDestination(), cp.getDestination()));
-            }
-        }
-    }
-
+    
     private void load_table_header() {
         this.reset_table_content();
 
@@ -2184,7 +2171,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         } else {
             warehouse_filter = ConfigWarehouse.initWarehouseJBox(this, warehouse_filter, String.valueOf(project_filter.getSelectedItem()), 1, false);
             packaging_wh_filter = ConfigWarehouse.initWarehouseJBox(this, packaging_wh_filter, String.valueOf(project_filter.getSelectedItem()), 0, false);
-            this.setDestinationByProject(String.valueOf(project_filter.getSelectedItem()));
             LoadPlanDestination.setDestinationByProject(this, destination_filter, String.valueOf(project_filter.getSelectedItem()) );
             if (ConfigSegment.setSegmentByProject(this, segment_filter, String.valueOf(project_filter.getSelectedItem()))) {
                 workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, String.valueOf(segment_filter.getSelectedItem()), false);  
