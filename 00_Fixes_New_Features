@@ -33,7 +33,7 @@ dans la totalité des UI
 [OK]    setPacakgingWarehouseByProject
 [OK]    setWarehouseByProject
 [OK]    setSegmentByProject
-    setDestinationByProject
+[OK]    setDestinationByProject
 ################################## New features ###############################
 - Ajouter un champs , priority int (closing pallet sheet copies int, open pallet sheet copies int, ) dans base_container, Config_ucs, drop_base_container pour determiner le nombre de copies à imprimer.
 - POKA-YOKE (Kaizen) Impression de la destination finale dans la fiche 

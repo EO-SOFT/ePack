@@ -97,10 +97,10 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             UILog.severeDialog(this, ErrorMsg.APP_ERR0043);
             UILog.severe(ErrorMsg.APP_ERR0043[1]);
         } else { //Map project data in the list
-            destination_combobox.removeAllItems();
+            destination_filter.removeAllItems();
             for (Object o : result) {
                 LoadPlanDestination cp = (LoadPlanDestination) o;
-                destination_combobox.addItem(new ComboItem(cp.getDestination(), cp.getDestination()));
+                destination_filter.addItem(new ComboItem(cp.getDestination(), cp.getDestination()));
             }
         }
     }
@@ -193,10 +193,10 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                         }
                     }
 
-                    for (int i = 0; i < destination_combobox.getItemCount(); i++) {
-                        System.out.println("TEST DESTINATION " + i + " " + aux.getDestination() + " vs " + destination_combobox.getItemAt(i).toString());
-                        if (destination_combobox.getItemAt(i).toString().equals(aux.getDestination())) {
-                            destination_combobox.setSelectedIndex(i);
+                    for (int i = 0; i < destination_filter.getItemCount(); i++) {
+                        System.out.println("TEST DESTINATION " + i + " " + aux.getDestination() + " vs " + destination_filter.getItemAt(i).toString());
+                        if (destination_filter.getItemAt(i).toString().equals(aux.getDestination())) {
+                            destination_filter.setSelectedIndex(i);
                             break;
                         }
                     }
@@ -305,7 +305,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         duplicate_btn.setEnabled(false);
         msg_lbl.setText("");
         comment_txt.setText("");
-        destination_combobox.setSelectedIndex(0);
+        destination_filter.setSelectedIndex(0);
         special_order_check.setSelected(false);
         articleDesc_textArea.setText("");
         engChange_textArea.setText("");
@@ -441,7 +441,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         write_time_txt = new javax.swing.JTextField();
         packaging_wh_filter = new javax.swing.JComboBox();
         fname_lbl14 = new javax.swing.JLabel();
-        destination_combobox = new javax.swing.JComboBox();
+        destination_filter = new javax.swing.JComboBox();
         priority = new javax.swing.JTextField();
         login_lbl7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -876,10 +876,10 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         fname_lbl14.setForeground(new java.awt.Color(255, 255, 255));
         fname_lbl14.setText("Magasin Emballage");
 
-        destination_combobox.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        destination_combobox.setMaximumSize(null);
-        destination_combobox.setMinimumSize(new java.awt.Dimension(37, 26));
-        destination_combobox.setPreferredSize(new java.awt.Dimension(37, 26));
+        destination_filter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        destination_filter.setMaximumSize(null);
+        destination_filter.setMinimumSize(new java.awt.Dimension(37, 26));
+        destination_filter.setPreferredSize(new java.awt.Dimension(37, 26));
 
         login_lbl7.setForeground(new java.awt.Color(255, 255, 255));
         login_lbl7.setText("Priorité");
@@ -904,7 +904,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                     .addComponent(warehouse_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(project_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, 176, Short.MAX_VALUE)
                     .addComponent(assy_txtbox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                    .addComponent(destination_combobox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(destination_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pwd_lbl2)
@@ -990,7 +990,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                         .addComponent(login_lbl6)
                         .addComponent(pwd_lbl2))
                     .addComponent(active_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destination_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(destination_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1528,9 +1528,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 break;
             }
         }
-        for (int i = 0; i < destination_combobox.getItemCount(); i++) {
-            if (destination_combobox.getItemAt(i).toString().equals(aux.getDestination())) {
-                destination_combobox.setSelectedIndex(i);
+        for (int i = 0; i < destination_filter.getItemCount(); i++) {
+            if (destination_filter.getItemAt(i).toString().equals(aux.getDestination())) {
+                destination_filter.setSelectedIndex(i);
                 break;
             }
         }
@@ -1765,7 +1765,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             mu.setWarehouse(warehouse_filter.getSelectedItem().toString());
             mu.setPackaging_warehouse(packaging_wh_filter.getSelectedItem().toString());
 
-            mu.setDestination(destination_combobox.getSelectedItem().toString());
+            mu.setDestination(destination_filter.getSelectedItem().toString());
             mu.setArticleDesc((articleDesc_textArea.getText().length() > 25) ? articleDesc_textArea.getText().substring(0, 25) : articleDesc_textArea.getText());
             mu.setEngChange((engChange_textArea.getText().length() > 25) ? engChange_textArea.getText().substring(0, 25) : engChange_textArea.getText());
             mu.setGrossWeight(Double.valueOf(grossWeight_txtbox.getText().trim()));
@@ -2115,7 +2115,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             aux.setProject(project_filter.getSelectedItem().toString());
             aux.setWarehouse(warehouse_filter.getSelectedItem().toString());
             aux.setPackaging_warehouse(packaging_wh_filter.getSelectedItem().toString());
-            aux.setDestination(destination_combobox.getSelectedItem().toString());
+            aux.setDestination(destination_filter.getSelectedItem().toString());
             aux.setClosingSheetFormat(Integer.valueOf(closing_sheet_format.getSelectedItem().toString()));
             aux.setArticleDesc(articleDesc_textArea.getText());
             aux.setEngChange(engChange_textArea.getText());
@@ -2185,6 +2185,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             warehouse_filter = ConfigWarehouse.initWarehouseJBox(this, warehouse_filter, String.valueOf(project_filter.getSelectedItem()), 1, false);
             packaging_wh_filter = ConfigWarehouse.initWarehouseJBox(this, packaging_wh_filter, String.valueOf(project_filter.getSelectedItem()), 0, false);
             this.setDestinationByProject(String.valueOf(project_filter.getSelectedItem()));
+            LoadPlanDestination.setDestinationByProject(this, destination_filter, String.valueOf(project_filter.getSelectedItem()) );
             if (ConfigSegment.setSegmentByProject(this, segment_filter, String.valueOf(project_filter.getSelectedItem()))) {
                 workplace_filter = ConfigWorkplace.initWorkplaceJBox(this, workplace_filter, String.valueOf(segment_filter.getSelectedItem()), false);  
                 family_filter = ConfigFamily.initFamilyByProject(this, family_filter, String.valueOf(project_filter.getSelectedItem()));
@@ -2245,7 +2246,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JTextField cpn_txtbox_search;
     private javax.swing.JTextField create_time_txt;
     private javax.swing.JButton delete_btn;
-    private javax.swing.JComboBox destination_combobox;
+    private javax.swing.JComboBox destination_filter;
     private javax.swing.JButton duplicate_btn;
     private org.jdesktop.swingx.JXDatePicker engChangeDatePicker;
     private javax.swing.JTextArea engChange_textArea;

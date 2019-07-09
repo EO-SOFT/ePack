@@ -5,9 +5,11 @@
  */
 package entity;
 
+import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import hibernate.DAO;
+import java.awt.Component;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +18,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.swing.JComboBox;
 import org.hibernate.Query;
+import ui.UILog;
+import ui.error.ErrorMsg;
 
 /**
  *
@@ -74,6 +79,18 @@ public class LoadPlanDestination extends DAO implements java.io.Serializable {
         return query.list();
     }      
     
-    
+    public static void setDestinationByProject(Object parentUI, JComboBox jbox, String project) {
+        List result = new LoadPlanDestination().selectDestinationByProject(project);
+        if (result.isEmpty()) {
+            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0043);
+            UILog.severe(ErrorMsg.APP_ERR0043[1]);
+        } else { //Map project data in the list
+            jbox.removeAllItems();
+            for (Object o : result) {
+                LoadPlanDestination cp = (LoadPlanDestination) o;
+                jbox.addItem(new ComboItem(cp.getDestination(), cp.getDestination()));
+            }
+        }
+    }
     
 }
