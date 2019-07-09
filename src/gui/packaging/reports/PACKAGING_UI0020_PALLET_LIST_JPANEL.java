@@ -197,23 +197,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
         this.initContainerTableDoubleClick();
     }       
 
-    private boolean setSegmentByProject(String project) {
-        List result = new ConfigSegment().selectBySegment(project);
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0037);
-            UILog.severe(ErrorMsg.APP_ERR0037[1]);
-            return false;
-        } else { //Map project data in the list
-            segment_filter.removeAllItems();
-            segment_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                ConfigSegment cp = (ConfigSegment) o;
-                segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-            }
-            segment_filter.setSelectedIndex(0);
-            return true;
-        }
-    }
+    
 
     private void load_table_header(List<String> table_header) {
         this.reset_table_content();
@@ -1416,7 +1400,7 @@ public final class PACKAGING_UI0020_PALLET_LIST_JPANEL extends javax.swing.JPane
             this.segment_filter.setSelectedIndex(0);
             this.segment_filter.setEnabled(false);
         } else {
-            this.setSegmentByProject(project);
+            ConfigSegment.setSegmentByProject(this, segment_filter, project);
             this.segment_filter.setEnabled(true);
         }
         

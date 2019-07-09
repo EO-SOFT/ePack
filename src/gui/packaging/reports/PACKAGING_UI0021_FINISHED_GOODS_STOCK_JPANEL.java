@@ -72,23 +72,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
     }
         
 
-    private boolean setSegmentByProject(String project) {
-        List result = new ConfigSegment().selectBySegment(project);
-        if (result.isEmpty()) {
-            UILog.severeDialog(this, ErrorMsg.APP_ERR0037);
-            UILog.severe(ErrorMsg.APP_ERR0037[1]);
-            return false;
-        } else { //Map project data in the list
-            segment_filter.removeAllItems();
-            segment_filter.addItem(new ComboItem("ALL", "ALL"));
-            for (Object o : result) {
-                ConfigSegment cp = (ConfigSegment) o;
-                segment_filter.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-            }
-            segment_filter.setSelectedIndex(0);
-            return true;
-        }
-    }
+    
 
     public void reset_tables_content() {
         //############ Reset declared table result
@@ -672,7 +656,7 @@ public class PACKAGING_UI0021_FINISHED_GOODS_STOCK_JPANEL extends javax.swing.JP
             this.segment_filter.setSelectedIndex(0);
             this.segment_filter.setEnabled(false);
         } else {
-            this.setSegmentByProject(project);
+            ConfigSegment.setSegmentByProject(this, segment_filter, project);
             this.segment_filter.setEnabled(true);
         }
         

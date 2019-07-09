@@ -32,7 +32,7 @@ dans la totalité des UI
 [OK]    setWorkplaceBySegment
 [OK]    setPacakgingWarehouseByProject
 [OK]    setWarehouseByProject
-    setSegmentByProject
+[OK]    setSegmentByProject
     setDestinationByProject
 ################################## New features ###############################
 - Ajouter un champs , priority int (closing pallet sheet copies int, open pallet sheet copies int, ) dans base_container, Config_ucs, drop_base_container pour determiner le nombre de copies à imprimer.

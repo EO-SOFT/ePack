@@ -1,11 +1,13 @@
 package entity;
 // Generated 6 f�vr. 2016 21:43:55 by Hibernate Tools 3.6.0
 
+import helper.ComboItem;
 import helper.Helper;
 import java.util.List;
 import org.hibernate.Query;
 import helper.HQLHelper;
 import hibernate.DAO;
+import java.awt.Component;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.swing.JComboBox;
+import ui.UILog;
+import ui.error.ErrorMsg;
 
 /**
  * 
@@ -80,6 +85,23 @@ public class ConfigSegment extends DAO implements Serializable{
         
         Helper.sess.getTransaction().commit();
         return query.list();
+    }
+    
+    public static boolean setSegmentByProject(Object parentUI, JComboBox jbox,String project) {
+        List result = new ConfigSegment().selectBySegment(project);
+        if (result.isEmpty()) {
+            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0037);
+            UILog.severe(ErrorMsg.APP_ERR0037[1]);
+            return false;
+        } else { //Map project data in the list
+            jbox.removeAllItems();
+            for (Object o : result) {
+                ConfigSegment cp = (ConfigSegment) o;
+                jbox.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
+            }
+            jbox.setSelectedIndex(0);
+            return true;
+        }
     }
 
 }
