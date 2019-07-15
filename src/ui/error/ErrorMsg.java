@@ -226,4 +226,14 @@ public class ErrorMsg {
      */
     public static String[] APP_ERR0047 = {"APP_ERR0047", "APP_ERR0047 CONFIG : No family found for selected project. Check the project master data."};
     
+    /**
+     * APP_ERR0048 CONFIG : Please fill all required fields.
+     */
+    public static String[] APP_ERR0048 = {"APP_ERR0048", "APP_ERR0048 CONFIG : Please fill all required fields."};
+    
+    /**
+     * APP_ERR0049 CONFIG : No transporter found in the global configuration.
+     */
+    public static String[] APP_ERR0049 = {"APP_ERR0049", "APP_ERR0049 CONFIG : No transporter found in the global configuration."};
+    
 }

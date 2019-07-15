@@ -17,6 +17,7 @@
     <mapping class="entity.ConfigWorkplace"/>
     <mapping class="entity.ConfigWarehouse"/>
     <mapping class="entity.ConfigBookingType"/>
+    <mapping class="entity.ConfigTransporter"/>
     <mapping class="entity.PackagingConfig"/>
     <mapping class="entity.PackagingMaster"/>
     <mapping class="entity.PackagingItems"/>

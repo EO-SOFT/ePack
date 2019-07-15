@@ -233,7 +233,7 @@ public class PackagingStockMovement extends DAO implements Serializable {
 
                         //String[] mailAddressTo = GlobalVars.APP_PROP.getProperty("PACKAGING_ALERT_EMAILS").toString().split("#");
                         //InternetAddress[] mailAddress_TO = new InternetAddress[mailAddressTo.length];
-                        System.out.println("Seuil d'alerte atteint pour l'élement " + stockMvm[0].toString() + " ! ");
+                        System.out.println("Seuil d'alerte atteint pour l'élément " + stockMvm[0].toString() + " ! ");
                         System.out.println("Stock " + stockMvm[0].toString() + " = " + stockMvm[1].toString());
                     }
                 }

@@ -31,21 +31,27 @@ import ui.UILog;
 
 public final class PrintClosingPallet_A5_Mode3 {
 
-    public static String DEST;
+    public static String OUTPUT_FILE;
     public BaseContainer bc;
 
-    //    public static final String DEST = "./simple_table13_" + (new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss")).format(new Date()).toString() + ".pdf";
+    //    public static final String OUTPUT_FILE = "./simple_table13_" + (new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss")).format(new Date()).toString() + ".pdf";
     public String[][] DATA = null;
 
     public void prepareLabelData(BaseContainer bc) {
-        String fdp = "-", articleDesc = "";
+        String fdp = "-", articleDesc = "", address = "", companyName = "";
         try {
             if (bc.getPrint_destination()) {
-                fdp = bc.getDestination();
+                if (bc.getDestination().length() > 20) {
+                    fdp = bc.getDestination().substring(0, 20);
+                } else {
+                    fdp = bc.getDestination();
+                }
+
             }
         } catch (NullPointerException e) {
             fdp = "-";
         }
+
         try {
             articleDesc = bc.getArticleDesc();
             if (articleDesc.length() > 22) {
@@ -55,12 +61,22 @@ public final class PrintClosingPallet_A5_Mode3 {
             articleDesc = "-";
         }
 
-        if (bc.getPrint_destination()) {
-            fdp = bc.getDestination();
+        if (GlobalVars.COMPANY_INFO.getAddress1().length() > 50) {
+            address = GlobalVars.COMPANY_INFO.getAddress1().substring(0, 50);
+        }else{
+            address = GlobalVars.COMPANY_INFO.getAddress1();
         }
+        
+        
+        if (GlobalVars.COMPANY_INFO.getName().length() > 30) {
+            companyName = GlobalVars.COMPANY_INFO.getName().substring(0, 30);
+        }else{
+            companyName = GlobalVars.COMPANY_INFO.getName();
+        }
+
         this.DATA = new String[][]{
             /*0*/{"Customer Part no. (" + GlobalVars.HARN_PART_PREFIX + ")", bc.getHarnessPart(), GlobalVars.HARN_PART_PREFIX + bc.getHarnessPart()},
-            /*1*/ {"Supplier Address", GlobalVars.COMPANY_INFO.getName(), GlobalVars.COMPANY_INFO.getAddress1()},
+            /*1*/ {"Supplier Address", companyName, address},
             /*2*/ {"Supplier Part no. (" + GlobalVars.SUPPLIER_PART_PREFIX + ")", bc.getSupplierPartNumber(), GlobalVars.SUPPLIER_PART_PREFIX + bc.getSupplierPartNumber()},
             /*3*/ {"Article desc.", articleDesc, ""},
             /*4*/ {"Quantity (" + GlobalVars.QUANTITY_PREFIX + ")", bc.getQtyExpected().toString(), GlobalVars.QUANTITY_PREFIX + bc.getQtyExpected().toString()},
@@ -70,18 +86,17 @@ public final class PrintClosingPallet_A5_Mode3 {
             /*8*/ {"Container No. (" + GlobalVars.CLOSING_PALLET_PREFIX + ")", bc.getPalletNumber(), GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber()},
             /*9*/ {"Gross Weight (" + GlobalVars.WEIGHT_PREFIX + ")", bc.getGrossWeight() + "", GlobalVars.WEIGHT_PREFIX + bc.getGrossWeight() + ""},
             /*10*/ {"FIFO Date. (" + GlobalVars.FIFO_DATE_PREFIX + ")", GlobalMethods.convertDateToStringFormat(new Date(), "yy.MM.dd"), GlobalVars.FIFO_DATE_PREFIX + GlobalMethods.convertDateToStringFormat(new Date(), "yy.MM.dd")},
-            ///*11*/ {"Eng. Change", (bc.getEngChange().length() > 22) ? bc.getEngChange().substring(0, 22) : bc.getEngChange(), ""},            
-
-            /*11*/ {"FDP", fdp, ""},
+            /*11*/ {"Final Delivery Point", fdp, ""},
             /*12*/ {"Eng. Change Date", GlobalMethods.convertDateToStringFormat(bc.getEngChangeDate(), "yy.MM.dd"), ""},
             /*13*/ {"Pack Type", bc.getPackType(), ""},
             /*14*/ {"Project", bc.getProject(), ""},
             /*15*/ {"Warehouse (" + GlobalVars.WAREHOUSE_PREFIX + ")", bc.getFGwarehouse(), GlobalVars.WAREHOUSE_PREFIX + bc.getFGwarehouse()}
         };
+
     }
 
     public PrintClosingPallet_A5_Mode3(BaseContainer bc) {
-        PrintClosingPallet_A5_Mode3.DEST = (String.format("." + File.separator
+        PrintClosingPallet_A5_Mode3.OUTPUT_FILE = (String.format("." + File.separator
                 + GlobalVars.APP_PROP.getProperty("PRINT_DIRNAME")
                 + File.separator
                 + GlobalMethods.getStrTimeStamp("yyyy_MM_dd")
@@ -162,7 +177,7 @@ public final class PrintClosingPallet_A5_Mode3 {
     }
 
     public String createPdfTemplate3() throws Exception, DocumentException {
-        PdfDocument pdfDoc = new PdfDocument(new PdfWriter(PrintClosingPallet_A5_Mode3.DEST));
+        PdfDocument pdfDoc = new PdfDocument(new PdfWriter(PrintClosingPallet_A5_Mode3.OUTPUT_FILE));
         Document doc = new Document(pdfDoc, PageSize.A5.rotate());
         doc.setMargins(5, 0, 5, 10);
 
@@ -177,16 +192,18 @@ public final class PrintClosingPallet_A5_Mode3 {
                 .add("")
                 .add(h.h((String) DATA[14][1], true, 32)).setMarginBottom(1).setMarginTop(0));
         //FDP
-        table.addCell(new Cell()//.setBorder(Border.NO_BORDER)
+        table.addCell(new Cell(0, 3)//.setBorder(Border.NO_BORDER)
                 .add(h.h3((String) DATA[11][0]))
                 .add("")
                 .add(h.h((String) DATA[11][1], true, 32)).setMarginBottom(1).setMarginTop(0));
+
+        /*
         //Supplier Address Data
         table.addCell(new Cell(0, 2)
                 .add(h.h3((String) DATA[1][0]))
                 .add(h.h2Bold((String) DATA[1][1]))
                 .add((String) DATA[1][2]).setMarginBottom(0));
-
+         */
         //-------- LINE 2 ---------------------------------
         //Pack Type
         table.addCell(new Cell(0, 2)//.setBorder(Border.NO_BORDER)
@@ -264,6 +281,7 @@ public final class PrintClosingPallet_A5_Mode3 {
                 .add(h.h((String) DATA[0][1], true, 36)
                 ).setMarginBottom(0).setPaddingLeft(10));
 
+        /*@obsolete : as is it not used by the supplier we've remplaced it with FDP
         //Article description
         table.addCell(new Cell(0, 2)//.setBorder(Border.NO_BORDER)
                 .add(
@@ -273,7 +291,12 @@ public final class PrintClosingPallet_A5_Mode3 {
                 .add(
                         (String) DATA[3][2]
                 ).setMarginBottom(1));
-
+         */
+        //Supplier Address
+        table.addCell(new Cell(0, 2)
+                .add(h.h3((String) DATA[1][0]))
+                .add(h.h2Bold((String) DATA[1][1]))
+                .add((String) DATA[1][2]).setMarginBottom(0));
         //-------- LINE 5 ---------------------------------
         //Container no.
         table.addCell(new Cell(0, 2)//.setBorder(Border.NO_BORDER)
@@ -317,7 +340,7 @@ public final class PrintClosingPallet_A5_Mode3 {
 //                ).setMarginBottom(1).setMarginTop(0));
         doc.add(table);
         doc.close();
-        return DEST;
+        return OUTPUT_FILE;
     }
 
     public boolean sentToDefaultDesktopPrinter(String filePath) {
@@ -335,17 +358,17 @@ public final class PrintClosingPallet_A5_Mode3 {
         }
     }
 //    public static void main(String[] args) throws Exception {
-//        File file = new File(DEST);
+//        File file = new File(OUTPUT_FILE);
 //        file.getParentFile().mkdirs();
-//        //new PrintClosingPallet_A5_Mode3().createPdfTemplate3(DEST);
+//        //new PrintClosingPallet_A5_Mode3().createPdfTemplate3(OUTPUT_FILE);
 //    }
 
-    public static String getDEST() {
-        return DEST;
+    public static String getOUTPUT_FILE() {
+        return OUTPUT_FILE;
     }
 
-    public static void setDEST(String DEST) {
-        PrintClosingPallet_A5_Mode3.DEST = DEST;
+    public static void setOUTPUT_FILE(String OUTPUT_FILE) {
+        PrintClosingPallet_A5_Mode3.OUTPUT_FILE = OUTPUT_FILE;
     }
 
 }

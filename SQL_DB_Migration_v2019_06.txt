@@ -2,6 +2,33 @@
 --SQL Patch to execute for new version 2019.06:
 --------------------------------
 
+-- DROP TABLE public.config_transporter;
+
+CREATE TABLE public.config_transporter
+(
+    id integer NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT config_transporter_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.config_transporter
+    OWNER to openpg;
+
+COMMENT ON COLUMN public.config_transporter.name
+    IS 'Name';
+
+CREATE SEQUENCE public.config_transporter_id_seq
+    INCREMENT 1
+    START 1;
+
+ALTER SEQUENCE public.config_transporter_id_seq
+    OWNER TO postgres;
+
+-- config warehouse
 UPDATE public.config_warehouse
 	SET wh_type='FINISHED_GOODS'
 	WHERE wh_type='FINISH_GOODS';
@@ -451,3 +478,4 @@ CREATE SEQUENCE public.load_plan_dispatch_label_id_seq
 
 ALTER SEQUENCE public.load_plan_dispatch_label_id_seq
     OWNER TO postgres;
+

@@ -698,7 +698,7 @@ public class CONFIG_UI0001_CONFIG_BARCODE_JPANEL extends javax.swing.JPanel {
 
     private void delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_btnActionPerformed
         int confirmed = JOptionPane.showConfirmDialog(this,
-                String.format("Confirmez-vous la suppression de cet élement [%s] ?",
+                String.format("Confirmez-vous la suppression de cet élément [%s] ?",
                         this.aux.getId()),
                 "Suppression ?",
                 JOptionPane.WARNING_MESSAGE);

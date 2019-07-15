@@ -1,0 +1,147 @@
+juil. 12, 2019 12:00:24 AM ui.UILog log
+INFOS: File 2019_07_12.log is created!
+
+juil. 12, 2019 12:00:24 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] created !
+open_sheet sub directory [.\print\2019_07_12\open_sheet] created !
+Print sub directory [.\print\2019_07_12\closing_sheet] created !
+Print sub directory [.\print\2019_07_12\picking_label] created !
+Print sub directory [.\print\2019_07_12\dispatch_label] created !
+
+juil. 12, 2019 12:00:26 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-12 00:00:26 Module : Configuration : .
+juil. 12, 2019 12:00:28 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 12, 2019 12:00:33 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 12, 2019 12:00:38 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:00:39 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\closing_sheet\PrintClosingPallet_A5_21493685_2019_07_12_00_00_38836.pdf] to the default printer...
+juil. 12, 2019 12:00:39 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 12, 2019 12:02:11 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:02:11 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\closing_sheet\PrintClosingPallet_A5_21493685_2019_07_12_00_02_11440.pdf] to the default printer...
+juil. 12, 2019 12:02:11 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 12, 2019 12:02:36 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:02:36 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\closing_sheet\PrintClosingPallet_A5_21493685_2019_07_12_00_02_36261.pdf] to the default printer...
+juil. 12, 2019 12:02:36 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 12, 2019 12:02:46 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:02:46 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\closing_sheet\PrintClosingPallet_A5_388-4016_2019_07_12_00_02_46241.pdf] to the default printer...
+juil. 12, 2019 12:02:46 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 12, 2019 12:04:09 AM ui.UILog log
+INFOS: File 2019_07_12.log already exists.
+
+juil. 12, 2019 12:04:09 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:04:21 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-12 00:04:21 Module : Configuration : .
+juil. 12, 2019 12:04:23 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 12, 2019 12:04:27 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 12, 2019 12:04:46 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:04:47 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\closing_sheet\PrintClosingPallet_A5_22299160_2019_07_12_00_04_4688.pdf] to the default printer...
+juil. 12, 2019 12:04:47 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 12, 2019 12:06:52 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:06:52 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\open_sheet\PrintOpenPallet_A5_2019_07_12_00_06_52__22299160_200089391560.pdf] to the default printer...
+juil. 12, 2019 12:06:52 AM ui.UILog log
+INFOS: File [.\print\2019_07_12\open_sheet\PrintOpenPallet_A5_2019_07_12_00_06_52__22299160_200089391560.pdf] has been printed.
+juil. 12, 2019 12:07:41 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 12:07:41 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_12\closing_sheet\PrintClosingPallet_A5_22299160_2019_07_12_00_07_41102.pdf] to the default printer...
+juil. 12, 2019 12:07:41 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 12, 2019 9:51:40 PM ui.UILog log
+INFOS: File 2019_07_12.log already exists.
+
+juil. 12, 2019 9:51:40 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 9:51:48 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-12 21:51:48 Module : Configuration : .
+juil. 12, 2019 9:52:50 PM ui.UILog log
+INFOS: File 2019_07_12.log already exists.
+
+juil. 12, 2019 9:52:50 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 9:52:53 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-12 21:52:53 Module : Configuration : .
+juil. 12, 2019 9:58:08 PM ui.UILog log
+INFOS: File 2019_07_12.log already exists.
+
+juil. 12, 2019 9:58:08 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_12] already exist!
+open_sheet sub directory [.\print\2019_07_12\open_sheet] already exist!
+Print sub directory [.\print\2019_07_12\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_12\picking_label] already exist!
+Print sub directory [.\print\2019_07_12\dispatch_label] already exist!
+
+juil. 12, 2019 9:58:16 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-12 21:58:16 Module : Configuration : .
+juil. 12, 2019 11:29:08 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC

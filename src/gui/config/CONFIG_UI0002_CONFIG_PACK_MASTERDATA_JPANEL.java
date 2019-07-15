@@ -1693,8 +1693,8 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
 
     private void master_delete_btnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_master_delete_btnActionPerformed
         int confirmed = JOptionPane.showConfirmDialog(null,
-                String.format("ATTENTION : \nLa suppression de cet élement entraine la suppression de toutes les configurations associées !\n"
-                        + " Confirmez-vous la suppression de cet élement [%s] ?",
+                String.format("ATTENTION : \nLa suppression de cet élément entraine la suppression de toutes les configurations associées !\n"
+                        + " Confirmez-vous la suppression de cet élément [%s] ?",
                         this.itemsAux.getId()),
                 "Suppression Packaging Item",
                 JOptionPane.WARNING_MESSAGE);
@@ -1890,8 +1890,8 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
 
     private void master_cancel_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_master_cancel_btn1ActionPerformed
         int confirmed = JOptionPane.showConfirmDialog(null,
-                String.format("ATTENTION : \nLa suppression de cet élement entraine la suppression de toutes les configurations associées !\n"
-                        + " Confirmez-vous la suppression de cet élement [%s] ?",
+                String.format("ATTENTION : \nLa suppression de cet élément entraine la suppression de toutes les configurations associées !\n"
+                        + " Confirmez-vous la suppression de cet élément [%s] ?",
                         this.mastersAux.getId()),
                 "Suppression Packaging Master",
                 JOptionPane.WARNING_MESSAGE);

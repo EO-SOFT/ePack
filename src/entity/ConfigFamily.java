@@ -161,16 +161,7 @@ public class ConfigFamily extends DAO implements Serializable {
                 }
             }
         }
-        /*
-        if (result.isEmpty()) {
-            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0044);
-            UILog.severe(ErrorMsg.APP_ERR0044[1]);
-        } else { //Map project data in the list
-            for (Object o : result) {
-                ConfigFamily item = (ConfigFamily) o;
-                box.addItem(new ComboItem(item.getFamily(), item.getFamily()));
-            }
-        }*/
+        
         return box;
 
     }

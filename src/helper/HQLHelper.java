@@ -69,6 +69,10 @@ public class HQLHelper {
     public final static String GET_ALL_FAMILIES = "FROM ConfigFamily bp ORDER BY harnessType ASC";
     public final static String GET_FAMILY_BY_NAME = "FROM ConfigFamily bp WHERE harnessType = :harnessType ORDER BY harnessType ASC";
     
+    //ConfigTransporter
+    public final static String GET_TRANSPORTER_BY_ID = "FROM ConfigTransporter c WHERE id = :id";
+    public final static String GET_TRANSPORTER_BY_NAME = "FROM ConfigTransporter c WHERE name = :name ORDER BY name ASC";
+    public final static String GET_ALL_TRANSPORTERS = "FROM ConfigTransporter c ORDER BY name ASC";
     //ConfigProject
     public final static String GET_ALL_PROJECT = "FROM ConfigProject bp ORDER BY project ASC";
     

@@ -713,7 +713,7 @@ public class PACKAGING_UI0017_UCS_List_JPANEL extends javax.swing.JPanel {
             sheetPointer++;
         }
         //Past the workbook to the file chooser
-        new JDialogExcelFileChooser((Frame) super.getParent(), true, wb).setVisible(true);
+        new JDialogExcelFileChooser(null, true, wb).setVisible(true);
     }//GEN-LAST:event_export_btnActionPerformed
 
     private void ucs_result_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ucs_result_tableKeyPressed

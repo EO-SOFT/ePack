@@ -6,17 +6,12 @@
 package __main__;
 
 import entity.ConfigBarcode;
-import entity.ConfigFamily;
-import entity.ConfigProject;
 import entity.ConfigWarehouse;
-import gui.packaging.reports.PACKAGING_UI0020_PALLET_LIST_JPANEL;
-import gui.packaging_warehouse.PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL;
 import helper.CloseTabButtonComponent;
 import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.awt.AWTEvent;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -27,12 +22,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import ui.UILog;
 import ui.config.ConfigMsg;
@@ -43,7 +41,41 @@ import ui.error.ErrorMsg;
  * @author Oussama EZZIOURI
  */
 public class GlobalMethods {
+    
+    /**
+     * @param dataVector
+     * @param jtable
+     * @param headerList
+     * @param dataResultList
+     */
+    public static void reset_jtable_data(List<Object[]> dataResultList, Vector dataVector, List<String> headerList, JTable jtable) {
+        
+        Vector<String> headerVector = new Vector<String>();
+        
+        //reset Table content
+        jtable.setModel(new DefaultTableModel(new Vector(), new Vector()));
+        
+        for (Iterator<String> it = headerList.iterator(); it.hasNext();) {
+            headerVector.add(it.next());
+        }
+        for (Object[] line : dataResultList) {
+            @SuppressWarnings("UseOfObsoleteCollectionType")
+            Vector<Object> oneRow = new Vector<Object>();
+            for (Object cell : line) {
+                oneRow.add(String.valueOf(cell));
+            }
+            dataVector.add(oneRow);
+        }
+        
+        for (int c = 0; c < jtable.getColumnCount(); c++) {
+            Class<?> col_class = jtable.getColumnClass(c);
+            jtable.setDefaultEditor(col_class, null);        // remove editor            
+        }
 
+        jtable.setModel(new DefaultTableModel(dataVector, headerVector));
+        jtable.setAutoCreateRowSorter(true);
+    }
+    
     /**
      *
      * @return
