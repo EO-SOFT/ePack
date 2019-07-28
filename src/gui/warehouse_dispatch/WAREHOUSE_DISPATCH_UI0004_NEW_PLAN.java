@@ -6,6 +6,7 @@
 package gui.warehouse_dispatch;
 
 import entity.ConfigProject;
+import entity.ConfigTransporter;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestination;
@@ -37,7 +38,6 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
 
         initComponents();
         initGui();
-        System.out.println("main_tabbedPane " + main_tabbedPane.getTabCount());
         main_tabbedPane.setEnabledAt(1, false);
 
     }
@@ -46,6 +46,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
         Helper.centerJDialog(this);
         this.setResizable(false);
         project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
+        transporter_filter = ConfigTransporter.initTransporterJBox(this, transporter_filter, false);
         this.ok_btn.setEnabled(false);
         disableEditingTable();
 
@@ -68,11 +69,11 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
         login_lbl3 = new javax.swing.JLabel();
         project_filter = new javax.swing.JComboBox();
         login_lbl4 = new javax.swing.JLabel();
-        warehouse_filter = new javax.swing.JComboBox();
+        warehouse_filter = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         deliveryDatePicker = new org.jdesktop.swingx.JXDatePicker();
         jLabel2 = new javax.swing.JLabel();
-        transporter_text = new javax.swing.JTextField();
+        transporter_filter = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         truck_no_text = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -171,17 +172,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
         jLabel2.setText("Transporteur (obligatoire) :");
         jPanel1.add(jLabel2);
 
-        transporter_text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transporter_textActionPerformed(evt);
-            }
-        });
-        transporter_text.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                transporter_textKeyReleased(evt);
-            }
-        });
-        jPanel1.add(transporter_text);
+        jPanel1.add(transporter_filter);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel3.setText("Matricule  Remorque");
@@ -279,12 +270,12 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
             UILog.severeDialog(null, ErrorMsg.APP_ERR0026);
             this.main_tabbedPane.setSelectedIndex(1);
         } else {
-            if (transporter_text.getText().isEmpty()) {
-                this.main_tabbedPane.setSelectedIndex(0);
-                transporter_text.requestFocus();
-                UILog.severe(ErrorMsg.APP_ERR0045[0]);
-                UILog.severeDialog(null, ErrorMsg.APP_ERR0045);
-            } else {
+//            if (transporter_text.getText().isEmpty()) {
+//                this.main_tabbedPane.setSelectedIndex(0);
+//                transporter_text.requestFocus();
+//                UILog.severe(ErrorMsg.APP_ERR0045[0]);
+//                UILog.severeDialog(null, ErrorMsg.APP_ERR0045);
+//            } else {
                 try {
 
                     Date date = new Date();
@@ -293,7 +284,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
                     lp.setCreateId(WarehouseHelper.warehouse_reserv_context.getUser().getId());
                     lp.setCreateTime(date);
                     lp.setDeliveryTime(deliveryDatePicker.getDate());
-                    lp.setTransportCompany(transporter_text.getText());
+                    lp.setTransportCompany(transporter_filter.getSelectedItem().toString());
                     lp.setUser(WarehouseHelper.warehouse_reserv_context.getUser().getFirstName() + " " + WarehouseHelper.warehouse_reserv_context.getUser().getLastName());
                     lp.setPlanState(WarehouseHelper.LOAD_PLAN_STATE_OPEN);
                     lp.setTruckNo((truck_no_text.getText().isEmpty()) ? "" : truck_no_text.getText());
@@ -335,7 +326,7 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
                     UILog.severeDialog(null, ErrorMsg.APP_ERR0028);
                     UILog.exceptionDialog(this, e);
                 }
-            }
+//            }//
         }
     }//GEN-LAST:event_ok_btnActionPerformed
 
@@ -384,16 +375,8 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
 
     }//GEN-LAST:event_main_tabbedPaneStateChanged
 
-    private void transporter_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_transporter_textKeyReleased
-        if (transporter_text.getText().isEmpty() || deliveryDatePicker.getDate() == null ) {
-            main_tabbedPane.setEnabledAt(1, false);
-        } else {
-            main_tabbedPane.setEnabledAt(1, true);
-        }
-    }//GEN-LAST:event_transporter_textKeyReleased
-
     private void deliveryDatePickerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_deliveryDatePickerKeyPressed
-        if (transporter_text.getText().isEmpty() || deliveryDatePicker.getDate() == null ) {
+        if (deliveryDatePicker.getDate() == null ) {
             main_tabbedPane.setEnabledAt(1, false);
         } else {
             main_tabbedPane.setEnabledAt(1, true);
@@ -401,20 +384,12 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
     }//GEN-LAST:event_deliveryDatePickerKeyPressed
 
     private void deliveryDatePickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryDatePickerActionPerformed
-        if (transporter_text.getText().isEmpty() || deliveryDatePicker.getDate() == null ) {
+        if (deliveryDatePicker.getDate() == null ) {
             main_tabbedPane.setEnabledAt(1, false);
         } else {
             main_tabbedPane.setEnabledAt(1, true);
         }
     }//GEN-LAST:event_deliveryDatePickerActionPerformed
-
-    private void transporter_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporter_textActionPerformed
-        if (transporter_text.getText().isEmpty() || deliveryDatePicker.getDate() == null ) {
-            main_tabbedPane.setEnabledAt(1, false);
-        } else {
-            main_tabbedPane.setEnabledAt(1, true);
-        }
-    }//GEN-LAST:event_transporter_textActionPerformed
 
     public void disableEditingTable() {
         for (int c = 1; c < destinations_table.getColumnCount(); c++) {
@@ -497,9 +472,9 @@ public final class WAREHOUSE_DISPATCH_UI0004_NEW_PLAN extends javax.swing.JDialo
     private javax.swing.JComboBox project_filter;
     private javax.swing.JPanel tab1;
     private javax.swing.JScrollPane tab2_fdp;
-    private javax.swing.JTextField transporter_text;
+    private javax.swing.JComboBox<String> transporter_filter;
     private javax.swing.JTextField truck_no_text;
-    private javax.swing.JComboBox warehouse_filter;
+    private javax.swing.JComboBox<String> warehouse_filter;
     // End of variables declaration//GEN-END:variables
 
 }

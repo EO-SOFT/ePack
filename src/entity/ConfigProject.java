@@ -21,12 +21,12 @@ import ui.UILog;
 import ui.error.ErrorMsg;
 
 /**
- * 
+ *
  */
 @Entity
 @Table(name = "config_project")
-public class ConfigProject extends DAO implements Serializable{
-    
+public class ConfigProject extends DAO implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "config_project_id_seq")
     @SequenceGenerator(name = "config_project_id_seq", sequenceName = "config_project_id_seq", allocationSize = 1)
@@ -35,7 +35,7 @@ public class ConfigProject extends DAO implements Serializable{
     
     @Column(name = "project")
     private String project;
-    
+
     @Column(name = "description")
     private String description;
 
@@ -69,7 +69,7 @@ public class ConfigProject extends DAO implements Serializable{
     public void setProject(String project) {
         this.project = project;
     }
-    
+
     //######################################################################
     public List select() {
         Helper.startSession();
@@ -77,16 +77,18 @@ public class ConfigProject extends DAO implements Serializable{
         UILog.info(query.getQueryString());
         Helper.sess.getTransaction().commit();
         return query.list();
-    }       
-    
+    }
+
     /**
      *
      * @param parentUI
      * @param box
-     * @param displayAll display the "ALL" filter in shown values in the first 
+     * @param displayAll display the "ALL" filter in shown values in the first
      * position of the list
      */
     public static JComboBox initProjectsJBox(Object parentUI, JComboBox box, boolean displayAll) {
+        System.out.println("Kotominei box : " + box.getClass().getCanonicalName());
+
         List result = new ConfigProject().select();
         if (result.isEmpty()) {
             UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0035);
@@ -94,11 +96,15 @@ public class ConfigProject extends DAO implements Serializable{
         } else { //Map project data in the list
             box.removeAllItems();
             if (displayAll) {
-                box.addItem(new ComboItem("ALL", "ALL"));
+                //box.addItem(new ComboItem("ALL", "ALL"));
+                box.addItem("ALL");
             }
             for (Object o : result) {
                 ConfigProject p = (ConfigProject) o;
-                box.addItem(new ComboItem(p.getProject(), p.getProject()));
+//                if(box.getClass().getCanonicalName().equals("javax.swing.JComboBox<String>"))
+                box.addItem(p.getProject());
+//                else
+//                    box.addItem(new ComboItem(p.getProject(), p.getProject()));
             }
         }
         return box;

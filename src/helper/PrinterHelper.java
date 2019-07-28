@@ -425,7 +425,7 @@ public class PrinterHelper {
             Helper.sess.beginTransaction();
             Helper.sess.getTransaction().commit();
             List result = query.list();
-            System.out.println("query " + query.getQueryString());
+            System.out.println("closingPallet query " + query.getQueryString());
 
             closingSheet = (HisClosingPalPrint) result.get(0);
             closingSheet.setWriteTime(new Date());

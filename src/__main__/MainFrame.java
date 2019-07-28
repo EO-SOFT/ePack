@@ -105,7 +105,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         MENU_05_MODULE_CONFIG.setVisible(false);
         if (GlobalVars.CONNECTED_USER.getAccessLevel() == 0) {
-            packaging_submenu.setVisible(false);
+            menu012_packaging.setVisible(false);
         }
         //Warehouse agent
         if (GlobalVars.CONNECTED_USER.getAccessLevel() == 2000) {
@@ -123,19 +123,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Load packaging menus depends on user profile
         //menu_scan_mode_1.setEnabled(false);
-        menu_scan_mode_1.setVisible(false);
-        menu_scan_mode_2.setVisible(false);
-        switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
-            case "1":
-                menu_scan_mode_1.setVisible(true);
-                break;
-            case "2":
-                menu_scan_mode_2.setVisible(true);
-                break;
-            default:
-                UILog.severeDialog(this, "Error in PACKAGING_SCAN_MODE property. Check the config.properties values.", "Properties error");
-                break;
-        }
+//        switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
+//            case "1":
+//                menu_scan_mode_1.setVisible(true);
+//                break;
+//            case "2":
+//                menu_scan_mode_2.setVisible(true);
+//                break;
+//            default:
+//                UILog.severeDialog(this, "Error in PACKAGING_SCAN_MODE property. Check the config.properties values.", "Properties error");
+//                break;
+//        }
     }
 
     
@@ -147,9 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
         rootTabbedPane = new javax.swing.JTabbedPane();
         menuBar = new javax.swing.JMenuBar();
         MENU_01_PRODUCTION = new javax.swing.JMenu();
-        packaging_submenu = new javax.swing.JMenu();
-        menu_scan_mode_1 = new javax.swing.JMenuItem();
-        menu_scan_mode_2 = new javax.swing.JMenuItem();
+        menu012_packaging = new javax.swing.JMenuItem();
         menu011_prod_statistics = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         menu013_pallet_list = new javax.swing.JMenuItem();
@@ -201,30 +197,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         MENU_01_PRODUCTION.setText("Production");
 
-        packaging_submenu.setText("Conditionnement");
-        packaging_submenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                packaging_submenuMouseClicked(evt);
-            }
-        });
-
-        menu_scan_mode_1.setText("Mode 1");
-        menu_scan_mode_1.addActionListener(new java.awt.event.ActionListener() {
+        menu012_packaging.setText("Conditionnement");
+        menu012_packaging.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_scan_mode_1ActionPerformed(evt);
+                menu012_packagingActionPerformed(evt);
             }
         });
-        packaging_submenu.add(menu_scan_mode_1);
-
-        menu_scan_mode_2.setText("Mode 2");
-        menu_scan_mode_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_scan_mode_2ActionPerformed(evt);
-            }
-        });
-        packaging_submenu.add(menu_scan_mode_2);
-
-        MENU_01_PRODUCTION.add(packaging_submenu);
+        MENU_01_PRODUCTION.add(menu012_packaging);
 
         menu011_prod_statistics.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         menu011_prod_statistics.setText("Statistiques production");
@@ -626,68 +605,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void packaging_stock_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packaging_stock_menuActionPerformed
         GlobalMethods.addNewTabToParent("Stock d'emballage", this.rootTabbedPane, new PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL(this.rootTabbedPane), evt);
     }//GEN-LAST:event_packaging_stock_menuActionPerformed
-
-    private void menu_scan_mode_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_scan_mode_1ActionPerformed
-        PackagingVars.mode2_context.setState(new Mode2_S010_UserCodeScan());
-        PackagingVars.Packaging_Gui_Mode2 = new PACKAGING_UI0001_Main_Mode2(null, this);
-        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
-        PackagingVars.Packaging_Gui_Mode2.disableAdminMenus();
-        
-    }//GEN-LAST:event_menu_scan_mode_1ActionPerformed
-
-
-    private void menu_scan_mode_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_scan_mode_2ActionPerformed
-
-        //PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
-        //Auth réussie, Passage à l'état S02 de lecture Harness part                
-//        PackagingVars.mode3_context.setState(new Mode3_S020_HarnessPartScan());
-//        
-//        PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, this);
-//        
-//        GlobalMethods.loadDotMatrixCodePatterns(PackagingVars.Packaging_Gui_Mode3.getHarnessTypeBox().getSelectedItem().toString());
 //
-//        //Load PART NUMBER patterns
-//        GlobalMethods.loadPartNumberCodePatterns(PackagingVars.Packaging_Gui_Mode3.getHarnessTypeBox().getSelectedItem().toString());
-//
-//        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
-//        PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();
-        /*
-        PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
-        PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, rootTabbedPane);
-        GlobalMethods.addNewTabToParent("Packaging", rootTabbedPane, PackagingVars.Packaging_Gui_Mode3, evt);
-        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
-        PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();*/
-        System.out.println("GlobalVars.OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
-        if (GlobalVars.OPENED_SCAN_WINDOW == 0) {
-            PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
-            PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, this);
-            PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
-            PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();
-            GlobalVars.OPENED_SCAN_WINDOW = 1;
-            System.out.println("OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
-        } else {
-            //UILog.severeDialog(this, "Une fenêtre du module scanne déjà ouverte.", "Nombre de fenêtre maximal atteint !");
-            PackagingVars.Packaging_Gui_Mode3.requestFocus();
-        }
-
-    }//GEN-LAST:event_menu_scan_mode_2ActionPerformed
-
-    private void packaging_submenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_packaging_submenuMouseClicked
-        /*if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
-            PackagingVars.mode2_context.setState(new Mode2_S010_UserCodeScan());
-            PackagingVars.Packaging_Gui_Mode2 = new PACKAGING_UI0001_Main_Mode2(null, this);
-            PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
-            PackagingVars.Packaging_Gui_Mode2.disableAdminMenus();
-        } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("3")) {
-            PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
-            PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, this);
-            PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
-            PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();
-        } else {
-            UILog.severeDialog(this, "Error in PACKAGING_SCAN_MODE property. Check the config.properties values.", "Properties error");
-        }*/
-    }//GEN-LAST:event_packaging_submenuMouseClicked
-
+//   private void menu_scan_mode_1ActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+//        PackagingVars.mode2_context.setState(new Mode2_S010_UserCodeScan());
+//        PackagingVars.Packaging_Gui_Mode2 = new PACKAGING_UI0001_Main_Mode2(null, this);
+//        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
+//        PackagingVars.Packaging_Gui_Mode2.disableAdminMenus();
+//        
+//    }   
+    
     private void MENU_03_MODULE_DISPATCHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MENU_03_MODULE_DISPATCHMouseClicked
 
     }//GEN-LAST:event_MENU_03_MODULE_DISPATCHMouseClicked
@@ -785,6 +711,20 @@ public class MainFrame extends javax.swing.JFrame {
         addNewTab(new PACKAGING_UI0020_PALLET_LIST_JPANEL(rootTabbedPane, false), evt);
     }//GEN-LAST:event_menu013_pallet_list1ActionPerformed
 
+    private void menu012_packagingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu012_packagingActionPerformed
+        if (GlobalVars.OPENED_SCAN_WINDOW == 0) {
+            PackagingVars.mode3_context.setState(new Mode3_S010_UserCodeScan());
+            PackagingVars.Packaging_Gui_Mode3 = new PACKAGING_UI0001_Main_Mode3(null, this);
+            PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
+            PackagingVars.Packaging_Gui_Mode3.disableAdminMenus();
+            GlobalVars.OPENED_SCAN_WINDOW = 1;
+            System.out.println("OPENED_SCAN_WINDOW " + GlobalVars.OPENED_SCAN_WINDOW);
+        } else {
+            //UILog.severeDialog(this, "Une fenêtre du module scanne déjà ouverte.", "Nombre de fenêtre maximal atteint !");
+            PackagingVars.Packaging_Gui_Mode3.requestFocus();
+        }
+    }//GEN-LAST:event_menu012_packagingActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MENU_00_01_FG_RECEPTION;
@@ -811,6 +751,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu012_deleted_harness;
     private javax.swing.JMenuItem menu012_deleted_pallet;
     private javax.swing.JMenuItem menu012_harness_details;
+    private javax.swing.JMenuItem menu012_packaging;
     private javax.swing.JMenuItem menu013_pallet_list;
     private javax.swing.JMenuItem menu013_pallet_list1;
     private javax.swing.JMenuItem menu017_ucs;
@@ -818,10 +759,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu018_open_pallet_list1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menu_dispatch;
-    private javax.swing.JMenuItem menu_scan_mode_1;
-    private javax.swing.JMenuItem menu_scan_mode_2;
     private javax.swing.JMenuItem packaging_stock_menu;
-    private javax.swing.JMenu packaging_submenu;
     private javax.swing.JTabbedPane rootTabbedPane;
     // End of variables declaration//GEN-END:variables
 

@@ -350,7 +350,8 @@ public class GlobalMethods {
                 box.removeAllItems();
                 for (Object o : result) {
                     ConfigWarehouse cp = (ConfigWarehouse) o;
-                    box.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                    //box.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                    box.addItem(cp.getWarehouse());
                 }
 
             }
@@ -372,6 +373,14 @@ public class GlobalMethods {
         return (String) cw.getWarehouse();
     }
 
-    
+    /**
+     * 
+     */
+    public static void disableEditingTable(JTable jtable) {
+        for (int c = 0; c < jtable.getColumnCount(); c++) {
+            Class<?> col_class = jtable.getColumnClass(c);
+            jtable.setDefaultEditor(col_class, null);        // remove editor            
+        }
+    }
 
 }

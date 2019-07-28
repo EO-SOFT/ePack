@@ -867,7 +867,8 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
     private void segment_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segment_filterActionPerformed
         String segment = String.valueOf(segment_filter.getSelectedItem()).trim();
         this.workplace_filter.removeAllItems();
-        this.workplace_filter.addItem(new ComboItem("ALL", "ALL"));
+        //this.workplace_filter.addItem(new ComboItem("ALL", "ALL"));
+        this.workplace_filter.addItem("ALL");
         if ("ALL".equals(segment) || segment.equals("null")) {
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
@@ -1034,7 +1035,8 @@ public class PACKAGING_UI0019_EfficiencyCalculation_JPANEL extends javax.swing.J
         System.out.println("Selected Project " + project);
         if ("ALL".equals(project)) {
             segment_filter.removeAllItems();
-            segment_filter.addItem(new ComboItem("ALL", "ALL"));
+            //segment_filter.addItem(new ComboItem("ALL", "ALL"));
+            segment_filter.addItem("ALL");
             this.segment_filter.setSelectedIndex(0);
             this.segment_filter.setEnabled(false);
         } else {

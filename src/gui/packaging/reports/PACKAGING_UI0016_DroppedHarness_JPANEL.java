@@ -93,7 +93,8 @@ public class PACKAGING_UI0016_DroppedHarness_JPANEL extends javax.swing.JPanel {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigFamily cp = (ConfigFamily) o;
-                harness_type_filter.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
+                //harness_type_filter.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
+                harness_type_filter.addItem(cp.getFamily());
             }
         }
     }

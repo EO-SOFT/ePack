@@ -73,7 +73,8 @@ public class CONFIG_UI0001_CONFIG_BARCODE_JPANEL extends javax.swing.JPanel {
     private void initGui(JTabbedPane parent) {
         //Center the this dialog in the screen
         this.parent = parent;
-        harnessTypeBox.addItem(new ComboItem("", ""));
+        //harnessTypeBox.addItem(new ComboItem("", ""));
+        harnessTypeBox.addItem("");
         Helper.loadProjectsInJbox(harnessTypeBox);
         //Desable table edition
         //disableEditingTable();

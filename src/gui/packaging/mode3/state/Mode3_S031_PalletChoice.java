@@ -124,6 +124,7 @@ public class Mode3_S031_PalletChoice implements Mode3_State {
                     //############## UCS Contains just 1 harness ###################
                     if (bc.getQtyExpected() == newQty || bc.getQtyExpected() == 1) {
                         UILog.info("Quantité terminée %s", bc.toString());
+                        System.out.println("Printing closing sheet copie " + bc.getClosingSheetCopies());
                         for (int copies = 0; copies < bc.getClosingSheetCopies(); copies++) {
                             System.out.println("Printing closing sheet copie " + copies);
                             try {                 

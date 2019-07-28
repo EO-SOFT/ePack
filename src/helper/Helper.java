@@ -357,7 +357,8 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigFamily cp = (ConfigFamily) o;
-                jbox.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
+                //jbox.addItem(new ComboItem(cp.getFamily(), cp.getFamily()));
+                jbox.addItem(cp.getFamily());
             }
         }
     }
@@ -370,7 +371,8 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigShift cs = (ConfigShift) o;
-                jbox.addItem(new ComboItem(cs.getDescription(), cs.getName()));
+                //jbox.addItem(new ComboItem(cs.getDescription(), cs.getName()));
+                jbox.addItem(cs.getDescription());
             }
         }
     }
@@ -384,9 +386,8 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigUcs cu = (ConfigUcs) o;
-                jbox.addItem(new ComboItem(
-                        cu.getHarnessPart(),
-                        String.valueOf(cu.getHarnessPart())));
+                //jbox.addItem(new ComboItem(cu.getHarnessPart(),String.valueOf(cu.getHarnessPart())));
+                jbox.addItem(String.valueOf(cu.getHarnessPart()));
             }
         }
     }
@@ -399,9 +400,8 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigUcs cu = (ConfigUcs) o;
-                jbox.addItem(new ComboItem(
-                        cu.getSupplierPartNumber(),
-                        String.valueOf(cu.getSupplierPartNumber())));
+                //jbox.addItem(new ComboItem(cu.getSupplierPartNumber(),String.valueOf(cu.getSupplierPartNumber())));
+                jbox.addItem(String.valueOf(cu.getSupplierPartNumber()));
             }
         }
     }
@@ -414,9 +414,8 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigUcs cu = (ConfigUcs) o;
-                jbox.addItem(new ComboItem(
-                        cu.getHarnessIndex(),
-                        cu.getHarnessIndex()));
+                //jbox.addItem(new ComboItem(cu.getHarnessIndex(),cu.getHarnessIndex()));
+                jbox.addItem(cu.getHarnessIndex());
             }
         }
     }
@@ -434,9 +433,8 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigUcs cu = (ConfigUcs) o;
-                jbox.addItem(new ComboItem(
-                        String.valueOf(cu.getPackSize()),
-                        String.valueOf(cu.getPackSize())));
+                //jbox.addItem(new ComboItem(String.valueOf(cu.getPackSize()),String.valueOf(cu.getPackSize())));
+                jbox.addItem(String.valueOf(cu.getPackSize()));
             }
         }
     }
@@ -453,19 +451,24 @@ public class Helper {
         } else { //Map project data in the list
             for (Object o : result) {
                 ConfigUcs cu = (ConfigUcs) o;
-                jbox.addItem(new ComboItem(
-                        String.valueOf(cu.getPackType()),
-                        String.valueOf(cu.getPackType())));
+                //jbox.addItem(new ComboItem(String.valueOf(cu.getPackType()),String.valueOf(cu.getPackType())));
+                jbox.addItem(String.valueOf(cu.getPackType()));
             }
         }
     }
 
     public static void loadContainerStateInJbox(JComboBox jbox) {
-        jbox.addItem(new ComboItem(GlobalVars.PALLET_STORED, GlobalVars.PALLET_STORED));
-        jbox.addItem(new ComboItem(GlobalVars.PALLET_OPEN, GlobalVars.PALLET_OPEN));
-        jbox.addItem(new ComboItem(GlobalVars.PALLET_WAITING, GlobalVars.PALLET_WAITING));
-        jbox.addItem(new ComboItem(GlobalVars.PALLET_DISPATCHED, GlobalVars.PALLET_DISPATCHED));
-        jbox.addItem(new ComboItem(GlobalVars.PALLET_CLOSED, GlobalVars.PALLET_CLOSED));
+//        jbox.addItem(new ComboItem(GlobalVars.PALLET_STORED, GlobalVars.PALLET_STORED));
+//        jbox.addItem(new ComboItem(GlobalVars.PALLET_OPEN, GlobalVars.PALLET_OPEN));
+//        jbox.addItem(new ComboItem(GlobalVars.PALLET_WAITING, GlobalVars.PALLET_WAITING));
+//        jbox.addItem(new ComboItem(GlobalVars.PALLET_DISPATCHED, GlobalVars.PALLET_DISPATCHED));
+//        jbox.addItem(new ComboItem(GlobalVars.PALLET_CLOSED, GlobalVars.PALLET_CLOSED));
+        
+        jbox.addItem(GlobalVars.PALLET_STORED);
+        jbox.addItem(GlobalVars.PALLET_OPEN);
+        jbox.addItem(GlobalVars.PALLET_WAITING);
+        jbox.addItem(GlobalVars.PALLET_DISPATCHED);
+        jbox.addItem(GlobalVars.PALLET_CLOSED);
     }
 
     public static void loadCustomersInJbox(JComboBox jbox) {
@@ -476,7 +479,8 @@ public class Helper {
         } else {
             System.out.println(result.toString());
             for (int i = 0; i < result.size(); i++) {
-                jbox.addItem(new ComboItem(result.get(i)[0], result.get(i)[0]));
+                //jbox.addItem(new ComboItem(result.get(i)[0], result.get(i)[0]));
+                jbox.addItem(result.get(i)[0]);
             }
         }
     }

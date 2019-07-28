@@ -1,0 +1,116 @@
+juil. 22, 2019 11:05:26 PM ui.UILog log
+INFOS: File 2019_07_22.log is created!
+
+juil. 22, 2019 11:05:26 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] created !
+open_sheet sub directory [.\print\2019_07_22\open_sheet] created !
+Print sub directory [.\print\2019_07_22\closing_sheet] created !
+Print sub directory [.\print\2019_07_22\picking_label] created !
+Print sub directory [.\print\2019_07_22\dispatch_label] created !
+
+juil. 22, 2019 11:05:38 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:05:38 Module : Configuration : .
+juil. 22, 2019 11:09:02 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:09:02 Dispatch interface : .
+juil. 22, 2019 11:10:35 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:10:37 PM ui.UILog log
+GRAVE: APP_ERR0042 CONFIG : No warehouse found for the selected project.
+juil. 22, 2019 11:32:04 PM ui.UILog log
+INFOS: File 2019_07_22.log already exists.
+
+juil. 22, 2019 11:32:04 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] already exist!
+open_sheet sub directory [.\print\2019_07_22\open_sheet] already exist!
+Print sub directory [.\print\2019_07_22\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_22\picking_label] already exist!
+Print sub directory [.\print\2019_07_22\dispatch_label] already exist!
+
+juil. 22, 2019 11:32:06 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:32:06 Module : Configuration : .
+juil. 22, 2019 11:32:08 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:32:08 Dispatch interface : .
+juil. 22, 2019 11:33:36 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:33:43 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:33:44 PM ui.UILog log
+GRAVE: APP_ERR0037 CONFIG : No Segment found for the selected project.
+juil. 22, 2019 11:37:05 PM ui.UILog log
+INFOS: File 2019_07_22.log already exists.
+
+juil. 22, 2019 11:37:05 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] already exist!
+open_sheet sub directory [.\print\2019_07_22\open_sheet] already exist!
+Print sub directory [.\print\2019_07_22\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_22\picking_label] already exist!
+Print sub directory [.\print\2019_07_22\dispatch_label] already exist!
+
+juil. 22, 2019 11:40:13 PM ui.UILog log
+INFOS: File 2019_07_22.log already exists.
+
+juil. 22, 2019 11:40:13 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] already exist!
+open_sheet sub directory [.\print\2019_07_22\open_sheet] already exist!
+Print sub directory [.\print\2019_07_22\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_22\picking_label] already exist!
+Print sub directory [.\print\2019_07_22\dispatch_label] already exist!
+
+juil. 22, 2019 11:40:16 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:40:16 Module : Configuration : .
+juil. 22, 2019 11:40:19 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:40:20 PM ui.UILog log
+GRAVE: APP_ERR0037 CONFIG : No Segment found for the selected project.
+juil. 22, 2019 11:40:20 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:43:34 PM ui.UILog log
+INFOS: File 2019_07_22.log already exists.
+
+juil. 22, 2019 11:43:34 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] already exist!
+open_sheet sub directory [.\print\2019_07_22\open_sheet] already exist!
+Print sub directory [.\print\2019_07_22\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_22\picking_label] already exist!
+Print sub directory [.\print\2019_07_22\dispatch_label] already exist!
+
+juil. 22, 2019 11:44:24 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:44:24 Module : Configuration : .
+juil. 22, 2019 11:44:26 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:44:26 Dispatch interface : .
+juil. 22, 2019 11:44:28 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:45:53 PM ui.UILog log
+INFOS: File 2019_07_22.log already exists.
+
+juil. 22, 2019 11:45:53 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] already exist!
+open_sheet sub directory [.\print\2019_07_22\open_sheet] already exist!
+Print sub directory [.\print\2019_07_22\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_22\picking_label] already exist!
+Print sub directory [.\print\2019_07_22\dispatch_label] already exist!
+
+juil. 22, 2019 11:45:57 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:45:57 Module : Configuration : .
+juil. 22, 2019 11:45:59 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:45:59 Dispatch interface : .
+juil. 22, 2019 11:46:01 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:48:14 PM ui.UILog log
+INFOS: File 2019_07_22.log already exists.
+
+juil. 22, 2019 11:48:14 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_22] already exist!
+open_sheet sub directory [.\print\2019_07_22\open_sheet] already exist!
+Print sub directory [.\print\2019_07_22\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_22\picking_label] already exist!
+Print sub directory [.\print\2019_07_22\dispatch_label] already exist!
+
+juil. 22, 2019 11:48:16 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:48:16 Module : Configuration : .
+juil. 22, 2019 11:48:18 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-22 23:48:18 Dispatch interface : .
+juil. 22, 2019 11:48:20 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 22, 2019 11:48:21 PM ui.UILog log
+GRAVE: APP_ERR0042 CONFIG : No warehouse found for the selected project.

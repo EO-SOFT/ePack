@@ -88,7 +88,8 @@ public class LoadPlanDestination extends DAO implements java.io.Serializable {
             jbox.removeAllItems();
             for (Object o : result) {
                 LoadPlanDestination cp = (LoadPlanDestination) o;
-                jbox.addItem(new ComboItem(cp.getDestination(), cp.getDestination()));
+                //jbox.addItem(new ComboItem(cp.getDestination(), cp.getDestination()));
+                jbox.addItem(cp.getDestination());
             }
         }
     }

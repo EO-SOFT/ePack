@@ -116,7 +116,8 @@ public class ConfigWorkplace extends DAO implements Serializable {
         List result;
         jbox.removeAllItems();
         if (displayAll) {
-            jbox.addItem(new ComboItem("ALL", "ALL"));
+            //jbox.addItem(new ComboItem("ALL", "ALL"));
+            jbox.addItem("ALL");
         }
         if (segment != null && !segment.isEmpty() && !"null".equals(segment)) {
             result = new ConfigWorkplace().selectBySegment(segment);
@@ -126,7 +127,8 @@ public class ConfigWorkplace extends DAO implements Serializable {
             } else { //Map project data in the list
                 for (Object o : result) {
                     ConfigWorkplace cp = (ConfigWorkplace) o;
-                    jbox.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
+                    //jbox.addItem(new ComboItem(cp.getWorkplace(), cp.getWorkplace()));
+                    jbox.addItem(cp.getWorkplace());
                 }
             }
         } else {
@@ -137,7 +139,8 @@ public class ConfigWorkplace extends DAO implements Serializable {
             } else { //Map project data in the list
                 for (Object o : result) {
                     ConfigWorkplace p = (ConfigWorkplace) o;
-                    jbox.addItem(new ComboItem(p.getWorkplace(), p.getWorkplace()));
+                    //jbox.addItem(new ComboItem(p.getWorkplace(), p.getWorkplace()));
+                    jbox.addItem(p.getWorkplace());
                 }
             }
         }

@@ -1,6 +1,7 @@
 package entity;
 // Generated 6 f�vr. 2016 21:43:55 by Hibernate Tools 3.6.0
 
+import gui.warehouse_dispatch.WAREHOUSE_DISPATCH_UI0004_NEW_PLAN;
 import helper.ComboItem;
 import helper.Helper;
 import java.util.List;
@@ -30,6 +31,8 @@ import ui.error.ErrorMsg;
 @Entity
 @Table(name = "config_transporter")
 public class ConfigTransporter extends DAO implements Serializable {
+
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "config_transporter_id_seq")
@@ -74,7 +77,8 @@ public class ConfigTransporter extends DAO implements Serializable {
         List result;
         box.removeAllItems();
 
-            box.addItem(new ComboItem("ALL", "ALL"));
+            //box.addItem(new ComboItem("ALL", "ALL"));
+            box.addItem("ALL");
             result = new ConfigTransporter().select();
             if (result.isEmpty()) {
                 UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0048);
@@ -82,7 +86,8 @@ public class ConfigTransporter extends DAO implements Serializable {
             } else { //Map project data in the list
                 for (Object o : result) {
                     ConfigTransporter item = (ConfigTransporter) o;
-                    box.addItem(new ComboItem(item.getName(), item.getName()));
+                    //box.addItem(new ComboItem(item.getName(), item.getName()));
+                    box.addItem(item.getName());
                 }
             }
         
@@ -100,6 +105,33 @@ public class ConfigTransporter extends DAO implements Serializable {
         
         return jtable;
         
+    }
+    
+    /**
+     * 
+     * @param parentUI
+     * @param transporter_filter
+     * @param displayAll
+     * @return 
+     */
+    public static JComboBox initTransporterJBox(Object parentUI, JComboBox transporter_filter, boolean displayAll) {
+        List result = new ConfigTransporter().select();
+        if (result.isEmpty()) {
+            UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0049);
+            UILog.severe(ErrorMsg.APP_ERR0049[1]);
+        } else { //Map project data in the list
+            transporter_filter.removeAllItems();
+            if (displayAll) {
+                //transporter_filter.addItem(new ComboItem("ALL", "ALL"));
+                transporter_filter.addItem("ALL");
+            }
+            for (Object o : result) {
+                ConfigTransporter p = (ConfigTransporter) o;
+                //transporter_filter.addItem(new ComboItem(p.getName(), p.getName()));
+                transporter_filter.addItem(p.getName());
+            }
+        }
+        return transporter_filter;
     }
 
 }

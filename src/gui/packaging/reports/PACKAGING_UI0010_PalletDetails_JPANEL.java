@@ -2039,6 +2039,17 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
     private void close_sheet_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_sheet_buttonActionPerformed
         msg_lbl.setText("");
         if (!palletNum_txtbox.getText().isEmpty()) {
+            try {
+                WIZARD_PACKAGING_MODE_CHOICE wiz = new WIZARD_PACKAGING_MODE_CHOICE(null, true);
+                int format = wiz.showDialog();
+                System.out.println("Printing closing sheet " + this.bc.getPalletNumber());
+                PrinterHelper.saveAndPrintClosingSheet(PackagingVars.mode3_context, this.bc, false, format);
+            } catch (IOException | DocumentException ex) {
+                UILog.severe(ex.toString());
+            } catch (Exception ex) {
+                Logger.getLogger(PACKAGING_UI0010_PalletDetails_JFRAME.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            /*
             Query query = Helper.sess.createQuery(HQLHelper.GET_CONTAINER_BY_NUMBER);
             query.setParameter("palletNumber", palletNumber_txtbox.getText());
             Helper.sess.beginTransaction();
@@ -2051,8 +2062,11 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
                 try {
                     WIZARD_PACKAGING_MODE_CHOICE wiz = new WIZARD_PACKAGING_MODE_CHOICE(null, true);
                     int mode = wiz.showDialog(); 
+                    System.out.println("Printing closing sheet "+b.getPalletNumber());
+                    PrinterHelper.saveAndPrintClosingSheetMode2(PackagingVars.mode3_context, b, true);
                     //TO Do : Conditions on mode PACKAGING_SCAN_MODE will be removed
                     //After removing the mode2 package from source code in future releases
+                    /*
                     if (mode != -1) {
                         if(GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")){
                             if(mode == 1)
@@ -2066,7 +2080,8 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
                             else
                             PrinterHelper.saveAndPrintClosingSheetMode2(PackagingVars.mode3_context, b, true);    
                         }
-                    }                    
+                    }   
+                    
                 } catch (IOException | DocumentException ex) {
                     UILog.severe(ex.toString());
                 } catch (Exception ex) {
@@ -2074,7 +2089,7 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
                 }
             } else {
                 msg_lbl.setText("Num. Palette introuvable dans les palettes fermées !");
-            }
+            } */
         } else {
             msg_lbl.setText("Num. Palette introuvable dans les palettes fermées !");
         }

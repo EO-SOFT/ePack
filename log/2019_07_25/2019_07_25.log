@@ -1,0 +1,883 @@
+juil. 25, 2019 9:39:46 PM ui.UILog log
+INFOS: File 2019_07_25.log is created!
+
+juil. 25, 2019 9:39:46 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] created !
+open_sheet sub directory [.\print\2019_07_25\open_sheet] created !
+Print sub directory [.\print\2019_07_25\closing_sheet] created !
+Print sub directory [.\print\2019_07_25\picking_label] created !
+Print sub directory [.\print\2019_07_25\dispatch_label] created !
+
+juil. 25, 2019 9:39:55 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 21:39:55 Module : Configuration : .
+juil. 25, 2019 9:40:36 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 21:40:36 Project : PERKINS.
+juil. 25, 2019 9:40:36 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 9:40:36 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 9:40:37 PM ui.UILog log
+INFOS: ^[P]\w{20}
+^[P]\w{3}[-]\w{16}
+^[P]\w{23}
+\w{23}
+\w{3}[-]\w{18}
+^\d{8}[a-zA-Z]{1}\d{14}
+^\w{3}[-]\w{16}
+
+juil. 25, 2019 9:40:37 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 7 formats possible du QR pour le projet PERKINS ont été chargés avec succès !
+juil. 25, 2019 9:40:37 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 9:40:37 PM ui.UILog log
+INFOS: ^[P]\w{8}
+^[P]\w{9}
+^[P]\w{3}[-]\w{4}
+\w{3}[-]\w{4}
+\w{8}
+\w{9}
+
+juil. 25, 2019 9:40:37 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 6 formats de référence possibles pour le projet PERKINS ont été chargés avec succès.
+juil. 25, 2019 9:46:11 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 9:47:37 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 9:47:37 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 9:47:50 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 9:47:50 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:48:01 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 21:48:01 Module : Configuration : .
+juil. 25, 2019 9:48:13 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 9:48:13 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:48:14 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 1 connected to host Oussama-PC at 2019-07-25 21:48:14 Module : Configuration : .
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 21:48:21 Project : DUCATI.
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 9:48:22 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 9:48:31 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 9:48:31 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:48:34 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 21:48:34 Module : Configuration : .
+juil. 25, 2019 9:48:36 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 9:48:55 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 9:49:03 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 9:50:03 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 9:50:24 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 21:51:09 Project : DUCATI.
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 9:51:09 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 9:51:14 PM ui.UILog log
+INFOS: Searching Harness part [5101F371B] in ConfigUCS: [DUCATI]
+juil. 25, 2019 9:51:14 PM ui.UILog log
+INFOS: APP_INFO0004 : Référence produit 5101F371B trouvée pour le projet [DUCATI].
+juil. 25, 2019 9:51:14 PM ui.UILog log
+INFOS: APP_INFO0005 : Référence produit correcte 5101F371B 
+juil. 25, 2019 9:51:47 PM ui.UILog log
+INFOS: Invalid Counter scanned format [5101F371B20190725215100]!
+juil. 25, 2019 9:51:47 PM ui.UILog log
+GRAVE: APP_ERR0009 : Format invalide du code QR [5101F371B20190725215100]!
+juil. 25, 2019 9:51:59 PM ui.UILog log
+GRAVE: APP_ERR0009 : Format invalide du code QR [5101F371B20190725215100]!
+juil. 25, 2019 9:52:51 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:52:52 PM ui.UILog log
+INFOS: Sending [.\print\2019_07_25\open_sheet\PrintOpenPallet_A5_2019_07_25_21_52_51__5101E961A_200082745134.pdf] to the default printer...
+juil. 25, 2019 9:52:52 PM ui.UILog log
+INFOS: File [.\print\2019_07_25\open_sheet\PrintOpenPallet_A5_2019_07_25_21_52_51__5101E961A_200082745134.pdf] has been printed.
+juil. 25, 2019 9:53:36 PM ui.UILog log
+INFOS: Searching Harness counter [5101F371B;08:02:2019;19:00:30] in BaseHarness.
+juil. 25, 2019 9:53:36 PM ui.UILog log
+INFOS: FROM BaseHarness bh WHERE bh.counter = :counter
+juil. 25, 2019 9:53:37 PM ui.UILog log
+INFOS: New harness to be added BaseHarness{harnessPart=null, counter=null}
+juil. 25, 2019 9:53:47 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:53:47 PM ui.UILog log
+INFOS: Sending [.\print\2019_07_25\open_sheet\PrintOpenPallet_A5_2019_07_25_21_53_47__5101F371B_200089703494.pdf] to the default printer...
+juil. 25, 2019 9:53:47 PM ui.UILog log
+INFOS: File [.\print\2019_07_25\open_sheet\PrintOpenPallet_A5_2019_07_25_21_53_47__5101F371B_200089703494.pdf] has been printed.
+juil. 25, 2019 9:53:47 PM ui.UILog log
+INFOS: APP_INFO0006 : Openning new container 200089703 for the first harness part 
+juil. 25, 2019 9:53:59 PM ui.UILog log
+INFOS: BaseContainer created BaseContainer{
+id=88634,
+ createTime=Thu Jul 25 21:53:59 WEST 2019,
+ fifoTime=Thu Jul 25 21:53:59 WEST 2019,
+ storedTime=null,
+ shippedTime=null,
+ reservedTime=null,
+ createId=100,
+ writeId=100,
+ user=9,
+ createUser=EZZIOURI Oussama,
+ startTime=Thu Jul 25 21:53:59 WEST 2019,
+ closedTime=null,
+ workTime=null,
+ palletNumber=200089703,
+ harnessPart=5101F371B,
+ harnessIndex=1B,
+ supplierPartNumber=26F141103,
+ qtyExpected=1,
+ qtyRead=1,
+ containerState=OPEN,
+ containerStateCode=1000,
+ packType=C11,
+ harnessType=DUCATI,
+ stdTime=0.0,
+ price=0.0,
+ packWorkstation=Oussama-PC,
+ order_no=3105033,
+ special_order=0,
+ labelPerPiece=false,
+ comment=,
+ segment=DUCATI_SEG1,
+ workplace=LINE1,
+ ucsLifes=-1,
+ ucsId=949,
+ dispatchLabelNo=null,
+ destination=INVENT. DUCATI,
+ dispatchTime=null,
+ consignNo=null,
+ invoiceNo=null,
+ netWeight=0.0,
+ grossWeight=0.0,
+ volume=0.0,
+ engChange=?,
+ articleDesc=?,
+ project=DUCATI,
+ warehouse=4DU,
+ engChangeDate=2018-01-01 00:00:00.0,
+ priority=99,
+ openningSheetCopies=1,
+ closingSheetCopies=1,
+ closingSheetFormat=0} 
+juil. 25, 2019 9:55:06 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 9:55:07 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 9:55:17 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:55:30 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 9:55:46 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 10:02:28 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 10:02:28 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 10:02:29 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 22:02:29 Module : Configuration : .
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 22:02:40 Project : DUCATI.
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 10:02:40 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 10:02:45 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 10:02:47 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 10:02:52 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 10:58:36 PM ui.UILog log
+INFOS: Searching Harness part [5101F371A] in ConfigUCS: [DUCATI]
+juil. 25, 2019 10:58:36 PM ui.UILog log
+INFOS: APP_INFO0004 : Référence produit 5101F371A trouvée pour le projet [DUCATI].
+juil. 25, 2019 10:58:36 PM ui.UILog log
+INFOS: APP_INFO0005 : Référence produit correcte 5101F371A 
+juil. 25, 2019 10:58:40 PM ui.UILog log
+INFOS: Searching Harness counter [5101F371A;08:02:2019;19:00:30] in BaseHarness.
+juil. 25, 2019 10:58:40 PM ui.UILog log
+INFOS: FROM BaseHarness bh WHERE bh.counter = :counter
+juil. 25, 2019 10:58:42 PM ui.UILog log
+INFOS: New harness to be added BaseHarness{harnessPart=null, counter=null}
+juil. 25, 2019 10:58:49 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 10:58:49 PM ui.UILog log
+INFOS: Sending [.\print\2019_07_25\open_sheet\PrintOpenPallet_A5_2019_07_25_22_58_49__5101F371A_200089704113.pdf] to the default printer...
+juil. 25, 2019 10:58:49 PM ui.UILog log
+INFOS: File [.\print\2019_07_25\open_sheet\PrintOpenPallet_A5_2019_07_25_22_58_49__5101F371A_200089704113.pdf] has been printed.
+juil. 25, 2019 10:58:49 PM ui.UILog log
+INFOS: APP_INFO0006 : Openning new container 200089704 for the first harness part 
+juil. 25, 2019 10:58:55 PM ui.UILog log
+INFOS: BaseContainer created BaseContainer{
+id=88635,
+ createTime=Thu Jul 25 22:58:55 WEST 2019,
+ fifoTime=Thu Jul 25 22:58:55 WEST 2019,
+ storedTime=null,
+ shippedTime=null,
+ reservedTime=null,
+ createId=100,
+ writeId=100,
+ user=9,
+ createUser=EZZIOURI Oussama,
+ startTime=Thu Jul 25 22:58:55 WEST 2019,
+ closedTime=null,
+ workTime=null,
+ palletNumber=200089704,
+ harnessPart=5101F371A,
+ harnessIndex=1A,
+ supplierPartNumber=26F141102,
+ qtyExpected=1,
+ qtyRead=1,
+ containerState=OPEN,
+ containerStateCode=1000,
+ packType=C11,
+ harnessType=DUCATI,
+ stdTime=0.0,
+ price=0.0,
+ packWorkstation=Oussama-PC,
+ order_no=3105033,
+ special_order=0,
+ labelPerPiece=false,
+ comment=,
+ segment=DUCATI_SEG1,
+ workplace=LINE1,
+ ucsLifes=-1,
+ ucsId=950,
+ dispatchLabelNo=null,
+ destination=INVENT. DUCATI,
+ dispatchTime=null,
+ consignNo=null,
+ invoiceNo=null,
+ netWeight=0.0,
+ grossWeight=0.0,
+ volume=0.0,
+ engChange=?,
+ articleDesc=?,
+ project=DUCATI,
+ warehouse=4DU,
+ engChangeDate=2018-01-01 00:00:00.0,
+ priority=99,
+ openningSheetCopies=1,
+ closingSheetCopies=1,
+ closingSheetFormat=0} 
+juil. 25, 2019 11:00:14 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 11:00:22 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:10 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:16 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:28 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:34 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:41 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:51 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:01:55 PM ui.UILog log
+INFOS: FROM ConfigWorkplace bp ORDER BY workplace ASC
+juil. 25, 2019 11:02:27 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:02:27 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:02:35 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:02:35 Module : Configuration : .
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:02:41 Project : DUCATI.
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 11:02:41 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 11:02:53 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:06:14 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:06:14 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:06:29 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:06:29 Module : Configuration : .
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:06:34 Project : DUCATI.
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 11:06:34 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 11:06:39 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:08:31 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:08:31 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:08:35 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:08:35 Module : Configuration : .
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:09:52 Project : DUCATI.
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 11:09:52 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 11:09:55 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:21:31 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:21:31 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:21:34 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:21:34 Module : Configuration : .
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:21:40 Project : DUCATI.
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 11:21:40 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 11:21:44 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:26:24 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:26:24 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:26:29 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:26:29 Module : Configuration : .
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:26:38 Project : DUCATI.
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 25, 2019 11:26:38 PM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 25, 2019 11:28:14 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 11:28:16 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 11:28:25 PM ui.UILog log
+INFOS: Droping harness list...{0}
+juil. 25, 2019 11:28:32 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 11:28:38 PM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 25, 2019 11:28:49 PM ui.UILog log
+INFOS: Droping harness list...{0}
+juil. 25, 2019 11:47:20 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:47:20 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 25, 2019 11:47:29 PM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-25 23:47:29 Module : Configuration : .
+juil. 25, 2019 11:47:48 PM ui.UILog log
+INFOS: Droping harness list...{0}
+juil. 25, 2019 11:54:27 PM ui.UILog log
+INFOS: File 2019_07_25.log already exists.
+
+juil. 25, 2019 11:54:27 PM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_25] already exist!
+open_sheet sub directory [.\print\2019_07_25\open_sheet] already exist!
+Print sub directory [.\print\2019_07_25\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_25\picking_label] already exist!
+Print sub directory [.\print\2019_07_25\dispatch_label] already exist!
+
+juil. 26, 2019 12:08:35 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-26 00:08:35 Module : Configuration : .
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: APP_INFO0003 : User EZZIOURI Oussama / 9 connected to host Oussama-PC at 2019-07-26 00:08:44 Project : DUCATI.
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: APP_CONFIG0002   : Chargement de la liste des formats QR dans la variable DATAMATRIX_PATTERN_LIST ...
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: ^[P]{1}\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\b{9}[;]{1}\d{2}[.]{1}\d{2}[.]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+^\w{9}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{4}[;]{1}\d{2}[:]{1}\d{2}[:]{1}\d{2}
+
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: APP_CONFIG0003   : 4 formats possible du QR pour le projet DUCATI ont été chargés avec succès !
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: FROM ConfigBarcode cb WHERE cb.keyWord = :keyWord AND cb.harness_type = :harnessType ORDER BY id ASC
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: ^[P]\w{9}
+^\w{9}
+^\b{9}
+
+juil. 26, 2019 12:08:44 AM ui.UILog log
+INFOS: APP_CONFIG0004   : 3 formats de référence possibles pour le projet DUCATI ont été chargés avec succès.
+juil. 26, 2019 12:08:53 AM ui.UILog log
+INFOS: Searching Harness part [5101F371B] in ConfigUCS: [DUCATI]
+juil. 26, 2019 12:08:53 AM ui.UILog log
+INFOS: APP_INFO0004 : Référence produit 5101F371B trouvée pour le projet [DUCATI].
+juil. 26, 2019 12:08:53 AM ui.UILog log
+INFOS: APP_INFO0005 : Référence produit correcte 5101F371B 
+juil. 26, 2019 12:09:05 AM ui.UILog log
+INFOS: Searching Harness counter [5101F371B;08:02:2019;19:00:30] in BaseHarness.
+juil. 26, 2019 12:09:05 AM ui.UILog log
+INFOS: FROM BaseHarness bh WHERE bh.counter = :counter
+juil. 26, 2019 12:09:05 AM ui.UILog log
+INFOS: New harness to be added BaseHarness{harnessPart=null, counter=null}
+juil. 26, 2019 12:09:12 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_26] created !
+open_sheet sub directory [.\print\2019_07_26\open_sheet] created !
+Print sub directory [.\print\2019_07_26\closing_sheet] created !
+Print sub directory [.\print\2019_07_26\picking_label] created !
+Print sub directory [.\print\2019_07_26\dispatch_label] created !
+
+juil. 26, 2019 12:09:13 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_26\open_sheet\PrintOpenPallet_A5_2019_07_26_00_09_12__5101F371B_200089705683.pdf] to the default printer...
+juil. 26, 2019 12:09:13 AM ui.UILog log
+INFOS: File [.\print\2019_07_26\open_sheet\PrintOpenPallet_A5_2019_07_26_00_09_12__5101F371B_200089705683.pdf] has been printed.
+juil. 26, 2019 12:09:13 AM ui.UILog log
+INFOS: APP_INFO0006 : Openning new container 200089705 for the first harness part 
+juil. 26, 2019 12:09:20 AM ui.UILog log
+INFOS: BaseContainer created BaseContainer{
+id=88636,
+ createTime=Fri Jul 26 00:09:20 WEST 2019,
+ fifoTime=Fri Jul 26 00:09:20 WEST 2019,
+ storedTime=null,
+ shippedTime=null,
+ reservedTime=null,
+ createId=100,
+ writeId=100,
+ user=9,
+ createUser=EZZIOURI Oussama,
+ startTime=Fri Jul 26 00:09:20 WEST 2019,
+ closedTime=null,
+ workTime=null,
+ palletNumber=200089705,
+ harnessPart=5101F371B,
+ harnessIndex=1B,
+ supplierPartNumber=26F141103,
+ qtyExpected=1,
+ qtyRead=1,
+ containerState=OPEN,
+ containerStateCode=1000,
+ packType=C11,
+ harnessType=DUCATI,
+ stdTime=0.0,
+ price=0.0,
+ packWorkstation=Oussama-PC,
+ order_no=3105033,
+ special_order=0,
+ labelPerPiece=false,
+ comment=,
+ segment=DUCATI_SEG1,
+ workplace=LINE1,
+ ucsLifes=-1,
+ ucsId=949,
+ dispatchLabelNo=null,
+ destination=INVENT. DUCATI,
+ dispatchTime=null,
+ consignNo=null,
+ invoiceNo=null,
+ netWeight=0.0,
+ grossWeight=0.0,
+ volume=0.0,
+ engChange=?,
+ articleDesc=?,
+ project=DUCATI,
+ warehouse=4DU,
+ engChangeDate=2018-01-01 00:00:00.0,
+ priority=99,
+ openningSheetCopies=1,
+ closingSheetCopies=1,
+ closingSheetFormat=2} 
+juil. 26, 2019 12:09:20 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_26] already exist!
+open_sheet sub directory [.\print\2019_07_26\open_sheet] already exist!
+Print sub directory [.\print\2019_07_26\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_26\picking_label] already exist!
+Print sub directory [.\print\2019_07_26\dispatch_label] already exist!
+
+juil. 26, 2019 12:09:21 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_26\closing_sheet\PrintClosingPallet_A5_5101F371B_2019_07_26_00_09_20695.pdf] to the default printer...
+juil. 26, 2019 12:09:21 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 26, 2019 12:10:29 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:10:30 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:10:32 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:10:35 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:10:47 AM ui.UILog log
+INFOS: Droping harness list...{0}
+juil. 26, 2019 12:10:54 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:11:36 AM ui.UILog log
+INFOS: Searching Harness part [5101F371B] in ConfigUCS: [DUCATI]
+juil. 26, 2019 12:11:36 AM ui.UILog log
+INFOS: APP_INFO0004 : Référence produit 5101F371B trouvée pour le projet [DUCATI].
+juil. 26, 2019 12:11:36 AM ui.UILog log
+INFOS: APP_INFO0005 : Référence produit correcte 5101F371B 
+juil. 26, 2019 12:11:49 AM ui.UILog log
+INFOS: Searching Harness counter [5101F371B;08:02:2019;19:00:30] in BaseHarness.
+juil. 26, 2019 12:11:49 AM ui.UILog log
+INFOS: FROM BaseHarness bh WHERE bh.counter = :counter
+juil. 26, 2019 12:11:49 AM ui.UILog log
+INFOS: New harness to be added BaseHarness{harnessPart=null, counter=null}
+juil. 26, 2019 12:11:54 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_26] already exist!
+open_sheet sub directory [.\print\2019_07_26\open_sheet] already exist!
+Print sub directory [.\print\2019_07_26\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_26\picking_label] already exist!
+Print sub directory [.\print\2019_07_26\dispatch_label] already exist!
+
+juil. 26, 2019 12:11:54 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_26\open_sheet\PrintOpenPallet_A5_2019_07_26_00_11_54__5101F371B_200089706137.pdf] to the default printer...
+juil. 26, 2019 12:11:54 AM ui.UILog log
+INFOS: File [.\print\2019_07_26\open_sheet\PrintOpenPallet_A5_2019_07_26_00_11_54__5101F371B_200089706137.pdf] has been printed.
+juil. 26, 2019 12:11:54 AM ui.UILog log
+INFOS: APP_INFO0006 : Openning new container 200089706 for the first harness part 
+juil. 26, 2019 12:12:00 AM ui.UILog log
+INFOS: BaseContainer created BaseContainer{
+id=88637,
+ createTime=Fri Jul 26 00:12:00 WEST 2019,
+ fifoTime=Fri Jul 26 00:12:00 WEST 2019,
+ storedTime=null,
+ shippedTime=null,
+ reservedTime=null,
+ createId=100,
+ writeId=100,
+ user=9,
+ createUser=EZZIOURI Oussama,
+ startTime=Fri Jul 26 00:12:00 WEST 2019,
+ closedTime=null,
+ workTime=null,
+ palletNumber=200089706,
+ harnessPart=5101F371B,
+ harnessIndex=1B,
+ supplierPartNumber=26F141103,
+ qtyExpected=1,
+ qtyRead=1,
+ containerState=OPEN,
+ containerStateCode=1000,
+ packType=C11,
+ harnessType=DUCATI,
+ stdTime=0.0,
+ price=0.0,
+ packWorkstation=Oussama-PC,
+ order_no=3105033,
+ special_order=0,
+ labelPerPiece=false,
+ comment=,
+ segment=DUCATI_SEG1,
+ workplace=LINE1,
+ ucsLifes=-1,
+ ucsId=949,
+ dispatchLabelNo=null,
+ destination=INVENT. DUCATI,
+ dispatchTime=null,
+ consignNo=null,
+ invoiceNo=null,
+ netWeight=0.0,
+ grossWeight=0.0,
+ volume=0.0,
+ engChange=?,
+ articleDesc=?,
+ project=DUCATI,
+ warehouse=4DU,
+ engChangeDate=2018-01-01 00:00:00.0,
+ priority=99,
+ openningSheetCopies=1,
+ closingSheetCopies=1,
+ closingSheetFormat=2} 
+juil. 26, 2019 12:12:00 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_26] already exist!
+open_sheet sub directory [.\print\2019_07_26\open_sheet] already exist!
+Print sub directory [.\print\2019_07_26\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_26\picking_label] already exist!
+Print sub directory [.\print\2019_07_26\dispatch_label] already exist!
+
+juil. 26, 2019 12:12:00 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_26\closing_sheet\PrintClosingPallet_A5_5101F371B_2019_07_26_00_12_00861.pdf] to the default printer...
+juil. 26, 2019 12:12:00 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 26, 2019 12:12:15 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:12:18 AM ui.UILog log
+INFOS: FROM ConfigProject bp ORDER BY project ASC
+juil. 26, 2019 12:12:21 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_26] already exist!
+open_sheet sub directory [.\print\2019_07_26\open_sheet] already exist!
+Print sub directory [.\print\2019_07_26\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_26\picking_label] already exist!
+Print sub directory [.\print\2019_07_26\dispatch_label] already exist!
+
+juil. 26, 2019 12:12:21 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_26\open_sheet\PrintOpenPallet_A5_2019_07_26_00_12_21__5101F371B_200089706837.pdf] to the default printer...
+juil. 26, 2019 12:12:21 AM ui.UILog log
+INFOS: File [.\print\2019_07_26\open_sheet\PrintOpenPallet_A5_2019_07_26_00_12_21__5101F371B_200089706837.pdf] has been printed.
+juil. 26, 2019 12:12:49 AM ui.UILog log
+INFOS: Daily output print directory [.\print\2019_07_26] already exist!
+open_sheet sub directory [.\print\2019_07_26\open_sheet] already exist!
+Print sub directory [.\print\2019_07_26\closing_sheet] already exist!
+Print sub directory [.\print\2019_07_26\picking_label] already exist!
+Print sub directory [.\print\2019_07_26\dispatch_label] already exist!
+
+juil. 26, 2019 12:12:49 AM ui.UILog log
+INFOS: Sending [.\print\2019_07_26\closing_sheet\PrintClosingPallet_A5_5101F371B_2019_07_26_00_12_49811.pdf] to the default printer...
+juil. 26, 2019 12:12:49 AM ui.UILog log
+INFOS: File [%s] has been printed.
+juil. 26, 2019 12:13:12 AM ui.UILog log
+INFOS: Droping harness list...{0}

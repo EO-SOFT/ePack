@@ -21,6 +21,9 @@ ALTER TABLE public.config_transporter
 COMMENT ON COLUMN public.config_transporter.name
     IS 'Name';
 
+ALTER TABLE public.config_transporter
+    ADD CONSTRAINT transporter_unique_name UNIQUE (name);
+
 CREATE SEQUENCE public.config_transporter_id_seq
     INCREMENT 1
     START 1;

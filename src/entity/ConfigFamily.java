@@ -139,15 +139,17 @@ public class ConfigFamily extends DAO implements Serializable {
         box.removeAllItems();
 
         if (project.isEmpty()) {
-            box.addItem(new ComboItem("ALL", "ALL"));
+            //box.addItem(new ComboItem("ALL", "ALL"));
+            box.addItem("ALL");
             result = new ConfigFamily().select();
             if (result.isEmpty()) {
                 UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0044);
                 UILog.severe(ErrorMsg.APP_ERR0044[1]);
             } else { //Map project data in the list
                 for (Object o : result) {
-                    ConfigFamily item = (ConfigFamily) o;
-                    box.addItem(new ComboItem(item.getFamily(), item.getFamily()));
+                    ConfigFamily f = (ConfigFamily) o;
+                    //box.addItem(new ComboItem(f.getFamily(), f.getFamily()));
+                    box.addItem(f.getFamily());
                 }
             }
         } else {
@@ -157,7 +159,8 @@ public class ConfigFamily extends DAO implements Serializable {
                 UILog.severe(ErrorMsg.APP_ERR0047[1]);
             } else { //Map project data in the list
                 for (Object o : result) {
-                    box.addItem(new ComboItem(o.toString(), o.toString()));
+                    //box.addItem(new ComboItem(o.toString(), o.toString()));
+                    box.addItem(o.toString());
                 }
             }
         }

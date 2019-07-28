@@ -117,7 +117,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
         if (canChangeStatus == false || this.bc == null) {
             set_state_btn.setEnabled(false);
         }
-        
+
         history_btn.setEnabled(false);
 
         initGui(parent);
@@ -2083,6 +2083,18 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
     private void close_sheet_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_sheet_buttonActionPerformed
         msg_lbl.setText("");
         if (!palletNum_txtbox.getText().isEmpty()) {
+            try {
+                WIZARD_PACKAGING_MODE_CHOICE wiz = new WIZARD_PACKAGING_MODE_CHOICE(null, true);
+                int format = wiz.showDialog();
+                System.out.println("Printing closing sheet " + this.bc.getPalletNumber());
+                PrinterHelper.saveAndPrintClosingSheet(PackagingVars.mode3_context, this.bc, false, format);
+            } catch (IOException | DocumentException ex) {
+                UILog.severe(ex.toString());
+            } catch (Exception ex) {
+                Logger.getLogger(PACKAGING_UI0010_PalletDetails_JFRAME.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            /*
             Query query = Helper.sess.createQuery(HQLHelper.GET_CONTAINER_BY_NUMBER);
             query.setParameter("palletNumber", palletNumber_txtbox.getText());
             Helper.sess.beginTransaction();
@@ -2095,8 +2107,11 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
                 try {
                     WIZARD_PACKAGING_MODE_CHOICE wiz = new WIZARD_PACKAGING_MODE_CHOICE(null, true);
                     int mode = wiz.showDialog();
+                    System.out.println("Printing closing sheet " + this.bc.getPalletNumber());
+                    PrinterHelper.saveAndPrintClosingSheetMode2(PackagingVars.mode3_context, this.bc, true);
                     //TO Do : Conditions on mode PACKAGING_SCAN_MODE will be removed
                     //After removing the mode2 package from source code in future releases
+                    
                     if (mode != -1) {
                         if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
                             if (mode == 1) {
@@ -2119,7 +2134,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
                 }
             } else {
                 msg_lbl.setText("Num. Palette introuvable dans les palettes fermées !");
-            }
+            }*/
         } else {
             msg_lbl.setText("Num. Palette introuvable dans les palettes fermées !");
         }
@@ -2136,7 +2151,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
                     + "- Position " + position_txtbox.getText() + "\n"
             );
         } else {
-            PACKAGING_UI9001_DropContainerConfirmation dropConfirm = new PACKAGING_UI9001_DropContainerConfirmation(null, false, this.bc, Integer.valueOf(GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")));
+            PACKAGING_UI9001_DropContainerConfirmation dropConfirm = new PACKAGING_UI9001_DropContainerConfirmation(this, false, this.bc, Integer.valueOf(GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")));
             dropConfirm.setVisible(true);
         }
     }//GEN-LAST:event_dropButtonActionPerformed
@@ -2146,7 +2161,7 @@ public final class PACKAGING_UI0010_PalletDetails_JFRAME extends javax.swing.JFr
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void set_state_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_state_btnActionPerformed
-                UILog.infoDialog("Fonctionnalité bientôt disponible !");
+        UILog.infoDialog("Fonctionnalité bientôt disponible !");
     }//GEN-LAST:event_set_state_btnActionPerformed
 
     public JTextField getPlanId_txtbox() {

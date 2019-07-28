@@ -164,7 +164,7 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Identification faisceau");
+        jLabel1.setText("Identification faisceau / Code QR");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -662,7 +662,7 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
                 bc = (BaseContainer) result.get(0);
                 this.setContainerFieldsValues(bc);
                 switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
-                    case "3":
+                    case "2":
                         print_btn.setEnabled(true);
                         break;
                     default:

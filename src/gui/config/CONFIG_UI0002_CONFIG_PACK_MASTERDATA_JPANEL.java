@@ -161,7 +161,8 @@ public class CONFIG_UI0002_CONFIG_PACK_MASTERDATA_JPANEL extends javax.swing.JPa
         //Map project data in the list
         for (Object o : result) {
             PackagingItems pc = (PackagingItems) o;
-            pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
+            //pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
+            pack_items_box.addItem(pc.getPackItem());
         }
 
     }

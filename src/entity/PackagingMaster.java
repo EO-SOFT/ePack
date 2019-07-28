@@ -190,11 +190,13 @@ public class PackagingMaster extends DAO implements Serializable {
         } else { //Map project data in the list
             box.removeAllItems();
             if (displayAll) {
-                box.addItem(new ComboItem("ALL", "ALL"));
+                //box.addItem(new ComboItem("ALL", "ALL"));
+                box.addItem("ALL");
             }
             for (Object o : result) {
                 PackagingMaster p = (PackagingMaster) o;
-                box.addItem(new ComboItem(p.getPackMaster(), p.getPackMaster()));
+                //box.addItem(new ComboItem(p.getPackMaster(), p.getPackMaster()));
+                box.addItem(p.getPackMaster());
             }
         }
         return box;             

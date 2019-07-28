@@ -109,10 +109,12 @@ public class PACKAGING_WAREHOUSE_UI0002_STOCK_JPANEL extends javax.swing.JPanel 
             UILog.severe(ErrorMsg.APP_ERR0042[1]);
         } else { //Map project data in the list
             packaging_wh_box.removeAllItems();
-            packaging_wh_box.addItem(new ComboItem("", ""));
+            //packaging_wh_box.addItem(new ComboItem("", ""));
+            packaging_wh_box.addItem("");
             for (Object o : result) {
                 ConfigWarehouse cp = (ConfigWarehouse) o;
-                packaging_wh_box.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                //packaging_wh_box.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                packaging_wh_box.addItem(cp.getWarehouse());
             }
         }
     }

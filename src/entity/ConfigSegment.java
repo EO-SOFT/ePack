@@ -97,7 +97,8 @@ public class ConfigSegment extends DAO implements Serializable{
             jbox.removeAllItems();
             for (Object o : result) {
                 ConfigSegment cp = (ConfigSegment) o;
-                jbox.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
+                //jbox.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
+                jbox.addItem(cp.getSegment());
             }
             jbox.setSelectedIndex(0);
             return true;

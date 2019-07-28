@@ -20,6 +20,9 @@ import hibernate.DAO;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.BatchUpdateException;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +35,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
+import org.hibernate.exception.ConstraintViolationException;
 import ui.UILog;
 import ui.error.ErrorMsg;
 
@@ -61,7 +65,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     }
 
     public void initGui() {
-        initTransporterTableDoubleClick();
     }
 
     /**
@@ -98,7 +101,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         actions_pane = new javax.swing.JPanel();
         companyPane_btn_duplicate = new javax.swing.JButton();
         companyPane_btn_save = new javax.swing.JButton();
-        companyPane_msg = new javax.swing.JTextField();
         company_table = new javax.swing.JScrollPane();
         company_jtable = new javax.swing.JTable();
         companyPane_btn_clear = new javax.swing.JButton();
@@ -111,7 +113,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         project_table = new javax.swing.JScrollPane();
         project_jtable = new javax.swing.JTable();
         actions_pane_7 = new javax.swing.JPanel();
-        projectPane_msg = new javax.swing.JTextField();
         projectPane_delete = new javax.swing.JButton();
         projectPane_duplicate = new javax.swing.JButton();
         projectPane_save = new javax.swing.JButton();
@@ -125,7 +126,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel26 = new javax.swing.JLabel();
         famillePane_field_family = new javax.swing.JTextField();
         actions_pane_2 = new javax.swing.JPanel();
-        familyPane_msg = new javax.swing.JTextField();
         famillePane_delete = new javax.swing.JButton();
         famillePane_duplicate = new javax.swing.JButton();
         famillePane_save = new javax.swing.JButton();
@@ -141,7 +141,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         segmentPane_field_project = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         actions_pane_3 = new javax.swing.JPanel();
-        segmentPane_msg = new javax.swing.JTextField();
         segmentPane_delete = new javax.swing.JButton();
         segmentPane_duplicate = new javax.swing.JButton();
         segmentPane_save = new javax.swing.JButton();
@@ -159,13 +158,12 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         workplacePane_field_segment = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
         actions_pane_4 = new javax.swing.JPanel();
-        workplacePane_msg = new javax.swing.JTextField();
         workplacePane_delete = new javax.swing.JButton();
         workplacePane_duplicate = new javax.swing.JButton();
         workplacePane_save = new javax.swing.JButton();
+        workplacePane_btn_clear = new javax.swing.JButton();
         workplace_table = new javax.swing.JScrollPane();
         workplace_jtable = new javax.swing.JTable();
-        workplacePane_btn_clear = new javax.swing.JButton();
         magasin_pane = new javax.swing.JPanel();
         magasin_fields = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -180,7 +178,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jScrollPane1 = new javax.swing.JScrollPane();
         magasinPane_field_desc = new javax.swing.JTextArea();
         actions_pane_5 = new javax.swing.JPanel();
-        magasinPane_msg = new javax.swing.JTextField();
         magasinPane_delete = new javax.swing.JButton();
         magasinPane_duplicate = new javax.swing.JButton();
         magasinPane_save = new javax.swing.JButton();
@@ -194,14 +191,13 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         transporterPane_field_name = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         actions_pane_6 = new javax.swing.JPanel();
-        transporterPane_msg = new javax.swing.JTextField();
         transporterPane_delete = new javax.swing.JButton();
         transporterPane_duplicate = new javax.swing.JButton();
         transporterPane_save = new javax.swing.JButton();
         transporterPane_btn_clear = new javax.swing.JButton();
+        transporterPane_refresh = new javax.swing.JButton();
         transporter_table = new javax.swing.JScrollPane();
         transporter_jtable = new javax.swing.JTable();
-        transporterPane_refresh = new javax.swing.JButton();
         msg_lbl = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(36, 65, 86));
@@ -218,7 +214,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel2.setText("ID");
 
         companyPane_field_id.setEditable(false);
-        companyPane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        companyPane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        companyPane_field_id.setForeground(new java.awt.Color(0, 0, 0));
         companyPane_field_id.setPreferredSize(new java.awt.Dimension(20, 24));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -315,7 +312,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(companyPane_field_country, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         company_fieldsLayout.setVerticalGroup(
             company_fieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,12 +368,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
             }
         });
 
-        companyPane_msg.setEditable(false);
-        companyPane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        companyPane_msg.setForeground(new java.awt.Color(0, 0, 204));
-        companyPane_msg.setToolTipText("");
-        companyPane_msg.setCaretColor(new java.awt.Color(255, 0, 0));
-
         company_jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -410,10 +401,10 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(companyPane_btn_duplicate)
                 .addGap(18, 18, 18)
                 .addComponent(companyPane_btn_clear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(companyPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(company_table, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(actions_paneLayout.createSequentialGroup()
+                .addComponent(company_table, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         actions_paneLayout.setVerticalGroup(
             actions_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,7 +413,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addGroup(actions_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(companyPane_btn_save)
                     .addComponent(companyPane_btn_duplicate)
-                    .addComponent(companyPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(companyPane_btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(company_table, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,9 +425,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
             company_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, company_paneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(company_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(company_fields, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actions_pane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(company_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(company_fields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(company_paneLayout.createSequentialGroup()
+                        .addComponent(actions_pane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         company_paneLayout.setVerticalGroup(
@@ -447,7 +439,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(company_fields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(actions_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
 
         main_tab.addTab("Société", company_pane);
@@ -460,7 +452,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel27.setText("ID");
 
         projectPane_field_id.setEditable(false);
-        projectPane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        projectPane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        projectPane_field_id.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Abréviation");
@@ -480,7 +473,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addGroup(project_fieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(projectPane_field_id, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectPane_field_id2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(544, Short.MAX_VALUE))
+                .addContainerGap(547, Short.MAX_VALUE))
         );
         project_fieldsLayout.setVerticalGroup(
             project_fieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,10 +506,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
         actions_pane_7.setBackground(new java.awt.Color(36, 65, 86));
 
-        projectPane_msg.setEditable(false);
-        projectPane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        projectPane_msg.setForeground(new java.awt.Color(0, 0, 204));
-
         projectPane_delete.setText("Supprimer");
         projectPane_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,9 +537,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(projectPane_btn_clear)
                 .addGap(57, 57, 57)
                 .addComponent(projectPane_delete)
-                .addGap(18, 18, 18)
-                .addComponent(projectPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         actions_pane_7Layout.setVerticalGroup(
             actions_pane_7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,7 +547,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                     .addComponent(projectPane_save)
                     .addComponent(projectPane_duplicate)
                     .addComponent(projectPane_delete)
-                    .addComponent(projectPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectPane_btn_clear))
                 .addGap(16, 16, 16))
         );
@@ -570,18 +556,20 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         project_paneLayout.setHorizontalGroup(
             project_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(project_table, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(actions_pane_7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(project_paneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(project_fields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(project_paneLayout.createSequentialGroup()
+                .addComponent(actions_pane_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         project_paneLayout.setVerticalGroup(
             project_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(project_paneLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(project_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(actions_pane_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(project_table, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -597,7 +585,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel9.setText("ID");
 
         famillePane_field_id.setEditable(false);
-        famillePane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        famillePane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        famillePane_field_id.setForeground(new java.awt.Color(0, 0, 0));
 
         famillePane_field_project.setBackground(new java.awt.Color(204, 204, 255));
         famillePane_field_project.setForeground(new java.awt.Color(0, 0, 0));
@@ -646,10 +635,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
         actions_pane_2.setBackground(new java.awt.Color(36, 65, 86));
 
-        familyPane_msg.setEditable(false);
-        familyPane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        familyPane_msg.setForeground(new java.awt.Color(0, 0, 204));
-
         famillePane_delete.setText("Supprimer");
         famillePane_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -681,9 +666,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(familyPane_btn_clear)
                 .addGap(51, 51, 51)
                 .addComponent(famillePane_delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(familyPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         actions_pane_2Layout.setVerticalGroup(
             actions_pane_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -693,7 +676,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                     .addComponent(famillePane_save)
                     .addComponent(famillePane_duplicate)
                     .addComponent(famillePane_delete)
-                    .addComponent(familyPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(familyPane_btn_clear))
                 .addGap(10, 10, 10))
         );
@@ -719,9 +701,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, family_paneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(family_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(famille_table)
+                    .addComponent(famille_table, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
                     .addComponent(family_fields, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actions_pane_2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, family_paneLayout.createSequentialGroup()
+                        .addComponent(actions_pane_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         family_paneLayout.setVerticalGroup(
@@ -732,7 +716,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addGap(22, 22, 22)
                 .addComponent(actions_pane_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(famille_table, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(famille_table, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -746,7 +730,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel12.setText("ID");
 
         segmentPane_field_id.setEditable(false);
-        segmentPane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        segmentPane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        segmentPane_field_id.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Ségment");
@@ -796,10 +781,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
         actions_pane_3.setBackground(new java.awt.Color(36, 65, 86));
 
-        segmentPane_msg.setEditable(false);
-        segmentPane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        segmentPane_msg.setForeground(new java.awt.Color(0, 0, 204));
-
         segmentPane_delete.setText("Supprimer");
 
         segmentPane_duplicate.setText("Dupliquer");
@@ -826,21 +807,18 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(segmentPane_btn_clear)
                 .addGap(58, 58, 58)
                 .addComponent(segmentPane_delete)
-                .addGap(18, 18, 18)
-                .addComponent(segmentPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(470, Short.MAX_VALUE))
         );
         actions_pane_3Layout.setVerticalGroup(
             actions_pane_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actions_pane_3Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(actions_pane_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(segmentPane_save)
                     .addComponent(segmentPane_duplicate)
                     .addComponent(segmentPane_delete)
-                    .addComponent(segmentPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(segmentPane_btn_clear))
-                .addGap(16, 16, 16))
+                .addGap(13, 13, 13))
         );
 
         segment_jtable.setModel(new javax.swing.table.DefaultTableModel(
@@ -866,7 +844,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addGroup(segment_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(segment_table)
                     .addComponent(segment_fields, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actions_pane_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE))
+                    .addComponent(actions_pane_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         segment_paneLayout.setVerticalGroup(
@@ -891,7 +869,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel15.setText("ID");
 
         workplacePane_field_id.setEditable(false);
-        workplacePane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        workplacePane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        workplacePane_field_id.setForeground(new java.awt.Color(0, 0, 0));
 
         workplacePane_field_project.setBackground(new java.awt.Color(204, 204, 255));
         workplacePane_field_project.setForeground(new java.awt.Color(0, 0, 0));
@@ -927,7 +906,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                     .addComponent(workplacePane_field_id, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(workplacePane_field_segment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(workplacePane_field_workplace))
-                .addContainerGap(544, Short.MAX_VALUE))
+                .addContainerGap(547, Short.MAX_VALUE))
         );
         workplace_fieldsLayout.setVerticalGroup(
             workplace_fieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -953,30 +932,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
         actions_pane_4.setBackground(new java.awt.Color(36, 65, 86));
 
-        workplacePane_msg.setEditable(false);
-        workplacePane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        workplacePane_msg.setForeground(new java.awt.Color(0, 0, 204));
-        workplacePane_msg.setCaretColor(new java.awt.Color(255, 255, 255));
-
         workplacePane_delete.setText("Supprimer");
 
         workplacePane_duplicate.setText("Dupliquer");
 
         workplacePane_save.setText("Enregistrer");
-
-        workplace_jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        workplace_jtable.setColumnSelectionAllowed(true);
-        workplace_table.setViewportView(workplace_jtable);
 
         workplacePane_btn_clear.setText("Réinitialiser");
         workplacePane_btn_clear.addActionListener(new java.awt.event.ActionListener() {
@@ -998,10 +958,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(workplacePane_btn_clear)
                 .addGap(68, 68, 68)
                 .addComponent(workplacePane_delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(workplacePane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(workplace_table, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
         );
         actions_pane_4Layout.setVerticalGroup(
             actions_pane_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1011,22 +968,34 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                     .addComponent(workplacePane_save)
                     .addComponent(workplacePane_duplicate)
                     .addComponent(workplacePane_delete)
-                    .addComponent(workplacePane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(workplacePane_btn_clear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(workplace_table, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(370, 370, 370))
         );
+
+        workplace_jtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        workplace_jtable.setColumnSelectionAllowed(true);
+        workplace_table.setViewportView(workplace_jtable);
 
         javax.swing.GroupLayout workplace_paneLayout = new javax.swing.GroupLayout(workplace_pane);
         workplace_pane.setLayout(workplace_paneLayout);
         workplace_paneLayout.setHorizontalGroup(
             workplace_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workplace_paneLayout.createSequentialGroup()
+            .addGroup(workplace_paneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(workplace_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(workplace_fields, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actions_pane_4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(workplace_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(workplace_fields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(actions_pane_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(workplace_table, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE))
                 .addContainerGap())
         );
         workplace_paneLayout.setVerticalGroup(
@@ -1035,8 +1004,10 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addContainerGap()
                 .addComponent(workplace_fields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(actions_pane_4, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addComponent(actions_pane_4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(workplace_table, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         main_tab.addTab("Wokrplaces", workplace_pane);
@@ -1049,7 +1020,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         jLabel18.setText("ID");
 
         magasinPane_field_id.setEditable(false);
-        magasinPane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        magasinPane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        magasinPane_field_id.setForeground(new java.awt.Color(0, 0, 0));
 
         magasinPane_field_projet.setBackground(new java.awt.Color(204, 204, 255));
         magasinPane_field_projet.setForeground(new java.awt.Color(0, 0, 0));
@@ -1103,7 +1075,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(magasinPane_field_WhType, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         magasin_fieldsLayout.setVerticalGroup(
             magasin_fieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1136,10 +1108,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
         actions_pane_5.setBackground(new java.awt.Color(36, 65, 86));
 
-        magasinPane_msg.setEditable(false);
-        magasinPane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        magasinPane_msg.setForeground(new java.awt.Color(0, 0, 204));
-
         magasinPane_delete.setText("Supprimer");
 
         magasinPane_duplicate.setText("Dupliquer");
@@ -1166,21 +1134,18 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addComponent(warehousePane_btn_clear)
                 .addGap(43, 43, 43)
                 .addComponent(magasinPane_delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(magasinPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         actions_pane_5Layout.setVerticalGroup(
             actions_pane_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actions_pane_5Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(actions_pane_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(magasinPane_save)
                     .addComponent(magasinPane_duplicate)
                     .addComponent(magasinPane_delete)
-                    .addComponent(magasinPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(warehousePane_btn_clear))
-                .addGap(16, 16, 16))
+                .addGap(12, 12, 12))
         );
 
         magasin_jtable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1220,7 +1185,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(actions_pane_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(magasin_table, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+                .addComponent(magasin_table, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
         );
 
         main_tab.addTab("Magasins", magasin_pane);
@@ -1233,7 +1198,8 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         transporterPane_label_id.setText("ID");
 
         transporterPane_field_id.setEditable(false);
-        transporterPane_field_id.setForeground(new java.awt.Color(255, 255, 255));
+        transporterPane_field_id.setBackground(new java.awt.Color(255, 255, 255));
+        transporterPane_field_id.setForeground(new java.awt.Color(0, 0, 0));
 
         transporterPane_field_name.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -1273,10 +1239,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
         actions_pane_6.setBackground(new java.awt.Color(36, 65, 86));
 
-        transporterPane_msg.setEditable(false);
-        transporterPane_msg.setBackground(new java.awt.Color(255, 255, 255));
-        transporterPane_msg.setForeground(new java.awt.Color(0, 0, 204));
-
         transporterPane_delete.setText("Supprimer");
         transporterPane_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1285,6 +1247,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         });
 
         transporterPane_duplicate.setText("Dupliquer");
+        transporterPane_duplicate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transporterPane_duplicateActionPerformed(evt);
+            }
+        });
 
         transporterPane_save.setText("Enregistrer");
         transporterPane_save.addActionListener(new java.awt.event.ActionListener() {
@@ -1300,34 +1267,42 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
             }
         });
 
+        transporterPane_refresh.setText("Actualiser");
+        transporterPane_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transporterPane_refreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout actions_pane_6Layout = new javax.swing.GroupLayout(actions_pane_6);
         actions_pane_6.setLayout(actions_pane_6Layout);
         actions_pane_6Layout.setHorizontalGroup(
             actions_pane_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(actions_pane_6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(transporterPane_save)
+                .addGroup(actions_pane_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(transporterPane_refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(transporterPane_save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transporterPane_duplicate)
                 .addGap(37, 37, 37)
                 .addComponent(transporterPane_btn_clear)
                 .addGap(73, 73, 73)
                 .addComponent(transporterPane_delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(transporterPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         actions_pane_6Layout.setVerticalGroup(
             actions_pane_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actions_pane_6Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(actions_pane_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(transporterPane_save)
                     .addComponent(transporterPane_duplicate)
                     .addComponent(transporterPane_delete)
-                    .addComponent(transporterPane_msg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(transporterPane_btn_clear))
-                .addGap(16, 16, 16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transporterPane_refresh)
+                .addContainerGap())
         );
 
         transporter_table.setBackground(new java.awt.Color(36, 65, 86));
@@ -1338,13 +1313,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         transporter_jtable.setUpdateSelectionOnSort(false);
         transporter_table.setViewportView(transporter_jtable);
 
-        transporterPane_refresh.setText("Actualiser");
-        transporterPane_refresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transporterPane_refreshActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout transporter_paneLayout = new javax.swing.GroupLayout(transporter_pane);
         transporter_pane.setLayout(transporter_paneLayout);
         transporter_paneLayout.setHorizontalGroup(
@@ -1353,14 +1321,12 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addContainerGap()
                 .addGroup(transporter_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(transporter_fields, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actions_pane_6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transporter_paneLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(transporter_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(transporter_paneLayout.createSequentialGroup()
-                                .addComponent(transporterPane_refresh)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(transporter_table))))
+                        .addComponent(transporter_table, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transporter_paneLayout.createSequentialGroup()
+                        .addComponent(actions_pane_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         transporter_paneLayout.setVerticalGroup(
@@ -1371,15 +1337,15 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(actions_pane_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(transporterPane_refresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(transporter_table, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(transporter_table, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         main_tab.addTab("Transporteurs", transporter_pane);
 
         msg_lbl.setEditable(false);
         msg_lbl.setBackground(new java.awt.Color(255, 255, 255));
+        msg_lbl.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         msg_lbl.setForeground(new java.awt.Color(0, 0, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1395,7 +1361,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addGroup(layout.createSequentialGroup()
                     .addGap(176, 176, 176)
                     .addComponent(msg_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(22, Short.MAX_VALUE)))
+                    .addContainerGap(25, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1408,7 +1374,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 .addGroup(layout.createSequentialGroup()
                     .addGap(18, 18, 18)
                     .addComponent(msg_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(708, Short.MAX_VALUE)))
+                    .addContainerGap(699, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1421,7 +1387,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                     || companyPane_field_country.getText().isEmpty()
                     || companyPane_field_description.getText().isEmpty()) {
                 UILog.severeDialog(this, ErrorMsg.APP_ERR0048, "Erreur sauvegarde!");
-                companyPane_msg.setText(ErrorMsg.APP_ERR0048[1]);
+                msg_lbl.setText(ErrorMsg.APP_ERR0048[1]);
             } else { // Save the new element
                 ConfigCompany newObj = new ConfigCompany(
                         companyPane_field_name.getText(),
@@ -1437,36 +1403,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 int newId = newObj.create(newObj);
                 String msg = "Nouveau élément " + newId + " enregistré !";
                 msg_lbl.setText(msg);
-                companyPane_msg.setText(msg);
             }
         } else {//Editing existing element
 
         }
     }//GEN-LAST:event_companyPane_btn_saveActionPerformed
-
-    private void initTransporterTableDoubleClick() {
-        this.transporter_jtable.addMouseListener(
-                new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    ConfigTransporter auxTransporter;
-                    Helper.startSession();
-                    Query query = Helper.sess.createQuery(HQLHelper.GET_TRANSPORTER_BY_ID);
-                    query.setParameter("id", Integer.valueOf(transporter_jtable.getValueAt(transporter_jtable.getSelectedRow(), 0).toString()));
-                    Helper.sess.getTransaction().commit();
-                    auxTransporter = (ConfigTransporter) query.list().get(0);
-
-                    transporterPane_field_id.setText(auxTransporter.getId().toString());
-                    transporterPane_field_name.setText(auxTransporter.getName());
-
-                    transporterPane_delete.setEnabled(true);
-                    transporterPane_duplicate.setEnabled(true);
-                }
-            }
-        }
-        );
-    }
 
 
     private void transporterPane_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporterPane_saveActionPerformed
@@ -1479,15 +1420,22 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         if (transporterPane_field_id.getText().isEmpty()) { //new element
             if (transporterPane_field_name.getText().isEmpty()) {
                 UILog.severeDialog(this, ErrorMsg.APP_ERR0048, "Erreur sauvegarde!");
-                transporterPane_msg.setText(ErrorMsg.APP_ERR0048[1]);
+                msg_lbl.setText(ErrorMsg.APP_ERR0048[1]);
             } else {
                 ConfigTransporter newObj = new ConfigTransporter(transporterPane_field_name.getText());
-                int newId = newObj.create(newObj);
-                String msg = "Nouveau élément " + newId + " enregistré !";
-                transporterPane_msg.setText(msg);
-                msg_lbl.setText(msg);
-                clearPaneFieldsValues(transporter_fields);
-                refreshTransportersTable();
+                try {
+                    int newId = newObj.create(newObj);
+                    String msg = "Nouveau élément " + newId + " enregistré !";
+                    msg_lbl.setText(msg);
+                    clearPaneFieldsValues(transporter_fields);
+                    refreshTransportersTable();
+                } catch (ConstraintViolationException e) {
+                    BatchUpdateException batchUpdateException = (BatchUpdateException) e.getCause();
+                    Exception psqlException = batchUpdateException.getNextException();
+                    String msg = psqlException.getLocalizedMessage();
+                    msg_lbl.setText("Valeur unique dupliqué !");
+                    UILog.severeDialog(this, msg, "");
+                }
             }
         } //######################################################################
         //
@@ -1495,11 +1443,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
         //
         //######################################################################        
         else {//Editing existing element
-            //aux.update(aux);
-            clearPaneFieldsValues(transporter_fields);
+            auxTransporter.setName(transporterPane_field_name.getText());
+            auxTransporter.update(auxTransporter);
             String[] msg = {"Changements enregistrés"};
             msg_lbl.setText(msg[0]);
-            //UILog.infoDialog(this, msg);
+            clearPaneFieldsValues(transporter_fields);
             refreshTransportersTable();
         }
 
@@ -1535,7 +1483,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
     private void projectPane_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectPane_deleteActionPerformed
         try {
-            deleteAction(this.auxProject, this.auxProject.getId(), project_fields, projectPane_msg);
+            deleteAction(this.auxProject, this.auxProject.getId(), project_fields, msg_lbl);
         } catch (Exception e) {
             UILog.errorDialog("Veuillez sélectionner un élément à supprimer !");
         }
@@ -1543,7 +1491,7 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
     private void famillePane_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_famillePane_deleteActionPerformed
         try {
-            deleteAction(this.auxFamily, this.auxFamily.getId(), family_fields, familyPane_msg);
+            deleteAction(this.auxFamily, this.auxFamily.getId(), family_fields, msg_lbl);
         } catch (Exception e) {
             UILog.errorDialog("Veuillez sélectionner un élément à supprimer !");
         }
@@ -1551,12 +1499,13 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
 
     private void transporterPane_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporterPane_deleteActionPerformed
         try {
-            deleteAction(this.auxTransporter, this.auxTransporter.getId(), transporter_fields, transporterPane_msg);
+            deleteAction(this.auxTransporter, this.auxTransporter.getId(), transporter_fields, msg_lbl);
+            refreshTransportersTable();
         } catch (Exception e) {
             UILog.errorDialog("Veuillez sélectionner un élément à supprimer !");
         }
     }//GEN-LAST:event_transporterPane_deleteActionPerformed
-    
+
     private void refreshTransportersTable() {
         Vector transportersDataVector = new Vector();
 
@@ -1574,10 +1523,42 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
                 "ID",
                 "NAME"), transporter_jtable);
     }
-    
+
+    private void initTransporterTableDoubleClick() {
+        this.transporter_jtable.addMouseListener(
+                new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    Helper.startSession();
+                    Query query = Helper.sess.createQuery(HQLHelper.GET_TRANSPORTER_BY_ID);
+                    query.setParameter("id", Integer.valueOf(transporter_jtable.getValueAt(transporter_jtable.getSelectedRow(), 0).toString()));
+                    Helper.sess.getTransaction().commit();
+                    auxTransporter = (ConfigTransporter) query.list().get(0);
+
+                    transporterPane_field_id.setText(auxTransporter.getId().toString());
+                    transporterPane_field_name.setText(auxTransporter.getName());
+
+                    transporterPane_delete.setEnabled(true);
+                    transporterPane_duplicate.setEnabled(true);
+
+                }
+            }
+        }
+        );
+    }
+
     private void transporterPane_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporterPane_refreshActionPerformed
         refreshTransportersTable();
+        initTransporterTableDoubleClick();
+        GlobalMethods.disableEditingTable(transporter_jtable);
     }//GEN-LAST:event_transporterPane_refreshActionPerformed
+
+    private void transporterPane_duplicateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporterPane_duplicateActionPerformed
+        transporterPane_field_id.setText("");
+        transporterPane_field_name.setText(auxTransporter.getName());
+        msg_lbl.setText("Elément dupliqué !");
+    }//GEN-LAST:event_transporterPane_duplicateActionPerformed
 
     private void deleteAction(DAO object, int id, JPanel pane, JTextField feedBackField) {
         int confirmed = JOptionPane.showConfirmDialog(this,
@@ -1624,7 +1605,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JTextField companyPane_field_name;
     private javax.swing.JTextField companyPane_field_website;
     private javax.swing.JTextField companyPane_field_zip;
-    private javax.swing.JTextField companyPane_msg;
     private javax.swing.JPanel company_fields;
     private javax.swing.JTable company_jtable;
     private javax.swing.JPanel company_pane;
@@ -1638,7 +1618,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JTable famille_jtable;
     private javax.swing.JScrollPane famille_table;
     private javax.swing.JButton familyPane_btn_clear;
-    private javax.swing.JTextField familyPane_msg;
     private javax.swing.JPanel family_fields;
     private javax.swing.JPanel family_pane;
     private javax.swing.JLabel jLabel1;
@@ -1677,7 +1656,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JTextField magasinPane_field_id;
     private javax.swing.JTextField magasinPane_field_magasin;
     private javax.swing.JComboBox<String> magasinPane_field_projet;
-    private javax.swing.JTextField magasinPane_msg;
     private javax.swing.JButton magasinPane_save;
     private javax.swing.JPanel magasin_fields;
     private javax.swing.JTable magasin_jtable;
@@ -1690,7 +1668,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JButton projectPane_duplicate;
     private javax.swing.JTextField projectPane_field_id;
     private javax.swing.JTextField projectPane_field_id2;
-    private javax.swing.JTextField projectPane_msg;
     private javax.swing.JButton projectPane_save;
     private javax.swing.JPanel project_fields;
     private javax.swing.JTable project_jtable;
@@ -1702,7 +1679,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JTextField segmentPane_field_id;
     private javax.swing.JComboBox<String> segmentPane_field_project;
     private javax.swing.JTextField segmentPane_field_segment;
-    private javax.swing.JTextField segmentPane_msg;
     private javax.swing.JButton segmentPane_save;
     private javax.swing.JPanel segment_fields;
     private javax.swing.JTable segment_jtable;
@@ -1714,7 +1690,6 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JTextField transporterPane_field_id;
     private javax.swing.JTextField transporterPane_field_name;
     private javax.swing.JLabel transporterPane_label_id;
-    private javax.swing.JTextField transporterPane_msg;
     private javax.swing.JButton transporterPane_refresh;
     private javax.swing.JButton transporterPane_save;
     private javax.swing.JPanel transporter_fields;
@@ -1729,14 +1704,11 @@ public class CONFIG_UI0004_CONFIG_PROJECT_MASTER_DATA_JPANEL extends javax.swing
     private javax.swing.JComboBox<String> workplacePane_field_project;
     private javax.swing.JComboBox<String> workplacePane_field_segment;
     private javax.swing.JTextField workplacePane_field_workplace;
-    private javax.swing.JTextField workplacePane_msg;
     private javax.swing.JButton workplacePane_save;
     private javax.swing.JPanel workplace_fields;
     private javax.swing.JTable workplace_jtable;
     private javax.swing.JPanel workplace_pane;
     private javax.swing.JScrollPane workplace_table;
     // End of variables declaration//GEN-END:variables
-
-    
 
 }

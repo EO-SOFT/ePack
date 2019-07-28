@@ -6,10 +6,12 @@
 package gui.warehouse_dispatch;
 
 import entity.ConfigProject;
+import entity.ConfigTransporter;
 import entity.ConfigWarehouse;
 import entity.LoadPlan;
 import entity.LoadPlanDestinationRel;
 import gui.warehouse_dispatch.state.WarehouseHelper;
+import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.awt.HeadlessException;
@@ -49,7 +51,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         this.lp = lp;
 
         initComponents();
-        initGui();
+        initGui();       
 
     }
 
@@ -61,11 +63,12 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
             create_time_label.setText(sdf.format(this.lp.getCreateTime()));
             deliv_date_label.setText(sdf.format(this.lp.getDeliveryTime()));
             truck_no_text.setText(this.lp.getTruckNo());
-            transporter_text.setText(this.lp.getTransportCompany());
+//            transporter_text.setText(this.lp.getTransportCompany());
             state_label.setText(this.lp.getPlanState());
             newDeliveryDatePicker.setDate(this.lp.getDeliveryTime());
 
             project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
+
             //Set the project value
             for (int i = 0; i < project_filter.getItemCount(); i++) {
                 if (project_filter.getItemAt(i).toString().equals(this.lp.getProject())) {
@@ -80,6 +83,16 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
                     break;
                 }
             }
+
+//            transporter_filter = ConfigTransporter.initTransporterJBox(this, transporter_filter, false);
+//            //Set the transporter value
+//            for (int i = 0; i < transporter_filter.getItemCount(); i++) {
+//                if (transporter_filter.getItemAt(i).toString().equals(this.lp.getTransportCompany())) {
+//                    transporter_filter.setSelectedIndex(i);
+//                    break;
+//                }
+//                
+//            }
 
             //Load plan destination
             this.initDestinationsJtable();
@@ -220,7 +233,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         newDeliveryDatePicker = new org.jdesktop.swingx.JXDatePicker();
         jLabel2 = new javax.swing.JLabel();
-        transporter_text = new javax.swing.JTextField();
+        transporter_filter = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         truck_no_text = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -338,7 +351,8 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Transporteur");
         panel2.add(jLabel2);
-        panel2.add(transporter_text);
+
+        panel2.add(transporter_filter);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Matricule Remorque");
@@ -411,15 +425,15 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
                 newDeliveryDatePicker.requestFocus();
             } else {
                 this.lp.setDeliveryTime(newDeliveryDatePicker.getDate());
-                if (transporter_text.getText().isEmpty()) {
-                    UILog.severe(ErrorMsg.APP_ERR0045[0]);
-                    UILog.severeDialog(null, ErrorMsg.APP_ERR0045);
-                    transporter_text.requestFocus();
-                } else {
+//                if (transporter_text.getText().isEmpty()) {
+//                    UILog.severe(ErrorMsg.APP_ERR0045[0]);
+//                    UILog.severeDialog(null, ErrorMsg.APP_ERR0045);
+//                    transporter_text.requestFocus();
+//                } else {
 
                     this.lp.setTruckNo((truck_no_text.getText().isEmpty()) ? "" : truck_no_text.getText());
                     this.lp.setFgWarehouse(warehouse_filter.getSelectedItem() + "");
-                    this.lp.setTransportCompany(transporter_text.getText());
+                    this.lp.setTransportCompany(transporter_filter.getSelectedItem() + "");
                     String packaging_wh = new ConfigWarehouse().getPackagingWh(project_filter.getSelectedItem().toString());
                     lp.setPackagingWarehouse(packaging_wh);
                     this.lp.update(this.lp);
@@ -432,7 +446,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
                     WarehouseHelper.Dispatch_Gui_Jpanel.reloadPlansData();
 
                     this.dispose();
-                }
+                //}
             }
 
         } catch (HibernateException | HeadlessException e) {
@@ -490,7 +504,7 @@ public class WAREHOUSE_DISPATCH_UI0005_EDIT_PLAN extends javax.swing.JDialog {
     private javax.swing.JLabel time_label3;
     private javax.swing.JLabel time_label4;
     private javax.swing.JLabel time_label6;
-    private javax.swing.JTextField transporter_text;
+    private javax.swing.JComboBox<String> transporter_filter;
     private javax.swing.JTextField truck_no_text;
     private javax.swing.JComboBox warehouse_filter;
     // End of variables declaration//GEN-END:variables

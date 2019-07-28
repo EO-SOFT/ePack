@@ -256,7 +256,15 @@
                     <Property name="text" type="java.lang.String" value="Transporteur"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="transporter_text">
+                <Component class="javax.swing.JComboBox" name="transporter_filter">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>

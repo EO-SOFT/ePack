@@ -14,7 +14,6 @@ import entity.ConfigWorkplace;
 import entity.LoadPlanDestination;
 import entity.PackagingMaster;
 import gui.packaging.PackagingVars;
-import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.awt.Color;
@@ -34,7 +33,6 @@ import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import ui.UILog;
-import ui.error.ErrorMsg;
 
 /**
  *
@@ -518,6 +516,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         msg_lbl.setBackground(new java.awt.Color(255, 255, 255));
         msg_lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         msg_lbl.setForeground(new java.awt.Color(0, 255, 51));
+
+        jPanel6.setBackground(new java.awt.Color(36, 65, 86));
 
         jPanel5.setBackground(new java.awt.Color(36, 65, 86));
 

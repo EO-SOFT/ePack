@@ -168,7 +168,8 @@ public class ConfigWarehouse extends DAO implements java.io.Serializable {
         List result;
         jbox.removeAllItems();
         if (displayAll) {
-            jbox.addItem(new ComboItem("ALL", "ALL"));
+            //jbox.addItem(new ComboItem("ALL", "ALL"));
+            jbox.addItem("ALL");
         }
         if (project != null && !project.isEmpty() && !"null".equals(project)) {
             switch (warehouse_type){
@@ -189,7 +190,8 @@ public class ConfigWarehouse extends DAO implements java.io.Serializable {
             } else { //Map project data in the list
                 for (Object o : result) {
                     ConfigWarehouse cp = (ConfigWarehouse) o;
-                    jbox.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                    //jbox.addItem(new ComboItem(cp.getWarehouse(), cp.getWarehouse()));
+                    jbox.addItem(cp.getWarehouse());
                 }
             }
         } else {
@@ -200,7 +202,8 @@ public class ConfigWarehouse extends DAO implements java.io.Serializable {
             } else { //Map project data in the list
                 for (Object o : result) {
                     ConfigWarehouse p = (ConfigWarehouse) o;
-                    jbox.addItem(new ComboItem(p.getWarehouse(), p.getWarehouse()));
+                    //jbox.addItem(new ComboItem(p.getWarehouse(), p.getWarehouse()));
+                    jbox.addItem(p.getWarehouse());
                 }
             }
         }

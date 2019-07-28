@@ -22,32 +22,14 @@
             <Property name="text" type="java.lang.String" value="Production"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="packaging_submenu">
+            <MenuItem class="javax.swing.JMenuItem" name="menu012_packaging">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Conditionnement"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="packaging_submenuMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu012_packagingActionPerformed"/>
               </Events>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="menu_scan_mode_1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Mode 1"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_scan_mode_1ActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menu_scan_mode_2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Mode 2"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_scan_mode_2ActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu011_prod_statistics">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">

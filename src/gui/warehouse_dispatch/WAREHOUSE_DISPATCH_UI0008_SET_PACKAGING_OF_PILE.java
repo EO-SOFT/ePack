@@ -110,7 +110,8 @@ public class WAREHOUSE_DISPATCH_UI0008_SET_PACKAGING_OF_PILE extends javax.swing
         if (!resultList.isEmpty()) {
             piles_box.removeAll();
             for (int pile : arg) {
-                piles_box.addItem(new ComboItem(pile + "", pile + ""));
+                //piles_box.addItem(new ComboItem(pile + "", pile + ""));
+                piles_box.addItem(pile + "");
             }
             return true;
         } else {
@@ -125,7 +126,8 @@ public class WAREHOUSE_DISPATCH_UI0008_SET_PACKAGING_OF_PILE extends javax.swing
         //Map project data in the list
         for (Object o : result) {
             PackagingItems pc = (PackagingItems) o;
-            pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
+            //pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
+            pack_items_box.addItem(pc.getPackItem());
         }
 
     }

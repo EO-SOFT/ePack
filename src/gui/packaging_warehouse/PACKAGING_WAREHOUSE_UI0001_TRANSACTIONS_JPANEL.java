@@ -81,7 +81,8 @@ public class PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL extends javax.swing.
         //Map project data in the list
         for (Object o : result) {
             PackagingItems pc = (PackagingItems) o;
-            pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
+            //pack_items_box.addItem(new ComboItem(pc.getPackItem(), pc.getPackItem()));
+            pack_items_box.addItem(pc.getPackItem());
         }
 
     }
@@ -89,22 +90,19 @@ public class PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL extends javax.swing.
     private void initWarehouseItemsBox() {
         warehouse_box.removeAllItems();
         warehouse_box_filter.removeAllItems();
-        warehouse_box_filter.addItem(new ComboItem("", ""));
+        //warehouse_box_filter.addItem(new ComboItem("", ""));
+        warehouse_box_filter.addItem("");
 
         List result = new ConfigWarehouse().selectWarehousesByType("PACKAGING");
 
         for (Object o : result) {
             ConfigWarehouse wh = (ConfigWarehouse) o;
-            warehouse_box.addItem(new ComboItem(wh.getWarehouse(), wh.getWarehouse()));
-            warehouse_box_filter.addItem(new ComboItem(wh.getWarehouse(), wh.getWarehouse()));
+            //warehouse_box.addItem(new ComboItem(wh.getWarehouse(), wh.getWarehouse()));
+            warehouse_box.addItem(wh.getWarehouse());
+            //warehouse_box_filter.addItem(new ComboItem(wh.getWarehouse(), wh.getWarehouse()));
+            warehouse_box_filter.addItem(wh.getWarehouse());
         }
 
-        /*//Map project data in the list
-        for (Object o : result) {
-            ConfigWarehouse wh = (ConfigWarehouse) o;
-            warehouse_box.addItem(new ComboItem(wh.getWarehouse(), wh.getWarehouse()));
-            warehouse_box_filter.addItem(new ComboItem(wh.getWarehouse(), wh.getWarehouse()));
-        }*/
     }
 
     private void initGui() {
@@ -116,10 +114,6 @@ public class PACKAGING_WAREHOUSE_UI0001_TRANSACTIONS_JPANEL extends javax.swing.
         initItemsTabUIjtableHeader();
         UIHelper.disableEditingJtable(transactions_jtable);
 
-//        Helper.centerJFrame(this);
-//        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-//        this.setResizable(true);
-//        this.setVisible(true);
         
     }
 

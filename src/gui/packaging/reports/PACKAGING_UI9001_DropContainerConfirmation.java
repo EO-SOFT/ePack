@@ -32,7 +32,8 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
     private BaseContainer bc;
     private int scanMode;
     private final String MSG_DROP_SUCCESS = "Palette [%s] supprimée avec succès !";
-    private PACKAGING_UI0010_PalletDetails_JPANEL parent;
+    private PACKAGING_UI0010_PalletDetails_JPANEL parentJpanel;
+    private PACKAGING_UI0010_PalletDetails_JFRAME parentJframe;
 
     /**
      * Creates new form UI9001_DropPalletConfirmation
@@ -51,9 +52,38 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
         palletNumber_lbl.setText(bc.getPalletNumber());
         this.scanMode = scanMode;
     }
-
+    
     private void initGui(javax.swing.JPanel parent) {
-        this.parent = (PACKAGING_UI0010_PalletDetails_JPANEL) parent;
+        this.parentJpanel = (PACKAGING_UI0010_PalletDetails_JPANEL) parent;
+
+        //Center the this dialog in the screen
+        Helper.centerJFrame(this);
+
+        //Disable resizing
+        this.setResizable(false);
+
+    }
+    
+    /**
+     * Creates new form UI9001_DropPalletConfirmation
+     *
+     * @param parent
+     * @param modal
+     * @param bc
+     * @param scanMode
+     *
+     */
+    public PACKAGING_UI9001_DropContainerConfirmation(PACKAGING_UI0010_PalletDetails_JFRAME parent, boolean modal, BaseContainer bc, int scanMode) {
+        //super(parent, modal);
+        initComponents();
+        initGui(parent);
+        this.setBaseContainer(bc);
+        palletNumber_lbl.setText(bc.getPalletNumber());
+        this.scanMode = scanMode;
+    }
+
+    private void initGui(PACKAGING_UI0010_PalletDetails_JFRAME parent) {
+        this.parentJframe = parent;
 
         //Center the this dialog in the screen
         Helper.centerJFrame(this);
@@ -160,7 +190,7 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
     private void ok_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_btnActionPerformed
 
         if (!dropFeedback_txtbox.getText().isEmpty()) {
-            int confirmed = JOptionPane.showConfirmDialog(this.parent,
+            int confirmed = JOptionPane.showConfirmDialog(this.parentJpanel,
                     String.format("Confirmez-vous la suppression de la palette [%s] ?",
                             this.bc.getPalletNumber()),
                     "Confirmation",
@@ -256,18 +286,32 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
                 Query query = Helper.sess.createQuery(HQLHelper.DEL_CONTAINER_BY_ID);
                 query.setParameter("id", bc.getId());
                 int id = query.executeUpdate();
-                //Clear parent search box
-                this.parent.clearSearchBox();
 
-                //Print delete OK message
-                this.parent.setOkText(String.format(MSG_DROP_SUCCESS, dp.getPalletNumber()));
+                try {
+                    //Clear parent search box
+                    this.parentJpanel.clearSearchBox();
 
-                //Reset the table
-                this.parent.reset_container_table_content();
+                    //Print delete OK message
+                    this.parentJpanel.setOkText(String.format(MSG_DROP_SUCCESS, dp.getPalletNumber()));
 
-                //Clear form fields
-                this.parent.clearContainerFieldsValues();
+                    //Reset the table
+                    this.parentJpanel.reset_container_table_content();
 
+                    //Clear form fields
+                    this.parentJpanel.clearContainerFieldsValues();
+                } catch (Exception e) {
+                    //Clear parent search box
+                    this.parentJframe.clearSearchBox();
+
+                    //Print delete OK message
+                    this.parentJframe.setOkText(String.format(MSG_DROP_SUCCESS, dp.getPalletNumber()));
+
+                    //Reset the table
+                    this.parentJframe.reset_container_table_content();
+
+                    //Clear form fields
+                    this.parentJframe.clearContainerFieldsValues();
+                }
                 //Reset the title
 //                this.parent.setTitle("Détails palette");
 

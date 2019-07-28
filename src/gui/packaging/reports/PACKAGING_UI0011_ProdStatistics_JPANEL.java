@@ -78,6 +78,8 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         initComponents();
         initTimeSpinners();
         project_filter = ConfigProject.initProjectsJBox(this, project_filter, true);
+        combox = ConfigProject.initProjectsJBox(this, combox, true);
+         
         this.workplace_filter.setEnabled(false);
         radioGroup.add(radio_all_harness);
         radioGroup.add(radio_filled_ucs);
@@ -424,6 +426,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         total_declared_lbl = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        combox = new javax.swing.JComboBox<>();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -621,6 +624,8 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Σ Quantités produites");
 
+        combox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -669,13 +674,11 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                             .addComponent(harness_part_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel16)))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(combox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(total_dropped_lbl, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -687,17 +690,23 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(workplace_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(segment_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(project_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(combox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -759,7 +768,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(84, Short.MAX_VALUE))
+                        .addContainerGap(86, Short.MAX_VALUE))
                     .addGroup(north_panelLayout.createSequentialGroup()
                         .addComponent(result_table_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 1007, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -907,7 +916,8 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
 
     private void segment_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segment_filterActionPerformed
         String segment = String.valueOf(segment_filter.getSelectedItem()).trim();
-        this.workplace_filter.addItem(new ComboItem("ALL", "ALL"));
+        //this.workplace_filter.addItem(new ComboItem("ALL", "ALL"));
+        this.workplace_filter.addItem("ALL");
         if ("ALL".equals(segment) || segment.equals("null")) {
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
@@ -942,7 +952,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
         System.out.println("Selected Project " + project);
         if ("ALL".equals(project)) {
             segment_filter.removeAllItems();
-            segment_filter.addItem(new ComboItem("ALL", "ALL"));
+            segment_filter.addItem("ALL");
             this.segment_filter.setSelectedIndex(0);
             this.segment_filter.setEnabled(false);
         } else {
@@ -957,6 +967,7 @@ public class PACKAGING_UI0011_ProdStatistics_JPANEL extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> combox;
     private javax.swing.JTable declared_result_table;
     private org.jdesktop.swingx.JXDatePicker endDatePicker;
     private javax.swing.JSpinner endTimeSpinner;
