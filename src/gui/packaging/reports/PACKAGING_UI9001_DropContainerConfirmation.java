@@ -52,7 +52,7 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
         palletNumber_lbl.setText(bc.getPalletNumber());
         this.scanMode = scanMode;
     }
-    
+
     private void initGui(javax.swing.JPanel parent) {
         this.parentJpanel = (PACKAGING_UI0010_PalletDetails_JPANEL) parent;
 
@@ -63,7 +63,7 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
         this.setResizable(false);
 
     }
-    
+
     /**
      * Creates new form UI9001_DropPalletConfirmation
      *
@@ -118,7 +118,7 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
         palletNumber_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Drop Comment");
+        setTitle("Motif de suppression");
         setResizable(false);
 
         jLabel1.setText("Commentaire d'annulation");
@@ -127,7 +127,8 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
         dropFeedback_txtbox.setRows(5);
         jScrollPane1.setViewportView(dropFeedback_txtbox);
 
-        ok_btn.setText("Valider");
+        ok_btn.setBackground(new java.awt.Color(255, 0, 153));
+        ok_btn.setText("Supprimer");
         ok_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ok_btnActionPerformed(evt);
@@ -312,6 +313,14 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
                     //Clear form fields
                     this.parentJframe.clearContainerFieldsValues();
                 }
+                if (GlobalVars.OPENED_SCAN_WINDOW == 1) {
+                    PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code à barre d'une référence.");
+                    PackagingVars.Packaging_Gui_Mode3.setRequestedPallet_txt("");
+                    //Refresh the main table
+                    PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
+
+                }
+
                 //Reset the title
 //                this.parent.setTitle("Détails palette");
 
@@ -321,21 +330,20 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
                     //Refresh the main table
                     PackagingVars.Packaging_Gui_Mode1.reloadDataTable();
                 } else */
-                if (GlobalVars.OPENED_SCAN_WINDOW == 0) {
-                    if (this.scanMode == 2) {
-                        PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code à barre d'une référence.");
-                        PackagingVars.Packaging_Gui_Mode2.setRequestedPallet_txt("");
-                        //Refresh the main table
-                        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
-                    }
-                    if (this.scanMode == 3) {
-                        PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code à barre d'une référence.");
-                        PackagingVars.Packaging_Gui_Mode3.setRequestedPallet_txt("");
-                        //Refresh the main table
-                        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
-                    }
-                }
-
+//                if (GlobalVars.OPENED_SCAN_WINDOW == 0) {
+//                    if (this.scanMode == 2) {
+//                        PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code à barre d'une référence.");
+//                        PackagingVars.Packaging_Gui_Mode2.setRequestedPallet_txt("");
+//                        //Refresh the main table
+//                        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
+//                    }
+//                    if (this.scanMode == 3) {
+//                        PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code à barre d'une référence.");
+//                        PackagingVars.Packaging_Gui_Mode3.setRequestedPallet_txt("");
+//                        //Refresh the main table
+//                        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
+//                    }
+//                }
                 Helper.sess.flush();
 
                 this.dispose();
@@ -343,7 +351,7 @@ public final class PACKAGING_UI9001_DropContainerConfirmation extends javax.swin
             }
         }//end if(!dropFeedback_txtbox.getText().isEmpty()) 
         else {
-            JOptionPane.showMessageDialog(null, "Empty drop comment !", "Please specify a comment for this operation ! ", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Merci de saisir un commentaire !", "Erreur de suppression! ", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ok_btnActionPerformed
 

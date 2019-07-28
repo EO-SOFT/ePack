@@ -2792,7 +2792,7 @@ public final class WAREHOUSE_DISPATCH_UI0002_DISPATCH_SCAN_JPANEL extends javax.
         }
 //else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
 //            int confirmed = JOptionPane.showConfirmDialog(null,
-//                    "Are you sure you want to logoff ?", "Logoff confirmation",
+//                    "Voulez-vous fermer la session ?", "Confirmation",
 //                    JOptionPane.YES_NO_OPTION);
 //            if (confirmed == 0) {
 //                //logout();

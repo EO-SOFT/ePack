@@ -780,7 +780,7 @@ public final class PACKAGING_UI0001_Main_Mode3 extends javax.swing.JFrame implem
             state = PackagingVars.mode3_context.getState();
         } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             int confirmed = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to logoff ?", "Logoff confirmation",
+                    "Voulez-vous fermer la session ?", "Confirmation",
                     JOptionPane.YES_NO_OPTION);
             if (confirmed == 0) {
                 logout();

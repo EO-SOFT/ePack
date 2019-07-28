@@ -128,7 +128,7 @@ public class Mode3_S031_PalletChoice implements Mode3_State {
                         for (int copies = 0; copies < bc.getClosingSheetCopies(); copies++) {
                             System.out.println("Printing closing sheet copie " + copies);
                             try {                 
-                                UILog.infoDialog(""+this.getClass().getName()+" 130 "+bc.getClosingSheetFormat());
+                                //UILog.infoDialog(""+this.getClass().getName()+" 130 "+bc.getClosingSheetFormat());
                                 PrinterHelper.saveAndPrintClosingSheet(PackagingVars.mode3_context, bc, false, bc.getClosingSheetFormat());
                             } catch (IOException | DocumentException ex) {
                                 UILog.severe(ex.toString());

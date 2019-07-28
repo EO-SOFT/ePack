@@ -243,7 +243,6 @@ public final class PACKAGING_UI9000_ChoosePackType_Mode3 extends javax.swing.JDi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        ucs_jtable.setCellSelectionEnabled(true);
         ucs_jtable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         ucs_jtable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

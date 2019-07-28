@@ -661,14 +661,8 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
                 result = query.list();
                 bc = (BaseContainer) result.get(0);
                 this.setContainerFieldsValues(bc);
-                switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
-                    case "2":
-                        print_btn.setEnabled(true);
-                        break;
-                    default:
-                        print_btn.setEnabled(false);
-                        break;
-                }
+                print_btn.setEnabled(true);
+                
             }
         } else {
             JOptionPane.showMessageDialog(null, "Merci de scanner ou saisir un identifiant faisceau !", "Champs requis", JOptionPane.ERROR_MESSAGE);
@@ -830,22 +824,24 @@ public class PACKAGING_UI0012_HarnessDetails_JPANEL extends javax.swing.JPanel{
                 success_lbl.setVisible(true);
                 success_lbl.setText(OK_HARNESS_DROPPED);
                 print_btn.setEnabled(false);
+                
+                PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
                 //Refresh the main table
-                switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
-                    /*
-                    case "1":
-                        PackagingVars.Packaging_Gui_Mode1.reloadDataTable();
-                        break;
-                    */
-                    case "2":
-                        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
-                        break;
-                    case "3":
-                        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
-                        break;
-                    default:
-                        break;
-                }
+//                switch (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE")) {
+//                    /*
+//                    case "1":
+//                        PackagingVars.Packaging_Gui_Mode1.reloadDataTable();
+//                        break;
+//                    */
+//                    case "2":
+//                        PackagingVars.Packaging_Gui_Mode2.reloadDataTable();
+//                        break;
+//                    case "3":
+//                        PackagingVars.Packaging_Gui_Mode3.reloadDataTable();
+//                        break;
+//                    default:
+//                        break;
+//                }
             }
         }
     }//GEN-LAST:event_drop_btnActionPerformed

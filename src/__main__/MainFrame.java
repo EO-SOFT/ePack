@@ -669,17 +669,18 @@ public class MainFrame extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE);
 
         if (confirmed == 0) {
-
-            if (PackagingVars.Packaging_Gui_Mode2 != null || PackagingVars.Packaging_Gui_Mode3 != null) {
-                //Ferme l'interface contenu contenant s'elle ouverte.
-                if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
-                    PackagingVars.Packaging_Gui_Mode2.dispose();
+            PackagingVars.Packaging_Gui_Mode3.dispose();
                     GlobalVars.OPENED_SCAN_WINDOW = 0;
-                } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
-                    PackagingVars.Packaging_Gui_Mode3.dispose();
-                    GlobalVars.OPENED_SCAN_WINDOW = 0;
-                }
-            }
+//            if (PackagingVars.Packaging_Gui_Mode2 != null || PackagingVars.Packaging_Gui_Mode3 != null) {
+//                //Ferme l'interface contenu contenant s'elle ouverte.
+//                if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
+//                    PackagingVars.Packaging_Gui_Mode2.dispose();
+//                    GlobalVars.OPENED_SCAN_WINDOW = 0;
+//                } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
+//                    PackagingVars.Packaging_Gui_Mode3.dispose();
+//                    GlobalVars.OPENED_SCAN_WINDOW = 0;
+//                }
+//            }
             
 
             try {

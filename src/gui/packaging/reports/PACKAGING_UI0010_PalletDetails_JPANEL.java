@@ -2068,7 +2068,7 @@ public final class PACKAGING_UI0010_PalletDetails_JPANEL extends javax.swing.JPa
                     //After removing the mode2 package from source code in future releases
                     /*
                     if (mode != -1) {
-                        if(GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")){
+//                        if(GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")){
                             if(mode == 1)
                             PrinterHelper.saveAndPrintClosingSheetMode1(PackagingVars.mode2_context, b, true);
                             else

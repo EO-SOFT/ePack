@@ -452,50 +452,59 @@ public class PACKAGING_UI0013_PalletWaiting extends javax.swing.JDialog {
 
     private void continue_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continue_btnActionPerformed
 
-        if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
-            BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
+//        if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
+//            BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
+//
+//            //Set requested closing pallet number in the main gui
+//            /*if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
+//                PackagingVars.mode1_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
+//                PackagingVars.Packaging_Gui_Mode1.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
+//                //############# PASSE TO S050 STATE ###############        
+//                PackagingVars.Packaging_Gui_Mode1.state = new Mode1_S050_ClosingPallet();
+//            } else 
+//             */
+//            if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
+//                PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
+//                PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
+//                //############# PASSE TO S050 STATE ###############        
+//                PackagingVars.Packaging_Gui_Mode2.state = new Mode2_S040_ClosingPallet();
+//            } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("3")) {
+//                PackagingVars.mode3_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
+//                PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
+//                //############# PASSE TO S050 STATE ###############        
+//                PackagingVars.Packaging_Gui_Mode3.state = new Mode3_S040_ClosingPallet();
+//            }
+//
+//            this.dispose();
+//
+//        } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
+//            BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
+//
+//            PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
+//            //Set requested closing pallet number in the main gui
+//            PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
+//            //############# PASSE TO S050 STATE ###############        
+//            PackagingVars.Packaging_Gui_Mode2.state = new Mode2_S040_ClosingPallet();
+//            this.dispose();
+//        } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("3")) {
+//            BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
+//
+//            PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
+//            //Set requested closing pallet number in the main gui
+//            PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
+//            //############# PASSE TO S050 STATE ###############        
+//            PackagingVars.Packaging_Gui_Mode3.state = new Mode3_S040_ClosingPallet();
+//            this.dispose();
+//        }
 
-            //Set requested closing pallet number in the main gui
-            /*if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("1")) {
-                PackagingVars.mode1_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
-                PackagingVars.Packaging_Gui_Mode1.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
-                //############# PASSE TO S050 STATE ###############        
-                PackagingVars.Packaging_Gui_Mode1.state = new Mode1_S050_ClosingPallet();
-            } else 
-             */
-            if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
-                PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
-                PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
-                //############# PASSE TO S050 STATE ###############        
-                PackagingVars.Packaging_Gui_Mode2.state = new Mode2_S040_ClosingPallet();
-            } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("3")) {
-                PackagingVars.mode3_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
-                PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
-                //############# PASSE TO S050 STATE ###############        
-                PackagingVars.Packaging_Gui_Mode3.state = new Mode3_S040_ClosingPallet();
-            }
+        BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
 
-            this.dispose();
-
-        } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("2")) {
-            BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
-
-            PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
-            //Set requested closing pallet number in the main gui
-            PackagingVars.Packaging_Gui_Mode2.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
-            //############# PASSE TO S050 STATE ###############        
-            PackagingVars.Packaging_Gui_Mode2.state = new Mode2_S040_ClosingPallet();
-            this.dispose();
-        } else if (GlobalVars.APP_PROP.getProperty("PACKAGING_SCAN_MODE").equals("3")) {
-            BaseContainer bc = new BaseContainer().getBaseContainer(palletNumber_txtbox.getText());
-
-            PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
-            //Set requested closing pallet number in the main gui
-            PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
-            //############# PASSE TO S050 STATE ###############        
-            PackagingVars.Packaging_Gui_Mode3.state = new Mode3_S040_ClosingPallet();
-            this.dispose();
-        }
+        PackagingVars.mode2_context.getBaseContainerTmp().setPalletNumber(bc.getPalletNumber());
+        //Set requested closing pallet number in the main gui
+        PackagingVars.Packaging_Gui_Mode3.setFeedbackTextarea("Scanner le code palette N° " + GlobalVars.CLOSING_PALLET_PREFIX + bc.getPalletNumber());
+        //############# PASSE TO S050 STATE ###############        
+        PackagingVars.Packaging_Gui_Mode3.state = new Mode3_S040_ClosingPallet();
+        this.dispose();
 
     }//GEN-LAST:event_continue_btnActionPerformed
 
