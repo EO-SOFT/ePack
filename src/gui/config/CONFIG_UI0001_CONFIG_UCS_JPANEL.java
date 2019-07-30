@@ -72,7 +72,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     public CONFIG_UI0001_CONFIG_UCS_JPANEL(JTabbedPane parent) {
         initComponents();
         initGui(parent);
-
+        
     }
 
     private void initGui(JTabbedPane parent) {
@@ -88,6 +88,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         project_filter = ConfigProject.initProjectsJBox(this, project_filter, false);
         
         this.initLineTableDoubleClick();
+        
+        tabbedPane_ucs_config.setSelectedIndex(0);
+        cpn_txtbox_search.requestFocus();
     }
 
     
@@ -180,7 +183,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                     }
 
                     for (int i = 0; i < destination_filter.getItemCount(); i++) {
-                        System.out.println("TEST DESTINATION " + i + " " + aux.getDestination() + " vs " + destination_filter.getItemAt(i).toString());
+////                        System.out.println("TEST DESTINATION " + i + " " + aux.getDestination() + " vs " + destination_filter.getItemAt(i).toString());
                         if (destination_filter.getItemAt(i).toString().equals(aux.getDestination())) {
                             destination_filter.setSelectedIndex(i);
                             break;
@@ -229,7 +232,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
 
                     delete_btn.setEnabled(true);
                     duplicate_btn.setEnabled(true);
-                    jTabbedPane1.setSelectedIndex(1);
+                    tabbedPane_ucs_config.setSelectedIndex(1);
                 }
             }
         }
@@ -300,6 +303,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         grossWeight_txtbox.setText("0,00");
         volume_txtbox.setText("0,00");
         label_per_piece_checkbox.setSelected(false);
+        print_destination_check.setSelected(false);
         priority.setText("99");
         open_sheet_copies.setText("1");
         closing_sheet_copies.setText("1");
@@ -378,7 +382,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         delete_btn = new javax.swing.JButton();
         duplicate_btn = new javax.swing.JButton();
         msg_lbl = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabbedPane_ucs_config = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         llogin_lbl_search2 = new javax.swing.JLabel();
@@ -400,7 +404,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         login_lbl3 = new javax.swing.JLabel();
         login_lbl5 = new javax.swing.JLabel();
         warehouse_filter = new javax.swing.JComboBox();
-        login_lbl6 = new javax.swing.JLabel();
         login_lbl = new javax.swing.JLabel();
         segment_filter = new javax.swing.JComboBox();
         pwd_lbl = new javax.swing.JLabel();
@@ -427,7 +430,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         write_time_txt = new javax.swing.JTextField();
         packaging_wh_filter = new javax.swing.JComboBox();
         fname_lbl14 = new javax.swing.JLabel();
-        destination_filter = new javax.swing.JComboBox();
         priority = new javax.swing.JTextField();
         login_lbl7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -450,6 +452,9 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         closing_sheet_format = new javax.swing.JComboBox<>();
         login_lbl8 = new javax.swing.JLabel();
         print_destination_check = new javax.swing.JCheckBox();
+        login_lbl6 = new javax.swing.JLabel();
+        destination_filter = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         pwd_lbl9 = new javax.swing.JLabel();
         netWeight_txtbox = new javax.swing.JTextField();
@@ -703,7 +708,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Liste", jPanel6);
+        tabbedPane_ucs_config.addTab("Liste", jPanel6);
 
         jPanel2.setBackground(new java.awt.Color(36, 65, 86));
         jPanel2.setMaximumSize(null);
@@ -745,9 +750,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 warehouse_filterActionPerformed(evt);
             }
         });
-
-        login_lbl6.setForeground(new java.awt.Color(255, 255, 255));
-        login_lbl6.setText("Destination finale");
 
         login_lbl.setForeground(new java.awt.Color(255, 255, 255));
         login_lbl.setText("Segment *");
@@ -890,13 +892,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         fname_lbl14.setForeground(new java.awt.Color(255, 255, 255));
         fname_lbl14.setText("Magasin Emballage");
 
-        destination_filter.setBackground(new java.awt.Color(204, 204, 255));
-        destination_filter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        destination_filter.setForeground(new java.awt.Color(0, 0, 0));
-        destination_filter.setMaximumSize(null);
-        destination_filter.setMinimumSize(new java.awt.Dimension(37, 26));
-        destination_filter.setPreferredSize(new java.awt.Dimension(37, 26));
-
         login_lbl7.setForeground(new java.awt.Color(255, 255, 255));
         login_lbl7.setText("Priorité");
 
@@ -907,7 +902,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(login_lbl6)
                     .addComponent(lname_lbl1)
                     .addComponent(login_lbl1)
                     .addComponent(fname_lbl14)
@@ -919,8 +913,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                     .addComponent(create_time_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(warehouse_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(project_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, 176, Short.MAX_VALUE)
-                    .addComponent(assy_txtbox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                    .addComponent(destination_filter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(assy_txtbox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pwd_lbl2)
@@ -1002,11 +995,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                         .addComponent(login_lbl1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(login_lbl6)
-                        .addComponent(pwd_lbl2))
-                    .addComponent(active_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destination_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwd_lbl2)
+                    .addComponent(active_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1020,7 +1010,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 .addGap(70, 70, 70))
         );
 
-        jTabbedPane1.addTab("infos Générales", jPanel2);
+        tabbedPane_ucs_config.addTab("infos Générales", jPanel2);
 
         jPanel4.setBackground(new java.awt.Color(36, 65, 86));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -1074,7 +1064,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
 
         comment_txt.setColumns(10);
         comment_txt.setRows(2);
-        comment_txt.setToolTipText("Special order comment or short description");
+        comment_txt.setToolTipText("Commentaire pour la commande spéciale...");
         comment_txt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 comment_txtFocusGained(evt);
@@ -1102,12 +1092,24 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         login_lbl8.setText("Format étiquette ferméture *");
 
         print_destination_check.setForeground(new java.awt.Color(255, 255, 255));
-        print_destination_check.setText("Imprimer la destination");
+        print_destination_check.setText("Imprimer la destination dans la fiche de ferméture");
         print_destination_check.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 print_destination_checkStateChanged(evt);
             }
         });
+
+        login_lbl6.setForeground(new java.awt.Color(255, 255, 255));
+        login_lbl6.setText("Destination finale");
+
+        destination_filter.setBackground(new java.awt.Color(204, 204, 255));
+        destination_filter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        destination_filter.setForeground(new java.awt.Color(0, 0, 0));
+        destination_filter.setMaximumSize(null);
+        destination_filter.setMinimumSize(new java.awt.Dimension(37, 26));
+        destination_filter.setPreferredSize(new java.awt.Dimension(37, 26));
+
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1116,47 +1118,55 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pwd_lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pwd_lbl4)
-                                    .addComponent(pwd_lbl5))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pack_type_filter, 0, 155, Short.MAX_VALUE)
-                                    .addComponent(pack_size_txtbox)
-                                    .addComponent(nbreOfBoxes_txtbox))
-                                .addGap(82, 82, 82))
+                            .addComponent(label_per_piece_checkbox)
+                            .addComponent(print_destination_check)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(login_lbl6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(destination_filter, 0, 159, Short.MAX_VALUE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pwd_lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(pwd_lbl4)
+                                        .addComponent(pwd_lbl5))
+                                    .addGap(36, 36, 36)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(pack_type_filter, 0, 155, Short.MAX_VALUE)
+                                        .addComponent(pack_size_txtbox)
+                                        .addComponent(nbreOfBoxes_txtbox)))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGap(38, 38, 38)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(login_lbl8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(special_order_check)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(print_destination_check))
-                                    .addComponent(label_per_piece_checkbox))
-                                .addGap(40, 40, 40)))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(open_sheet_copies)
+                                            .addComponent(closing_sheet_copies)))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(closing_sheet_format, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(login_lbl2)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(open_sheet_copies)
-                                    .addComponent(closing_sheet_copies)))
+                                .addComponent(barcodes_nbre_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(466, 466, 466))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(special_order_check)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(login_lbl2)
-                                    .addComponent(login_lbl8))
-                                .addGap(86, 86, 86)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(barcodes_nbre_txtbox)
-                                    .addComponent(closing_sheet_format, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 139, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1175,12 +1185,16 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pwd_lbl5)
                             .addComponent(nbreOfBoxes_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addComponent(label_per_piece_checkbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(special_order_check)
-                            .addComponent(print_destination_check)))
+                            .addComponent(destination_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(login_lbl6))
+                        .addGap(21, 21, 21)
+                        .addComponent(print_destination_check)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label_per_piece_checkbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(special_order_check))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(open_sheet_copies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1189,7 +1203,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(closing_sheet_copies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(barcodes_nbre_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(login_lbl2))
@@ -1198,12 +1212,14 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                             .addComponent(closing_sheet_format, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(login_lbl8))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Conditionnement", jPanel4);
-        jPanel4.getAccessibleContext().setAccessibleParent(jTabbedPane1);
+        tabbedPane_ucs_config.addTab("Conditionnement", jPanel4);
+        jPanel4.getAccessibleContext().setAccessibleParent(tabbedPane_ucs_config);
 
         jPanel3.setBackground(new java.awt.Color(36, 65, 86));
 
@@ -1361,7 +1377,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             .addComponent(filler3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Paramétrage Engineering", jPanel3);
+        tabbedPane_ucs_config.addTab("Paramétrage Engineering", jPanel3);
 
         fname_lbl1.setForeground(new java.awt.Color(255, 255, 255));
         fname_lbl1.setText("ID");
@@ -1392,8 +1408,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(id_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(msg_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(tabbedPane_ucs_config, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1410,7 +1425,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(msg_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabbedPane_ucs_config, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -1418,9 +1433,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1579,8 +1592,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             }
         }
         for (int i = 0; i < closing_sheet_format.getItemCount(); i++) {
-            System.out.println("Integer.valueOf(closing_sheet_format.getItemAt(i)) " + Integer.valueOf(closing_sheet_format.getItemAt(i)));
-            System.out.println("aux.getClosingSheetFormat() " + aux.getClosingSheetFormat());
+////            System.out.println("Integer.valueOf(closing_sheet_format.getItemAt(i)) " + Integer.valueOf(closing_sheet_format.getItemAt(i)));
+////            System.out.println("aux.getClosingSheetFormat() " + aux.getClosingSheetFormat());
             if (Integer.valueOf(closing_sheet_format.getItemAt(i)) == aux.getClosingSheetFormat()) {
                 closing_sheet_format.setSelectedIndex(i);
                 break;
@@ -1588,7 +1601,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
         }
 
         this.aux = null;
-        jTabbedPane1.setSelectedIndex(1);
+        tabbedPane_ucs_config.setSelectedIndex(1);
         msg_lbl.setText("Element dupliqué !");
     }//GEN-LAST:event_duplicate_btnActionPerformed
 
@@ -1843,8 +1856,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             } else {
                 mu.setLabelPerPiece(false);
             }
-            System.out.println("FORM validation : " + err);
-            System.out.println("New object " + mu.toString());
+////            System.out.println("FORM validation : " + err);
+////            System.out.println("New object " + mu.toString());
             if (!err) {
                 int newId = mu.create(mu);
                 String[] msg = {"Nouveau élément " + newId + " enregistré !"};
@@ -2166,8 +2179,8 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             aux.setGrossWeight(Double.valueOf(grossWeight_txtbox.getText().trim()));
             aux.setVolume(Double.valueOf(volume_txtbox.getText().trim()));
 
-            System.out.println("FORM validation : " + err);
-            System.out.println("Object updated" + aux.toString());
+//////            System.out.println("FORM validation : " + err);
+//////            System.out.println("Object updated" + aux.toString());
             if (!err) {
                 aux.update(aux);
                 clearFields();
@@ -2197,7 +2210,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_workplace_filterItemStateChanged
 
     private void segment_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segment_filterActionPerformed
-        System.out.println("Selected Segment " + String.valueOf(segment_filter.getSelectedItem()));
+//////        System.out.println("Selected Segment " + String.valueOf(segment_filter.getSelectedItem()));
         if ("ALL".equals(String.valueOf(segment_filter.getSelectedItem()).trim())) {
             this.workplace_filter.setSelectedIndex(0);
             this.workplace_filter.setEnabled(false);
@@ -2221,7 +2234,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     }//GEN-LAST:event_warehouse_filterItemStateChanged
 
     private void project_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_project_filterActionPerformed
-        System.out.println("Selected Project " + String.valueOf(project_filter.getSelectedItem()));
+//////        System.out.println("Selected Project " + String.valueOf(project_filter.getSelectedItem()));
         if ("ALL".equals(String.valueOf(segment_filter.getSelectedItem()).trim())) {
             this.segment_filter.setSelectedIndex(0);
             this.segment_filter.setEnabled(false);
@@ -2235,7 +2248,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
             }
         }
 
-        System.out.println("Set the packaging warehouse " + String.valueOf(project_filter.getSelectedItem()));
+////        System.out.println("Set the packaging warehouse " + String.valueOf(project_filter.getSelectedItem()));
 
     }//GEN-LAST:event_project_filterActionPerformed
 
@@ -2307,6 +2320,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JTextField index_txtbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2316,7 +2330,6 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JCheckBox label_per_piece_checkbox;
     private javax.swing.JLabel llogin_lbl_search;
     private javax.swing.JLabel llogin_lbl_search1;
@@ -2370,6 +2383,7 @@ public class CONFIG_UI0001_CONFIG_UCS_JPANEL extends javax.swing.JPanel {
     private javax.swing.JCheckBox special_order_check;
     private javax.swing.JTextField stdTime_txtbox;
     private javax.swing.JTextField supplier_pn_txtbox_search;
+    private javax.swing.JTabbedPane tabbedPane_ucs_config;
     private javax.swing.JTable ucs_table;
     private javax.swing.JScrollPane user_table_scroll;
     private javax.swing.JTextField volume_txtbox;

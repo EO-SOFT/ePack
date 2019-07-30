@@ -8,10 +8,10 @@ package __main__;
 import entity.ConfigBarcode;
 import entity.ConfigWarehouse;
 import helper.CloseTabButtonComponent;
-import helper.ComboItem;
 import helper.HQLHelper;
 import helper.Helper;
 import java.awt.AWTEvent;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -28,9 +28,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.JTextComponent;
 import org.hibernate.Query;
 import ui.UILog;
 import ui.config.ConfigMsg;
@@ -41,7 +45,7 @@ import ui.error.ErrorMsg;
  * @author Oussama EZZIOURI
  */
 public class GlobalMethods {
-    
+
     /**
      * @param dataVector
      * @param jtable
@@ -49,12 +53,12 @@ public class GlobalMethods {
      * @param dataResultList
      */
     public static void reset_jtable_data(List<Object[]> dataResultList, Vector dataVector, List<String> headerList, JTable jtable) {
-        
+
         Vector<String> headerVector = new Vector<String>();
-        
+
         //reset Table content
         jtable.setModel(new DefaultTableModel(new Vector(), new Vector()));
-        
+
         for (Iterator<String> it = headerList.iterator(); it.hasNext();) {
             headerVector.add(it.next());
         }
@@ -66,7 +70,7 @@ public class GlobalMethods {
             }
             dataVector.add(oneRow);
         }
-        
+
         for (int c = 0; c < jtable.getColumnCount(); c++) {
             Class<?> col_class = jtable.getColumnClass(c);
             jtable.setDefaultEditor(col_class, null);        // remove editor            
@@ -75,7 +79,7 @@ public class GlobalMethods {
         jtable.setModel(new DefaultTableModel(dataVector, headerVector));
         jtable.setAutoCreateRowSorter(true);
     }
-    
+
     /**
      *
      * @return
@@ -247,7 +251,7 @@ public class GlobalMethods {
                 new CloseTabButtonComponent(parent));
         parent.setSelectedIndex(parent.getTabCount() - 1);
     }
-    
+
     /**
      * Add new tab to the parent JTabbedPane
      *
@@ -266,8 +270,6 @@ public class GlobalMethods {
                 new CloseTabButtonComponent(parent));
         parent.setSelectedIndex(parent.getTabCount() - 1);
     }
-    
-
 
     /**
      *
@@ -333,7 +335,6 @@ public class GlobalMethods {
         UILog.info(ConfigMsg.APP_CONFIG0004[0], "" + GlobalVars.PARTNUMBER_PATTERN_LIST.length, harnessType);
     }
 
-    
     /**
      *
      * @param parentUI
@@ -359,11 +360,10 @@ public class GlobalMethods {
         return box;
     }
 
-    
     /**
-     * 
+     *
      * @param project
-     * @return 
+     * @return
      */
     public static String getPackagingWh(String project) {
         ConfigWarehouse cw = new ConfigWarehouse();
@@ -374,12 +374,37 @@ public class GlobalMethods {
     }
 
     /**
-     * 
+     *
      */
     public static void disableEditingTable(JTable jtable) {
         for (int c = 0; c < jtable.getColumnCount(); c++) {
             Class<?> col_class = jtable.getColumnClass(c);
             jtable.setDefaultEditor(col_class, null);        // remove editor            
+        }
+    }
+
+    public static boolean checkEmptyFields(List<JTextComponent> form) {
+        for (JTextComponent jTextComponent : form) {
+            if (jTextComponent.getText().isEmpty()) {
+                jTextComponent.requestFocus();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void clearPaneFieldsValues(JPanel panel) {
+        for (Component c : panel.getComponents()) {
+            System.out.println("Component "+c.getClass().getCanonicalName()+" "+c.getName());
+            if (c instanceof JTextField) {
+                ((JTextField) c).setText("");
+            }
+            else if (c instanceof JTextArea) {
+                ((JTextArea) c).setText("");
+            }             
+            else if (c instanceof JComboBox) {
+                ((JComboBox) c).setSelectedIndex(0);
+            }
         }
     }
 

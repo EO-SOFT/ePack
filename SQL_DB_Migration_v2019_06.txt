@@ -24,6 +24,28 @@ COMMENT ON COLUMN public.config_transporter.name
 ALTER TABLE public.config_transporter
     ADD CONSTRAINT transporter_unique_name UNIQUE (name);
 
+ALTER TABLE public.config_family ADD
+CONSTRAINT unique_family_name UNIQUE (harness_type, project);
+
+
+ALTER TABLE public.config_segment ADD
+CONSTRAINT unique_segment_project_combination UNIQUE (segment, project);
+
+ALTER TABLE public.config_workplace ADD
+CONSTRAINT unique_project_segment_workplace_combination UNIQUE (project, segment, workplace);
+
+ALTER TABLE public.config_warehouse ADD
+CONSTRAINT unique_project_warehouse_whtype_combination UNIQUE (warehouse, project, wh_type);
+
+ALTER TABLE public.config_warehouse ADD
+CONSTRAINT unique_project_warehouse_combination UNIQUE (warehouse, project);
+
+ALTER TABLE public.config_company ADD
+CONSTRAINT unique_company_name UNIQUE (company_name);
+
+ALTER TABLE public.config_project ADD
+CONSTRAINT unique_project UNIQUE (project);
+
 CREATE SEQUENCE public.config_transporter_id_seq
     INCREMENT 1
     START 1;

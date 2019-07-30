@@ -66,6 +66,7 @@ public class HQLHelper {
     public final static String GET_UCS_BY_SUPPLIER_PART = "FROM ConfigUcs cu WHERE cu.supplierPartNumber = :sp";
     public final static String GET_UCS_BY_HP_AND_SUPPLIER_PART_AND_INDEX_PACKTYPE_AND_PACKSIZE = "FROM ConfigUcs cu WHERE cu.harnessPart = :harnessPart AND cu.supplierPartNumber = :supplierPartNumber AND cu.harnessIndex = :harnessIndex  AND cu.packType = :packType AND cu.packSize = :packSize ORDER BY priority ASC";
     //ConfigFamily
+    public final static String GET_FAMILY_BY_ID = "FROM ConfigFamily c WHERE id = :id";
     public final static String GET_ALL_FAMILIES = "FROM ConfigFamily bp ORDER BY harnessType ASC";
     public final static String GET_FAMILY_BY_NAME = "FROM ConfigFamily bp WHERE harnessType = :harnessType ORDER BY harnessType ASC";
     
@@ -73,11 +74,11 @@ public class HQLHelper {
     public final static String GET_TRANSPORTER_BY_ID = "FROM ConfigTransporter c WHERE id = :id";
     public final static String GET_TRANSPORTER_BY_NAME = "FROM ConfigTransporter c WHERE name = :name ORDER BY name ASC";
     public final static String GET_ALL_TRANSPORTERS = "FROM ConfigTransporter c ORDER BY name ASC";
-    //ConfigProject
+    //ConfigProject    
+    public final static String GET_PROJECT_BY_ID = "FROM ConfigProject c WHERE id = :id";
     public final static String GET_ALL_PROJECT = "FROM ConfigProject bp ORDER BY project ASC";
-    
-    
     //ConfigSegment
+    public final static String GET_SEGMENT_BY_ID = "FROM ConfigSegment c WHERE id = :id";    
     public final static String GET_ALL_SEGMENTS = "FROM ConfigSegment cs ORDER BY segment ASC";
     public final static String GET_SEGMENTS_BY_PROJECT = "FROM ConfigSegment cs WHERE cs.project = :project ORDER BY segment ASC";
     //ConfigSubSegment
@@ -94,6 +95,7 @@ public class HQLHelper {
     public final static String GET_All_WAREHOUSES = "SELECT DISTINCT warehouse FROM config_warehouse cw";
     public final static String GET_WAREHOUSE = "FROM ConfigWarehouse cw WHERE cw.warehouse = :warehouse";
     public final static String GET_WAREHOUSE_BY_PROJECT = "FROM ConfigWarehouse cw WHERE cw.project = :project";    
+    public final static String GET_WAREHOUSE_BY_ID = "FROM ConfigWarehouse cw WHERE cw.id = :id";
     public final static String GET_WAREHOUSE_BY_TYPE = "FROM ConfigWarehouse cw WHERE cw.whType = :wh_type";
     public final static String GET_WAREHOUSE_BY_PROJECT_AND_TYPE = "FROM ConfigWarehouse cw WHERE cw.project = :project AND cw.whType = :wh_type";
 
@@ -117,6 +119,7 @@ public class HQLHelper {
     //public final static String GET_ITEM_ON_STOCK = "FROM PackagingItems pi WHERE pi.packItem = :packItem ";    
 
     //ConfigWorkplace
+    public final static String GET_WORKPLACE_BY_ID = "FROM ConfigWorkplace cb WHERE cb.id = :id";    
     public final static String GET_ALL_WORKPLACES = "FROM ConfigWorkplace bp ORDER BY workplace ASC";
     public final static String GET_WORKPLACES_BY_SEGMENT = "FROM ConfigWorkplace bp WHERE segment = :segment ORDER BY workplace ASC";
     //ConfigBarcode
@@ -271,4 +274,5 @@ public class HQLHelper {
      *
      */
     public final static String DEL_DISPATCH_LABELS_BY_PLAN_ID =  "DELETE FROM LoadPlanDispatchLabel lpl WHERE lpl.loadPlanId = :load_plan_id";
+    
 }

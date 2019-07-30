@@ -48,6 +48,13 @@ public class ConfigWorkplace extends DAO implements Serializable {
         this.workplace = configWorkplace;
     }
 
+    public ConfigWorkplace(String project, String segment, String workplace) {
+        this.workplace = workplace;
+        this.segment = segment;
+        this.project = project;
+    }
+
+    
     public Integer getId() {
         return id;
     }

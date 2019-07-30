@@ -53,6 +53,11 @@ public class ConfigFamily extends DAO implements Serializable {
         this.harnessType = harnessType;
     }
 
+    public ConfigFamily(String harnessType, String project) {
+        this.harnessType = harnessType;
+        this.project = project;
+    }
+    
     public Integer getId() {
         return id;
     }

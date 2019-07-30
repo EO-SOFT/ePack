@@ -89,7 +89,7 @@ public class ConfigWarehouse extends DAO implements java.io.Serializable {
         this.project = project;
     }
 
-    public String getWhType() {
+    public String getWarehouseType() {
         return whType;
     }
 

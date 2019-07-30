@@ -41,9 +41,12 @@ public class ConfigSegment extends DAO implements Serializable{
     public ConfigSegment() {
     }
 
-    public ConfigSegment(String harnessType) {
-        this.segment = harnessType;
+    public ConfigSegment(String segment, String project) {
+        this.segment = segment;
+        this.project = project;
     }
+
+    
 
     public Integer getId() {
         return id;
@@ -87,20 +90,20 @@ public class ConfigSegment extends DAO implements Serializable{
         return query.list();
     }
     
-    public static boolean setSegmentByProject(Object parentUI, JComboBox jbox,String project) {
+    public static boolean setSegmentByProject(Object parentUI, JComboBox segmentsBox,String project) {
         List result = new ConfigSegment().selectBySegment(project);
         if (result.isEmpty()) {
             UILog.severeDialog((Component) parentUI, ErrorMsg.APP_ERR0037);
             UILog.severe(ErrorMsg.APP_ERR0037[1]);
             return false;
         } else { //Map project data in the list
-            jbox.removeAllItems();
+            segmentsBox.removeAllItems();
             for (Object o : result) {
                 ConfigSegment cp = (ConfigSegment) o;
                 //jbox.addItem(new ComboItem(cp.getSegment(), cp.getSegment()));
-                jbox.addItem(cp.getSegment());
+                segmentsBox.addItem(cp.getSegment());
             }
-            jbox.setSelectedIndex(0);
+            segmentsBox.setSelectedIndex(0);
             return true;
         }
     }

@@ -54,6 +54,13 @@ public class ConfigProject extends DAO implements Serializable {
         this.project = project;
     }
 
+    public ConfigProject(String project, String description) {
+        this.project = project;
+        this.description = description;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }
